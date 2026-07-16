@@ -3,13 +3,13 @@ name: kodez-design-tokens
 description: Reference guide for the @kodez/design-tokens package. Use when writing, reviewing, or auditing UI code in any Kodez project to ensure correct token usage, theme switching, and Tailwind integration.
 metadata:
   author: kodez
-  version: "1.1.2"
+  version: "1.2.0"
   argument-hint: <file-or-pattern>
 ---
 
 # Kodez Design Tokens
 
-Reference guide for `@kodez/design-tokens` (v1.1.2). Use this when writing or reviewing UI code in any Kodez project to enforce consistent token usage across themes.
+Reference guide for `@kodez/design-tokens` (v1.2.0). Use this when writing or reviewing UI code in any Kodez project to enforce consistent token usage across themes.
 
 ## Package
 
@@ -17,7 +17,7 @@ Reference guide for `@kodez/design-tokens` (v1.1.2). Use this when writing or re
 @kodez/design-tokens
 ```
 
-Published to the internal Azure Artifacts registry. Exports are ESM-only.
+Published to the internal Azure Artifacts registry. Requires `.npmrc` with the `@kodez` scope configured (see README). Exports both ESM and CJS.
 
 ---
 
@@ -27,9 +27,9 @@ Published to the internal Azure Artifacts registry. Exports are ESM-only.
 // Core (framework-agnostic)
 import { lightTokens, darkTokens } from '@kodez/design-tokens';
 import type { ThemeMode } from '@kodez/design-tokens';
-import { getCssVars, injectCssVars } from '@kodez/design-tokens';
+import { getCssVars, getCssString, injectCssVars } from '@kodez/design-tokens';
 
-// Tailwind integration
+// Tailwind v3 integration
 import { tailwindPreset } from '@kodez/design-tokens';
 ```
 
@@ -122,6 +122,8 @@ Use `surface-0` as the page background. Higher numbers = higher elevation (cards
 
 ## Injecting Tokens (CSS Variables)
 
+### Client-side (React, Vue, vanilla JS)
+
 The recommended setup — inject tokens once at the root of the app:
 
 ```ts
@@ -135,13 +137,74 @@ import { darkTokens } from '@kodez/design-tokens';
 injectCssVars(darkTokens);
 ```
 
-For manual control, `getCssVars` returns the tokens as a CSS string:
+React theme switching with `useEffect`:
+
+```tsx
+import { useEffect } from 'react';
+import { injectCssVars, lightTokens, darkTokens } from '@kodez/design-tokens';
+
+function ThemeProvider({ isDark, children }) {
+  useEffect(() => {
+    injectCssVars(isDark ? darkTokens : lightTokens);
+  }, [isDark]);
+  return children;
+}
+```
+
+### SSR / Next.js App Router (Server Components)
+
+`injectCssVars` is a no-op on the server (no `document`). Use `getCssString` to inject tokens via a `<style>` tag instead:
+
+```tsx
+// app/layout.tsx — Server Component, no `document` access needed
+import { getCssString, lightTokens, darkTokens } from '@kodez/design-tokens';
+
+export default function RootLayout({ children }) {
+  const lightCss = getCssString(lightTokens, ':root');
+  const darkCss  = getCssString(darkTokens,  '.dark');
+  return (
+    <html>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: lightCss + darkCss }} />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+Toggle dark mode by adding/removing the `dark` class on `<html>`:
+```ts
+document.documentElement.classList.toggle('dark', isDark);
+```
+
+### Static CSS (no JavaScript required)
+
+For standalone HTML, email templates, or any project that prefers a stylesheet:
+
+```html
+<link rel="stylesheet" href="node_modules/@kodez/design-tokens/dist/tokens.css" />
+```
+
+Or in CSS:
+```css
+@import "@kodez/design-tokens/dist/tokens.css";
+```
+
+The file includes `:root` (light), `.dark` (class-based), and `@media (prefers-color-scheme: dark)` blocks.
+
+### Manual CSS string
+
+`getCssVars` returns a `Record<string, string>` object with `--` prefixed keys:
 
 ```ts
 import { getCssVars, darkTokens } from '@kodez/design-tokens';
 
-const cssString = getCssVars(darkTokens);
-// "--surface-0: #09090E; --surface-1: #0F0F16; ..."
+const vars = getCssVars(darkTokens);
+// { '--surface-0': '#09090E', '--accent': '#5153F6', ... }
+
+// Spread into MUI CssBaseline or CSS-in-JS:
+const sx = { ...getCssVars(lightTokens) };
 ```
 
 After injection, use tokens in any CSS or inline style via `var(--token-name)`:
@@ -157,6 +220,8 @@ After injection, use tokens in any CSS or inline style via `var(--token-name)`:
 ---
 
 ## Tailwind Integration
+
+### Tailwind v3
 
 Add the preset to `tailwind.config.js` — the app decides `darkMode` and `preflight`:
 
@@ -175,16 +240,41 @@ Available Tailwind utility classes after adding the preset:
 
 ```
 bg-surface-0  bg-surface-1  bg-surface-2  bg-surface-3  bg-surface-4  bg-surface-5
+
 text-primary  text-secondary  text-muted  text-inverse
+  (via theme.extend.textColor — generates text-primary directly, not text-text-primary)
+
 border-subtle  border-default  border-strong  border-hover  border-interactive
-bg-accent  bg-accent-hover  bg-accent-dim
-bg-brand  bg-brand-hover  bg-brand-dim
-bg-danger  bg-danger-bg  border-danger-border
-bg-success  bg-success-bg  border-success-border
-bg-warning  bg-warning-bg
-bg-info  bg-info-bg
+  (via theme.extend.borderColor — generates border-subtle directly)
+
+bg-accent  bg-accent-hover  bg-accent-dim  bg-accent-border  bg-accent-glow
+bg-accent-soft-08  bg-accent-soft-12  bg-accent-soft-14  bg-accent-soft-55
+
+bg-brand  bg-brand-hover  bg-brand-dim  bg-brand-glow
+
+bg-danger  bg-danger-bg  bg-danger-border
+bg-success  bg-success-bg  bg-success-border  bg-success-soft-12  bg-success-soft-14
+bg-warning  bg-warning-bg  bg-warning-soft-16
+bg-info  bg-info-bg  bg-info-soft-12  bg-info-soft-14
+
 font-sans  font-mono   (Inter / JetBrains Mono)
 ring-focus
+```
+
+### Tailwind v4
+
+Import the provided CSS file in your main stylesheet:
+
+```css
+@import "tailwindcss";
+@import "@kodez/design-tokens/dist/tailwind-v4.css";
+```
+
+No `tailwind.config.js` needed. The file handles token injection and `@theme inline` mapping.
+
+**Note on text/border naming in v4:** Tailwind v4 generates utilities from `--color-*` names, so `--color-text-primary` produces `text-text-primary`. Use arbitrary values for cleaner text color classes:
+```html
+<p class="text-[var(--text-primary)]">...</p>
 ```
 
 ---
@@ -215,5 +305,6 @@ When reviewing UI code in any Kodez project, enforce the following:
 - **Brand for marketing/highlight only** — `brand-primary` is for CTAs and highlights, not for generic interactive states.
 - **Typography** — font families must be `Inter` (sans) or `JetBrains Mono` (mono). Flag other font-family declarations.
 - **Dark mode** — every surface, text, and border token already has a dark variant; never add separate dark-mode color overrides using raw values.
+- **SSR safety** — `injectCssVars` must only be called in browser contexts (inside `useEffect`, event handlers, or after a `typeof document !== 'undefined'` guard). For server-rendered apps use `getCssString` + a `<style>` tag.
 
 Flag violations with a `[design-token]` prefix in review output.

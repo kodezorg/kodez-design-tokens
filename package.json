@@ -1,15 +1,19 @@
 {
   "name": "@kodez/design-tokens",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
+      "require": "./dist/index.cjs"
+    },
+    "./dist/tokens.css": "./dist/tokens.css",
+    "./dist/tailwind-v4.css": "./dist/tailwind-v4.css"
   },
   "files": [
     "dist",
@@ -19,13 +23,20 @@
     "registry": "https://pkgs.dev.azure.com/kodez/kodez-connect/_packaging/kodez-connect-packages/npm/registry/"
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
+    "build": "tsup && node scripts/generate-css.mjs",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
   },
   "devDependencies": {
+    "tsup": "^8.0.0",
     "typescript": "^5.5.0"
-  },
-  "dependencies": {
-    "@kodez/design-tokens": "^1.1.0"
   }
 }
