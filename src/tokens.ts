@@ -6,10 +6,35 @@ const BRAND_PRIMARY = '#FF7F56';
 const BRAND_HOVER   = '#FF9A78';
 
 const accentAlphas = {
+  'accent-soft-04': 'rgba(81,83,246,0.04)',
+  'accent-soft-06': 'rgba(81,83,246,0.06)',
   'accent-soft-08': 'rgba(81,83,246,0.08)',
+  'accent-soft-10': 'rgba(81,83,246,0.10)',
   'accent-soft-12': 'rgba(81,83,246,0.12)',
   'accent-soft-14': 'rgba(81,83,246,0.14)',
+  'accent-soft-16': 'rgba(81,83,246,0.16)',
+  'accent-soft-18': 'rgba(81,83,246,0.18)',
+  'accent-soft-20': 'rgba(81,83,246,0.20)',
+  'accent-soft-25': 'rgba(81,83,246,0.25)',
+  'accent-soft-30': 'rgba(81,83,246,0.30)',
   'accent-soft-55': 'rgba(81,83,246,0.55)',
+};
+
+// Overlay tokens — always dark-surface–based scrims; same in light and dark mode
+// so they work correctly as modal backdrops and sidebar overlays regardless of theme.
+const overlayTokens = {
+  'modal-backdrop': 'rgba(9,9,14,0.72)',
+  'modal-shadow':   'rgba(9,9,14,0.55)',
+  'overlay-dark':   'rgba(9,9,14,0.78)',
+  'overlay-mid':    'rgba(15,15,22,0.45)',
+  'overlay-shadow': 'rgba(9,9,14,0.60)',
+  'overlay-soft':   'rgba(15,15,22,0.22)',
+};
+
+// Genai severity — purple accent, same across both themes
+const genaiTokens = {
+  'color-genai':    '#8b5cf6',
+  'color-genai-bg': 'rgba(139,92,246,0.12)',
 };
 
 const brandTokens = {
@@ -119,6 +144,27 @@ export const lightTokens: Record<string, string> = {
   'ds-success':            '#2E7D46',
   'ds-success-bg':         '#E7F4EC',
 
+  // ── Semantic: status aliases (Pulse / workflow UI) ────────────────────────────
+  'status-error':          '#B3261E',
+  'status-error-dim':      'rgba(179,38,30,0.10)',
+  'status-error-border':   'rgba(179,38,30,0.26)',
+  'status-success':        '#2E7D46',
+  'status-success-dim':    'rgba(46,125,70,0.10)',
+  'status-success-border': 'rgba(46,125,70,0.24)',
+  'status-warning':        '#ED6C02',
+  'status-warning-dim':    'rgba(237,108,2,0.12)',
+  'status-warning-border': 'rgba(237,108,2,0.28)',
+
+  // ── Shadows ───────────────────────────────────────────────────────────────────
+  'shadow-card': '0 10px 24px rgba(0,0,0,0.08)',
+  'shadow-4':    '0 14px 34px rgba(0,0,0,0.12)',
+
+  // ── Overlays & modal scrims ───────────────────────────────────────────────────
+  ...overlayTokens,
+
+  // ── Genai severity ────────────────────────────────────────────────────────────
+  ...genaiTokens,
+
   // ── Portal gradients ──────────────────────────────────────────────────────────
   'page-gradient':
     'radial-gradient(ellipse at 16% 14%,rgba(81,83,246,0.08),transparent 30%),radial-gradient(ellipse at 86% 76%,rgba(255,127,86,0.06),transparent 30%)',
@@ -133,9 +179,9 @@ export const darkTokens: Record<string, string> = {
   'surface-0': '#09090E',
   'surface-1': '#0F0F16',
   'surface-2': '#15151E',
-  'surface-3': '#1C1C27',
-  'surface-4': '#222230',
-  'surface-5': '#2B2B3F',
+  'surface-3': '#1A1A24',
+  'surface-4': '#1F1F2D',
+  'surface-5': '#242438',
 
   // ── Text ─────────────────────────────────────────────────────────────────────
   'text-primary':   '#EEEEF5',
@@ -190,7 +236,7 @@ export const darkTokens: Record<string, string> = {
   'app-ink':                '#EEEEF5',
   'app-paper':              '#09090E',
   'app-paper-warm':         '#15151E',
-  'app-paper-deep':         '#1C1C27',
+  'app-paper-deep':         '#1A1A24',
   'app-rule':               'rgba(255,255,255,0.05)',
   'app-muted':              '#808099',
   'app-accent':             ACCENT,
@@ -206,14 +252,14 @@ export const darkTokens: Record<string, string> = {
   'app-blue-soft-12':       'rgba(79,195,247,0.12)',
   'app-blue-soft-14':       'rgba(79,195,247,0.14)',
   'app-gold-soft-16':       'rgba(255,183,77,0.16)',
-  'app-paper-deep-soft-42': 'rgba(28,28,39,0.42)',
+  'app-paper-deep-soft-42': 'rgba(26,26,36,0.42)',
 
   // ── Legacy --ds-* aliases ─────────────────────────────────────────────────────
   'ds-surface-1':          '#0F0F16',
   'ds-surface-2':          '#15151E',
-  'ds-surface-3':          '#1C1C27',
-  'ds-surface-4':          '#222230',
-  'ds-surface-5':          '#2B2B3F',
+  'ds-surface-3':          '#1A1A24',
+  'ds-surface-4':          '#1F1F2D',
+  'ds-surface-5':          '#242438',
   'ds-stroke-subtle':      'rgba(255,255,255,0.05)',
   'ds-stroke-default':     'rgba(255,255,255,0.09)',
   'ds-stroke-hover':       'rgba(255,255,255,0.15)',
@@ -224,6 +270,27 @@ export const darkTokens: Record<string, string> = {
   'ds-danger-bg':          'rgba(216,106,122,0.12)',
   'ds-success':            '#81C784',
   'ds-success-bg':         'rgba(129,199,132,0.12)',
+
+  // ── Semantic: status aliases (Pulse / workflow UI) ────────────────────────────
+  'status-error':          '#D86A7A',
+  'status-error-dim':      'rgba(216,106,122,0.18)',
+  'status-error-border':   'rgba(216,106,122,0.36)',
+  'status-success':        '#81C784',
+  'status-success-dim':    'rgba(129,199,132,0.16)',
+  'status-success-border': 'rgba(129,199,132,0.34)',
+  'status-warning':        '#FFB74D',
+  'status-warning-dim':    'rgba(255,183,77,0.18)',
+  'status-warning-border': 'rgba(255,183,77,0.38)',
+
+  // ── Shadows ───────────────────────────────────────────────────────────────────
+  'shadow-card': '0 10px 24px rgba(0,0,0,0.28)',
+  'shadow-4':    '0 14px 34px rgba(0,0,0,0.34)',
+
+  // ── Overlays & modal scrims ───────────────────────────────────────────────────
+  ...overlayTokens,
+
+  // ── Genai severity ────────────────────────────────────────────────────────────
+  ...genaiTokens,
 
   // ── Portal gradients ──────────────────────────────────────────────────────────
   'page-gradient':
