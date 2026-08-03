@@ -2,6 +2,8 @@
 
 Design token package for Kodez projects. Provides light/dark theme tokens as CSS custom properties, with first-class support for React, Next.js (including App Router SSR), standalone HTML, Tailwind v3, and Tailwind v4.
 
+All semantic and accent color values meet **WCAG AAA (7:1 contrast)** against their intended backgrounds.
+
 ## Compatibility
 
 | Environment | Status | Notes |
@@ -244,9 +246,14 @@ border-subtle  border-default  border-strong  border-hover  border-interactive
 // Accent
 bg-accent  bg-accent-hover  bg-accent-dim  bg-accent-border  bg-accent-glow
 bg-accent-soft-08  bg-accent-soft-12  bg-accent-soft-14  bg-accent-soft-55
+// AAA-compliant accent text colors
+text-accent-text-light   (use in light mode — 7.55:1 on white)
+text-accent-text-dark    (use in dark mode  — 7.04:1 on surface-1)
 
 // Brand
 bg-brand  bg-brand-hover  bg-brand-dim  bg-brand-glow
+// AAA-compliant brand text color
+text-brand-text-light    (use in light mode — 7.07:1 on white)
 
 // Semantic
 bg-danger  bg-danger-bg  bg-danger-border
@@ -343,19 +350,133 @@ TypeScript type: `'light' | 'dark'`.
 
 ---
 
-## Token Reference
+## Color Palette
 
-All tokens available as `var(--token-name)` after injection:
+All text-role tokens meet WCAG AAA (≥7:1) contrast. Ratio is against the primary surface for that mode.
+
+### Surfaces
+
+| Token | Light | Dark |
+|---|---|---|
+| `--surface-0` | `#F5F7FA` | `#09090E` |
+| `--surface-1` | `#FFFFFF` | `#0F0F16` |
+| `--surface-2` | `#EFF0F2` | `#15151E` |
+| `--surface-3` | `#E7E9EC` | `#1C1C27` |
+| `--surface-4` | `#DFE3E8` | `#222230` |
+| `--surface-5` | `#D4DAE1` | `#2B2B3F` |
+
+### Text
+
+| Token | Light | Contrast | Dark | Contrast |
+|---|---|---|---|---|
+| `--text-primary` | `#141515` | 18.3:1 AAA | `#EEEEF5` | 16.53:1 AAA |
+| `--text-secondary` | `#55595F` | 7.05:1 AAA | `#ABABC4` | 8.50:1 AAA |
+| `--text-muted` | `#555961` | 7.03:1 AAA | `#9B9BB4` | 7.04:1 AAA |
+| `--text-inverse` | `#EEEEF5` | — | `#141515` | — |
+
+### Borders
+
+| Token | Light | Dark |
+|---|---|---|
+| `--border-subtle` | `#E4E6E9` | `rgba(255,255,255,0.05)` |
+| `--border-default` | `#D8DDE3` | `rgba(255,255,255,0.09)` |
+| `--border-strong` | `#C6CDD6` | `rgba(255,255,255,0.20)` |
+| `--border-hover` | `#B5BCC5` | `rgba(255,255,255,0.15)` |
+| `--border-interactive` | `#5153F6` | `#6E70F8` |
+
+### Accent
+
+> `--accent` and `--accent-hover` are for decorative fills, borders, and focus rings — **not for text**. Use `--accent-text-light` or `--accent-text-dark` for any accent-colored text to guarantee AAA contrast.
+
+| Token | Light | Dark |
+|---|---|---|
+| `--accent` | `#5153F6` | `#5153F6` |
+| `--accent-hover` | `#6E70F8` | `#6E70F8` |
+| `--accent-text-light` ✦ | `#3739DC` | — |
+| `--accent-text-dark` ✦ | — | `#9092FF` |
+| `--accent-dim` | `rgba(81,83,246,0.08)` | `rgba(81,83,246,0.18)` |
+| `--accent-border` | `rgba(81,83,246,0.25)` | `rgba(81,83,246,0.35)` |
+| `--accent-glow` | `rgba(81,83,246,0.15)` | `rgba(81,83,246,0.35)` |
+| `--focus-ring` | `rgba(81,83,246,0.20)` | `rgba(81,83,246,0.25)` |
+| `--accent-soft-08` | `rgba(81,83,246,0.08)` | `rgba(81,83,246,0.08)` |
+| `--accent-soft-12` | `rgba(81,83,246,0.12)` | `rgba(81,83,246,0.12)` |
+| `--accent-soft-14` | `rgba(81,83,246,0.14)` | `rgba(81,83,246,0.14)` |
+| `--accent-soft-55` | `rgba(81,83,246,0.55)` | `rgba(81,83,246,0.55)` |
+
+✦ AAA text variants: `accent-text-light` = 7.55:1 on white / 7.04:1 on `surface-0`. `accent-text-dark` = 7.04:1 on `surface-1`.
+
+### Brand
+
+> `--brand-primary` is for logos, decorative elements, and illustrations. For brand-colored text on light surfaces use `--brand-text-light` (AAA compliant). In dark mode `--brand-primary` itself is AAA against `surface-1`.
+
+| Token | Light | Dark |
+|---|---|---|
+| `--brand-primary` | `#FF7F56` | `#FF7F56` (7.65:1 AAA in dark) |
+| `--brand-hover` | `#FF9A78` | `#FF9A78` |
+| `--brand-text-light` ✦ | `#A82800` | — |
+| `--brand-dim` | `rgba(255,127,86,0.10)` | `rgba(255,127,86,0.18)` |
+| `--brand-glow` | `rgba(255,127,86,0.15)` | `rgba(255,127,86,0.30)` |
+
+✦ AAA text variant: `brand-text-light` = 7.07:1 on white.
+
+### Semantic — Danger
+
+| Token | Light | Dark |
+|---|---|---|
+| `--color-danger` | `#A0130B` (8.10:1 AAA) | `#EA7C8C` (7.05:1 AAA) |
+| `--color-danger-bg` | `#FBECEB` | `rgba(234,124,140,0.12)` |
+| `--color-danger-border` | `#EFC5C2` | `rgba(234,124,140,0.25)` |
+
+### Semantic — Success
+
+| Token | Light | Dark |
+|---|---|---|
+| `--color-success` | `#0E5D26` (9.42:1 AAA) | `#81C784` (9.49:1 AAA) |
+| `--color-success-bg` | `#E7F4EC` | `rgba(129,199,132,0.12)` |
+| `--color-success-border` | `rgba(14,93,38,0.25)` | `rgba(129,199,132,0.25)` |
+| `--success-soft-12` | `rgba(14,93,38,0.12)` | `rgba(129,199,132,0.12)` |
+| `--success-soft-14` | `rgba(14,93,38,0.14)` | `rgba(129,199,132,0.14)` |
+
+### Semantic — Warning
+
+| Token | Light | Dark |
+|---|---|---|
+| `--color-warning` | `#A92800` (7.02:1 AAA) | `#FFB74D` (11.03:1 AAA) |
+| `--color-warning-bg` | `rgba(169,40,0,0.12)` | `rgba(255,183,77,0.16)` |
+| `--warning-soft-16` | `rgba(169,40,0,0.16)` | `rgba(255,183,77,0.16)` |
+
+### Semantic — Info
+
+| Token | Light | Dark |
+|---|---|---|
+| `--color-info` | `#005AA3` (7.02:1 AAA) | `#4FC3F7` (9.53:1 AAA) |
+| `--color-info-bg` | `rgba(0,90,163,0.12)` | `rgba(79,195,247,0.12)` |
+| `--info-soft-12` | `rgba(0,90,163,0.12)` | `rgba(79,195,247,0.12)` |
+| `--info-soft-14` | `rgba(0,90,163,0.14)` | `rgba(79,195,247,0.14)` |
+
+### Gradients
+
+| Token | Light | Dark |
+|---|---|---|
+| `--page-gradient` | Accent + brand radial ellipses (subtle) | Accent + brand radial ellipses (stronger) |
+| `--page-gradient-muted` | Dual accent ellipses (very subtle) | Single accent ellipse |
+| `--portal-hero-bg` | White gradient + accent ellipse | Accent radial ellipse |
+
+---
+
+## Token Reference
 
 | Category | Tokens |
 |---|---|
 | Surfaces | `surface-0` … `surface-5` (page → elevated layers) |
 | Text | `text-primary`, `text-secondary`, `text-muted`, `text-inverse` |
 | Borders | `border-subtle`, `border-default`, `border-strong`, `border-hover`, `border-interactive` |
-| Accent | `accent`, `accent-hover`, `accent-dim`, `accent-border`, `accent-glow`, `focus-ring`, `accent-soft-{08/12/14/55}` |
-| Brand | `brand-primary`, `brand-hover`, `brand-dim`, `brand-glow` |
+| Accent | `accent`, `accent-hover`, `accent-text-light`*, `accent-text-dark`*, `accent-dim`, `accent-border`, `accent-glow`, `focus-ring`, `accent-soft-{08/12/14/55}` |
+| Brand | `brand-primary`, `brand-hover`, `brand-text-light`*, `brand-dim`, `brand-glow` |
 | Semantic | `color-{danger/success/warning/info}` with `-bg` and `-border` variants |
 | Gradients | `page-gradient`, `page-gradient-muted`, `portal-hero-bg` |
+
+\* AAA-compliant text variants — use these wherever accent or brand color appears as text.
 
 Example usage:
 
@@ -377,6 +498,16 @@ Example usage:
 
 .btn-primary:hover {
   background: var(--accent-hover);
+}
+
+/* AAA-compliant accent link in light mode */
+.link {
+  color: var(--accent-text-light);
+}
+
+/* AAA-compliant accent link in dark mode */
+.dark .link {
+  color: var(--accent-text-dark);
 }
 ```
 
@@ -422,13 +553,45 @@ Build outputs:
 
 ---
 
+## Migration from v1.4.x to v1.5.0
+
+### AAA text tokens added
+
+Three new tokens provide AAA-compliant foreground colors for accent and brand text:
+
+| New token | Use case | Contrast |
+|---|---|---|
+| `--accent-text-light` | Accent-colored links/text on light surfaces | 7.55:1 on white, 7.04:1 on `surface-0` |
+| `--accent-text-dark` | Accent-colored links/text on dark surfaces | 7.04:1 on `surface-1` |
+| `--brand-text-light` | Brand-colored text on light surfaces | 7.07:1 on white |
+
+Replace any direct use of `--accent` or `--brand-primary` as a text color with the appropriate variant.
+
+### Tokens removed
+
+The following token groups were removed. Migrate to the recommended alternatives:
+
+| Removed token | Alternative |
+|---|---|
+| `--modal-backdrop`, `--overlay-*`, `--modal-shadow` | Use a hardcoded `rgba(9,9,14,0.72)` scrim or your own CSS variable |
+| `--color-genai`, `--color-genai-bg` | Define locally in your app's stylesheet |
+| `--status-error`, `--status-success`, `--status-warning` (and variants) | Use `--color-danger`, `--color-success`, `--color-warning` |
+| `--shadow-card`, `--shadow-4` | Define locally with `box-shadow` |
+| `--accent-soft-04/06/10/16/18/20/25/30` | Use the kept variants: `08`, `12`, `14`, `55` |
+
+### Semantic color values updated
+
+All semantic foreground colors were adjusted to reach AAA contrast. If you were referencing the raw hex values directly in tests or design tools, update to the new values shown in the [Color Palette](#color-palette) section above.
+
+---
+
 ## Migration from v1.1.x
 
 ### Tailwind preset — utility class names fixed
 
 Text and border tokens were previously placed in `theme.extend.colors`, which generated class names with double prefixes. This is fixed in v1.2.0:
 
-| v1.1.x (broken) | v1.2.0 (correct) |
+| v1.1.x (broken) | v1.2.0+ (correct) |
 |---|---|
 | `text-text-primary` | `text-primary` |
 | `text-text-secondary` | `text-secondary` |
