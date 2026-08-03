@@ -3,7 +3,7 @@ name: kodez-design-tokens
 description: Reference guide for the @kodez/design-tokens package. Use when writing, reviewing, or auditing UI code in any Kodez project to ensure correct token usage, theme switching, and Tailwind integration.
 metadata:
   author: kodez
-  version: "1.2.0"
+  version: "1.5.1"
   argument-hint: <file-or-pattern>
 ---
 
