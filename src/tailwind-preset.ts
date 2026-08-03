@@ -34,21 +34,26 @@ const tailwindPreset = {
         'surface-5': 'var(--surface-5)',
 
         // ── Accent ──────────────────────────────────────────────────────────────
-        'accent':         'var(--accent)',
-        'accent-hover':   'var(--accent-hover)',
-        'accent-dim':     'var(--accent-dim)',
-        'accent-border':  'var(--accent-border)',
-        'accent-glow':    'var(--accent-glow)',
-        'accent-soft-08': 'var(--accent-soft-08)',
-        'accent-soft-12': 'var(--accent-soft-12)',
-        'accent-soft-14': 'var(--accent-soft-14)',
-        'accent-soft-55': 'var(--accent-soft-55)',
+        'accent':            'var(--accent)',
+        'accent-hover':      'var(--accent-hover)',
+        // AAA-compliant text variants — use these for links and accent-colored text
+        'accent-text-light': 'var(--accent-text-light)',
+        'accent-text-dark':  'var(--accent-text-dark)',
+        'accent-dim':        'var(--accent-dim)',
+        'accent-border':     'var(--accent-border)',
+        'accent-glow':       'var(--accent-glow)',
+        'accent-soft-08':    'var(--accent-soft-08)',
+        'accent-soft-12':    'var(--accent-soft-12)',
+        'accent-soft-14':    'var(--accent-soft-14)',
+        'accent-soft-55':    'var(--accent-soft-55)',
 
         // ── Brand ────────────────────────────────────────────────────────────────
-        'brand':       'var(--brand-primary)',
-        'brand-hover': 'var(--brand-hover)',
-        'brand-dim':   'var(--brand-dim)',
-        'brand-glow':  'var(--brand-glow)',
+        'brand':            'var(--brand-primary)',
+        'brand-hover':      'var(--brand-hover)',
+        // AAA-compliant text variant — use for brand-colored text on light surfaces
+        'brand-text-light': 'var(--brand-text-light)',
+        'brand-dim':        'var(--brand-dim)',
+        'brand-glow':       'var(--brand-glow)',
 
         // ── Semantic ─────────────────────────────────────────────────────────────
         'danger':           'var(--color-danger)',
