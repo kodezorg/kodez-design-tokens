@@ -352,107 +352,107 @@ TypeScript type: `'light' | 'dark'`.
 
 ## Color Palette
 
-All text-role tokens meet WCAG AAA (≥7:1) contrast. Ratio is against the primary surface for that mode.
+All text-role tokens meet WCAG AAA (≥7:1) contrast. Ratio is against the primary surface for that mode. Color swatches shown for solid hex values; `rgba` tokens are listed as values only.
 
 ### Surfaces
 
-| Token | Light | Dark |
-|---|---|---|
-| `--surface-0` | `#F5F7FA` | `#09090E` |
-| `--surface-1` | `#FFFFFF` | `#0F0F16` |
-| `--surface-2` | `#EFF0F2` | `#15151E` |
-| `--surface-3` | `#E7E9EC` | `#1C1C27` |
-| `--surface-4` | `#DFE3E8` | `#222230` |
-| `--surface-5` | `#D4DAE1` | `#2B2B3F` |
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--surface-0` | ![#F5F7FA](https://img.shields.io/badge/-%23F5F7FA-F5F7FA?style=flat-square) | `#F5F7FA` | ![#09090E](https://img.shields.io/badge/-%2309090E-09090E?style=flat-square) | `#09090E` |
+| `--surface-1` | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF?style=flat-square) | `#FFFFFF` | ![#0F0F16](https://img.shields.io/badge/-%230F0F16-0F0F16?style=flat-square) | `#0F0F16` |
+| `--surface-2` | ![#EFF0F2](https://img.shields.io/badge/-%23EFF0F2-EFF0F2?style=flat-square) | `#EFF0F2` | ![#15151E](https://img.shields.io/badge/-%2315151E-15151E?style=flat-square) | `#15151E` |
+| `--surface-3` | ![#E7E9EC](https://img.shields.io/badge/-%23E7E9EC-E7E9EC?style=flat-square) | `#E7E9EC` | ![#1C1C27](https://img.shields.io/badge/-%231C1C27-1C1C27?style=flat-square) | `#1C1C27` |
+| `--surface-4` | ![#DFE3E8](https://img.shields.io/badge/-%23DFE3E8-DFE3E8?style=flat-square) | `#DFE3E8` | ![#222230](https://img.shields.io/badge/-%23222230-222230?style=flat-square) | `#222230` |
+| `--surface-5` | ![#D4DAE1](https://img.shields.io/badge/-%23D4DAE1-D4DAE1?style=flat-square) | `#D4DAE1` | ![#2B2B3F](https://img.shields.io/badge/-%232B2B3F-2B2B3F?style=flat-square) | `#2B2B3F` |
 
 ### Text
 
-| Token | Light | Contrast | Dark | Contrast |
-|---|---|---|---|---|
-| `--text-primary` | `#141515` | 18.3:1 AAA | `#EEEEF5` | 16.53:1 AAA |
-| `--text-secondary` | `#55595F` | 7.05:1 AAA | `#ABABC4` | 8.50:1 AAA |
-| `--text-muted` | `#555961` | 7.03:1 AAA | `#9B9BB4` | 7.04:1 AAA |
-| `--text-inverse` | `#EEEEF5` | — | `#141515` | — |
+| Token | Light | | Contrast | Dark | | Contrast |
+|---|---|---|---|---|---|---|
+| `--text-primary` | ![#141515](https://img.shields.io/badge/-%23141515-141515?style=flat-square) | `#141515` | 18.3:1 AAA | ![#EEEEF5](https://img.shields.io/badge/-%23EEEEF5-EEEEF5?style=flat-square) | `#EEEEF5` | 16.53:1 AAA |
+| `--text-secondary` | ![#55595F](https://img.shields.io/badge/-%2355595F-55595F?style=flat-square) | `#55595F` | 7.05:1 AAA | ![#ABABC4](https://img.shields.io/badge/-%23ABABC4-ABABC4?style=flat-square) | `#ABABC4` | 8.50:1 AAA |
+| `--text-muted` | ![#555961](https://img.shields.io/badge/-%23555961-555961?style=flat-square) | `#555961` | 7.03:1 AAA | ![#9B9BB4](https://img.shields.io/badge/-%239B9BB4-9B9BB4?style=flat-square) | `#9B9BB4` | 7.04:1 AAA |
+| `--text-inverse` | ![#EEEEF5](https://img.shields.io/badge/-%23EEEEF5-EEEEF5?style=flat-square) | `#EEEEF5` | — | ![#141515](https://img.shields.io/badge/-%23141515-141515?style=flat-square) | `#141515` | — |
 
 ### Borders
 
-| Token | Light | Dark |
-|---|---|---|
-| `--border-subtle` | `#E4E6E9` | `rgba(255,255,255,0.05)` |
-| `--border-default` | `#D8DDE3` | `rgba(255,255,255,0.09)` |
-| `--border-strong` | `#C6CDD6` | `rgba(255,255,255,0.20)` |
-| `--border-hover` | `#B5BCC5` | `rgba(255,255,255,0.15)` |
-| `--border-interactive` | `#5153F6` | `#6E70F8` |
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--border-subtle` | ![#E4E6E9](https://img.shields.io/badge/-%23E4E6E9-E4E6E9?style=flat-square) | `#E4E6E9` | — | `rgba(255,255,255,0.05)` |
+| `--border-default` | ![#D8DDE3](https://img.shields.io/badge/-%23D8DDE3-D8DDE3?style=flat-square) | `#D8DDE3` | — | `rgba(255,255,255,0.09)` |
+| `--border-strong` | ![#C6CDD6](https://img.shields.io/badge/-%23C6CDD6-C6CDD6?style=flat-square) | `#C6CDD6` | — | `rgba(255,255,255,0.20)` |
+| `--border-hover` | ![#B5BCC5](https://img.shields.io/badge/-%23B5BCC5-B5BCC5?style=flat-square) | `#B5BCC5` | — | `rgba(255,255,255,0.15)` |
+| `--border-interactive` | ![#5153F6](https://img.shields.io/badge/-%235153F6-5153F6?style=flat-square) | `#5153F6` | ![#6E70F8](https://img.shields.io/badge/-%236E70F8-6E70F8?style=flat-square) | `#6E70F8` |
 
 ### Accent
 
 > `--accent` and `--accent-hover` are for decorative fills, borders, and focus rings — **not for text**. Use `--accent-text-light` or `--accent-text-dark` for any accent-colored text to guarantee AAA contrast.
 
-| Token | Light | Dark |
-|---|---|---|
-| `--accent` | `#5153F6` | `#5153F6` |
-| `--accent-hover` | `#6E70F8` | `#6E70F8` |
-| `--accent-text-light` ✦ | `#3739DC` | — |
-| `--accent-text-dark` ✦ | — | `#9092FF` |
-| `--accent-dim` | `rgba(81,83,246,0.08)` | `rgba(81,83,246,0.18)` |
-| `--accent-border` | `rgba(81,83,246,0.25)` | `rgba(81,83,246,0.35)` |
-| `--accent-glow` | `rgba(81,83,246,0.15)` | `rgba(81,83,246,0.35)` |
-| `--focus-ring` | `rgba(81,83,246,0.20)` | `rgba(81,83,246,0.25)` |
-| `--accent-soft-08` | `rgba(81,83,246,0.08)` | `rgba(81,83,246,0.08)` |
-| `--accent-soft-12` | `rgba(81,83,246,0.12)` | `rgba(81,83,246,0.12)` |
-| `--accent-soft-14` | `rgba(81,83,246,0.14)` | `rgba(81,83,246,0.14)` |
-| `--accent-soft-55` | `rgba(81,83,246,0.55)` | `rgba(81,83,246,0.55)` |
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--accent` | ![#5153F6](https://img.shields.io/badge/-%235153F6-5153F6?style=flat-square) | `#5153F6` | ![#5153F6](https://img.shields.io/badge/-%235153F6-5153F6?style=flat-square) | `#5153F6` |
+| `--accent-hover` | ![#6E70F8](https://img.shields.io/badge/-%236E70F8-6E70F8?style=flat-square) | `#6E70F8` | ![#6E70F8](https://img.shields.io/badge/-%236E70F8-6E70F8?style=flat-square) | `#6E70F8` |
+| `--accent-text-light` ✦ | ![#3739DC](https://img.shields.io/badge/-%233739DC-3739DC?style=flat-square) | `#3739DC` | — | — |
+| `--accent-text-dark` ✦ | — | — | ![#9092FF](https://img.shields.io/badge/-%239092FF-9092FF?style=flat-square) | `#9092FF` |
+| `--accent-dim` | — | `rgba(81,83,246,0.08)` | — | `rgba(81,83,246,0.18)` |
+| `--accent-border` | — | `rgba(81,83,246,0.25)` | — | `rgba(81,83,246,0.35)` |
+| `--accent-glow` | — | `rgba(81,83,246,0.15)` | — | `rgba(81,83,246,0.35)` |
+| `--focus-ring` | — | `rgba(81,83,246,0.20)` | — | `rgba(81,83,246,0.25)` |
+| `--accent-soft-08` | — | `rgba(81,83,246,0.08)` | — | `rgba(81,83,246,0.08)` |
+| `--accent-soft-12` | — | `rgba(81,83,246,0.12)` | — | `rgba(81,83,246,0.12)` |
+| `--accent-soft-14` | — | `rgba(81,83,246,0.14)` | — | `rgba(81,83,246,0.14)` |
+| `--accent-soft-55` | — | `rgba(81,83,246,0.55)` | — | `rgba(81,83,246,0.55)` |
 
 ✦ AAA text variants: `accent-text-light` = 7.55:1 on white / 7.04:1 on `surface-0`. `accent-text-dark` = 7.04:1 on `surface-1`.
 
 ### Brand
 
-> `--brand-primary` is for logos, decorative elements, and illustrations. For brand-colored text on light surfaces use `--brand-text-light` (AAA compliant). In dark mode `--brand-primary` itself is AAA against `surface-1`.
+> `--brand-primary` is for logos, decorative elements, and illustrations. For brand-colored text on light surfaces use `--brand-text-light` (AAA). In dark mode `--brand-primary` itself is AAA against `surface-1`.
 
-| Token | Light | Dark |
-|---|---|---|
-| `--brand-primary` | `#FF7F56` | `#FF7F56` (7.65:1 AAA in dark) |
-| `--brand-hover` | `#FF9A78` | `#FF9A78` |
-| `--brand-text-light` ✦ | `#A82800` | — |
-| `--brand-dim` | `rgba(255,127,86,0.10)` | `rgba(255,127,86,0.18)` |
-| `--brand-glow` | `rgba(255,127,86,0.15)` | `rgba(255,127,86,0.30)` |
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--brand-primary` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` (7.65:1 AAA) |
+| `--brand-hover` | ![#FF9A78](https://img.shields.io/badge/-%23FF9A78-FF9A78?style=flat-square) | `#FF9A78` | ![#FF9A78](https://img.shields.io/badge/-%23FF9A78-FF9A78?style=flat-square) | `#FF9A78` |
+| `--brand-text-light` ✦ | ![#A82800](https://img.shields.io/badge/-%23A82800-A82800?style=flat-square) | `#A82800` | — | — |
+| `--brand-dim` | — | `rgba(255,127,86,0.10)` | — | `rgba(255,127,86,0.18)` |
+| `--brand-glow` | — | `rgba(255,127,86,0.15)` | — | `rgba(255,127,86,0.30)` |
 
 ✦ AAA text variant: `brand-text-light` = 7.07:1 on white.
 
 ### Semantic — Danger
 
-| Token | Light | Dark |
-|---|---|---|
-| `--color-danger` | `#A0130B` (8.10:1 AAA) | `#EA7C8C` (7.05:1 AAA) |
-| `--color-danger-bg` | `#FBECEB` | `rgba(234,124,140,0.12)` |
-| `--color-danger-border` | `#EFC5C2` | `rgba(234,124,140,0.25)` |
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--color-danger` | ![#A0130B](https://img.shields.io/badge/-%23A0130B-A0130B?style=flat-square) | `#A0130B` (8.10:1 AAA) | ![#EA7C8C](https://img.shields.io/badge/-%23EA7C8C-EA7C8C?style=flat-square) | `#EA7C8C` (7.05:1 AAA) |
+| `--color-danger-bg` | ![#FBECEB](https://img.shields.io/badge/-%23FBECEB-FBECEB?style=flat-square) | `#FBECEB` | — | `rgba(234,124,140,0.12)` |
+| `--color-danger-border` | ![#EFC5C2](https://img.shields.io/badge/-%23EFC5C2-EFC5C2?style=flat-square) | `#EFC5C2` | — | `rgba(234,124,140,0.25)` |
 
 ### Semantic — Success
 
-| Token | Light | Dark |
-|---|---|---|
-| `--color-success` | `#0E5D26` (9.42:1 AAA) | `#81C784` (9.49:1 AAA) |
-| `--color-success-bg` | `#E7F4EC` | `rgba(129,199,132,0.12)` |
-| `--color-success-border` | `rgba(14,93,38,0.25)` | `rgba(129,199,132,0.25)` |
-| `--success-soft-12` | `rgba(14,93,38,0.12)` | `rgba(129,199,132,0.12)` |
-| `--success-soft-14` | `rgba(14,93,38,0.14)` | `rgba(129,199,132,0.14)` |
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--color-success` | ![#0E5D26](https://img.shields.io/badge/-%230E5D26-0E5D26?style=flat-square) | `#0E5D26` (9.42:1 AAA) | ![#81C784](https://img.shields.io/badge/-%2381C784-81C784?style=flat-square) | `#81C784` (9.49:1 AAA) |
+| `--color-success-bg` | ![#E7F4EC](https://img.shields.io/badge/-%23E7F4EC-E7F4EC?style=flat-square) | `#E7F4EC` | — | `rgba(129,199,132,0.12)` |
+| `--color-success-border` | — | `rgba(14,93,38,0.25)` | — | `rgba(129,199,132,0.25)` |
+| `--success-soft-12` | — | `rgba(14,93,38,0.12)` | — | `rgba(129,199,132,0.12)` |
+| `--success-soft-14` | — | `rgba(14,93,38,0.14)` | — | `rgba(129,199,132,0.14)` |
 
 ### Semantic — Warning
 
-| Token | Light | Dark |
-|---|---|---|
-| `--color-warning` | `#A92800` (7.02:1 AAA) | `#FFB74D` (11.03:1 AAA) |
-| `--color-warning-bg` | `rgba(169,40,0,0.12)` | `rgba(255,183,77,0.16)` |
-| `--warning-soft-16` | `rgba(169,40,0,0.16)` | `rgba(255,183,77,0.16)` |
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--color-warning` | ![#A92800](https://img.shields.io/badge/-%23A92800-A92800?style=flat-square) | `#A92800` (7.02:1 AAA) | ![#FFB74D](https://img.shields.io/badge/-%23FFB74D-FFB74D?style=flat-square) | `#FFB74D` (11.03:1 AAA) |
+| `--color-warning-bg` | — | `rgba(169,40,0,0.12)` | — | `rgba(255,183,77,0.16)` |
+| `--warning-soft-16` | — | `rgba(169,40,0,0.16)` | — | `rgba(255,183,77,0.16)` |
 
 ### Semantic — Info
 
-| Token | Light | Dark |
-|---|---|---|
-| `--color-info` | `#005AA3` (7.02:1 AAA) | `#4FC3F7` (9.53:1 AAA) |
-| `--color-info-bg` | `rgba(0,90,163,0.12)` | `rgba(79,195,247,0.12)` |
-| `--info-soft-12` | `rgba(0,90,163,0.12)` | `rgba(79,195,247,0.12)` |
-| `--info-soft-14` | `rgba(0,90,163,0.14)` | `rgba(79,195,247,0.14)` |
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--color-info` | ![#005AA3](https://img.shields.io/badge/-%23005AA3-005AA3?style=flat-square) | `#005AA3` (7.02:1 AAA) | ![#4FC3F7](https://img.shields.io/badge/-%234FC3F7-4FC3F7?style=flat-square) | `#4FC3F7` (9.53:1 AAA) |
+| `--color-info-bg` | — | `rgba(0,90,163,0.12)` | — | `rgba(79,195,247,0.12)` |
+| `--info-soft-12` | — | `rgba(0,90,163,0.12)` | — | `rgba(79,195,247,0.12)` |
+| `--info-soft-14` | — | `rgba(0,90,163,0.14)` | — | `rgba(79,195,247,0.14)` |
 
 ### Gradients
 
@@ -559,11 +559,11 @@ Build outputs:
 
 Three new tokens provide AAA-compliant foreground colors for accent and brand text:
 
-| New token | Use case | Contrast |
-|---|---|---|
-| `--accent-text-light` | Accent-colored links/text on light surfaces | 7.55:1 on white, 7.04:1 on `surface-0` |
-| `--accent-text-dark` | Accent-colored links/text on dark surfaces | 7.04:1 on `surface-1` |
-| `--brand-text-light` | Brand-colored text on light surfaces | 7.07:1 on white |
+| New token | | Use case | Contrast |
+|---|---|---|---|
+| `--accent-text-light` | ![#3739DC](https://img.shields.io/badge/-%233739DC-3739DC?style=flat-square) | Accent-colored links/text on light surfaces | 7.55:1 on white, 7.04:1 on `surface-0` |
+| `--accent-text-dark` | ![#9092FF](https://img.shields.io/badge/-%239092FF-9092FF?style=flat-square) | Accent-colored links/text on dark surfaces | 7.04:1 on `surface-1` |
+| `--brand-text-light` | ![#A82800](https://img.shields.io/badge/-%23A82800-A82800?style=flat-square) | Brand-colored text on light surfaces | 7.07:1 on white |
 
 Replace any direct use of `--accent` or `--brand-primary` as a text color with the appropriate variant.
 
