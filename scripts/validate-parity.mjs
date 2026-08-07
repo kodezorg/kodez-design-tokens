@@ -1,23 +1,23 @@
 #!/usr/bin/env node
-// Validates that lightTokens and darkTokens have the same keys (except known dark-only tokens).
-import { lightTokens, darkTokens } from '../dist/index.js';
+// Validates that light and dark modes have the same --kz-* tokens (except known dark-only tokens).
+import { getCssVars } from '../dist/index.js';
 
-const DARK_ONLY = new Set(['surface-kpi']);
+const DARK_ONLY = new Set(['--kz-surface-kpi']);
 
-const lightKeys = new Set(Object.keys(lightTokens));
-const darkKeys  = new Set(Object.keys(darkTokens));
+const lightKeys = new Set(Object.keys(getCssVars('light')));
+const darkKeys  = new Set(Object.keys(getCssVars('dark')));
 let errors = 0;
 
 for (const key of darkKeys) {
   if (!lightKeys.has(key) && !DARK_ONLY.has(key)) {
-    console.error(`  ✗ parity: "${key}" in darkTokens but missing from lightTokens`);
+    console.error(`  ✗ parity: "${key}" in dark but missing from light`);
     errors++;
   }
 }
 
 for (const key of lightKeys) {
   if (!darkKeys.has(key)) {
-    console.error(`  ✗ parity: "${key}" in lightTokens but missing from darkTokens`);
+    console.error(`  ✗ parity: "${key}" in light but missing from dark`);
     errors++;
   }
 }
