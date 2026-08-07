@@ -55,7 +55,7 @@ flowchart TD
     A --> E["tailwindPreset\nMaps tokens → Tailwind color keys"]
 
     C --> F["<style> tag injection\nfor Server Components"]
-    D --> G[":root CSS custom properties\n--surface-0, --accent, etc."]
+    D --> G[":root CSS custom properties\n--surface-0, --brand-primary, etc."]
     B --> G
     E --> H["tailwind.config.js\npresets: [tailwindPreset]"]
 
@@ -236,36 +236,29 @@ Available utility classes:
 ```
 // Surfaces
 bg-surface-0  bg-surface-1  bg-surface-2  bg-surface-3  bg-surface-4  bg-surface-5
+bg-surface-kpi  (dark only — reduced-emphasis KPI surface)
 
 // Text (generated via theme.extend.textColor — no double prefix)
-text-primary  text-secondary  text-muted  text-inverse
+text-primary  text-secondary  text-tertiary  text-accent  text-disabled  text-inverse
+text-brand    (brand-colored text — mode-adaptive)
+text-error    text-success    text-warning    text-info
 
-// Borders (generated via theme.extend.borderColor — no double prefix)
+// Strokes (generated via theme.extend.borderColor — no double prefix)
 border-subtle  border-default  border-strong  border-hover  border-interactive
 
-// Accent
-bg-accent  bg-accent-hover  bg-accent-dim  bg-accent-border  bg-accent-glow
-bg-accent-soft-08  bg-accent-soft-12  bg-accent-soft-14  bg-accent-soft-55
-// AAA-compliant accent text colors
-text-accent-text-light   (use in light mode — 7.55:1 on white)
-text-accent-text-dark    (use in dark mode  — 7.04:1 on surface-1)
-
 // Brand
-bg-brand  bg-brand-hover  bg-brand-dim  bg-brand-glow
-// AAA-compliant brand text color
-text-brand-text-light    (use in light mode — 7.07:1 on white)
+bg-brand-primary  bg-brand-hover  bg-brand-active
+bg-brand-bg-subtle  bg-brand-border  bg-brand-border-subtle
+bg-brand-gradient-1  bg-brand-gradient-2
 
-// Semantic
-bg-danger  bg-danger-bg  bg-danger-border
-bg-success  bg-success-bg  bg-success-border  bg-success-soft-12  bg-success-soft-14
-bg-warning  bg-warning-bg  bg-warning-soft-16
-bg-info  bg-info-bg  bg-info-soft-12  bg-info-soft-14
+// Semantic — backgrounds and borders
+bg-error-bg-solid    bg-error-bg-subtle    bg-error-border    bg-error-border-subtle
+bg-success-bg-solid  bg-success-bg-subtle  bg-success-border  bg-success-border-subtle
+bg-warning-bg-solid  bg-warning-bg-subtle  bg-warning-border  bg-warning-border-subtle
+bg-info-bg-solid     bg-info-bg-subtle     bg-info-border     bg-info-border-subtle
 
 // Typography
 font-sans  font-mono   (Inter / JetBrains Mono)
-
-// Focus
-ring-focus
 ```
 
 ---
@@ -287,10 +280,10 @@ No `tailwind.config.js` needed. The file handles:
 Available utilities:
 
 ```
-bg-surface-0  bg-surface-1  bg-surface-2  bg-surface-3  bg-surface-4  bg-surface-5
-bg-accent  bg-accent-hover  bg-accent-dim  bg-accent-border  bg-accent-glow
-bg-brand  bg-brand-hover  bg-brand-dim  bg-brand-glow
-bg-danger  bg-danger-bg  bg-success  bg-success-bg  bg-warning  bg-info
+bg-surface-0  bg-surface-1  bg-surface-2  bg-surface-3  bg-surface-4  bg-surface-5  bg-surface-kpi
+bg-brand-primary  bg-brand-hover  bg-brand-active  bg-brand-bg-subtle
+bg-error-bg-solid  bg-error-bg-subtle  bg-success-bg-solid  bg-success-bg-subtle
+bg-warning-bg-solid  bg-warning-bg-subtle  bg-info-bg-solid  bg-info-bg-subtle
 ```
 
 **Text and border colors in v4:** Tailwind v4 generates utility names from `--color-*` variable names, so `--color-text-primary` produces `text-text-primary`. Use arbitrary values for cleaner markup:
@@ -333,7 +326,7 @@ Returns a `Record<string, string>` with `--` prefixed keys. Useful for spreading
 
 ```ts
 const vars = getCssVars(lightTokens);
-// { '--surface-0': '#F5F7FA', '--accent': '#5153F6', ... }
+// { '--surface-0': '#FEFEFE', '--brand-primary': '#FF7F56', ... }
 ```
 
 ### `lightTokens` / `darkTokens`
@@ -352,115 +345,94 @@ TypeScript type: `'light' | 'dark'`.
 
 ## Color Palette
 
-All text-role tokens meet WCAG AAA (≥7:1) contrast. Ratio is against the primary surface for that mode. Color swatches shown for solid hex values; `rgba` tokens are listed as values only.
+Color swatches shown for solid hex values; `rgba` tokens are listed as values only.
 
 ### Surfaces
 
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--surface-0` | ![#F5F7FA](https://img.shields.io/badge/-%23F5F7FA-F5F7FA?style=flat-square) | `#F5F7FA` | ![#09090E](https://img.shields.io/badge/-%2309090E-09090E?style=flat-square) | `#09090E` |
-| `--surface-1` | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF?style=flat-square) | `#FFFFFF` | ![#0F0F16](https://img.shields.io/badge/-%230F0F16-0F0F16?style=flat-square) | `#0F0F16` |
-| `--surface-2` | ![#EFF0F2](https://img.shields.io/badge/-%23EFF0F2-EFF0F2?style=flat-square) | `#EFF0F2` | ![#15151E](https://img.shields.io/badge/-%2315151E-15151E?style=flat-square) | `#15151E` |
-| `--surface-3` | ![#E7E9EC](https://img.shields.io/badge/-%23E7E9EC-E7E9EC?style=flat-square) | `#E7E9EC` | ![#1C1C27](https://img.shields.io/badge/-%231C1C27-1C1C27?style=flat-square) | `#1C1C27` |
-| `--surface-4` | ![#DFE3E8](https://img.shields.io/badge/-%23DFE3E8-DFE3E8?style=flat-square) | `#DFE3E8` | ![#222230](https://img.shields.io/badge/-%23222230-222230?style=flat-square) | `#222230` |
-| `--surface-5` | ![#D4DAE1](https://img.shields.io/badge/-%23D4DAE1-D4DAE1?style=flat-square) | `#D4DAE1` | ![#2B2B3F](https://img.shields.io/badge/-%232B2B3F-2B2B3F?style=flat-square) | `#2B2B3F` |
+| `--surface-0` | ![#FEFEFE](https://img.shields.io/badge/-%23FEFEFE-FEFEFE?style=flat-square) | `#FEFEFE` | ![#09090E](https://img.shields.io/badge/-%2309090E-09090E?style=flat-square) | `#09090E` |
+| `--surface-1` | ![#F7F7FB](https://img.shields.io/badge/-%23F7F7FB-F7F7FB?style=flat-square) | `#F7F7FB` | ![#0F0F16](https://img.shields.io/badge/-%230F0F16-0F0F16?style=flat-square) | `#0F0F16` |
+| `--surface-2` | ![#F0F0F6](https://img.shields.io/badge/-%23F0F0F6-F0F0F6?style=flat-square) | `#F0F0F6` | ![#15151E](https://img.shields.io/badge/-%2315151E-15151E?style=flat-square) | `#15151E` |
+| `--surface-3` | ![#E8E8F0](https://img.shields.io/badge/-%23E8E8F0-E8E8F0?style=flat-square) | `#E8E8F0` | ![#1C1C27](https://img.shields.io/badge/-%231C1C27-1C1C27?style=flat-square) | `#1C1C27` |
+| `--surface-4` | ![#E0E0EC](https://img.shields.io/badge/-%23E0E0EC-E0E0EC?style=flat-square) | `#E0E0EC` | ![#222230](https://img.shields.io/badge/-%23222230-222230?style=flat-square) | `#222230` |
+| `--surface-5` | ![#D8D8E6](https://img.shields.io/badge/-%23D8D8E6-D8D8E6?style=flat-square) | `#D8D8E6` | ![#2B2B3F](https://img.shields.io/badge/-%232B2B3F-2B2B3F?style=flat-square) | `#2B2B3F` |
+| `--surface-kpi` | — | — | — | `rgba(21,21,30,0.72)` |
 
 ### Text
 
-| Token | Light | | Contrast | Dark | | Contrast |
-|---|---|---|---|---|---|---|
-| `--text-primary` | ![#141515](https://img.shields.io/badge/-%23141515-141515?style=flat-square) | `#141515` | 18.3:1 AAA | ![#EEEEF5](https://img.shields.io/badge/-%23EEEEF5-EEEEF5?style=flat-square) | `#EEEEF5` | 16.53:1 AAA |
-| `--text-secondary` | ![#55595F](https://img.shields.io/badge/-%2355595F-55595F?style=flat-square) | `#55595F` | 7.05:1 AAA | ![#ABABC4](https://img.shields.io/badge/-%23ABABC4-ABABC4?style=flat-square) | `#ABABC4` | 8.50:1 AAA |
-| `--text-muted` | ![#555961](https://img.shields.io/badge/-%23555961-555961?style=flat-square) | `#555961` | 7.03:1 AAA | ![#9B9BB4](https://img.shields.io/badge/-%239B9BB4-9B9BB4?style=flat-square) | `#9B9BB4` | 7.04:1 AAA |
-| `--text-inverse` | ![#EEEEF5](https://img.shields.io/badge/-%23EEEEF5-EEEEF5?style=flat-square) | `#EEEEF5` | — | ![#141515](https://img.shields.io/badge/-%23141515-141515?style=flat-square) | `#141515` | — |
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--text-primary` | ![#0F0F18](https://img.shields.io/badge/-%230F0F18-0F0F18?style=flat-square) | `#0F0F18` | ![#F8FAFC](https://img.shields.io/badge/-%23F8FAFC-F8FAFC?style=flat-square) | `#F8FAFC` |
+| `--text-secondary` | ![#4A4A5E](https://img.shields.io/badge/-%234A4A5E-4A4A5E?style=flat-square) | `#4A4A5E` | ![#BCBCC7](https://img.shields.io/badge/-%23BCBCC7-BCBCC7?style=flat-square) | `#BCBCC7` |
+| `--text-tertiary` | ![#6E6E88](https://img.shields.io/badge/-%236E6E88-6E6E88?style=flat-square) | `#6E6E88` | ![#818197](https://img.shields.io/badge/-%23818197-818197?style=flat-square) | `#818197` |
+| `--text-accent` | ![#5153F6](https://img.shields.io/badge/-%235153F6-5153F6?style=flat-square) | `#5153F6` | ![#7475FF](https://img.shields.io/badge/-%237475FF-7475FF?style=flat-square) | `#7475FF` |
+| `--text-disabled` | ![#A0A0B8](https://img.shields.io/badge/-%23A0A0B8-A0A0B8?style=flat-square) | `#A0A0B8` | ![#595976](https://img.shields.io/badge/-%23595976-595976?style=flat-square) | `#595976` |
+| `--text-inverse` | ![#F8FAFC](https://img.shields.io/badge/-%23F8FAFC-F8FAFC?style=flat-square) | `#F8FAFC` | ![#0C0C0D](https://img.shields.io/badge/-%230C0C0D-0C0C0D?style=flat-square) | `#0C0C0D` |
 
-### Borders
+### Strokes
 
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--border-subtle` | ![#E4E6E9](https://img.shields.io/badge/-%23E4E6E9-E4E6E9?style=flat-square) | `#E4E6E9` | — | `rgba(255,255,255,0.05)` |
-| `--border-default` | ![#D8DDE3](https://img.shields.io/badge/-%23D8DDE3-D8DDE3?style=flat-square) | `#D8DDE3` | — | `rgba(255,255,255,0.09)` |
-| `--border-strong` | ![#C6CDD6](https://img.shields.io/badge/-%23C6CDD6-C6CDD6?style=flat-square) | `#C6CDD6` | — | `rgba(255,255,255,0.20)` |
-| `--border-hover` | ![#B5BCC5](https://img.shields.io/badge/-%23B5BCC5-B5BCC5?style=flat-square) | `#B5BCC5` | — | `rgba(255,255,255,0.15)` |
-| `--border-interactive` | ![#5153F6](https://img.shields.io/badge/-%235153F6-5153F6?style=flat-square) | `#5153F6` | ![#6E70F8](https://img.shields.io/badge/-%236E70F8-6E70F8?style=flat-square) | `#6E70F8` |
-
-### Accent
-
-> `--accent` and `--accent-hover` are for decorative fills, borders, and focus rings — **not for text**. Use `--accent-text-light` or `--accent-text-dark` for any accent-colored text to guarantee AAA contrast.
-
-| Token | Light | | Dark | |
-|---|---|---|---|---|
-| `--accent` | ![#5153F6](https://img.shields.io/badge/-%235153F6-5153F6?style=flat-square) | `#5153F6` | ![#5153F6](https://img.shields.io/badge/-%235153F6-5153F6?style=flat-square) | `#5153F6` |
-| `--accent-hover` | ![#6E70F8](https://img.shields.io/badge/-%236E70F8-6E70F8?style=flat-square) | `#6E70F8` | ![#6E70F8](https://img.shields.io/badge/-%236E70F8-6E70F8?style=flat-square) | `#6E70F8` |
-| `--accent-text-light` ✦ | ![#3739DC](https://img.shields.io/badge/-%233739DC-3739DC?style=flat-square) | `#3739DC` | — | — |
-| `--accent-text-dark` ✦ | — | — | ![#9092FF](https://img.shields.io/badge/-%239092FF-9092FF?style=flat-square) | `#9092FF` |
-| `--accent-dim` | — | `rgba(81,83,246,0.08)` | — | `rgba(81,83,246,0.18)` |
-| `--accent-border` | — | `rgba(81,83,246,0.25)` | — | `rgba(81,83,246,0.35)` |
-| `--accent-glow` | — | `rgba(81,83,246,0.15)` | — | `rgba(81,83,246,0.35)` |
-| `--focus-ring` | — | `rgba(81,83,246,0.20)` | — | `rgba(81,83,246,0.25)` |
-| `--accent-soft-08` | — | `rgba(81,83,246,0.08)` | — | `rgba(81,83,246,0.08)` |
-| `--accent-soft-12` | — | `rgba(81,83,246,0.12)` | — | `rgba(81,83,246,0.12)` |
-| `--accent-soft-14` | — | `rgba(81,83,246,0.14)` | — | `rgba(81,83,246,0.14)` |
-| `--accent-soft-55` | — | `rgba(81,83,246,0.55)` | — | `rgba(81,83,246,0.55)` |
-
-✦ AAA text variants: `accent-text-light` = 7.55:1 on white / 7.04:1 on `surface-0`. `accent-text-dark` = 7.04:1 on `surface-1`.
+| `--stroke-subtle` | ![#E8E8F0](https://img.shields.io/badge/-%23E8E8F0-E8E8F0?style=flat-square) | `#E8E8F0` | ![#21212B](https://img.shields.io/badge/-%2321212B-21212B?style=flat-square) | `#21212B` |
+| `--stroke-default` | ![#D0D0DE](https://img.shields.io/badge/-%23D0D0DE-D0D0DE?style=flat-square) | `#D0D0DE` | ![#35374A](https://img.shields.io/badge/-%2335374A-35374A?style=flat-square) | `#35374A` |
+| `--stroke-strong` | ![#B8B8CA](https://img.shields.io/badge/-%23B8B8CA-B8B8CA?style=flat-square) | `#B8B8CA` | ![#4A4D63](https://img.shields.io/badge/-%234A4D63-4A4D63?style=flat-square) | `#4A4D63` |
+| `--stroke-hover` | ![#9E9EB5](https://img.shields.io/badge/-%239E9EB5-9E9EB5?style=flat-square) | `#9E9EB5` | ![#60637F](https://img.shields.io/badge/-%2360637F-60637F?style=flat-square) | `#60637F` |
+| `--stroke-interactive` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
 
 ### Brand
 
-> `--brand-primary` is for logos, decorative elements, and illustrations. For brand-colored text on light surfaces use `--brand-text-light` (AAA). In dark mode `--brand-primary` itself is AAA against `surface-1`.
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--brand-primary` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
+| `--brand-hover` | ![#CB6241](https://img.shields.io/badge/-%23CB6241-CB6241?style=flat-square) | `#CB6241` | ![#F89474](https://img.shields.io/badge/-%23F89474-F89474?style=flat-square) | `#F89474` |
+| `--brand-active` | ![#743622](https://img.shields.io/badge/-%23743622-743622?style=flat-square) | `#743622` | ![#FAAF97](https://img.shields.io/badge/-%23FAAF97-FAAF97?style=flat-square) | `#FAAF97` |
+| `--brand-bg-subtle` | — | `rgba(255,127,86,0.12)` | — | `rgba(255,127,86,0.16)` |
+| `--brand-border` | ![#743622](https://img.shields.io/badge/-%23743622-743622?style=flat-square) | `#743622` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
+| `--brand-border-subtle` | — | `rgba(255,127,86,0.40)` | — | `rgba(255,127,86,0.40)` |
+| `--brand-text` | ![#A04C31](https://img.shields.io/badge/-%23A04C31-A04C31?style=flat-square) | `#A04C31` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
+| `--brand-gradient-1` | ![#F89474](https://img.shields.io/badge/-%23F89474-F89474?style=flat-square) | `#F89474` | ![#F89474](https://img.shields.io/badge/-%23F89474-F89474?style=flat-square) | `#F89474` |
+| `--brand-gradient-2` | ![#F0673D](https://img.shields.io/badge/-%23F0673D-F0673D?style=flat-square) | `#F0673D` | ![#F0673D](https://img.shields.io/badge/-%23F0673D-F0673D?style=flat-square) | `#F0673D` |
+
+### Semantic — Error
 
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--brand-primary` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` (7.65:1 AAA) |
-| `--brand-hover` | ![#FF9A78](https://img.shields.io/badge/-%23FF9A78-FF9A78?style=flat-square) | `#FF9A78` | ![#FF9A78](https://img.shields.io/badge/-%23FF9A78-FF9A78?style=flat-square) | `#FF9A78` |
-| `--brand-text-light` ✦ | ![#A82800](https://img.shields.io/badge/-%23A82800-A82800?style=flat-square) | `#A82800` | — | — |
-| `--brand-dim` | — | `rgba(255,127,86,0.10)` | — | `rgba(255,127,86,0.18)` |
-| `--brand-glow` | — | `rgba(255,127,86,0.15)` | — | `rgba(255,127,86,0.30)` |
-
-✦ AAA text variant: `brand-text-light` = 7.07:1 on white.
-
-### Semantic — Danger
-
-| Token | Light | | Dark | |
-|---|---|---|---|---|
-| `--color-danger` | ![#A0130B](https://img.shields.io/badge/-%23A0130B-A0130B?style=flat-square) | `#A0130B` (8.10:1 AAA) | ![#EA7C8C](https://img.shields.io/badge/-%23EA7C8C-EA7C8C?style=flat-square) | `#EA7C8C` (7.05:1 AAA) |
-| `--color-danger-bg` | ![#FBECEB](https://img.shields.io/badge/-%23FBECEB-FBECEB?style=flat-square) | `#FBECEB` | — | `rgba(234,124,140,0.12)` |
-| `--color-danger-border` | ![#EFC5C2](https://img.shields.io/badge/-%23EFC5C2-EFC5C2?style=flat-square) | `#EFC5C2` | — | `rgba(234,124,140,0.25)` |
+| `--error-bg-solid` | ![#DC2626](https://img.shields.io/badge/-%23DC2626-DC2626?style=flat-square) | `#DC2626` | ![#F46969](https://img.shields.io/badge/-%23F46969-F46969?style=flat-square) | `#F46969` |
+| `--error-bg-subtle` | — | `rgba(220,38,38,0.08)` | — | `rgba(244,105,105,0.16)` |
+| `--error-border` | ![#B91C1C](https://img.shields.io/badge/-%23B91C1C-B91C1C?style=flat-square) | `#B91C1C` | ![#F59E0B](https://img.shields.io/badge/-%23F59E0B-F59E0B?style=flat-square) | `#F59E0B` |
+| `--error-border-subtle` | — | `rgba(220,38,38,0.40)` | — | `rgba(244,105,105,0.40)` |
+| `--error-text` | ![#7F1D1D](https://img.shields.io/badge/-%237F1D1D-7F1D1D?style=flat-square) | `#7F1D1D` | ![#F98585](https://img.shields.io/badge/-%23F98585-F98585?style=flat-square) | `#F98585` |
 
 ### Semantic — Success
 
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--color-success` | ![#0E5D26](https://img.shields.io/badge/-%230E5D26-0E5D26?style=flat-square) | `#0E5D26` (9.42:1 AAA) | ![#81C784](https://img.shields.io/badge/-%2381C784-81C784?style=flat-square) | `#81C784` (9.49:1 AAA) |
-| `--color-success-bg` | ![#E7F4EC](https://img.shields.io/badge/-%23E7F4EC-E7F4EC?style=flat-square) | `#E7F4EC` | — | `rgba(129,199,132,0.12)` |
-| `--color-success-border` | — | `rgba(14,93,38,0.25)` | — | `rgba(129,199,132,0.25)` |
-| `--success-soft-12` | — | `rgba(14,93,38,0.12)` | — | `rgba(129,199,132,0.12)` |
-| `--success-soft-14` | — | `rgba(14,93,38,0.14)` | — | `rgba(129,199,132,0.14)` |
+| `--success-bg-solid` | ![#16A34A](https://img.shields.io/badge/-%2316A34A-16A34A?style=flat-square) | `#16A34A` | ![#22C55E](https://img.shields.io/badge/-%2322C55E-22C55E?style=flat-square) | `#22C55E` |
+| `--success-bg-subtle` | — | `rgba(22,163,74,0.08)` | — | `rgba(34,197,94,0.16)` |
+| `--success-border` | ![#15803D](https://img.shields.io/badge/-%2315803D-15803D?style=flat-square) | `#15803D` | ![#005C39](https://img.shields.io/badge/-%23005C39-005C39?style=flat-square) | `#005C39` |
+| `--success-border-subtle` | — | `rgba(22,163,74,0.40)` | — | `rgba(34,197,94,0.40)` |
+| `--success-text` | ![#14532D](https://img.shields.io/badge/-%2314532D-14532D?style=flat-square) | `#14532D` | ![#4ADE80](https://img.shields.io/badge/-%234ADE80-4ADE80?style=flat-square) | `#4ADE80` |
 
 ### Semantic — Warning
 
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--color-warning` | ![#A92800](https://img.shields.io/badge/-%23A92800-A92800?style=flat-square) | `#A92800` (7.02:1 AAA) | ![#FFB74D](https://img.shields.io/badge/-%23FFB74D-FFB74D?style=flat-square) | `#FFB74D` (11.03:1 AAA) |
-| `--color-warning-bg` | — | `rgba(169,40,0,0.12)` | — | `rgba(255,183,77,0.16)` |
-| `--warning-soft-16` | — | `rgba(169,40,0,0.16)` | — | `rgba(255,183,77,0.16)` |
+| `--warning-bg-solid` | ![#D97706](https://img.shields.io/badge/-%23D97706-D97706?style=flat-square) | `#D97706` | ![#F59E0B](https://img.shields.io/badge/-%23F59E0B-F59E0B?style=flat-square) | `#F59E0B` |
+| `--warning-bg-subtle` | — | `rgba(217,119,6,0.08)` | — | `rgba(245,158,11,0.16)` |
+| `--warning-border` | ![#B45309](https://img.shields.io/badge/-%23B45309-B45309?style=flat-square) | `#B45309` | ![#71491E](https://img.shields.io/badge/-%2371491E-71491E?style=flat-square) | `#71491E` |
+| `--warning-border-subtle` | — | `rgba(217,119,6,0.40)` | — | `rgba(245,158,11,0.40)` |
+| `--warning-text` | ![#78350F](https://img.shields.io/badge/-%2378350F-78350F?style=flat-square) | `#78350F` | ![#FBBF24](https://img.shields.io/badge/-%23FBBF24-FBBF24?style=flat-square) | `#FBBF24` |
 
 ### Semantic — Info
 
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--color-info` | ![#005AA3](https://img.shields.io/badge/-%23005AA3-005AA3?style=flat-square) | `#005AA3` (7.02:1 AAA) | ![#4FC3F7](https://img.shields.io/badge/-%234FC3F7-4FC3F7?style=flat-square) | `#4FC3F7` (9.53:1 AAA) |
-| `--color-info-bg` | — | `rgba(0,90,163,0.12)` | — | `rgba(79,195,247,0.12)` |
-| `--info-soft-12` | — | `rgba(0,90,163,0.12)` | — | `rgba(79,195,247,0.12)` |
-| `--info-soft-14` | — | `rgba(0,90,163,0.14)` | — | `rgba(79,195,247,0.14)` |
-
-### Gradients
-
-| Token | Light | Dark |
-|---|---|---|
-| `--page-gradient` | Accent + brand radial ellipses (subtle) | Accent + brand radial ellipses (stronger) |
-| `--page-gradient-muted` | Dual accent ellipses (very subtle) | Single accent ellipse |
-| `--portal-hero-bg` | White gradient + accent ellipse | Accent radial ellipse |
+| `--info-bg-solid` | ![#2563EB](https://img.shields.io/badge/-%232563EB-2563EB?style=flat-square) | `#2563EB` | ![#3B82F6](https://img.shields.io/badge/-%233B82F6-3B82F6?style=flat-square) | `#3B82F6` |
+| `--info-bg-subtle` | — | `rgba(37,99,235,0.08)` | — | `rgba(59,130,246,0.16)` |
+| `--info-border` | ![#1D4ED8](https://img.shields.io/badge/-%231D4ED8-1D4ED8?style=flat-square) | `#1D4ED8` | ![#15407B](https://img.shields.io/badge/-%2315407B-15407B?style=flat-square) | `#15407B` |
+| `--info-border-subtle` | — | `rgba(37,99,235,0.40)` | — | `rgba(59,130,246,0.40)` |
+| `--info-text` | ![#1E3A8A](https://img.shields.io/badge/-%231E3A8A-1E3A8A?style=flat-square) | `#1E3A8A` | ![#6AAAFA](https://img.shields.io/badge/-%236AAAFA-6AAAFA?style=flat-square) | `#6AAAFA` |
 
 ---
 
@@ -468,46 +440,48 @@ All text-role tokens meet WCAG AAA (≥7:1) contrast. Ratio is against the prima
 
 | Category | Tokens |
 |---|---|
-| Surfaces | `surface-0` … `surface-5` (page → elevated layers) |
-| Text | `text-primary`, `text-secondary`, `text-muted`, `text-inverse` |
-| Borders | `border-subtle`, `border-default`, `border-strong`, `border-hover`, `border-interactive` |
-| Accent | `accent`, `accent-hover`, `accent-text-light`*, `accent-text-dark`*, `accent-dim`, `accent-border`, `accent-glow`, `focus-ring`, `accent-soft-{08/12/14/55}` |
-| Brand | `brand-primary`, `brand-hover`, `brand-text-light`*, `brand-dim`, `brand-glow` |
-| Semantic | `color-{danger/success/warning/info}` with `-bg` and `-border` variants |
-| Gradients | `page-gradient`, `page-gradient-muted`, `portal-hero-bg` |
-
-\* AAA-compliant text variants — use these wherever accent or brand color appears as text.
+| Surfaces | `surface-0` … `surface-5` (page → elevated layers), `surface-kpi` (dark only) |
+| Text | `text-primary`, `text-secondary`, `text-tertiary`, `text-accent`, `text-disabled`, `text-inverse` |
+| Strokes | `stroke-subtle`, `stroke-default`, `stroke-strong`, `stroke-hover`, `stroke-interactive` |
+| Brand | `brand-primary`, `brand-hover`, `brand-active`, `brand-bg-subtle`, `brand-border`, `brand-border-subtle`, `brand-text`, `brand-gradient-1`, `brand-gradient-2` |
+| Semantic | `{error/success/warning/info}-bg-solid`, `{error/success/warning/info}-bg-subtle`, `{error/success/warning/info}-border`, `{error/success/warning/info}-border-subtle`, `{error/success/warning/info}-text` |
 
 Example usage:
 
 ```css
 .card {
-  background: var(--surface-1);
-  border: 1px solid var(--border-default);
+  background: var(--surface-2);
+  border: 1px solid var(--stroke-default);
   color: var(--text-primary);
 }
 
-.card:focus-visible {
-  outline: 2px solid var(--focus-ring);
+.card:hover {
+  border-color: var(--stroke-hover);
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: var(--brand-primary);
   color: var(--text-inverse);
 }
 
 .btn-primary:hover {
-  background: var(--accent-hover);
+  background: var(--brand-hover);
 }
 
-/* AAA-compliant accent link in light mode */
+.btn-primary:active {
+  background: var(--brand-active);
+}
+
+/* Brand-colored link text (mode-adaptive) */
 .link {
-  color: var(--accent-text-light);
+  color: var(--brand-text);
 }
 
-/* AAA-compliant accent link in dark mode */
-.dark .link {
-  color: var(--accent-text-dark);
+/* Error state */
+.field--error {
+  background: var(--error-bg-subtle);
+  border-color: var(--error-border);
+  color: var(--error-text);
 }
 ```
 
@@ -553,60 +527,66 @@ Build outputs:
 
 ---
 
-## Migration from v1.4.x to v1.5.0
+## Migration from v1.5.x to v2.0
 
-### AAA text tokens added
+### Token renames
 
-Three new tokens provide AAA-compliant foreground colors for accent and brand text:
-
-| New token | | Use case | Contrast |
-|---|---|---|---|
-| `--accent-text-light` | ![#3739DC](https://img.shields.io/badge/-%233739DC-3739DC?style=flat-square) | Accent-colored links/text on light surfaces | 7.55:1 on white, 7.04:1 on `surface-0` |
-| `--accent-text-dark` | ![#9092FF](https://img.shields.io/badge/-%239092FF-9092FF?style=flat-square) | Accent-colored links/text on dark surfaces | 7.04:1 on `surface-1` |
-| `--brand-text-light` | ![#A82800](https://img.shields.io/badge/-%23A82800-A82800?style=flat-square) | Brand-colored text on light surfaces | 7.07:1 on white |
-
-Replace any direct use of `--accent` or `--brand-primary` as a text color with the appropriate variant.
-
-### Tokens removed
-
-The following token groups were removed. Migrate to the recommended alternatives:
-
-| Removed token | Alternative |
+| v1.5.x token | v2.0 token |
 |---|---|
-| `--modal-backdrop`, `--overlay-*`, `--modal-shadow` | Use a hardcoded `rgba(9,9,14,0.72)` scrim or your own CSS variable |
-| `--color-genai`, `--color-genai-bg` | Define locally in your app's stylesheet |
-| `--status-error`, `--status-success`, `--status-warning` (and variants) | Use `--color-danger`, `--color-success`, `--color-warning` |
-| `--shadow-card`, `--shadow-4` | Define locally with `box-shadow` |
-| `--accent-soft-04/06/10/16/18/20/25/30` | Use the kept variants: `08`, `12`, `14`, `55` |
+| `--text-muted` | `--text-tertiary` |
+| `--border-subtle` | `--stroke-subtle` |
+| `--border-default` | `--stroke-default` |
+| `--border-strong` | `--stroke-strong` |
+| `--border-hover` | `--stroke-hover` |
+| `--border-interactive` | `--stroke-interactive` |
+| `--color-danger` | `--error-bg-solid` (badge bg) / `--error-text` (text) |
+| `--color-danger-bg` | `--error-bg-subtle` |
+| `--color-danger-border` | `--error-border` |
+| `--color-success` | `--success-bg-solid` / `--success-text` |
+| `--color-success-bg` | `--success-bg-subtle` |
+| `--color-success-border` | `--success-border` |
+| `--color-warning` | `--warning-bg-solid` / `--warning-text` |
+| `--color-warning-bg` | `--warning-bg-subtle` |
+| `--color-info` | `--info-bg-solid` / `--info-text` |
+| `--color-info-bg` | `--info-bg-subtle` |
+| `--brand-dim` / `--brand-glow` | `--brand-bg-subtle` |
+| `--brand-text-light` | `--brand-text` (now mode-adaptive) |
 
-### Semantic color values updated
+### Tailwind class renames
 
-All semantic foreground colors were adjusted to reach AAA contrast. If you were referencing the raw hex values directly in tests or design tools, update to the new values shown in the [Color Palette](#color-palette) section above.
-
----
-
-## Migration from v1.1.x
-
-### Tailwind preset — utility class names fixed
-
-Text and border tokens were previously placed in `theme.extend.colors`, which generated class names with double prefixes. This is fixed in v1.2.0:
-
-| v1.1.x (broken) | v1.2.0+ (correct) |
+| v1.5.x class | v2.0 class |
 |---|---|
-| `text-text-primary` | `text-primary` |
-| `text-text-secondary` | `text-secondary` |
-| `text-text-muted` | `text-muted` |
-| `text-text-inverse` | `text-inverse` |
-| `border-border-subtle` | `border-subtle` |
-| `border-border-default` | `border-default` |
-| `border-border-strong` | `border-strong` |
-| `border-border-hover` | `border-hover` |
-| `border-border-interactive` | `border-interactive` |
+| `text-muted` | `text-tertiary` |
+| `border-subtle` | `border-subtle` _(value now from `--stroke-subtle`)_ |
+| `border-default` | `border-default` _(value now from `--stroke-default`)_ |
+| `border-interactive` | `border-interactive` _(value now from `--stroke-interactive`)_ |
+| `bg-danger` | `bg-error-bg-solid` |
+| `bg-danger-bg` | `bg-error-bg-subtle` |
+| `bg-success` | `bg-success-bg-solid` |
+| `bg-success-bg` | `bg-success-bg-subtle` |
+| `bg-warning` | `bg-warning-bg-solid` |
+| `bg-info` | `bg-info-bg-solid` |
+| `bg-brand` | `bg-brand-primary` |
+| `bg-brand-dim` / `bg-brand-glow` | `bg-brand-bg-subtle` |
 
-### New exports
+### Tokens removed (no replacement in v2)
 
-`getCssString` is new in v1.2.0 — no migration needed for existing code.
+| Removed token | Notes |
+|---|---|
+| `--accent`, `--accent-hover`, `--accent-text-*`, `--accent-dim`, `--accent-border`, `--accent-glow`, `--focus-ring`, `--accent-soft-*` | Accent system removed. Use `--text-accent` for links, `--stroke-interactive` for focus rings. |
+| `--success-soft-12`, `--success-soft-14`, `--warning-soft-16`, `--info-soft-12`, `--info-soft-14` | Use `--*-bg-subtle` tokens instead. |
+| `--page-gradient`, `--page-gradient-muted`, `--portal-hero-bg` | Define app-specific gradients locally. |
 
-### Module format
+### New tokens in v2
 
-v1.1.x was ESM-only. v1.2.0 ships both ESM (`dist/index.js`) and CJS (`dist/index.cjs`). Existing ESM imports continue to work without changes.
+| New token | Notes |
+|---|---|
+| `--text-accent` | Mode-adaptive link/accent text color |
+| `--text-disabled` | Disabled UI element text |
+| `--brand-active` | Pressed/active state for brand elements |
+| `--brand-border`, `--brand-border-subtle` | Brand-tinted borders |
+| `--brand-gradient-1`, `--brand-gradient-2` | Brand gradient stops |
+| `--surface-kpi` | Reduced-opacity surface for KPI/metric cards (dark only) |
+| `--stroke-strong` | High-emphasis separator |
+| `--*-border-subtle` | Secondary-emphasis semantic borders |
+| `--*-text` | Semantic foreground text colors |

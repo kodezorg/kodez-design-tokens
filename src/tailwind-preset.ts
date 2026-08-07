@@ -7,7 +7,7 @@
  *   - Non-MUI apps may want preflight enabled or a different dark strategy
  *
  * Text tokens live in `theme.extend.textColor` so `text-primary` works directly
- * (not the double-prefixed `text-text-primary`). Border tokens live in
+ * (not the double-prefixed `text-text-primary`). Stroke tokens live in
  * `theme.extend.borderColor` for the same reason.
  *
  * Usage in tailwind.config.js:
@@ -25,78 +25,77 @@ const tailwindPreset = {
   theme: {
     extend: {
       colors: {
-        // ── Surfaces (elevation scale) ──────────────────────────────────────────
-        'surface-0': 'var(--surface-0)',
-        'surface-1': 'var(--surface-1)',
-        'surface-2': 'var(--surface-2)',
-        'surface-3': 'var(--surface-3)',
-        'surface-4': 'var(--surface-4)',
-        'surface-5': 'var(--surface-5)',
-
-        // ── Accent ──────────────────────────────────────────────────────────────
-        'accent':            'var(--accent)',
-        'accent-hover':      'var(--accent-hover)',
-        // AAA-compliant text variants — use these for links and accent-colored text
-        'accent-text-light': 'var(--accent-text-light)',
-        'accent-text-dark':  'var(--accent-text-dark)',
-        'accent-dim':        'var(--accent-dim)',
-        'accent-border':     'var(--accent-border)',
-        'accent-glow':       'var(--accent-glow)',
-        'accent-soft-08':    'var(--accent-soft-08)',
-        'accent-soft-12':    'var(--accent-soft-12)',
-        'accent-soft-14':    'var(--accent-soft-14)',
-        'accent-soft-55':    'var(--accent-soft-55)',
+        // ── Surfaces ─────────────────────────────────────────────────────────────
+        'surface-0':             'var(--surface-0)',
+        'surface-1':             'var(--surface-1)',
+        'surface-2':             'var(--surface-2)',
+        'surface-3':             'var(--surface-3)',
+        'surface-4':             'var(--surface-4)',
+        'surface-5':             'var(--surface-5)',
+        'surface-kpi':           'var(--surface-kpi)',
 
         // ── Brand ────────────────────────────────────────────────────────────────
-        'brand':            'var(--brand-primary)',
-        'brand-hover':      'var(--brand-hover)',
-        // AAA-compliant text variant — use for brand-colored text on light surfaces
-        'brand-text-light': 'var(--brand-text-light)',
-        'brand-dim':        'var(--brand-dim)',
-        'brand-glow':       'var(--brand-glow)',
+        'brand-primary':         'var(--brand-primary)',
+        'brand-hover':           'var(--brand-hover)',
+        'brand-active':          'var(--brand-active)',
+        'brand-bg-subtle':       'var(--brand-bg-subtle)',
+        'brand-border':          'var(--brand-border)',
+        'brand-border-subtle':   'var(--brand-border-subtle)',
+        'brand-gradient-1':      'var(--brand-gradient-1)',
+        'brand-gradient-2':      'var(--brand-gradient-2)',
 
-        // ── Semantic ─────────────────────────────────────────────────────────────
-        'danger':           'var(--color-danger)',
-        'danger-bg':        'var(--color-danger-bg)',
-        'danger-border':    'var(--color-danger-border)',
-        'success':          'var(--color-success)',
-        'success-bg':       'var(--color-success-bg)',
-        'success-border':   'var(--color-success-border)',
-        'success-soft-12':  'var(--success-soft-12)',
-        'success-soft-14':  'var(--success-soft-14)',
-        'warning':          'var(--color-warning)',
-        'warning-bg':       'var(--color-warning-bg)',
-        'warning-soft-16':  'var(--warning-soft-16)',
-        'info':             'var(--color-info)',
-        'info-bg':          'var(--color-info-bg)',
-        'info-soft-12':     'var(--info-soft-12)',
-        'info-soft-14':     'var(--info-soft-14)',
+        // ── Semantic: error ───────────────────────────────────────────────────────
+        'error-bg-solid':        'var(--error-bg-solid)',
+        'error-bg-subtle':       'var(--error-bg-subtle)',
+        'error-border':          'var(--error-border)',
+        'error-border-subtle':   'var(--error-border-subtle)',
+
+        // ── Semantic: success ─────────────────────────────────────────────────────
+        'success-bg-solid':      'var(--success-bg-solid)',
+        'success-bg-subtle':     'var(--success-bg-subtle)',
+        'success-border':        'var(--success-border)',
+        'success-border-subtle': 'var(--success-border-subtle)',
+
+        // ── Semantic: warning ─────────────────────────────────────────────────────
+        'warning-bg-solid':      'var(--warning-bg-solid)',
+        'warning-bg-subtle':     'var(--warning-bg-subtle)',
+        'warning-border':        'var(--warning-border)',
+        'warning-border-subtle': 'var(--warning-border-subtle)',
+
+        // ── Semantic: info ────────────────────────────────────────────────────────
+        'info-bg-solid':         'var(--info-bg-solid)',
+        'info-bg-subtle':        'var(--info-bg-subtle)',
+        'info-border':           'var(--info-border)',
+        'info-border-subtle':    'var(--info-border-subtle)',
       },
 
       // Text tokens in their own section → generates text-primary, not text-text-primary
       textColor: {
         primary:   'var(--text-primary)',
         secondary: 'var(--text-secondary)',
-        muted:     'var(--text-muted)',
+        tertiary:  'var(--text-tertiary)',
+        accent:    'var(--text-accent)',
+        disabled:  'var(--text-disabled)',
         inverse:   'var(--text-inverse)',
+        brand:     'var(--brand-text)',
+        error:     'var(--error-text)',
+        success:   'var(--success-text)',
+        warning:   'var(--warning-text)',
+        info:      'var(--info-text)',
       },
 
-      // Border tokens in their own section → generates border-subtle, not border-border-subtle
+      // Stroke tokens in their own section → generates border-subtle, not border-border-subtle
       borderColor: {
-        subtle:      'var(--border-subtle)',
-        default:     'var(--border-default)',
-        strong:      'var(--border-strong)',
-        hover:       'var(--border-hover)',
-        interactive: 'var(--border-interactive)',
+        subtle:      'var(--stroke-subtle)',
+        default:     'var(--stroke-default)',
+        strong:      'var(--stroke-strong)',
+        hover:       'var(--stroke-hover)',
+        interactive: 'var(--stroke-interactive)',
       },
 
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-      },
-
-      ringColor: {
-        focus: 'var(--focus-ring)',
       },
     },
   },
