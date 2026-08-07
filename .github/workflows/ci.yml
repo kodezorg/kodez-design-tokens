@@ -5,6 +5,7 @@ on:
     branches: [main]
   push:
     branches: [main]
+    tags-ignore: ['v*']  # tags are handled by release.yml
 
 jobs:
   ci:
