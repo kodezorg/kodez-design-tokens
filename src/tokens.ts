@@ -1,6 +1,6 @@
 export type ThemeMode = 'light' | 'dark';
 
-export const lightTokens: Record<string, string> = {
+const _light = {
   // ── Brand ─────────────────────────────────────────────────────────────────────
   'brand-primary':         '#FF7F56',
   'brand-hover':           '#CB6241',
@@ -64,9 +64,9 @@ export const lightTokens: Record<string, string> = {
   'text-accent':           '#5153F6',
   'text-disabled':         '#A0A0B8',
   'text-inverse':          '#F8FAFC',
-};
+} satisfies Record<string, string>;
 
-export const darkTokens: Record<string, string> = {
+const _dark = {
   // ── Brand ─────────────────────────────────────────────────────────────────────
   'brand-primary':         '#FF7F56',
   'brand-hover':           '#F89474',
@@ -131,4 +131,11 @@ export const darkTokens: Record<string, string> = {
   'text-accent':           '#7475FF',
   'text-disabled':         '#595976',
   'text-inverse':          '#0C0C0D',
-};
+} satisfies Record<string, string>;
+
+export const lightTokens: Record<string, string> = _light;
+export const darkTokens:  Record<string, string> = _dark;
+
+export type LightTokenName = keyof typeof _light;
+export type DarkTokenName  = keyof typeof _dark;
+export type TokenName      = LightTokenName | DarkTokenName;

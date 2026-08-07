@@ -7,21 +7,19 @@ body {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--surface-0);
-  color: var(--text-primary);
+  background-color: var(--kz-surface-0);
+  color: var(--kz-text-primary);
 }
 
 code, pre, kbd, samp {
   font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
 }
 
-/* Reset */
 button, input, select, textarea {
   font-family: inherit;
   font-size: inherit;
 }
 
-/* Storybook canvas */
 .sbdocs-wrapper {
-  background: var(--surface-0) !important;
+  background: var(--kz-surface-0) !important;
 }

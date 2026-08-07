@@ -47,6 +47,8 @@ npm install tailwindcss   # only needed for Tailwind preset / v4 CSS
 
 ## How it works
 
+> All CSS custom properties use the `--kz-` namespace prefix (e.g. `--kz-surface-0`, `--kz-brand-primary`). This prevents collisions with other CSS variable libraries in your project.
+
 ```mermaid
 flowchart TD
     A["tokens.ts\nlightTokens / darkTokens"] --> B["getCssVars()\nReturns { '--token': value }"]
@@ -55,11 +57,11 @@ flowchart TD
     A --> E["tailwindPreset\nMaps tokens → Tailwind color keys"]
 
     C --> F["<style> tag injection\nfor Server Components"]
-    D --> G[":root CSS custom properties\n--surface-0, --brand-primary, etc."]
+    D --> G[":root CSS custom properties\n--kz-surface-0, --kz-brand-primary, etc."]
     B --> G
     E --> H["tailwind.config.js\npresets: [tailwindPreset]"]
 
-    G --> I["CSS / inline styles\nvar(--surface-1)"]
+    G --> I["CSS / inline styles\nvar(--kz-surface-1)"]
     H --> J["Tailwind utility classes\nbg-surface-1, text-primary, etc."]
 ```
 
@@ -193,7 +195,7 @@ No JavaScript required. Includes light (`:root`), dark (`.dark` class), and OS-p
   <head>
     <link rel="stylesheet" href="node_modules/@kodez/design-tokens/dist/tokens.css" />
   </head>
-  <body style="background: var(--surface-0); color: var(--text-primary);">
+  <body style="background: var(--kz-surface-0); color: var(--kz-text-primary);">
     Hello, design tokens!
   </body>
 </html>
@@ -290,7 +292,7 @@ bg-warning-bg-solid  bg-warning-bg-subtle  bg-info-bg-solid  bg-info-bg-subtle
 
 ```html
 <!-- Recommended: arbitrary value -->
-<p class="text-[var(--text-primary)]">Body text</p>
+<p class="text-[var(--kz-text-primary)]">Body text</p>
 
 <!-- Generated utility (works but verbose) -->
 <p class="text-text-primary">Body text</p>
@@ -317,7 +319,7 @@ Default selector is `':root'`.
 
 ```ts
 const css = getCssString(lightTokens, ':root');
-// ':root {\n  --surface-0: #F5F7FA;\n  ...\n}\n'
+// ':root {\n  --kz-surface-0: #FEFEFE;\n  ...\n}\n'
 ```
 
 ### `getCssVars(tokens)`
@@ -326,7 +328,7 @@ Returns a `Record<string, string>` with `--` prefixed keys. Useful for spreading
 
 ```ts
 const vars = getCssVars(lightTokens);
-// { '--surface-0': '#FEFEFE', '--brand-primary': '#FF7F56', ... }
+// { '--kz-surface-0': '#FEFEFE', '--kz-brand-primary': '#FF7F56', ... }
 ```
 
 ### `lightTokens` / `darkTokens`
@@ -450,38 +452,38 @@ Example usage:
 
 ```css
 .card {
-  background: var(--surface-2);
-  border: 1px solid var(--stroke-default);
-  color: var(--text-primary);
+  background: var(--kz-surface-2);
+  border: 1px solid var(--kz-stroke-default);
+  color: var(--kz-text-primary);
 }
 
 .card:hover {
-  border-color: var(--stroke-hover);
+  border-color: var(--kz-stroke-hover);
 }
 
 .btn-primary {
-  background: var(--brand-primary);
-  color: var(--text-inverse);
+  background: var(--kz-brand-primary);
+  color: var(--kz-text-inverse);
 }
 
 .btn-primary:hover {
-  background: var(--brand-hover);
+  background: var(--kz-brand-hover);
 }
 
 .btn-primary:active {
-  background: var(--brand-active);
+  background: var(--kz-brand-active);
 }
 
 /* Brand-colored link text (mode-adaptive) */
 .link {
-  color: var(--brand-text);
+  color: var(--kz-brand-text);
 }
 
 /* Error state */
 .field--error {
-  background: var(--error-bg-subtle);
-  border-color: var(--error-border);
-  color: var(--error-text);
+  background: var(--kz-error-bg-subtle);
+  border-color: var(--kz-error-border);
+  color: var(--kz-error-text);
 }
 ```
 

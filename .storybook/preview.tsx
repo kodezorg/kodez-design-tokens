@@ -14,10 +14,10 @@ const ThemeDecorator: Decorator = (Story, context) => {
   return (
     <div
       style={{
-        backgroundColor: 'var(--surface-0)',
+        backgroundColor: 'var(--kz-surface-0)',
         minHeight: '100vh',
         padding: '24px',
-        color: 'var(--text-primary)',
+        color: 'var(--kz-text-primary)',
         fontFamily: '"Inter", system-ui, sans-serif',
         transition: 'background-color 0.2s ease, color 0.2s ease',
       }}
