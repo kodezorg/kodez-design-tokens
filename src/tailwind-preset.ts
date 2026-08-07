@@ -2,21 +2,15 @@
  * Tailwind v3 preset — color and typography extensions only.
  *
  * Intentionally omits `darkMode` and `corePlugins.preflight` — those are
- * application-level decisions that vary by design system:
- *   - MUI apps typically set `preflight: false` and `darkMode: 'class'`
- *   - Non-MUI apps may want preflight enabled or a different dark strategy
- *
- * Text tokens live in `theme.extend.textColor` so `text-primary` works directly
- * (not the double-prefixed `text-text-primary`). Stroke tokens live in
- * `theme.extend.borderColor` for the same reason.
+ * application-level decisions that vary by design system.
  *
  * Usage in tailwind.config.js:
  *   import { tailwindPreset } from '@kodez/design-tokens';
  *   export default {
  *     presets: [tailwindPreset],
  *     content: ['./src/**\/*.{ts,tsx}'],
- *     darkMode: 'class',                    // ← app decides
- *     corePlugins: { preflight: false },    // ← app decides (false for MUI apps)
+ *     darkMode: 'class',
+ *     corePlugins: { preflight: false },
  *   };
  *
  * For Tailwind v4 use dist/tailwind-v4.css instead.
@@ -26,71 +20,71 @@ const tailwindPreset = {
     extend: {
       colors: {
         // ── Surfaces ─────────────────────────────────────────────────────────────
-        'surface-0':             'var(--surface-0)',
-        'surface-1':             'var(--surface-1)',
-        'surface-2':             'var(--surface-2)',
-        'surface-3':             'var(--surface-3)',
-        'surface-4':             'var(--surface-4)',
-        'surface-5':             'var(--surface-5)',
-        'surface-kpi':           'var(--surface-kpi)',
+        'surface-0':             'var(--kz-surface-0)',
+        'surface-1':             'var(--kz-surface-1)',
+        'surface-2':             'var(--kz-surface-2)',
+        'surface-3':             'var(--kz-surface-3)',
+        'surface-4':             'var(--kz-surface-4)',
+        'surface-5':             'var(--kz-surface-5)',
+        'surface-kpi':           'var(--kz-surface-kpi)',
 
         // ── Brand ────────────────────────────────────────────────────────────────
-        'brand-primary':         'var(--brand-primary)',
-        'brand-hover':           'var(--brand-hover)',
-        'brand-active':          'var(--brand-active)',
-        'brand-bg-subtle':       'var(--brand-bg-subtle)',
-        'brand-border':          'var(--brand-border)',
-        'brand-border-subtle':   'var(--brand-border-subtle)',
-        'brand-gradient-1':      'var(--brand-gradient-1)',
-        'brand-gradient-2':      'var(--brand-gradient-2)',
+        'brand-primary':         'var(--kz-brand-primary)',
+        'brand-hover':           'var(--kz-brand-hover)',
+        'brand-active':          'var(--kz-brand-active)',
+        'brand-bg-subtle':       'var(--kz-brand-bg-subtle)',
+        'brand-border':          'var(--kz-brand-border)',
+        'brand-border-subtle':   'var(--kz-brand-border-subtle)',
+        'brand-gradient-1':      'var(--kz-brand-gradient-1)',
+        'brand-gradient-2':      'var(--kz-brand-gradient-2)',
 
         // ── Semantic: error ───────────────────────────────────────────────────────
-        'error-bg-solid':        'var(--error-bg-solid)',
-        'error-bg-subtle':       'var(--error-bg-subtle)',
-        'error-border':          'var(--error-border)',
-        'error-border-subtle':   'var(--error-border-subtle)',
+        'error-bg-solid':        'var(--kz-error-bg-solid)',
+        'error-bg-subtle':       'var(--kz-error-bg-subtle)',
+        'error-border':          'var(--kz-error-border)',
+        'error-border-subtle':   'var(--kz-error-border-subtle)',
 
         // ── Semantic: success ─────────────────────────────────────────────────────
-        'success-bg-solid':      'var(--success-bg-solid)',
-        'success-bg-subtle':     'var(--success-bg-subtle)',
-        'success-border':        'var(--success-border)',
-        'success-border-subtle': 'var(--success-border-subtle)',
+        'success-bg-solid':      'var(--kz-success-bg-solid)',
+        'success-bg-subtle':     'var(--kz-success-bg-subtle)',
+        'success-border':        'var(--kz-success-border)',
+        'success-border-subtle': 'var(--kz-success-border-subtle)',
 
         // ── Semantic: warning ─────────────────────────────────────────────────────
-        'warning-bg-solid':      'var(--warning-bg-solid)',
-        'warning-bg-subtle':     'var(--warning-bg-subtle)',
-        'warning-border':        'var(--warning-border)',
-        'warning-border-subtle': 'var(--warning-border-subtle)',
+        'warning-bg-solid':      'var(--kz-warning-bg-solid)',
+        'warning-bg-subtle':     'var(--kz-warning-bg-subtle)',
+        'warning-border':        'var(--kz-warning-border)',
+        'warning-border-subtle': 'var(--kz-warning-border-subtle)',
 
         // ── Semantic: info ────────────────────────────────────────────────────────
-        'info-bg-solid':         'var(--info-bg-solid)',
-        'info-bg-subtle':        'var(--info-bg-subtle)',
-        'info-border':           'var(--info-border)',
-        'info-border-subtle':    'var(--info-border-subtle)',
+        'info-bg-solid':         'var(--kz-info-bg-solid)',
+        'info-bg-subtle':        'var(--kz-info-bg-subtle)',
+        'info-border':           'var(--kz-info-border)',
+        'info-border-subtle':    'var(--kz-info-border-subtle)',
       },
 
-      // Text tokens in their own section → generates text-primary, not text-text-primary
+      // Text tokens → generates text-primary, not text-text-primary
       textColor: {
-        primary:   'var(--text-primary)',
-        secondary: 'var(--text-secondary)',
-        tertiary:  'var(--text-tertiary)',
-        accent:    'var(--text-accent)',
-        disabled:  'var(--text-disabled)',
-        inverse:   'var(--text-inverse)',
-        brand:     'var(--brand-text)',
-        error:     'var(--error-text)',
-        success:   'var(--success-text)',
-        warning:   'var(--warning-text)',
-        info:      'var(--info-text)',
+        primary:   'var(--kz-text-primary)',
+        secondary: 'var(--kz-text-secondary)',
+        tertiary:  'var(--kz-text-tertiary)',
+        accent:    'var(--kz-text-accent)',
+        disabled:  'var(--kz-text-disabled)',
+        inverse:   'var(--kz-text-inverse)',
+        brand:     'var(--kz-brand-text)',
+        error:     'var(--kz-error-text)',
+        success:   'var(--kz-success-text)',
+        warning:   'var(--kz-warning-text)',
+        info:      'var(--kz-info-text)',
       },
 
-      // Stroke tokens in their own section → generates border-subtle, not border-border-subtle
+      // Stroke tokens → generates border-subtle, not border-border-subtle
       borderColor: {
-        subtle:      'var(--stroke-subtle)',
-        default:     'var(--stroke-default)',
-        strong:      'var(--stroke-strong)',
-        hover:       'var(--stroke-hover)',
-        interactive: 'var(--stroke-interactive)',
+        subtle:      'var(--kz-stroke-subtle)',
+        default:     'var(--kz-stroke-default)',
+        strong:      'var(--kz-stroke-strong)',
+        hover:       'var(--kz-stroke-hover)',
+        interactive: 'var(--kz-stroke-interactive)',
       },
 
       fontFamily: {

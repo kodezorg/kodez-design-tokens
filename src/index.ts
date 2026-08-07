@@ -1,7 +1,7 @@
 // ── Core (framework-agnostic) ─────────────────────────────────────────────────
-export { lightTokens, darkTokens } from './tokens';
-export type { ThemeMode } from './tokens';
-export { getCssVars, getCssString, injectCssVars } from './css-vars';
+export { lightTokens, darkTokens } from './tokens.js';
+export type { ThemeMode, TokenName, LightTokenName, DarkTokenName } from './tokens.js';
+export { getCssVars, getCssString, injectCssVars, getCssVar } from './css-vars.js';
 
 // ── Tailwind integration ──────────────────────────────────────────────────────
-export { default as tailwindPreset } from './tailwind-preset';
+export { default as tailwindPreset } from './tailwind-preset.js';

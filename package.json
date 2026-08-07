@@ -13,21 +13,41 @@
       "require": "./dist/index.cjs"
     },
     "./dist/tokens.css": "./dist/tokens.css",
-    "./dist/tailwind-v4.css": "./dist/tailwind-v4.css"
+    "./dist/tailwind-v4.css": "./dist/tailwind-v4.css",
+    "./eslint-plugin": {
+      "types": "./dist/eslint-plugin.d.ts",
+      "import": "./dist/eslint-plugin.js",
+      "require": "./dist/eslint-plugin.cjs"
+    }
   },
   "files": [
     "dist",
-    "skills"
+    "skills",
+    ".changeset"
   ],
   "publishConfig": {
     "registry": "https://pkgs.dev.azure.com/kodez/kodez-connect/_packaging/kodez-connect-packages/npm/registry/"
   },
   "scripts": {
-    "build": "tsup && node scripts/generate-css.mjs",
+    "build": "tsup && node scripts/generate-css.mjs && node scripts/generate-w3c-tokens.mjs && node scripts/generate-css-data.mjs",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky",
+    "validate": "node scripts/validate-parity.mjs && node scripts/validate-contrast.mjs && node scripts/validate-build.mjs",
+    "validate:parity": "node scripts/validate-parity.mjs",
+    "validate:contrast": "node scripts/validate-contrast.mjs",
+    "validate:build": "node scripts/validate-build.mjs",
+    "gen:w3c": "node scripts/generate-w3c-tokens.mjs",
+    "gen:css-data": "node scripts/generate-css-data.mjs",
+    "changeset": "changeset",
+    "version-packages": "changeset version"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run typecheck -- --noEmit"
+    ]
   },
   "peerDependencies": {
     "react": ">=18.0.0",
@@ -46,6 +66,7 @@
     }
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.1",
     "@storybook/addon-essentials": "^8.6.14",
     "@storybook/addon-themes": "^8.6.18",
     "@storybook/react": "^8.6.18",
@@ -54,6 +75,8 @@
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.0.5",
     "clsx": "^2.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "storybook": "^8.6.18",

@@ -11,5 +11,6 @@
     "jsx": "react-jsx",
     "esModuleInterop": true
   },
-  "include": ["src/**/*", "stories", ".storybook", "tsup.config.ts", "scripts"]
+  "include": ["src/**/*", "stories", ".storybook", "tsup.config.ts", "scripts"],
+  "exclude": ["src/toekns-dark-v2.ts", "src/toekns-light-v2.ts"]
 }

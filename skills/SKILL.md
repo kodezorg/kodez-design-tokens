@@ -188,7 +188,7 @@ The file includes `:root` (light), `.dark` (class-based), and `@media (prefers-c
 import { getCssVars, darkTokens } from '@kodez/design-tokens';
 
 const vars = getCssVars(darkTokens);
-// { '--surface-0': '#09090E', '--brand-primary': '#FF7F56', ... }
+// { '--kz-surface-0': '#09090E', '--kz-brand-primary': '#FF7F56', ... }
 
 // Spread into MUI CssBaseline or CSS-in-JS:
 const sx = { ...getCssVars(lightTokens) };
@@ -198,9 +198,9 @@ After injection, use tokens in any CSS or inline style via `var(--token-name)`:
 
 ```css
 .card {
-  background: var(--surface-2);
-  border: 1px solid var(--stroke-default);
-  color: var(--text-primary);
+  background: var(--kz-surface-2);
+  border: 1px solid var(--kz-stroke-default);
+  color: var(--kz-text-primary);
 }
 ```
 
@@ -265,7 +265,7 @@ No `tailwind.config.js` needed. The file handles token injection and `@theme inl
 
 **Note on text/stroke naming in v4:** Tailwind v4 generates utilities from `--color-*` names, so `--color-text-primary` produces `text-text-primary`. Use arbitrary values for cleaner text color classes:
 ```html
-<p class="text-[var(--text-primary)]">...</p>
+<p class="text-[var(--kz-text-primary)]">...</p>
 ```
 
 ---
@@ -282,6 +282,32 @@ function getTokens(mode: ThemeMode) {
 }
 ```
 
+### getCssVar helper
+
+```ts
+import { getCssVar } from '@kodez/design-tokens';
+// Strongly typed — only accepts valid TokenName values
+const bg = getCssVar('surface-2');   // 'var(--kz-surface-2)'
+const fg = getCssVar('text-primary'); // 'var(--kz-text-primary)'
+```
+
+---
+
+## ESLint Plugin
+
+Import the plugin to enforce `--kz-` prefix usage in your codebase:
+
+```js
+// eslint.config.js
+import kodezTokens from '@kodez/design-tokens/eslint-plugin';
+
+export default [
+  kodezTokens.configs.recommended,
+];
+```
+
+The `no-raw-token-var` rule warns when you write `var(--surface-0)` (missing `kz-` prefix) or reference an unknown token name.
+
 ---
 
 ## Review Rules
@@ -291,8 +317,8 @@ When reviewing UI code in any Kodez project, enforce the following:
 - **No hardcoded hex colors** — any color matching a token value must use `var(--token-name)` or the corresponding Tailwind class instead.
 - **Surface hierarchy** — lighter surfaces must not sit beneath darker ones without intentional reason. Follow the `surface-0` (page) → `surface-1` (nav) → `surface-2` (card) → `surface-3+` (nested/hover) model.
 - **Semantic tokens for state** — use `error-*` / `success-*` / `warning-*` / `info-*` token families for feedback states; never use raw red/green/yellow/blue hex values.
-- **Focus rings** — keyboard focus must use `var(--stroke-interactive)` or `border-interactive` (Tailwind). Do not use browser default outlines without replacement.
-- **Brand for interactive elements** — primary buttons, active nav items, and interactive borders must use `brand-primary` / `stroke-interactive`, not arbitrary colors.
+- **Focus rings** — keyboard focus must use `var(--kz-stroke-interactive)` or `getCssVar('stroke-interactive')` for typed access. Do not use browser default outlines without replacement.
+- **Brand for interactive elements** — primary buttons, active nav items, and interactive borders must use `brand-primary` / `var(--kz-stroke-interactive)`, not arbitrary colors.
 - **Brand text** — use `var(--brand-text)` (or `text-brand`) for brand-colored text; it is mode-adaptive. Never use `--brand-primary` directly as a text color.
 - **Links** — always use `var(--text-accent)` (or `text-accent`) for hyperlinks; never use raw hex for link color.
 - **Typography** — font families must be `Inter` (sans) or `JetBrains Mono` (mono). Flag other font-family declarations.
