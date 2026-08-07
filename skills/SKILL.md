@@ -3,13 +3,13 @@ name: kodez-design-tokens
 description: Reference guide for the @kodez/design-tokens package. Use when writing, reviewing, or auditing UI code in any Kodez project to ensure correct token usage, theme switching, and Tailwind integration.
 metadata:
   author: kodez
-  version: "1.5.1"
+  version: "2.0.0"
   argument-hint: <file-or-pattern>
 ---
 
 # Kodez Design Tokens
 
-Reference guide for `@kodez/design-tokens` (v1.2.0). Use this when writing or reviewing UI code in any Kodez project to enforce consistent token usage across themes.
+Reference guide for `@kodez/design-tokens` (v2.0). Use this when writing or reviewing UI code in any Kodez project to enforce consistent token usage across themes.
 
 ## Package
 
@@ -43,88 +43,77 @@ All tokens exist in both `lightTokens` and `darkTokens` objects. At runtime they
 
 | Token         | Light       | Dark        |
 |---------------|-------------|-------------|
-| `surface-0`   | `#F5F7FA`   | `#09090E`   |
-| `surface-1`   | `#FFFFFF`   | `#0F0F16`   |
-| `surface-2`   | `#EFF0F2`   | `#15151E`   |
-| `surface-3`   | `#E7E9EC`   | `#1C1C27`   |
-| `surface-4`   | `#DFE3E8`   | `#222230`   |
-| `surface-5`   | `#D4DAE1`   | `#2B2B3F`   |
+| `surface-0`   | `#FEFEFE`   | `#09090E`   |
+| `surface-1`   | `#F7F7FB`   | `#0F0F16`   |
+| `surface-2`   | `#F0F0F6`   | `#15151E`   |
+| `surface-3`   | `#E8E8F0`   | `#1C1C27`   |
+| `surface-4`   | `#E0E0EC`   | `#222230`   |
+| `surface-5`   | `#D8D8E6`   | `#2B2B3F`   |
+| `surface-kpi` | —           | `rgba(21,21,30,0.72)` |
 
-Use `surface-0` as the page background. Higher numbers = higher elevation (cards, modals, popovers).
+Use `surface-0` as the page background. Higher numbers = higher elevation (cards, modals, popovers). `surface-kpi` is dark-mode only — reduced-opacity surface for KPI/metric cards.
 
 ### Text hierarchy
 
-| Token            | Purpose                        |
-|------------------|--------------------------------|
-| `text-primary`   | Body copy, headings            |
-| `text-secondary` | Supporting labels, captions    |
-| `text-muted`     | Placeholders, disabled text    |
-| `text-inverse`   | Text on dark/accent backgrounds|
+| Token            | Purpose                               |
+|------------------|---------------------------------------|
+| `text-primary`   | Body copy, headings                   |
+| `text-secondary` | Supporting labels, captions           |
+| `text-tertiary`  | Metadata, timestamps, helper text     |
+| `text-accent`    | Links only (mode-adaptive)            |
+| `text-disabled`  | Disabled buttons, inputs, menu items  |
+| `text-inverse`   | Text on brand/dark/inverted surfaces  |
 
-### Borders
+### Strokes (borders)
 
 | Token                | Usage                          |
 |----------------------|--------------------------------|
-| `border-subtle`      | Dividers, ghost separators     |
-| `border-default`     | Standard input/card borders    |
-| `border-strong`      | Emphasized containers          |
-| `border-hover`       | Hover state borders            |
-| `border-interactive` | Focused inputs (maps to accent)|
+| `stroke-subtle`      | Dividers, ghost separators     |
+| `stroke-default`     | Standard input/card borders    |
+| `stroke-strong`      | Emphasized containers          |
+| `stroke-hover`       | Hover state borders            |
+| `stroke-interactive` | Focused inputs, active controls |
 
-### Accent (primary interactive color — `#5153F6`)
+### Brand (`#FF7F56`)
 
-| Token            | Usage                          |
-|------------------|--------------------------------|
-| `accent`         | Buttons, links, active states  |
-| `accent-hover`   | Hover state of accent elements |
-| `accent-dim`     | Subtle accent fills            |
-| `accent-border`  | Accent-tinted borders          |
-| `accent-glow`    | Glow / shadow effects          |
-| `focus-ring`     | Keyboard focus ring            |
-| `accent-soft-08` | 8% opacity accent fill         |
-| `accent-soft-12` | 12% opacity accent fill        |
-| `accent-soft-14` | 14% opacity accent fill        |
-| `accent-soft-55` | 55% opacity accent fill        |
-
-### Brand (secondary highlight color — `#FF7F56`)
-
-| Token         | Usage                     |
-|---------------|---------------------------|
-| `brand-primary` | Brand CTAs, highlights  |
-| `brand-hover`   | Hover on brand elements |
-| `brand-dim`     | Subtle brand fills      |
-| `brand-glow`    | Brand glow effects      |
+| Token                 | Usage                                      |
+|-----------------------|--------------------------------------------|
+| `brand-primary`       | Brand CTAs, primary buttons, highlights    |
+| `brand-hover`         | Hover state on brand elements              |
+| `brand-active`        | Pressed/active state on brand elements     |
+| `brand-bg-subtle`     | Low-emphasis brand background (banners, tags) |
+| `brand-border`        | High-emphasis brand border                 |
+| `brand-border-subtle` | Medium-emphasis brand border               |
+| `brand-text`          | Brand-colored text — mode-adaptive         |
+| `brand-gradient-1`    | Brand gradient stop 1 (`#F89474`)          |
+| `brand-gradient-2`    | Brand gradient stop 2 (`#F0673D`)          |
 
 ### Semantic colors
 
-| Token                  | Purpose                   |
-|------------------------|---------------------------|
-| `color-danger`         | Error text                |
-| `color-danger-bg`      | Error background          |
-| `color-danger-border`  | Error border              |
-| `color-success`        | Success text              |
-| `color-success-bg`     | Success background        |
-| `color-success-border` | Success border            |
-| `color-warning`        | Warning text              |
-| `color-warning-bg`     | Warning background        |
-| `color-info`           | Info text                 |
-| `color-info-bg`        | Info background           |
+Each semantic category provides five tokens:
 
-### Page / Portal gradients
+| Suffix          | Role                               |
+|-----------------|------------------------------------|
+| `-bg-solid`     | Solid background (badges, chips)   |
+| `-bg-subtle`    | Translucent background (banners)   |
+| `-border`       | Strong container border            |
+| `-border-subtle`| Secondary/low-emphasis border      |
+| `-text`         | Foreground text / copy             |
 
-| Token                | Usage                              |
-|----------------------|------------------------------------|
-| `page-gradient`      | Full-page background gradient      |
-| `page-gradient-muted`| Subtle variant of page gradient    |
-| `portal-hero-bg`     | Hero section background            |
+Categories: `error-*`, `success-*`, `warning-*`, `info-*`
+
+| Base token         | Light bg-solid | Dark bg-solid |
+|--------------------|----------------|---------------|
+| `error-bg-solid`   | `#DC2626`      | `#F46969`     |
+| `success-bg-solid` | `#16A34A`      | `#22C55E`     |
+| `warning-bg-solid` | `#D97706`      | `#F59E0B`     |
+| `info-bg-solid`    | `#2563EB`      | `#3B82F6`     |
 
 ---
 
 ## Injecting Tokens (CSS Variables)
 
 ### Client-side (React, Vue, vanilla JS)
-
-The recommended setup — inject tokens once at the root of the app:
 
 ```ts
 import { injectCssVars, lightTokens } from '@kodez/design-tokens';
@@ -180,8 +169,6 @@ document.documentElement.classList.toggle('dark', isDark);
 
 ### Static CSS (no JavaScript required)
 
-For standalone HTML, email templates, or any project that prefers a stylesheet:
-
 ```html
 <link rel="stylesheet" href="node_modules/@kodez/design-tokens/dist/tokens.css" />
 ```
@@ -193,7 +180,7 @@ Or in CSS:
 
 The file includes `:root` (light), `.dark` (class-based), and `@media (prefers-color-scheme: dark)` blocks.
 
-### Manual CSS string
+### Manual CSS vars object
 
 `getCssVars` returns a `Record<string, string>` object with `--` prefixed keys:
 
@@ -201,7 +188,7 @@ The file includes `:root` (light), `.dark` (class-based), and `@media (prefers-c
 import { getCssVars, darkTokens } from '@kodez/design-tokens';
 
 const vars = getCssVars(darkTokens);
-// { '--surface-0': '#09090E', '--accent': '#5153F6', ... }
+// { '--surface-0': '#09090E', '--brand-primary': '#FF7F56', ... }
 
 // Spread into MUI CssBaseline or CSS-in-JS:
 const sx = { ...getCssVars(lightTokens) };
@@ -211,8 +198,8 @@ After injection, use tokens in any CSS or inline style via `var(--token-name)`:
 
 ```css
 .card {
-  background: var(--surface-1);
-  border: 1px solid var(--border-default);
+  background: var(--surface-2);
+  border: 1px solid var(--stroke-default);
   color: var(--text-primary);
 }
 ```
@@ -239,26 +226,30 @@ export default {
 Available Tailwind utility classes after adding the preset:
 
 ```
+// Surfaces
 bg-surface-0  bg-surface-1  bg-surface-2  bg-surface-3  bg-surface-4  bg-surface-5
+bg-surface-kpi  (dark only)
 
-text-primary  text-secondary  text-muted  text-inverse
-  (via theme.extend.textColor — generates text-primary directly, not text-text-primary)
+// Text  (via theme.extend.textColor — generates text-primary directly)
+text-primary  text-secondary  text-tertiary  text-accent  text-disabled  text-inverse
+text-brand  text-error  text-success  text-warning  text-info
 
+// Strokes  (via theme.extend.borderColor — generates border-subtle directly)
 border-subtle  border-default  border-strong  border-hover  border-interactive
-  (via theme.extend.borderColor — generates border-subtle directly)
 
-bg-accent  bg-accent-hover  bg-accent-dim  bg-accent-border  bg-accent-glow
-bg-accent-soft-08  bg-accent-soft-12  bg-accent-soft-14  bg-accent-soft-55
+// Brand
+bg-brand-primary  bg-brand-hover  bg-brand-active
+bg-brand-bg-subtle  bg-brand-border  bg-brand-border-subtle
+bg-brand-gradient-1  bg-brand-gradient-2
 
-bg-brand  bg-brand-hover  bg-brand-dim  bg-brand-glow
+// Semantic backgrounds and borders
+bg-error-bg-solid    bg-error-bg-subtle    bg-error-border    bg-error-border-subtle
+bg-success-bg-solid  bg-success-bg-subtle  bg-success-border  bg-success-border-subtle
+bg-warning-bg-solid  bg-warning-bg-subtle  bg-warning-border  bg-warning-border-subtle
+bg-info-bg-solid     bg-info-bg-subtle     bg-info-border     bg-info-border-subtle
 
-bg-danger  bg-danger-bg  bg-danger-border
-bg-success  bg-success-bg  bg-success-border  bg-success-soft-12  bg-success-soft-14
-bg-warning  bg-warning-bg  bg-warning-soft-16
-bg-info  bg-info-bg  bg-info-soft-12  bg-info-soft-14
-
+// Typography
 font-sans  font-mono   (Inter / JetBrains Mono)
-ring-focus
 ```
 
 ### Tailwind v4
@@ -272,7 +263,7 @@ Import the provided CSS file in your main stylesheet:
 
 No `tailwind.config.js` needed. The file handles token injection and `@theme inline` mapping.
 
-**Note on text/border naming in v4:** Tailwind v4 generates utilities from `--color-*` names, so `--color-text-primary` produces `text-text-primary`. Use arbitrary values for cleaner text color classes:
+**Note on text/stroke naming in v4:** Tailwind v4 generates utilities from `--color-*` names, so `--color-text-primary` produces `text-text-primary`. Use arbitrary values for cleaner text color classes:
 ```html
 <p class="text-[var(--text-primary)]">...</p>
 ```
@@ -298,13 +289,14 @@ function getTokens(mode: ThemeMode) {
 When reviewing UI code in any Kodez project, enforce the following:
 
 - **No hardcoded hex colors** — any color matching a token value must use `var(--token-name)` or the corresponding Tailwind class instead.
-- **Surface hierarchy** — lighter surfaces must not sit beneath darker ones without intentional reason. Follow the `surface-0` (page) → `surface-1` (card) → `surface-2+` (nested) model.
-- **Semantic tokens for state** — use `color-danger` / `color-success` / `color-warning` / `color-info` for feedback states; never use raw red/green/yellow/blue hex values.
-- **Focus rings** — keyboard focus must use `var(--focus-ring)` or `ring-focus` (Tailwind). Do not use browser default outlines without replacement.
-- **Accent for interactive elements** — primary buttons, active nav items, and interactive borders must use `accent` / `border-interactive`, not brand or arbitrary colors.
-- **Brand for marketing/highlight only** — `brand-primary` is for CTAs and highlights, not for generic interactive states.
+- **Surface hierarchy** — lighter surfaces must not sit beneath darker ones without intentional reason. Follow the `surface-0` (page) → `surface-1` (nav) → `surface-2` (card) → `surface-3+` (nested/hover) model.
+- **Semantic tokens for state** — use `error-*` / `success-*` / `warning-*` / `info-*` token families for feedback states; never use raw red/green/yellow/blue hex values.
+- **Focus rings** — keyboard focus must use `var(--stroke-interactive)` or `border-interactive` (Tailwind). Do not use browser default outlines without replacement.
+- **Brand for interactive elements** — primary buttons, active nav items, and interactive borders must use `brand-primary` / `stroke-interactive`, not arbitrary colors.
+- **Brand text** — use `var(--brand-text)` (or `text-brand`) for brand-colored text; it is mode-adaptive. Never use `--brand-primary` directly as a text color.
+- **Links** — always use `var(--text-accent)` (or `text-accent`) for hyperlinks; never use raw hex for link color.
 - **Typography** — font families must be `Inter` (sans) or `JetBrains Mono` (mono). Flag other font-family declarations.
-- **Dark mode** — every surface, text, and border token already has a dark variant; never add separate dark-mode color overrides using raw values.
+- **Dark mode** — every surface, text, and stroke token already has a dark variant; never add separate dark-mode color overrides using raw values.
 - **SSR safety** — `injectCssVars` must only be called in browser contexts (inside `useEffect`, event handlers, or after a `typeof document !== 'undefined'` guard). For server-rendered apps use `getCssString` + a `<style>` tag.
 
 Flag violations with a `[design-token]` prefix in review output.
