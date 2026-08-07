@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // WCAG 2.1 contrast ratio validation for text tokens.
-import { lightTokens, darkTokens } from '../dist/index.js';
+import { getCssVars } from '../dist/index.js';
 
 function hexToRgb(hex) {
   const n = parseInt(hex.replace('#', ''), 16);
@@ -62,9 +62,9 @@ const PAIRS = [
 let errors = 0;
 
 for (const { mode, fg, bg, min } of PAIRS) {
-  const tokens = mode === 'light' ? lightTokens : darkTokens;
-  const fgVal  = tokens[fg];
-  const bgVal  = tokens[bg];
+  const vars   = getCssVars(mode);
+  const fgVal  = vars[`--kz-${fg}`];
+  const bgVal  = vars[`--kz-${bg}`];
 
   if (!fgVal || !bgVal) {
     console.warn(`  ? contrast: ${mode}/${fg} on ${bg} — token not found, skipping`);

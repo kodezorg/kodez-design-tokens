@@ -1,5 +1,5 @@
 // Generates .vscode/kz-tokens.css-data.json for VS Code CSS custom property autocomplete.
-import { lightTokens, darkTokens } from '../dist/index.js';
+import { getCssVars } from '../dist/index.js';
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -7,27 +7,26 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const allKeys = [...new Set([...Object.keys(lightTokens), ...Object.keys(darkTokens)])];
+const lightVars = getCssVars('light');
+const darkVars  = getCssVars('dark');
+const allKeys   = [...new Set([...Object.keys(lightVars), ...Object.keys(darkVars)])];
 
-const properties = allKeys.map(key => {
-  const lightVal = lightTokens[key];
-  const darkVal  = darkTokens[key];
+const properties = allKeys.map(varKey => {
+  const lightVal = lightVars[varKey];
+  const darkVal  = darkVars[varKey];
 
   const parts = [];
   if (lightVal) parts.push(`Light: ${lightVal}`);
   if (darkVal && darkVal !== lightVal) parts.push(`Dark: ${darkVal}`);
 
   return {
-    name: `--kz-${key}`,
+    name: varKey,
     description: parts.join(' | '),
     browsers: ['C', 'E', 'FF', 'S'],
   };
 });
 
-const cssData = {
-  version: 1.1,
-  properties,
-};
+const cssData = { version: 1.1, properties };
 
 const outDir = resolve(root, '.vscode');
 mkdirSync(outDir, { recursive: true });

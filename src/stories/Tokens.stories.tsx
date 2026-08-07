@@ -1,11 +1,15 @@
 import React from 'react';
 import type { Meta } from '@storybook/react';
-import { lightTokens, darkTokens } from '../tokens.js';
+import { getCssVars } from '../index.js';
 
-interface SwatchProps { name: string; light?: string; dark?: string; }
+const lightVars = getCssVars('light');
+const darkVars  = getCssVars('dark');
+const allVarKeys = [...new Set([...Object.keys(lightVars), ...Object.keys(darkVars)])];
 
-function Swatch({ name, light, dark }: SwatchProps) {
-  const val = light ?? dark ?? '';
+interface SwatchProps { varKey: string; lightVal?: string; darkVal?: string; }
+
+function Swatch({ varKey, lightVal, darkVal }: SwatchProps) {
+  const val = lightVal ?? darkVal ?? '';
   const isColor = val.startsWith('#') || val.startsWith('rgb');
   return (
     <div style={{
@@ -15,22 +19,22 @@ function Swatch({ name, light, dark }: SwatchProps) {
       {isColor && (
         <div style={{
           width: 40, height: 40, borderRadius: 8, flexShrink: 0,
-          background: `var(--kz-${name})`,
+          background: `var(${varKey})`,
           border: '1px solid var(--kz-stroke-subtle)',
         }} />
       )}
       <div style={{ flex: 1 }}>
         <code style={{ fontSize: 12, color: 'var(--kz-text-primary)', display: 'block' }}>
-          --kz-{name}
+          {varKey}
         </code>
-        {light && (
+        {lightVal && (
           <span style={{ fontSize: 11, color: 'var(--kz-text-tertiary)', marginRight: 12 }}>
-            Light: {light}
+            Light: {lightVal}
           </span>
         )}
-        {dark && (
+        {darkVal && darkVal !== lightVal && (
           <span style={{ fontSize: 11, color: 'var(--kz-text-tertiary)' }}>
-            Dark: {dark}
+            Dark: {darkVal}
           </span>
         )}
       </div>
@@ -39,8 +43,10 @@ function Swatch({ name, light, dark }: SwatchProps) {
 }
 
 function Section({ title, names }: { title: string; names: string[] }) {
-  const allKeys = [...new Set([...Object.keys(lightTokens), ...Object.keys(darkTokens)])];
-  const tokens = names.filter(n => allKeys.includes(n));
+  const varKeys = names
+    .map(n => `--kz-${n}`)
+    .filter(k => allVarKeys.includes(k));
+
   return (
     <div style={{ marginBottom: 40 }}>
       <h3 style={{
@@ -49,8 +55,13 @@ function Section({ title, names }: { title: string; names: string[] }) {
       }}>
         {title}
       </h3>
-      {tokens.map(n => (
-        <Swatch key={n} name={n} light={lightTokens[n]} dark={darkTokens[n]} />
+      {varKeys.map(k => (
+        <Swatch
+          key={k}
+          varKey={k}
+          lightVal={(lightVars as Record<string, string>)[k]}
+          darkVal={(darkVars as Record<string, string>)[k]}
+        />
       ))}
     </div>
   );
@@ -74,7 +85,7 @@ function TokenViewer() {
         Design Tokens
       </h2>
       <p style={{ color: 'var(--kz-text-secondary)', marginBottom: 40, fontSize: 13 }}>
-        All tokens are available as CSS custom properties prefixed with <code>--kz-</code>.
+        All tokens are CSS custom properties prefixed with <code>--kz-</code>.
         Toggle the theme in the toolbar above to preview light / dark values.
       </p>
       {groups.map(([title, names]) => (

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import type { Preview, Decorator } from '@storybook/react';
 import { withThemeByClassName } from '@storybook/addon-themes';
-import { injectCssVars, lightTokens, darkTokens } from '../src';
+import { injectCssVars } from '../src';
 import './global.css';
 
 const ThemeDecorator: Decorator = (Story, context) => {
   const isDark = context.globals['theme'] === 'dark';
 
   useEffect(() => {
-    injectCssVars(isDark ? darkTokens : lightTokens);
+    injectCssVars(isDark ? 'dark' : 'light');
   }, [isDark]);
 
   return (
