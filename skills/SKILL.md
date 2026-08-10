@@ -43,13 +43,13 @@ All tokens exist in both `lightTokens` and `darkTokens` objects. At runtime they
 
 | Token         | Light       | Dark        |
 |---------------|-------------|-------------|
-| `surface-0`   | `#FEFEFE`   | `#09090E`   |
-| `surface-1`   | `#F7F7FB`   | `#0F0F16`   |
-| `surface-2`   | `#F0F0F6`   | `#15151E`   |
-| `surface-3`   | `#E8E8F0`   | `#1C1C27`   |
-| `surface-4`   | `#E0E0EC`   | `#222230`   |
-| `surface-5`   | `#D8D8E6`   | `#2B2B3F`   |
-| `surface-kpi` | —           | `rgba(21,21,30,0.72)` |
+| `surface-0`   | `#FFFFFF`   | `#0C0A0B`   |
+| `surface-1`   | `#F9F8F7`   | `#131112`   |
+| `surface-2`   | `#F5F4F2`   | `#1C191A`   |
+| `surface-3`   | `#EDEBE8`   | `#231F20`   |
+| `surface-4`   | `#E4E1DE`   | `#2B2728`   |
+| `surface-5`   | `#DAD7D3`   | `#342F31`   |
+| `surface-kpi` | —           | `rgba(28,25,26,0.72)` |
 
 Use `surface-0` as the page background. Higher numbers = higher elevation (cards, modals, popovers). `surface-kpi` is dark-mode only — reduced-opacity surface for KPI/metric cards.
 
@@ -188,7 +188,7 @@ The file includes `:root` (light), `.dark` (class-based), and `@media (prefers-c
 import { getCssVars, darkTokens } from '@kodez/design-tokens';
 
 const vars = getCssVars(darkTokens);
-// { '--kz-surface-0': '#09090E', '--kz-brand-primary': '#FF7F56', ... }
+// { '--kz-surface-0': '#0C0A0B', '--kz-brand-primary': '#FF7F56', ... }
 
 // Spread into MUI CssBaseline or CSS-in-JS:
 const sx = { ...getCssVars(lightTokens) };
