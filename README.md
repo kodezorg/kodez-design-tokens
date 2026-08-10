@@ -319,7 +319,7 @@ Default selector is `':root'`.
 
 ```ts
 const css = getCssString(lightTokens, ':root');
-// ':root {\n  --kz-surface-0: #FEFEFE;\n  ...\n}\n'
+// ':root {\n  --kz-surface-0: #FFFFFF;\n  ...\n}\n'
 ```
 
 ### `getCssVars(tokens)`
@@ -328,7 +328,7 @@ Returns a `Record<string, string>` with `--` prefixed keys. Useful for spreading
 
 ```ts
 const vars = getCssVars(lightTokens);
-// { '--kz-surface-0': '#FEFEFE', '--kz-brand-primary': '#FF7F56', ... }
+// { '--kz-surface-0': '#FFFFFF', '--kz-brand-primary': '#FF7F56', ... }
 ```
 
 ### `lightTokens` / `darkTokens`
@@ -353,33 +353,33 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--surface-0` | ![#FEFEFE](https://img.shields.io/badge/-%23FEFEFE-FEFEFE?style=flat-square) | `#FEFEFE` | ![#09090E](https://img.shields.io/badge/-%2309090E-09090E?style=flat-square) | `#09090E` |
-| `--surface-1` | ![#F7F7FB](https://img.shields.io/badge/-%23F7F7FB-F7F7FB?style=flat-square) | `#F7F7FB` | ![#0F0F16](https://img.shields.io/badge/-%230F0F16-0F0F16?style=flat-square) | `#0F0F16` |
-| `--surface-2` | ![#F0F0F6](https://img.shields.io/badge/-%23F0F0F6-F0F0F6?style=flat-square) | `#F0F0F6` | ![#15151E](https://img.shields.io/badge/-%2315151E-15151E?style=flat-square) | `#15151E` |
-| `--surface-3` | ![#E8E8F0](https://img.shields.io/badge/-%23E8E8F0-E8E8F0?style=flat-square) | `#E8E8F0` | ![#1C1C27](https://img.shields.io/badge/-%231C1C27-1C1C27?style=flat-square) | `#1C1C27` |
-| `--surface-4` | ![#E0E0EC](https://img.shields.io/badge/-%23E0E0EC-E0E0EC?style=flat-square) | `#E0E0EC` | ![#222230](https://img.shields.io/badge/-%23222230-222230?style=flat-square) | `#222230` |
-| `--surface-5` | ![#D8D8E6](https://img.shields.io/badge/-%23D8D8E6-D8D8E6?style=flat-square) | `#D8D8E6` | ![#2B2B3F](https://img.shields.io/badge/-%232B2B3F-2B2B3F?style=flat-square) | `#2B2B3F` |
-| `--surface-kpi` | — | — | — | `rgba(21,21,30,0.72)` |
+| `--surface-0` | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF?style=flat-square) | `#FFFFFF` | ![#0C0A0B](https://img.shields.io/badge/-%230C0A0B-0C0A0B?style=flat-square) | `#0C0A0B` |
+| `--surface-1` | ![#F9F8F7](https://img.shields.io/badge/-%23F9F8F7-F9F8F7?style=flat-square) | `#F9F8F7` | ![#131112](https://img.shields.io/badge/-%23131112-131112?style=flat-square) | `#131112` |
+| `--surface-2` | ![#F5F4F2](https://img.shields.io/badge/-%23F5F4F2-F5F4F2?style=flat-square) | `#F5F4F2` | ![#1C191A](https://img.shields.io/badge/-%231C191A-1C191A?style=flat-square) | `#1C191A` |
+| `--surface-3` | ![#EDEBE8](https://img.shields.io/badge/-%23EDEBE8-EDEBE8?style=flat-square) | `#EDEBE8` | ![#231F20](https://img.shields.io/badge/-%23231F20-231F20?style=flat-square) | `#231F20` |
+| `--surface-4` | ![#E4E1DE](https://img.shields.io/badge/-%23E4E1DE-E4E1DE?style=flat-square) | `#E4E1DE` | ![#2B2728](https://img.shields.io/badge/-%232B2728-2B2728?style=flat-square) | `#2B2728` |
+| `--surface-5` | ![#DAD7D3](https://img.shields.io/badge/-%23DAD7D3-DAD7D3?style=flat-square) | `#DAD7D3` | ![#342F31](https://img.shields.io/badge/-%23342F31-342F31?style=flat-square) | `#342F31` |
+| `--surface-kpi` | — | — | — | `rgba(28,25,26,0.72)` |
 
 ### Text
 
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--text-primary` | ![#0F0F18](https://img.shields.io/badge/-%230F0F18-0F0F18?style=flat-square) | `#0F0F18` | ![#F8FAFC](https://img.shields.io/badge/-%23F8FAFC-F8FAFC?style=flat-square) | `#F8FAFC` |
-| `--text-secondary` | ![#4A4A5E](https://img.shields.io/badge/-%234A4A5E-4A4A5E?style=flat-square) | `#4A4A5E` | ![#BCBCC7](https://img.shields.io/badge/-%23BCBCC7-BCBCC7?style=flat-square) | `#BCBCC7` |
-| `--text-tertiary` | ![#6E6E88](https://img.shields.io/badge/-%236E6E88-6E6E88?style=flat-square) | `#6E6E88` | ![#818197](https://img.shields.io/badge/-%23818197-818197?style=flat-square) | `#818197` |
+| `--text-primary` | ![#231F20](https://img.shields.io/badge/-%23231F20-231F20?style=flat-square) | `#231F20` | ![#F5F4F2](https://img.shields.io/badge/-%23F5F4F2-F5F4F2?style=flat-square) | `#F5F4F2` |
+| `--text-secondary` | ![#4A4546](https://img.shields.io/badge/-%234A4546-4A4546?style=flat-square) | `#4A4546` | ![#BDB7B8](https://img.shields.io/badge/-%23BDB7B8-BDB7B8?style=flat-square) | `#BDB7B8` |
+| `--text-tertiary` | ![#6F6B6C](https://img.shields.io/badge/-%236F6B6C-6F6B6C?style=flat-square) | `#6F6B6C` | ![#837D7E](https://img.shields.io/badge/-%23837D7E-837D7E?style=flat-square) | `#837D7E` |
 | `--text-accent` | ![#5153F6](https://img.shields.io/badge/-%235153F6-5153F6?style=flat-square) | `#5153F6` | ![#7475FF](https://img.shields.io/badge/-%237475FF-7475FF?style=flat-square) | `#7475FF` |
-| `--text-disabled` | ![#A0A0B8](https://img.shields.io/badge/-%23A0A0B8-A0A0B8?style=flat-square) | `#A0A0B8` | ![#595976](https://img.shields.io/badge/-%23595976-595976?style=flat-square) | `#595976` |
-| `--text-inverse` | ![#F8FAFC](https://img.shields.io/badge/-%23F8FAFC-F8FAFC?style=flat-square) | `#F8FAFC` | ![#0C0C0D](https://img.shields.io/badge/-%230C0C0D-0C0C0D?style=flat-square) | `#0C0C0D` |
+| `--text-disabled` | ![#A6A2A3](https://img.shields.io/badge/-%23A6A2A3-A6A2A3?style=flat-square) | `#A6A2A3` | ![#5A5556](https://img.shields.io/badge/-%235A5556-5A5556?style=flat-square) | `#5A5556` |
+| `--text-inverse` | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF?style=flat-square) | `#FFFFFF` | ![#231F20](https://img.shields.io/badge/-%23231F20-231F20?style=flat-square) | `#231F20` |
 
 ### Strokes
 
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--stroke-subtle` | ![#E8E8F0](https://img.shields.io/badge/-%23E8E8F0-E8E8F0?style=flat-square) | `#E8E8F0` | ![#21212B](https://img.shields.io/badge/-%2321212B-21212B?style=flat-square) | `#21212B` |
-| `--stroke-default` | ![#D0D0DE](https://img.shields.io/badge/-%23D0D0DE-D0D0DE?style=flat-square) | `#D0D0DE` | ![#35374A](https://img.shields.io/badge/-%2335374A-35374A?style=flat-square) | `#35374A` |
-| `--stroke-strong` | ![#B8B8CA](https://img.shields.io/badge/-%23B8B8CA-B8B8CA?style=flat-square) | `#B8B8CA` | ![#4A4D63](https://img.shields.io/badge/-%234A4D63-4A4D63?style=flat-square) | `#4A4D63` |
-| `--stroke-hover` | ![#9E9EB5](https://img.shields.io/badge/-%239E9EB5-9E9EB5?style=flat-square) | `#9E9EB5` | ![#60637F](https://img.shields.io/badge/-%2360637F-60637F?style=flat-square) | `#60637F` |
+| `--stroke-subtle` | ![#EDEBE8](https://img.shields.io/badge/-%23EDEBE8-EDEBE8?style=flat-square) | `#EDEBE8` | ![#2B2728](https://img.shields.io/badge/-%232B2728-2B2728?style=flat-square) | `#2B2728` |
+| `--stroke-default` | ![#D5D2CE](https://img.shields.io/badge/-%23D5D2CE-D5D2CE?style=flat-square) | `#D5D2CE` | ![#3D3839](https://img.shields.io/badge/-%233D3839-3D3839?style=flat-square) | `#3D3839` |
+| `--stroke-strong` | ![#B9B5B2](https://img.shields.io/badge/-%23B9B5B2-B9B5B2?style=flat-square) | `#B9B5B2` | ![#524D4F](https://img.shields.io/badge/-%23524D4F-524D4F?style=flat-square) | `#524D4F` |
+| `--stroke-hover` | ![#9E9A97](https://img.shields.io/badge/-%239E9A97-9E9A97?style=flat-square) | `#9E9A97` | ![#6E6869](https://img.shields.io/badge/-%236E6869-6E6869?style=flat-square) | `#6E6869` |
 | `--stroke-interactive` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
 
 ### Brand
