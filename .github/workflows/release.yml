@@ -36,14 +36,17 @@ jobs:
 
       - name: Configure Azure Artifacts auth
         run: |
-          echo "//pkgs.dev.azure.com/kodez/kodez-connect/_packaging/kodez-connect-packages/npm/registry/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
+          B64=$(echo -n "${NPM_TOKEN}" | base64)
+          FEED="//pkgs.dev.azure.com/kodez/kodez-connect/_packaging/kodez-connect-packages/npm/registry/"
+          echo "${FEED}:username=github-actions" >> ~/.npmrc
+          echo "${FEED}:_password=${B64}"        >> ~/.npmrc
+          echo "${FEED}:email=ci@kodez.com.au"   >> ~/.npmrc
+          echo "always-auth=true"                >> ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to Azure Artifacts
         run: npm publish
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
