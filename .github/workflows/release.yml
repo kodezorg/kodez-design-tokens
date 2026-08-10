@@ -37,7 +37,10 @@ jobs:
       - name: Publish to Azure Artifacts
         run: |
           FEED="//pkgs.dev.azure.com/kodez/kodez-connect/_packaging/kodez-connect-packages/npm/registry/"
-          echo "${FEED}:_authToken=${NPM_TOKEN}" >> ~/.npmrc
+          echo "${FEED}:username=github-actions" >> ~/.npmrc
+          echo "${FEED}:_password=${NPM_TOKEN}"  >> ~/.npmrc
+          echo "${FEED}:email=ci@kodez.com.au"   >> ~/.npmrc
+          echo "always-auth=true"                >> ~/.npmrc
           npm publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
