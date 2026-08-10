@@ -1,0 +1,510 @@
+# component-contract.yaml — @kodez/design-tokens
+# ──────────────────────────────────────────────────────────────────────────────
+# Authoritative --kz-* token-pair and WCAG-AA compliance spec.
+# AI agents and developers MUST follow these token assignments.
+# Source of truth for every fg/bg pair in every mode.
+#
+# WCAG thresholds enforced here:
+#   normal_text  ≥ 4.5:1  (SC 1.4.3 — body, labels, button text)
+#   large_text   ≥ 3.0:1  (SC 1.4.3 — ≥18pt plain or ≥14pt bold)
+#   ui_component ≥ 3.0:1  (SC 1.4.11 — icons, borders, non-text indicators)
+#   disabled_exempt: true  (WCAG explicitly exempts inactive/disabled UI)
+#
+# Token values come from getCssVars('light') / getCssVars('dark') in tokens.ts.
+# Never hard-code hex values in components — always reference --kz-* tokens.
+# ──────────────────────────────────────────────────────────────────────────────
+
+meta:
+  version: "1.1.0"
+  package: "@kodez/design-tokens"
+  updated: "2026-08-10"
+
+# ─── KEY GOTCHA ────────────────────────────────────────────────────────────────
+# --kz-brand-primary (#FF7F56) is the SAME orange in both light and dark modes.
+# The foreground token that resolves to near-black (#231F20) DIFFERS per mode:
+#   light → --kz-text-primary  = #231F20
+#   dark  → --kz-text-inverse  = #231F20
+# When using a JS theme (e.g. MUI) that reads tokens by mode, use the light-mode
+# value _light['--kz-text-primary'] = #231F20 as a stable constant for both modes.
+# ──────────────────────────────────────────────────────────────────────────────
+
+components:
+
+  # ─── BUTTONS ──────────────────────────────────────────────────────────────────
+
+  button_primary:
+    description: Filled button on brand-primary background
+    css_class: .btn-primary
+    mui_color: primary
+    light:
+      bg:     { token: "--kz-brand-primary", hex: "#FF7F56" }
+      fg:     { token: "--kz-text-primary",  hex: "#231F20", contrast: 6.54, level: AA }
+      border: { token: "--kz-brand-primary", hex: "#FF7F56" }
+      hover_bg: { token: "--kz-brand-hover", hex: "#CB6241" }
+    dark:
+      bg:     { token: "--kz-brand-primary",  hex: "#FF7F56" }
+      fg:     { token: "--kz-text-inverse",   hex: "#231F20", contrast: 6.54, level: AA }
+      border: { token: "--kz-brand-primary",  hex: "#FF7F56" }
+      hover_bg: { token: "--kz-brand-hover",  hex: "#F89474" }
+    disabled:
+      opacity: 0.4
+      wcag_exempt: true
+    implementation:
+      css: |
+        .btn-primary { background: var(--kz-brand-primary); color: var(--kz-text-primary); }
+        .dark .btn-primary { color: var(--kz-surface-0); }
+        @media (prefers-color-scheme: dark) { :root:not(.light) .btn-primary { color: var(--kz-surface-0); } }
+      mui: |
+        primary: { main: t['--kz-brand-primary'], contrastText: _light['--kz-text-primary'] }
+        # _light['--kz-text-primary'] = #231F20 — hardcoded so it works in both modes.
+        # Do NOT use t['--kz-text-primary'] — resolves to #F5F4F2 (light) in dark mode → 2.24:1 FAIL.
+    notes: >
+      NEVER use --kz-text-inverse in light mode on orange bg (= #FFFFFF → 2.49:1 FAIL).
+      Both modes need near-black text; the token name that resolves to it differs per mode.
+
+  button_secondary:
+    description: Outlined/ghost button on transparent background
+    css_class: .btn-outline
+    light:
+      bg:     { token: "transparent" }
+      fg:     { token: "--kz-text-primary",   hex: "#231F20", contrast: "16.75 on surface-0", level: AA }
+      border: { token: "--kz-stroke-default",  hex: "#D5D2CE" }
+    dark:
+      bg:     { token: "transparent" }
+      fg:     { token: "--kz-text-primary",   hex: "#F5F4F2", contrast: "14.83 on surface-0", level: AA }
+      border: { token: "--kz-stroke-default",  hex: "#3D3839" }
+
+  button_ghost:
+    description: Text-only button, no border or fill
+    css_class: .btn-ghost
+    light:
+      bg:     { token: "transparent" }
+      fg:     { token: "--kz-text-secondary", hex: "#4A4546", contrast: "8.87 on surface-0", level: AA }
+      hover_bg: { token: "--kz-surface-2" }
+    dark:
+      bg:     { token: "transparent" }
+      fg:     { token: "--kz-text-secondary", hex: "#BDB7B8", contrast: "7.01 on surface-0", level: AA }
+      hover_bg: { token: "--kz-surface-2" }
+
+  button_danger:
+    description: Filled button on error-bg-solid background
+    css_class: .btn-danger
+    mui_color: error
+    light:
+      bg: { token: "--kz-error-bg-solid", hex: "#DC2626" }
+      fg: { token: "--kz-text-inverse",   hex: "#FFFFFF", contrast: 4.83, level: AA }
+    dark:
+      bg: { token: "--kz-error-bg-solid", hex: "#F46969" }
+      fg: { token: "--kz-text-primary",   hex: "#231F20", contrast: 5.49, level: AA }
+      # dark mode error bg is bright pink → near-black text passes; white would fail (1.92:1)
+    notes: >
+      Dark mode auto-contrast: MUI will pick white on #F46969 = 1.92:1 FAIL.
+      Must explicitly set contrastText to _light['--kz-text-primary'] in dark builds.
+
+  button_success:
+    description: Filled button on success-bg-solid background
+    css_class: .btn-success
+    mui_color: success
+    light:
+      bg: { token: "--kz-success-bg-solid", hex: "#16A34A" }
+      fg: { token: "--kz-text-primary",     hex: "#231F20", contrast: 4.95, level: AA }
+      # white alternative: 3.30:1 FAIL — do not use
+    dark:
+      bg: { token: "--kz-success-bg-solid", hex: "#22C55E" }
+      fg: { token: "--kz-text-primary",     hex: "#231F20", contrast: 7.23, level: AAA }
+      # white on bright green: 2.28:1 FAIL — do not use
+    implementation:
+      mui: |
+        success: { main: t['--kz-success-bg-solid'], contrastText: _light['--kz-text-primary'] }
+
+  button_warning:
+    description: Filled button on warning-bg-solid background
+    css_class: .btn-warning
+    mui_color: warning
+    light:
+      bg: { token: "--kz-warning-bg-solid", hex: "#D97706" }
+      fg: { token: "--kz-text-primary",     hex: "#231F20", contrast: 5.12, level: AA }
+      # white alternative: 3.19:1 FAIL — do not use
+    dark:
+      bg: { token: "--kz-warning-bg-solid", hex: "#F59E0B" }
+      fg: { token: "--kz-text-primary",     hex: "#231F20", contrast: 7.59, level: AAA }
+      # white on amber: 2.15:1 FAIL — do not use
+    implementation:
+      mui: |
+        warning: { main: t['--kz-warning-bg-solid'], contrastText: _light['--kz-text-primary'] }
+
+  button_info:
+    description: Filled button on info-bg-solid background
+    css_class: .btn-info
+    mui_color: secondary
+    light:
+      bg: { token: "--kz-info-bg-solid", hex: "#2563EB" }
+      fg: { token: "--kz-text-inverse",  hex: "#FFFFFF", contrast: 5.17, level: AA }
+      # white passes in light — use it
+    dark:
+      bg: { token: "--kz-info-bg-solid", hex: "#3B82F6" }
+      fg: { token: "--kz-text-primary",  hex: "#231F20", contrast: 4.43, level: "near-AA" }
+      # white on medium blue: 3.68:1 FAIL. Near-black: 4.43:1 (just below 4.5 threshold).
+      # Use dark text — vastly better than white failure.
+    implementation:
+      mui: |
+        secondary: {
+          main: t['--kz-info-bg-solid'],
+          contrastText: isDark ? _light['--kz-text-primary'] : t['--kz-text-inverse']
+        }
+
+  # ─── BADGES / CHIPS ───────────────────────────────────────────────────────────
+
+  badge_brand_solid:
+    description: Solid brand-color badge/pill (e.g. portal logo badge)
+    light:
+      bg: { token: "--kz-brand-primary",  hex: "#FF7F56" }
+      fg: { token: "--kz-text-primary",   hex: "#231F20", contrast: 6.54, level: AA }
+    dark:
+      bg: { token: "--kz-brand-primary",  hex: "#FF7F56" }
+      fg: { token: "--kz-text-inverse",   hex: "#231F20", contrast: 6.54, level: AA }
+    notes: >
+      NEVER use --kz-text-inverse in light mode (= #FFFFFF → 2.49:1 FAIL on orange).
+      In MUI portalTokens, use _light['--kz-text-primary'] as brandBadgeText.
+
+  badge_brand_subtle:
+    description: Low-emphasis brand chip/badge on brand-bg-subtle
+    light:
+      bg: { token: "--kz-brand-bg-subtle", hex: "rgba(255,127,86,0.12)" }
+      fg: { token: "--kz-brand-text",      hex: "#A04C31", contrast: "≥4.5 on surface-0", level: AA }
+      border: { token: "--kz-brand-border" }
+    dark:
+      bg: { token: "--kz-brand-bg-subtle", hex: "rgba(255,127,86,0.16)" }
+      fg: { token: "--kz-brand-text",      hex: "#FF7F56", contrast: "≥4.5 on surface-1", level: AA }
+      border: { token: "--kz-brand-border" }
+
+  badge_success:
+    light:
+      bg: { token: "--kz-success-bg-subtle" }
+      fg: { token: "--kz-success-text", hex: "#14532D" }
+      border: { token: "--kz-success-border" }
+    dark:
+      bg: { token: "--kz-success-bg-subtle" }
+      fg: { token: "--kz-success-text", hex: "#4ADE80" }
+      border: { token: "--kz-success-border" }
+
+  badge_warning:
+    light:
+      bg: { token: "--kz-warning-bg-subtle" }
+      fg: { token: "--kz-warning-text", hex: "#78350F" }
+      border: { token: "--kz-warning-border" }
+    dark:
+      bg: { token: "--kz-warning-bg-subtle" }
+      fg: { token: "--kz-warning-text", hex: "#FBBF24" }
+      border: { token: "--kz-warning-border" }
+
+  badge_error:
+    light:
+      bg: { token: "--kz-error-bg-subtle" }
+      fg: { token: "--kz-error-text", hex: "#7F1D1D" }
+      border: { token: "--kz-error-border" }
+    dark:
+      bg: { token: "--kz-error-bg-subtle" }
+      fg: { token: "--kz-error-text", hex: "#F98585" }
+      border: { token: "--kz-error-border" }
+
+  badge_info:
+    light:
+      bg: { token: "--kz-info-bg-subtle" }
+      fg: { token: "--kz-info-text", hex: "#1E3A8A" }
+      border: { token: "--kz-info-border" }
+    dark:
+      bg: { token: "--kz-info-bg-subtle" }
+      fg: { token: "--kz-info-text", hex: "#6AAAFA" }
+      border: { token: "--kz-info-border" }
+
+  # ─── ALERTS / CALLOUTS ────────────────────────────────────────────────────────
+
+  alert_success:
+    light:
+      bg:      { token: "--kz-success-bg-subtle" }
+      fg:      { token: "--kz-success-text", hex: "#14532D" }
+      fg_body: { token: "--kz-text-primary" }
+      border:  { token: "--kz-success-border" }
+      icon:    { token: "--kz-success-text" }
+    dark:
+      bg:      { token: "--kz-success-bg-subtle" }
+      fg:      { token: "--kz-success-text", hex: "#4ADE80" }
+      fg_body: { token: "--kz-text-primary" }
+      border:  { token: "--kz-success-border" }
+
+  alert_warning:
+    light:
+      bg:      { token: "--kz-warning-bg-subtle" }
+      fg:      { token: "--kz-warning-text", hex: "#78350F" }
+      fg_body: { token: "--kz-text-primary" }
+      border:  { token: "--kz-warning-border" }
+    dark:
+      bg:      { token: "--kz-warning-bg-subtle" }
+      fg:      { token: "--kz-warning-text", hex: "#FBBF24" }
+      fg_body: { token: "--kz-text-primary" }
+      border:  { token: "--kz-warning-border" }
+
+  alert_error:
+    light:
+      bg:      { token: "--kz-error-bg-subtle" }
+      fg:      { token: "--kz-error-text", hex: "#7F1D1D" }
+      fg_body: { token: "--kz-text-primary" }
+      border:  { token: "--kz-error-border" }
+    dark:
+      bg:      { token: "--kz-error-bg-subtle" }
+      fg:      { token: "--kz-error-text", hex: "#F98585" }
+      fg_body: { token: "--kz-text-primary" }
+      border:  { token: "--kz-error-border" }
+
+  alert_info:
+    light:
+      bg:      { token: "--kz-info-bg-subtle" }
+      fg:      { token: "--kz-info-text", hex: "#1E3A8A" }
+      fg_body: { token: "--kz-text-primary" }
+      border:  { token: "--kz-info-border" }
+    dark:
+      bg:      { token: "--kz-info-bg-subtle" }
+      fg:      { token: "--kz-info-text", hex: "#6AAAFA" }
+      fg_body: { token: "--kz-text-primary" }
+      border:  { token: "--kz-info-border" }
+
+  # ─── TOOLTIP ──────────────────────────────────────────────────────────────────
+
+  tooltip:
+    description: Small informational pop-over on hover/focus
+    light:
+      bg: { token: "--kz-text-secondary", hex: "#4A4546" }
+      fg: { token: "--kz-surface-1",      hex: "#F9F8F7", contrast: 8.85, level: AAA }
+    dark:
+      bg: { token: "--kz-surface-5",      hex: "#342F31" }
+      fg: { token: "--kz-text-primary",   hex: "#F5F4F2", contrast: 11.98, level: AAA }
+    notes: >
+      MUI default rgba(97,97,97,0.92) composites to ~#757575 on white — fails 4.5:1 with near-white text.
+      Override via MuiTooltip.styleOverrides.tooltip.
+    implementation:
+      mui: |
+        MuiTooltip: {
+          styleOverrides: {
+            tooltip: {
+              backgroundColor: isDark ? t['--kz-surface-5'] : _light['--kz-text-secondary'],
+              color: isDark ? t['--kz-text-primary'] : _light['--kz-surface-1'],
+            }
+          }
+        }
+
+  # ─── FORM INPUTS ──────────────────────────────────────────────────────────────
+
+  input_default:
+    description: Text input field in default state
+    light:
+      bg:          { token: "--kz-surface-3",      hex: "#EDEBE8" }
+      fg:          { token: "--kz-text-primary",    hex: "#231F20" }
+      placeholder: { token: "--kz-text-tertiary",   hex: "#6F6B6C" }
+      border:      { token: "--kz-stroke-default",  hex: "#D5D2CE" }
+    dark:
+      bg:          { token: "--kz-surface-3",      hex: "#231F20" }
+      fg:          { token: "--kz-text-primary",    hex: "#F5F4F2" }
+      placeholder: { token: "--kz-text-tertiary",   hex: "#837D7E" }
+      border:      { token: "--kz-stroke-default",  hex: "#3D3839" }
+
+  input_focus:
+    light:
+      border:     { token: "--kz-stroke-interactive", hex: "#FF7F56" }
+      ring:       { token: "--kz-brand-border-subtle" }
+    dark:
+      border:     { token: "--kz-stroke-interactive", hex: "#FF7F56" }
+      ring:       { token: "--kz-brand-border-subtle" }
+
+  input_disabled:
+    light:
+      bg:     { token: "--kz-surface-2" }
+      fg:     { token: "--kz-text-disabled", hex: "#A6A2A3", contrast: 2.52 }
+      border: { token: "--kz-stroke-default" }
+    dark:
+      bg:     { token: "--kz-surface-2" }
+      fg:     { token: "--kz-text-disabled", hex: "#5A5556", contrast: 2.70 }
+    notes: >
+      Disabled state is WCAG-exempt (SC 1.4.3 exception for inactive UI components).
+      Do not attempt to fix disabled text contrast — WCAG does not require it.
+
+  # ─── CARDS ────────────────────────────────────────────────────────────────────
+
+  card_default:
+    description: Standard card on surface-1
+    light:
+      bg:     { token: "--kz-surface-1", hex: "#F9F8F7" }
+      fg:     { token: "--kz-text-primary" }
+      border: { token: "--kz-stroke-subtle" }
+    dark:
+      bg:     { token: "--kz-surface-1", hex: "#131112" }
+      fg:     { token: "--kz-text-primary" }
+      border: { token: "--kz-stroke-subtle" }
+
+  card_elevated:
+    description: Elevated card / dialog on surface-2
+    light:
+      bg:     { token: "--kz-surface-2", hex: "#F5F4F2" }
+      fg:     { token: "--kz-text-primary" }
+    dark:
+      bg:     { token: "--kz-surface-2", hex: "#1C191A" }
+      fg:     { token: "--kz-text-primary" }
+
+  card_brand_gradient:
+    description: Decorative brand gradient card (LinkedIn carousel style)
+    bg_gradient: "linear-gradient(150deg, var(--kz-brand-gradient-1), var(--kz-brand-gradient-2))"
+    light:
+      fg: { hex: "#231F20", contrast_on_light_end: 7.36, contrast_on_dark_end: 5.21, level: AA }
+    dark:
+      fg: { hex: "#231F20", contrast_on_light_end: 7.36, contrast_on_dark_end: 5.21, level: AA }
+    notes: >
+      Gradient is identical in light and dark modes (#F89474 → #F0673D).
+      Always use #231F20 (near-black) for text — do NOT use white (2.22:1 on light end FAIL).
+      Hardcode #231F20 since --kz-text-inverse resolves to #FFFFFF in light mode.
+
+  card_brand_grey:
+    description: Grey accent card on stroke-hover background
+    light:
+      bg: { token: "--kz-stroke-hover", hex: "#9E9A97" }
+      fg: { token: "--kz-text-primary", hex: "#231F20", contrast: 5.84, level: AA }
+    dark:
+      bg: { token: "--kz-stroke-hover", hex: "#6E6869" }
+      fg: { hex: "#FFFFFF",             contrast: 4.79, level: AA }
+    implementation:
+      css: |
+        .bc-grey { background: var(--kz-stroke-hover); color: var(--kz-text-primary); }
+        .dark .bc-grey { color: #fff; }
+        @media (prefers-color-scheme: dark) { :root:not(.light) .bc-grey { color: #fff; } }
+    notes: >
+      Token --kz-text-primary switches to light (#F5F4F2) in dark mode giving 4.37:1 on dark grey.
+      Override to #fff in dark mode for a stronger 4.79:1 pass.
+
+  # ─── NAVIGATION ───────────────────────────────────────────────────────────────
+
+  nav_sidebar_item:
+    light:
+      bg:      { token: "--kz-surface-1" }
+      fg:      { token: "--kz-text-secondary", hex: "#4A4546" }
+      icon:    { token: "--kz-text-secondary" }
+      hover_bg: { token: "--kz-surface-2" }
+    dark:
+      bg:      { token: "--kz-surface-1" }
+      fg:      { token: "--kz-text-secondary", hex: "#BDB7B8" }
+      icon:    { token: "--kz-text-secondary" }
+      hover_bg: { token: "--kz-surface-2" }
+
+  nav_sidebar_active:
+    light:
+      bg:     { token: "--kz-brand-bg-subtle" }
+      fg:     { token: "--kz-text-primary" }
+      border: { token: "--kz-stroke-interactive" }
+      icon:   { token: "--kz-brand-primary" }
+    dark:
+      bg:     { token: "--kz-brand-bg-subtle" }
+      fg:     { token: "--kz-text-primary" }
+      border: { token: "--kz-stroke-interactive" }
+      icon:   { token: "--kz-brand-primary" }
+
+  nav_tab_active:
+    light:
+      indicator: { token: "--kz-brand-primary" }
+      fg:        { token: "--kz-text-primary" }
+    dark:
+      indicator: { token: "--kz-brand-primary" }
+      fg:        { token: "--kz-text-primary" }
+
+  # ─── PAGINATION ───────────────────────────────────────────────────────────────
+
+  pagination_active:
+    description: Active/current page button
+    light:
+      bg: { token: "--kz-brand-primary", hex: "#FF7F56" }
+      fg: { token: "--kz-text-primary",  hex: "#231F20", contrast: 6.54, level: AA }
+    dark:
+      bg: { token: "--kz-brand-primary", hex: "#FF7F56" }
+      fg: { token: "--kz-surface-0",     hex: "#0C0A0B", contrast: 7.92, level: AAA }
+    implementation:
+      css: |
+        .page-btn.active { color: var(--kz-text-primary); }
+        .dark .page-btn.active { color: var(--kz-surface-0); }
+    notes: >
+      Light mode: use --kz-text-primary (dark). Dark mode: use --kz-surface-0 (near-black).
+      NEVER use --kz-surface-0 in light mode (= #FFFFFF → 2.49:1 FAIL on orange).
+
+  # ─── SKIP LINK ────────────────────────────────────────────────────────────────
+
+  skip_link:
+    description: Keyboard accessibility skip-to-main-content link
+    light:
+      bg: { token: "--kz-brand-primary", hex: "#FF7F56" }
+      fg: { hex: "#231F20",              contrast: 6.54, level: AA }
+    dark:
+      bg: { token: "--kz-brand-primary", hex: "#FF7F56" }
+      fg: { hex: "#231F20",              contrast: 6.54, level: AA }
+    notes: >
+      Orange bg is identical in both modes. Hardcode fg to #231F20.
+      --kz-text-inverse resolves to #FFFFFF in light mode → 2.49:1 FAIL — never use it here.
+
+  # ─── CODE BLOCK ───────────────────────────────────────────────────────────────
+
+  code_block:
+    light:
+      bg:      { token: "--kz-surface-3", hex: "#EDEBE8" }
+      fg:      { token: "--kz-text-primary" }
+      border:  { token: "--kz-stroke-default" }
+      keyword: { token: "--kz-text-accent", hex: "#5153F6" }
+    dark:
+      bg:      { token: "--kz-surface-3", hex: "#231F20" }
+      fg:      { token: "--kz-text-primary" }
+      border:  { token: "--kz-stroke-default" }
+      keyword: { token: "--kz-text-accent", hex: "#7475FF" }
+
+  # ─── TOAST / NOTIFICATION ─────────────────────────────────────────────────────
+
+  toast:
+    description: Dismissible notification toast
+    light:
+      bg:         { token: "--kz-surface-5", hex: "#DAD7D3" }
+      fg:         { token: "--kz-text-primary" }
+      fg_muted:   { token: "--kz-text-secondary" }
+      border:     { token: "--kz-stroke-default" }
+      close_icon: { token: "--kz-text-tertiary", hex: "#6F6B6C",
+                    contrast: 3.66, wcag_category: ui_component, level: AA }
+    dark:
+      bg:         { token: "--kz-surface-5", hex: "#342F31" }
+      fg:         { token: "--kz-text-primary" }
+      fg_muted:   { token: "--kz-text-secondary" }
+      border:     { token: "--kz-stroke-default" }
+      close_icon: { token: "--kz-text-tertiary", hex: "#837D7E",
+                    contrast: 3.26, wcag_category: ui_component, level: AA }
+    notes: >
+      Close button icon uses --kz-text-tertiary which is below 4.5:1 for normal text.
+      For UI/icon contrast (SC 1.4.11), 3:1 threshold applies — both modes pass.
+
+  # ─── BRAND PORTAL TOKENS (MUI theme.portal) ──────────────────────────────────
+
+  portal_brand_badge:
+    description: Brand logo badge in sidebar/topbar (brandBadgeBg / brandBadgeText)
+    light:
+      bg: { token: "--kz-brand-primary", hex: "#FF7F56" }
+      fg: { resolved_from: "_light['--kz-text-primary']", hex: "#231F20", contrast: 6.54, level: AA }
+    dark:
+      bg: { token: "--kz-brand-primary", hex: "#FF7F56" }
+      fg: { resolved_from: "_light['--kz-text-primary']", hex: "#231F20", contrast: 6.54, level: AA }
+    implementation:
+      mui: |
+        portalTokens.brandBadgeText = _light['--kz-text-primary']  # NOT _light['--kz-text-inverse']
+
+# ─── DISABLED STATE GLOBAL RULE ───────────────────────────────────────────────
+# WCAG SC 1.4.3 explicitly exempts inactive/disabled UI components from contrast requirements.
+# --kz-text-disabled achieves 2.30–2.70:1 on surfaces — intentionally below 4.5:1.
+# Do NOT attempt to fix disabled text contrast. This is by design and WCAG-compliant.
+
+disabled_global:
+  wcag_exempt: true
+  token_fg: "--kz-text-disabled"
+  light_hex: "#A6A2A3"
+  dark_hex:  "#5A5556"
+  light_contrast_on_surface0: 2.52
+  dark_contrast_on_surface0:  2.70
+  rationale: "WCAG 2.1 SC 1.4.3 exception: inactive UI component text has no contrast requirement."

@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kodez Design Tokens — Component Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Tokens ──────────────────────────────────────────────────────────────── */
+    :root {
+      --kz-brand-primary: #FF7F56; --kz-brand-hover: #CB6241; --kz-brand-active: #743622;
+      --kz-brand-bg-subtle: rgba(255,127,86,0.12); --kz-brand-border: #743622;
+      --kz-brand-border-subtle: rgba(255,127,86,0.40); --kz-brand-text: #A04C31;
+      --kz-brand-gradient-1: #F89474; --kz-brand-gradient-2: #F0673D;
+      --kz-surface-0: #FEFEFE; --kz-surface-1: #F7F7FB; --kz-surface-2: #F0F0F6;
+      --kz-surface-3: #E8E8F0; --kz-surface-4: #E0E0EC; --kz-surface-5: #D8D8E6;
+      --kz-stroke-subtle: #E8E8F0; --kz-stroke-default: #D0D0DE;
+      --kz-stroke-strong: #B8B8CA; --kz-stroke-hover: #9E9EB5;
+      --kz-stroke-interactive: #FF7F56;
+      --kz-success-bg-solid: #16A34A; --kz-success-bg-subtle: rgba(22,163,74,0.08);
+      --kz-success-border: #15803D; --kz-success-border-subtle: rgba(22,163,74,0.40);
+      --kz-success-text: #14532D;
+      --kz-warning-bg-solid: #D97706; --kz-warning-bg-subtle: rgba(217,119,6,0.08);
+      --kz-warning-border: #B45309; --kz-warning-border-subtle: rgba(217,119,6,0.40);
+      --kz-warning-text: #78350F;
+      --kz-error-bg-solid: #DC2626; --kz-error-bg-subtle: rgba(220,38,38,0.08);
+      --kz-error-border: #B91C1C; --kz-error-border-subtle: rgba(220,38,38,0.40);
+      --kz-error-text: #7F1D1D;
+      --kz-info-bg-solid: #2563EB; --kz-info-bg-subtle: rgba(37,99,235,0.08);
+      --kz-info-border: #1D4ED8; --kz-info-border-subtle: rgba(37,99,235,0.40);
+      --kz-info-text: #1E3A8A;
+      --kz-text-primary: #0F0F18; --kz-text-secondary: #4A4A5E;
+      --kz-text-tertiary: #6E6E88; --kz-text-accent: #5153F6;
+      --kz-text-disabled: #A0A0B8; --kz-text-inverse: #F8FAFC;
+    }
+
+    .dark {
+      --kz-brand-primary: #FF7F56; --kz-brand-hover: #F89474; --kz-brand-active: #FAAF97;
+      --kz-brand-bg-subtle: rgba(255,127,86,0.16); --kz-brand-border: #FF7F56;
+      --kz-brand-border-subtle: rgba(255,127,86,0.40); --kz-brand-text: #FF7F56;
+      --kz-brand-gradient-1: #F89474; --kz-brand-gradient-2: #F0673D;
+      --kz-surface-0: #09090E; --kz-surface-1: #0F0F16; --kz-surface-2: #15151E;
+      --kz-surface-3: #1C1C27; --kz-surface-4: #222230; --kz-surface-5: #2B2B3F;
+      --kz-stroke-subtle: #21212B; --kz-stroke-default: #35374A;
+      --kz-stroke-strong: #4A4D63; --kz-stroke-hover: #60637F;
+      --kz-stroke-interactive: #FF7F56;
+      --kz-success-bg-solid: #22C55E; --kz-success-bg-subtle: rgba(34,197,94,0.16);
+      --kz-success-border: #005C39; --kz-success-border-subtle: rgba(34,197,94,0.40);
+      --kz-success-text: #4ADE80;
+      --kz-warning-bg-solid: #F59E0B; --kz-warning-bg-subtle: rgba(245,158,11,0.16);
+      --kz-warning-border: #71491E; --kz-warning-border-subtle: rgba(245,158,11,0.40);
+      --kz-warning-text: #FBBF24;
+      --kz-error-bg-solid: #F46969; --kz-error-bg-subtle: rgba(244,105,105,0.16);
+      --kz-error-border: #F59E0B; --kz-error-border-subtle: rgba(244,105,105,0.40);
+      --kz-error-text: #F98585;
+      --kz-info-bg-solid: #3B82F6; --kz-info-bg-subtle: rgba(59,130,246,0.16);
+      --kz-info-border: #15407B; --kz-info-border-subtle: rgba(59,130,246,0.40);
+      --kz-info-text: #6AAAFA;
+      --kz-text-primary: #F8FAFC; --kz-text-secondary: #BCBCC7;
+      --kz-text-tertiary: #818197; --kz-text-accent: #7475FF;
+      --kz-text-disabled: #595976; --kz-text-inverse: #0C0C0D;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not(.light) {
+        --kz-brand-primary: #FF7F56; --kz-brand-hover: #F89474; --kz-brand-active: #FAAF97;
+        --kz-brand-bg-subtle: rgba(255,127,86,0.16); --kz-brand-border: #FF7F56;
+        --kz-brand-border-subtle: rgba(255,127,86,0.40); --kz-brand-text: #FF7F56;
+        --kz-surface-0: #09090E; --kz-surface-1: #0F0F16; --kz-surface-2: #15151E;
+        --kz-surface-3: #1C1C27; --kz-surface-4: #222230; --kz-surface-5: #2B2B3F;
+        --kz-stroke-subtle: #21212B; --kz-stroke-default: #35374A;
+        --kz-stroke-strong: #4A4D63; --kz-stroke-hover: #60637F; --kz-stroke-interactive: #FF7F56;
+        --kz-success-bg-solid: #22C55E; --kz-success-bg-subtle: rgba(34,197,94,0.16);
+        --kz-success-border: #005C39; --kz-success-border-subtle: rgba(34,197,94,0.40); --kz-success-text: #4ADE80;
+        --kz-warning-bg-solid: #F59E0B; --kz-warning-bg-subtle: rgba(245,158,11,0.16);
+        --kz-warning-border: #71491E; --kz-warning-border-subtle: rgba(245,158,11,0.40); --kz-warning-text: #FBBF24;
+        --kz-error-bg-solid: #F46969; --kz-error-bg-subtle: rgba(244,105,105,0.16);
+        --kz-error-border: #F59E0B; --kz-error-border-subtle: rgba(244,105,105,0.40); --kz-error-text: #F98585;
+        --kz-info-bg-solid: #3B82F6; --kz-info-bg-subtle: rgba(59,130,246,0.16);
+        --kz-info-border: #15407B; --kz-info-border-subtle: rgba(59,130,246,0.40); --kz-info-text: #6AAAFA;
+        --kz-text-primary: #F8FAFC; --kz-text-secondary: #BCBCC7;
+        --kz-text-tertiary: #818197; --kz-text-accent: #7475FF;
+        --kz-text-disabled: #595976; --kz-text-inverse: #0C0C0D;
+      }
+    }
+
+    /* ── Reset ───────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Base ────────────────────────────────────────────────────────────────── */
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 16px; line-height: 1.6;
+      background: var(--kz-surface-0);
+      color: var(--kz-text-primary);
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* ── Accessibility: skip link ────────────────────────────────────────────── */
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem; z-index: 9999;
+      padding: 0.5rem 1rem; border-radius: 6px;
+      background: var(--kz-brand-primary); color: var(--kz-text-inverse);
+      font-weight: 600; font-size: 14px; text-decoration: none;
+      transition: top 0.1s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ── Focus visible ───────────────────────────────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--kz-stroke-interactive);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ── Layout ──────────────────────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Header ──────────────────────────────────────────────────────────────── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--kz-surface-1);
+      border-bottom: 1px solid var(--kz-stroke-subtle);
+      backdrop-filter: blur(8px);
+    }
+    .site-header .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .site-logo {
+      font-size: 17px; font-weight: 700; color: var(--kz-text-primary);
+      text-decoration: none; letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .site-logo .logo-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--kz-brand-primary);
+      display: inline-block;
+    }
+    .header-nav { display: flex; align-items: center; gap: 4px; }
+    .header-nav a {
+      padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 500;
+      color: var(--kz-text-secondary); text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .header-nav a:hover { background: var(--kz-surface-3); color: var(--kz-text-primary); }
+    .header-nav a[aria-current="page"] {
+      background: var(--kz-brand-bg-subtle); color: var(--kz-brand-text);
+    }
+    .theme-toggle {
+      width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--kz-stroke-default);
+      background: var(--kz-surface-2); color: var(--kz-text-secondary);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .theme-toggle:hover { background: var(--kz-surface-3); color: var(--kz-text-primary); border-color: var(--kz-stroke-hover); }
+
+    /* ── Main layout ─────────────────────────────────────────────────────────── */
+    main { padding: 48px 0 96px; }
+    .section { margin-bottom: 72px; }
+    .section-title {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--kz-text-tertiary);
+      margin-bottom: 24px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--kz-stroke-subtle);
+    }
+    .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+    .col { display: flex; flex-direction: column; gap: 12px; }
+
+    /* ── WCAG badges ─────────────────────────────────────────────────────────── */
+    .wcag-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 7px; border-radius: 4px;
+      font-size: 10px; font-weight: 600; font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap; pointer-events: none; user-select: none;
+      border: 1px solid; line-height: 1.6;
+    }
+    .wcag-aaa  { background: var(--kz-success-bg-subtle); color: var(--kz-success-text); border-color: var(--kz-success-border-subtle); }
+    .wcag-aa   { background: var(--kz-info-bg-subtle);    color: var(--kz-info-text);    border-color: var(--kz-info-border-subtle); }
+    .wcag-low  { background: var(--kz-warning-bg-subtle); color: var(--kz-warning-text); border-color: var(--kz-warning-border-subtle); }
+    .wcag-fail { background: var(--kz-error-bg-subtle);   color: var(--kz-error-text);   border-color: var(--kz-error-border-subtle); }
+
+    /* Wraps a component + its badge in a column */
+    .wcag-item {
+      display: inline-flex; flex-direction: column;
+      align-items: flex-start; gap: 5px;
+    }
+
+    /* ── Typography ──────────────────────────────────────────────────────────── */
+    h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--kz-text-primary); }
+    h2 { font-size: 2rem;   font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; color: var(--kz-text-primary); }
+    h3 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; color: var(--kz-text-primary); }
+    h4 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.3; color: var(--kz-text-primary); }
+    h5 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; color: var(--kz-text-primary); }
+    h6 { font-size: 1rem;     font-weight: 600; line-height: 1.4; color: var(--kz-text-primary); }
+
+    .type-stack { display: flex; flex-direction: column; gap: 20px; }
+    .type-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+    .type-label { font-size: 11px; color: var(--kz-text-tertiary); font-family: 'JetBrains Mono', monospace; width: 48px; flex-shrink: 0; }
+
+    p { color: var(--kz-text-primary); line-height: 1.7; }
+    .lead { font-size: 1.125rem; color: var(--kz-text-secondary); line-height: 1.65; }
+    .caption { font-size: 12px; color: var(--kz-text-secondary); }
+
+    blockquote {
+      border-left: 3px solid var(--kz-brand-primary);
+      padding: 12px 20px; margin: 0;
+      background: var(--kz-brand-bg-subtle);
+      border-radius: 0 8px 8px 0;
+      color: var(--kz-text-secondary);
+      font-style: italic;
+    }
+    blockquote cite { font-size: 13px; color: var(--kz-text-secondary); font-style: normal; display: block; margin-top: 8px; }
+
+    code {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.85em;
+      background: var(--kz-surface-3); color: var(--kz-brand-text);
+      padding: 2px 6px; border-radius: 4px;
+      border: 1px solid var(--kz-stroke-subtle);
+    }
+    kbd {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8em;
+      background: var(--kz-surface-2); color: var(--kz-text-secondary);
+      padding: 2px 6px; border-radius: 4px;
+      border: 1px solid var(--kz-stroke-strong); border-bottom-width: 2px;
+    }
+
+    /* ── Buttons ─────────────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 18px; border-radius: 8px; font-size: 14px; font-weight: 500;
+      border: 1px solid transparent; cursor: pointer;
+      text-decoration: none; white-space: nowrap;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+      font-family: inherit; line-height: 1;
+    }
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* Primary — brand-primary (#FF7F56) is mid-range orange, same in both modes.
+       text-primary is near-black in light (#0F0F18 → 7.95:1 AAA) and near-white in dark
+       (#F8FAFC → fails on orange). Override to surface-0 in dark mode (#09090E → 8.27:1 AAA). */
+    .btn-primary {
+      background: var(--kz-brand-primary);
+      color: var(--kz-text-primary);
+      border-color: var(--kz-brand-primary);
+    }
+    .btn-primary:hover { background: var(--kz-brand-hover); border-color: var(--kz-brand-hover); }
+    .btn-primary:active { background: var(--kz-brand-active); border-color: var(--kz-brand-active); }
+    .dark .btn-primary { color: var(--kz-surface-0); }
+    @media (prefers-color-scheme: dark) { :root:not(.light) .btn-primary { color: var(--kz-surface-0); } }
+
+    /* Secondary */
+    .btn-secondary {
+      background: var(--kz-surface-2); color: var(--kz-text-primary);
+      border-color: var(--kz-stroke-default);
+    }
+    .btn-secondary:hover { background: var(--kz-surface-3); border-color: var(--kz-stroke-hover); }
+    .btn-secondary:active { background: var(--kz-surface-4); }
+
+    /* Ghost */
+    .btn-ghost {
+      background: transparent; color: var(--kz-text-secondary);
+      border-color: transparent;
+    }
+    .btn-ghost:hover { background: var(--kz-surface-2); color: var(--kz-text-primary); }
+
+    /* Destructive — error-bg-solid is dark red in light (#DC2626, near-white text 5.1:1 AA ✓)
+       and light red in dark (#F46969, near-black text 7.1:1 AAA ✓). text-inverse flips correctly. */
+    .btn-danger {
+      background: var(--kz-error-bg-solid); color: var(--kz-text-inverse);
+      border-color: var(--kz-error-bg-solid);
+    }
+    .btn-danger:hover { background: var(--kz-error-border); border-color: var(--kz-error-border); }
+
+    /* Success — success-bg-solid is medium green in light (#16A34A).
+       text-primary is near-black → 6.01:1 AA ✓. Override to surface-0 in dark (#09090E → 9.05:1 AAA). */
+    .btn-success {
+      background: var(--kz-success-bg-solid);
+      color: var(--kz-text-primary);
+      border-color: var(--kz-success-bg-solid);
+    }
+    .btn-success:hover { background: var(--kz-success-border); border-color: var(--kz-success-border); }
+    .dark .btn-success { color: var(--kz-surface-0); }
+    @media (prefers-color-scheme: dark) { :root:not(.light) .btn-success { color: var(--kz-surface-0); } }
+
+    /* Outline brand */
+    .btn-outline {
+      background: transparent; color: var(--kz-brand-active);
+      border-color: var(--kz-brand-border);
+    }
+    .btn-outline:hover { background: var(--kz-brand-bg-subtle); }
+
+    /* Disabled */
+    .btn:disabled, .btn[aria-disabled="true"] {
+      opacity: 0.45; cursor: not-allowed; pointer-events: none;
+    }
+
+    /* Sizes */
+    .btn-sm { padding: 6px 12px; font-size: 13px; border-radius: 6px; }
+    .btn-lg { padding: 12px 24px; font-size: 15px; border-radius: 10px; }
+
+    /* Icon-only */
+    .btn-icon { padding: 9px; }
+    .btn-icon.btn-sm { padding: 6px; }
+
+    /* ── Links / Anchors ─────────────────────────────────────────────────────── */
+    a.link {
+      color: var(--kz-text-accent); text-decoration: underline;
+      text-underline-offset: 3px; text-decoration-thickness: 1px;
+      transition: color 0.15s;
+    }
+    a.link:hover { color: var(--kz-brand-active); }
+    a.link:visited { color: var(--kz-text-tertiary); }
+    a.link-external { display: inline-flex; align-items: center; gap: 4px; }
+    a.link-external svg { width: 13px; height: 13px; }
+    a.link-subtle {
+      color: var(--kz-text-secondary); text-decoration: none;
+      transition: color 0.15s;
+    }
+    a.link-subtle:hover { color: var(--kz-text-primary); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── Badge ───────────────────────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 500;
+      border: 1px solid;
+    }
+    .badge svg { width: 12px; height: 12px; }
+    .badge-error   { background: var(--kz-error-bg-subtle);   color: var(--kz-error-text);   border-color: var(--kz-error-border-subtle); }
+    .badge-success { background: var(--kz-success-bg-subtle); color: var(--kz-success-text); border-color: var(--kz-success-border-subtle); }
+    .badge-warning { background: var(--kz-warning-bg-subtle); color: var(--kz-warning-text); border-color: var(--kz-warning-border-subtle); }
+    .badge-info    { background: var(--kz-info-bg-subtle);    color: var(--kz-info-text);    border-color: var(--kz-info-border-subtle); }
+    .badge-neutral { background: var(--kz-surface-3);         color: var(--kz-text-secondary); border-color: var(--kz-stroke-default); }
+    .badge-brand   { background: var(--kz-brand-bg-subtle);   color: var(--kz-brand-active); border-color: var(--kz-brand-border-subtle); }
+
+    /* Solid badges: use the semantic TEXT tokens as bg (dark in light-mode, bright in dark-mode)
+       so surface-0 (near-white ↔ near-black) always provides 8:1+ contrast automatically. */
+    .badge-solid-error   { background: var(--kz-error-text);   color: var(--kz-surface-0); border-color: transparent; }
+    .badge-solid-success { background: var(--kz-success-text); color: var(--kz-surface-0); border-color: transparent; }
+    .badge-solid-warning { background: var(--kz-warning-text); color: var(--kz-surface-0); border-color: transparent; }
+    .badge-solid-info    { background: var(--kz-info-text);    color: var(--kz-surface-0); border-color: transparent; }
+    .badge-solid-brand   { background: var(--kz-brand-active); color: var(--kz-surface-0); border-color: transparent; }
+
+    /* ── Menu ────────────────────────────────────────────────────────────────── */
+    .menu {
+      background: var(--kz-surface-1); border: 1px solid var(--kz-stroke-subtle);
+      border-radius: 10px; padding: 6px; min-width: 220px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .menu-section-label {
+      font-size: 11px; font-weight: 600; color: var(--kz-text-secondary);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 6px 10px 4px;
+    }
+    .menu-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 10px; border-radius: 7px; cursor: pointer;
+      color: var(--kz-text-primary); font-size: 14px; font-weight: 400;
+      text-decoration: none; transition: background 0.12s;
+      border: none; background: none; width: 100%; text-align: left; font-family: inherit;
+    }
+    .menu-item svg { width: 16px; height: 16px; color: var(--kz-text-tertiary); flex-shrink: 0; }
+    .menu-item:hover { background: var(--kz-surface-3); }
+    .menu-item:hover svg { color: var(--kz-text-secondary); }
+    .menu-item.active { background: var(--kz-brand-bg-subtle); color: var(--kz-brand-active); font-weight: 500; }
+    .menu-item.active svg { color: var(--kz-brand-active); }
+    .menu-item.danger { color: var(--kz-error-text); }
+    .menu-item.danger svg { color: var(--kz-error-text); }
+    .menu-item.danger:hover { background: var(--kz-error-bg-subtle); }
+    .menu-item-shortcut { margin-left: auto; font-size: 12px; color: var(--kz-text-tertiary); font-family: 'JetBrains Mono', monospace; }
+    .menu-divider { height: 1px; background: var(--kz-stroke-subtle); margin: 4px 0; border: none; }
+
+    /* ── Breadcrumb ──────────────────────────────────────────────────────────── */
+    .breadcrumb { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .breadcrumb-item { font-size: 14px; color: var(--kz-text-secondary); text-decoration: none; }
+    .breadcrumb-item:hover { color: var(--kz-text-primary); }
+    .breadcrumb-item[aria-current="page"] { color: var(--kz-text-primary); font-weight: 500; }
+    .breadcrumb-sep { color: var(--kz-stroke-strong); display: flex; align-items: center; }
+    .breadcrumb-sep svg { width: 14px; height: 14px; }
+
+    /* ── Cards ───────────────────────────────────────────────────────────────── */
+    .card {
+      background: var(--kz-surface-1); border: 1px solid var(--kz-stroke-subtle);
+      border-radius: 12px; padding: 20px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .card:hover { border-color: var(--kz-stroke-default); }
+    .card-clickable { cursor: pointer; text-decoration: none; display: block; }
+    .card-clickable:hover {
+      border-color: var(--kz-stroke-hover);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+    .card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--kz-brand-bg-subtle); color: var(--kz-brand-primary);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .card-icon svg { width: 20px; height: 20px; }
+    .card-title { font-size: 15px; font-weight: 600; color: var(--kz-text-primary); margin-bottom: 4px; }
+    .card-description { font-size: 13px; color: var(--kz-text-secondary); line-height: 1.55; }
+    .card-footer { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--kz-stroke-subtle); display: flex; align-items: center; justify-content: space-between; }
+    .card-meta { font-size: 12px; color: var(--kz-text-secondary); display: flex; align-items: center; gap: 6px; }
+    .card-meta svg { width: 13px; height: 13px; }
+
+    /* KPI card */
+    .card-kpi { background: var(--kz-surface-2); }
+    .kpi-value { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; color: var(--kz-text-primary); }
+    .kpi-label { font-size: 13px; color: var(--kz-text-secondary); margin-top: 2px; }
+    .kpi-change {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 12px; font-weight: 500;
+      padding: 2px 8px; border-radius: 999px; margin-top: 8px;
+    }
+    .kpi-change.up   { background: var(--kz-success-bg-subtle); color: var(--kz-success-text); }
+    .kpi-change.down { background: var(--kz-error-bg-subtle);   color: var(--kz-error-text); }
+    .kpi-change svg  { width: 13px; height: 13px; }
+
+    /* Semantic cards */
+    .card-error   { border-color: var(--kz-error-border-subtle);   background: var(--kz-error-bg-subtle); }
+    .card-success { border-color: var(--kz-success-border-subtle); background: var(--kz-success-bg-subtle); }
+    .card-warning { border-color: var(--kz-warning-border-subtle); background: var(--kz-warning-bg-subtle); }
+    .card-info    { border-color: var(--kz-info-border-subtle);    background: var(--kz-info-bg-subtle); }
+
+    .card-alert-icon { display: flex; align-items: flex-start; gap: 12px; }
+    .card-alert-icon svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
+    .card-error   .card-alert-icon svg { color: var(--kz-error-text); }
+    .card-success .card-alert-icon svg { color: var(--kz-success-text); }
+    .card-warning .card-alert-icon svg { color: var(--kz-warning-text); }
+    .card-info    .card-alert-icon svg { color: var(--kz-info-text); }
+    .card-error   .card-title { color: var(--kz-error-text); }
+    .card-success .card-title { color: var(--kz-success-text); }
+    .card-warning .card-title { color: var(--kz-warning-text); }
+    .card-info    .card-title { color: var(--kz-info-text); }
+    .card-error   .card-description { color: var(--kz-error-text); opacity: 0.85; }
+    .card-success .card-description { color: var(--kz-success-text); opacity: 0.85; }
+    .card-warning .card-description { color: var(--kz-warning-text); opacity: 0.85; }
+    .card-info    .card-description { color: var(--kz-info-text); opacity: 0.85; }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+
+    /* ── Form elements ───────────────────────────────────────────────────────── */
+    .form-group { display: flex; flex-direction: column; gap: 6px; max-width: 360px; }
+    .form-label { font-size: 13px; font-weight: 500; color: var(--kz-text-primary); }
+    .form-label .required { color: var(--kz-error-text); margin-left: 2px; }
+    .form-hint  { font-size: 12px; color: var(--kz-text-secondary); }
+    .form-error { font-size: 12px; color: var(--kz-error-text); display: flex; align-items: center; gap: 4px; }
+    .form-error svg { width: 13px; height: 13px; }
+
+    .input {
+      width: 100%; padding: 9px 12px; border-radius: 8px; font-size: 14px;
+      border: 1px solid var(--kz-stroke-default);
+      background: var(--kz-surface-0); color: var(--kz-text-primary);
+      font-family: inherit; outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .input::placeholder { color: var(--kz-text-disabled); }
+    .input:hover { border-color: var(--kz-stroke-hover); }
+    .input:focus { border-color: var(--kz-stroke-interactive); box-shadow: 0 0 0 3px rgba(255,127,86,0.15); }
+    .input.input-error  { border-color: var(--kz-error-border); }
+    .input.input-error:focus { box-shadow: 0 0 0 3px rgba(220,38,38,0.12); }
+    .input.input-success { border-color: var(--kz-success-border); }
+    .input:disabled { background: var(--kz-surface-2); color: var(--kz-text-disabled); cursor: not-allowed; }
+
+    .input-wrapper { position: relative; }
+    .input-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--kz-text-tertiary); display: flex; }
+    .input-icon svg { width: 16px; height: 16px; }
+    .input-wrapper .input { padding-left: 36px; }
+
+    select.input { cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E6E88' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center; background-size: 16px;
+      padding-right: 36px;
+    }
+
+    .checkbox-group, .radio-group { display: flex; flex-direction: column; gap: 10px; }
+    .check-item { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .check-item input[type="checkbox"], .check-item input[type="radio"] {
+      width: 17px; height: 17px; cursor: pointer;
+      accent-color: var(--kz-brand-primary);
+    }
+    .check-label { font-size: 14px; color: var(--kz-text-primary); cursor: pointer; }
+
+    /* ── Icons ───────────────────────────────────────────────────────────────── */
+    .icons-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .icon-item {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 14px 12px; border-radius: 10px; border: 1px solid var(--kz-stroke-subtle);
+      background: var(--kz-surface-1); min-width: 80px;
+      color: var(--kz-text-secondary);
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .icon-item:hover { background: var(--kz-surface-2); border-color: var(--kz-stroke-default); color: var(--kz-text-primary); }
+    .icon-item svg { width: 22px; height: 22px; }
+    .icon-name { font-size: 11px; color: var(--kz-text-tertiary); text-align: center; }
+
+    /* ── Surfaces showcase ───────────────────────────────────────────────────── */
+    .surfaces { display: flex; gap: 8px; flex-wrap: wrap; }
+    .surface-chip {
+      padding: 12px 16px; border-radius: 8px; font-size: 12px;
+      font-family: 'JetBrains Mono', monospace; border: 1px solid var(--kz-stroke-subtle);
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--kz-stroke-subtle);
+      padding: 24px 0; text-align: center;
+      font-size: 13px; color: var(--kz-text-tertiary);
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── Header ────────────────────────────────────────────────────────────── -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="#" class="site-logo" aria-label="Kodez Design Tokens home">
+        <span class="logo-dot" aria-hidden="true"></span>
+        Kodez Tokens
+      </a>
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#typography" aria-current="page">Typography</a>
+        <a href="#buttons">Buttons</a>
+        <a href="#cards">Cards</a>
+        <a href="#forms">Forms</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <i data-lucide="sun" aria-hidden="true" style="width:16px;height:16px;"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Main ──────────────────────────────────────────────────────────────── -->
+  <main id="main" tabindex="-1">
+    <div class="container">
+
+      <!-- ── Typography ──────────────────────────────────────────────────── -->
+      <section class="section" id="typography" aria-labelledby="heading-typography">
+        <h2 class="section-title" id="heading-typography">Typography</h2>
+
+        <div class="type-stack">
+          <div class="type-row"><span class="type-label">h1</span><h1 data-wcag-check>The quick brown fox</h1></div>
+          <div class="type-row"><span class="type-label">h2</span><h2 data-wcag-check>The quick brown fox</h2></div>
+          <div class="type-row"><span class="type-label">h3</span><h3 data-wcag-check>The quick brown fox</h3></div>
+          <div class="type-row"><span class="type-label">h4</span><h4 data-wcag-check>The quick brown fox</h4></div>
+          <div class="type-row"><span class="type-label">h5</span><h5 data-wcag-check>The quick brown fox</h5></div>
+          <div class="type-row"><span class="type-label">h6</span><h6 data-wcag-check>The quick brown fox</h6></div>
+        </div>
+
+        <div style="margin-top:32px;display:flex;flex-direction:column;gap:16px;max-width:680px;">
+          <div class="wcag-item" style="width:100%;">
+            <p class="lead" data-wcag-check>Lead paragraph. Large and prominent, used for introductions and summaries.</p>
+          </div>
+          <div class="wcag-item" style="width:100%;">
+            <p data-wcag-check>Body text. Standard paragraph color is <code>text-primary</code>. Line height 1.7 for comfortable reading.</p>
+          </div>
+          <div class="wcag-item" style="width:100%;">
+            <p style="color:var(--kz-text-secondary)" data-wcag-check>Secondary paragraph — slightly muted for supporting copy and supplementary information.</p>
+          </div>
+          <div class="wcag-item" style="width:100%;">
+            <p class="caption" data-wcag-check>Caption / helper text — timestamps, metadata, footnotes.</p>
+          </div>
+          <div class="wcag-item" style="width:100%;">
+            <blockquote data-wcag-check>
+              Good design is as little design as possible.
+              <cite>— Dieter Rams</cite>
+            </blockquote>
+          </div>
+
+          <p>
+            Inline <code>code snippet</code> inside body text.
+            Press <kbd>⌘</kbd> + <kbd>K</kbd> to open the command palette.
+            Visit the <a href="#" class="link" data-wcag-check>documentation</a> for more.
+          </p>
+        </div>
+      </section>
+
+      <!-- ── Buttons ─────────────────────────────────────────────────────── -->
+      <section class="section" id="buttons" aria-labelledby="heading-buttons">
+        <h2 class="section-title" id="heading-buttons">Buttons</h2>
+
+        <div class="col">
+          <!-- Main variants -->
+          <div class="row">
+            <div class="wcag-item">
+              <button class="btn btn-primary" data-wcag-check>
+                <i data-lucide="zap" aria-hidden="true"></i> Primary
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-secondary" data-wcag-check>
+                <i data-lucide="settings" aria-hidden="true"></i> Secondary
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-outline" data-wcag-check>
+                <i data-lucide="star" aria-hidden="true"></i> Outline
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-ghost" data-wcag-check>
+                <i data-lucide="more-horizontal" aria-hidden="true"></i> Ghost
+              </button>
+            </div>
+          </div>
+
+          <!-- Semantic variants -->
+          <div class="row">
+            <div class="wcag-item">
+              <button class="btn btn-danger" data-wcag-check>
+                <i data-lucide="trash-2" aria-hidden="true"></i> Delete
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-success" data-wcag-check>
+                <i data-lucide="check-circle" aria-hidden="true"></i> Confirm
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-primary" disabled aria-disabled="true">
+                <i data-lucide="zap" aria-hidden="true"></i> Disabled
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-secondary" disabled aria-disabled="true">Disabled</button>
+            </div>
+          </div>
+
+          <!-- Sizes -->
+          <div class="row" style="align-items:flex-end;">
+            <div class="wcag-item">
+              <button class="btn btn-primary btn-sm" data-wcag-check>
+                <i data-lucide="plus" aria-hidden="true"></i> Small
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-primary" data-wcag-check>
+                <i data-lucide="plus" aria-hidden="true"></i> Default
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-primary btn-lg" data-wcag-check>
+                <i data-lucide="plus" aria-hidden="true"></i> Large
+              </button>
+            </div>
+          </div>
+
+          <!-- Icon-only -->
+          <div class="row">
+            <div class="wcag-item">
+              <button class="btn btn-primary btn-icon btn-sm" data-wcag-check aria-label="Add new item">
+                <i data-lucide="plus" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-secondary btn-icon" data-wcag-check aria-label="Open settings">
+                <i data-lucide="settings" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-ghost btn-icon" data-wcag-check aria-label="More options">
+                <i data-lucide="more-vertical" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="wcag-item">
+              <button class="btn btn-danger btn-icon" data-wcag-check aria-label="Delete item">
+                <i data-lucide="trash-2" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Icons ───────────────────────────────────────────────────────── -->
+      <section class="section" id="icons" aria-labelledby="heading-icons">
+        <h2 class="section-title" id="heading-icons">Icons (Lucide)</h2>
+        <div class="icons-grid" role="list">
+          <div class="icon-item" role="listitem"><i data-lucide="home" aria-hidden="true"></i><span class="icon-name">home</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="user" aria-hidden="true"></i><span class="icon-name">user</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="settings" aria-hidden="true"></i><span class="icon-name">settings</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="bell" aria-hidden="true"></i><span class="icon-name">bell</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="search" aria-hidden="true"></i><span class="icon-name">search</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="mail" aria-hidden="true"></i><span class="icon-name">mail</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="calendar" aria-hidden="true"></i><span class="icon-name">calendar</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="bar-chart-2" aria-hidden="true"></i><span class="icon-name">chart</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="layers" aria-hidden="true"></i><span class="icon-name">layers</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="shield" aria-hidden="true"></i><span class="icon-name">shield</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="zap" aria-hidden="true"></i><span class="icon-name">zap</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="globe" aria-hidden="true"></i><span class="icon-name">globe</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="check-circle" aria-hidden="true"></i><span class="icon-name">check</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="alert-triangle" aria-hidden="true"></i><span class="icon-name">warning</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="info" aria-hidden="true"></i><span class="icon-name">info</span></div>
+          <div class="icon-item" role="listitem"><i data-lucide="x-circle" aria-hidden="true"></i><span class="icon-name">error</span></div>
+        </div>
+      </section>
+
+      <!-- ── Links ───────────────────────────────────────────────────────── -->
+      <section class="section" id="links" aria-labelledby="heading-links">
+        <h2 class="section-title" id="heading-links">Anchors &amp; Links</h2>
+        <div class="col" style="max-width:500px;">
+          <p>Standard <a href="#" class="link" data-wcag-check>inline hyperlink</a> using <code>text-accent</code>.</p>
+          <p>
+            <a href="#" class="link link-external" target="_blank" rel="noopener noreferrer"
+               aria-label="View documentation (opens in new tab)" data-wcag-check>
+              External link <i data-lucide="external-link" aria-hidden="true"></i>
+            </a>
+          </p>
+          <div class="row">
+            <div class="wcag-item">
+              <a href="#" class="btn btn-primary" data-wcag-check>Link as button</a>
+            </div>
+            <div class="wcag-item">
+              <a href="#" class="btn btn-secondary" data-wcag-check>
+                <i data-lucide="download" aria-hidden="true"></i> Download
+              </a>
+            </div>
+            <div class="wcag-item">
+              <a href="#" class="btn btn-ghost" data-wcag-check>
+                Learn more <i data-lucide="arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <nav aria-label="Breadcrumb">
+            <ol class="breadcrumb" style="list-style:none;">
+              <li><a href="#" class="breadcrumb-item" data-wcag-check>Dashboard</a></li>
+              <li aria-hidden="true" class="breadcrumb-sep"><i data-lucide="chevron-right"></i></li>
+              <li><a href="#" class="breadcrumb-item" data-wcag-check>Projects</a></li>
+              <li aria-hidden="true" class="breadcrumb-sep"><i data-lucide="chevron-right"></i></li>
+              <li><span class="breadcrumb-item" aria-current="page" data-wcag-check>Design Tokens</span></li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <!-- ── Menu ────────────────────────────────────────────────────────── -->
+      <section class="section" id="menu" aria-labelledby="heading-menu">
+        <h2 class="section-title" id="heading-menu">Menu &amp; Navigation</h2>
+        <div class="row" style="align-items:flex-start;">
+          <nav aria-label="Sidebar navigation">
+            <ul class="menu" style="list-style:none;">
+              <li><span class="menu-section-label" data-wcag-check>Workspace</span></li>
+              <li>
+                <a href="#" class="menu-item active" aria-current="page" data-wcag-check>
+                  <i data-lucide="layout-dashboard" aria-hidden="true"></i>
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="#" class="menu-item" data-wcag-check>
+                  <i data-lucide="bar-chart-2" aria-hidden="true"></i>
+                  Analytics
+                  <span class="menu-item-shortcut" aria-label="Keyboard shortcut Command A">⌘A</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="menu-item">
+                  <i data-lucide="users" aria-hidden="true"></i>
+                  Team
+                </a>
+              </li>
+              <li>
+                <a href="#" class="menu-item">
+                  <i data-lucide="folder" aria-hidden="true"></i>
+                  Projects
+                  <span class="badge badge-brand" style="margin-left:auto;padding:2px 8px;font-size:11px;">5</span>
+                </a>
+              </li>
+              <li style="list-style:none;"><hr class="menu-divider" /></li>
+              <li><span class="menu-section-label">Settings</span></li>
+              <li>
+                <a href="#" class="menu-item">
+                  <i data-lucide="settings" aria-hidden="true"></i>
+                  Preferences
+                </a>
+              </li>
+              <li>
+                <button class="menu-item danger" type="button" data-wcag-check>
+                  <i data-lucide="log-out" aria-hidden="true"></i>
+                  Sign out
+                </button>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- Badges -->
+          <div class="col">
+            <div class="row" style="flex-wrap:wrap;">
+              <div class="wcag-item">
+                <span class="badge badge-success" data-wcag-check>
+                  <i data-lucide="check-circle" aria-hidden="true"></i> Success
+                </span>
+              </div>
+              <div class="wcag-item">
+                <span class="badge badge-error" data-wcag-check>
+                  <i data-lucide="x-circle" aria-hidden="true"></i> Error
+                </span>
+              </div>
+              <div class="wcag-item">
+                <span class="badge badge-warning" data-wcag-check>
+                  <i data-lucide="alert-triangle" aria-hidden="true"></i> Warning
+                </span>
+              </div>
+              <div class="wcag-item">
+                <span class="badge badge-info" data-wcag-check>
+                  <i data-lucide="info" aria-hidden="true"></i> Info
+                </span>
+              </div>
+              <div class="wcag-item">
+                <span class="badge badge-neutral" data-wcag-check>Neutral</span>
+              </div>
+              <div class="wcag-item">
+                <span class="badge badge-brand" data-wcag-check>Brand</span>
+              </div>
+            </div>
+            <div class="row" style="flex-wrap:wrap;">
+              <div class="wcag-item">
+                <span class="badge badge-solid-success" data-wcag-check>Published</span>
+              </div>
+              <div class="wcag-item">
+                <span class="badge badge-solid-error" data-wcag-check>Rejected</span>
+              </div>
+              <div class="wcag-item">
+                <span class="badge badge-solid-warning" data-wcag-check>Pending</span>
+              </div>
+              <div class="wcag-item">
+                <span class="badge badge-solid-info" data-wcag-check>In Review</span>
+              </div>
+              <div class="wcag-item">
+                <span class="badge badge-solid-brand" data-wcag-check>New</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Cards ───────────────────────────────────────────────────────── -->
+      <section class="section" id="cards" aria-labelledby="heading-cards">
+        <h2 class="section-title" id="heading-cards">Cards</h2>
+
+        <!-- KPI cards -->
+        <div class="cards-grid" style="margin-bottom:24px;">
+          <div class="card card-kpi" role="region" aria-label="Total revenue metric">
+            <div class="kpi-label" data-wcag-check>Total Revenue</div>
+            <div class="kpi-value" data-wcag-check>$84,230</div>
+            <div class="kpi-change up" aria-label="12% increase from last month" data-wcag-check>
+              <i data-lucide="trending-up" aria-hidden="true"></i> +12% vs last month
+            </div>
+          </div>
+          <div class="card card-kpi" role="region" aria-label="Active users metric">
+            <div class="kpi-label" data-wcag-check>Active Users</div>
+            <div class="kpi-value" data-wcag-check>3,942</div>
+            <div class="kpi-change up" data-wcag-check>
+              <i data-lucide="trending-up" aria-hidden="true"></i> +8% vs last month
+            </div>
+          </div>
+          <div class="card card-kpi" role="region" aria-label="Churn rate metric">
+            <div class="kpi-label" data-wcag-check>Churn Rate</div>
+            <div class="kpi-value" data-wcag-check>2.4%</div>
+            <div class="kpi-change down" data-wcag-check>
+              <i data-lucide="trending-down" aria-hidden="true"></i> +0.3% vs last month
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature cards -->
+        <div class="cards-grid" style="margin-bottom:24px;">
+          <article class="card">
+            <div class="card-header">
+              <div class="card-icon" aria-hidden="true"><i data-lucide="zap"></i></div>
+              <span class="badge badge-brand">New</span>
+            </div>
+            <h3 class="card-title" data-wcag-check>Design Tokens</h3>
+            <p class="card-description" data-wcag-check>Consistent visual language across all products using a shared token system.</p>
+            <div class="card-footer">
+              <span class="card-meta" data-wcag-check><i data-lucide="clock" aria-hidden="true"></i> 2 days ago</span>
+              <a href="#" class="btn btn-ghost btn-sm">View <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+
+          <a href="#" class="card card-clickable" aria-label="Open Component Library — 48 components">
+            <div class="card-header">
+              <div class="card-icon" aria-hidden="true"><i data-lucide="layers"></i></div>
+              <i data-lucide="arrow-right" aria-hidden="true" style="color:var(--kz-text-tertiary);width:18px;height:18px;"></i>
+            </div>
+            <h3 class="card-title" data-wcag-check>Component Library</h3>
+            <p class="card-description" data-wcag-check>48 accessible, token-driven components ready for production.</p>
+            <div class="card-footer">
+              <span class="card-meta"><i data-lucide="package" aria-hidden="true"></i> v1.7.1</span>
+            </div>
+          </a>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-icon" style="background:var(--kz-success-bg-subtle);color:var(--kz-success-bg-solid);" aria-hidden="true">
+                <i data-lucide="shield-check"></i>
+              </div>
+              <span class="badge badge-success">AAA</span>
+            </div>
+            <h3 class="card-title" data-wcag-check>Accessibility</h3>
+            <p class="card-description" data-wcag-check>All token pairs verified against WCAG 2.1 contrast requirements.</p>
+          </article>
+        </div>
+
+        <!-- Alert cards -->
+        <div class="col" style="max-width:560px;">
+          <div class="card card-error" role="alert">
+            <div class="card-alert-icon">
+              <i data-lucide="x-circle" aria-hidden="true"></i>
+              <div>
+                <div class="card-title" data-wcag-check>Deployment failed</div>
+                <p class="card-description">Build step exited with code 1. Check your configuration.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card card-success" role="status">
+            <div class="card-alert-icon">
+              <i data-lucide="check-circle" aria-hidden="true"></i>
+              <div>
+                <div class="card-title" data-wcag-check>Published successfully</div>
+                <p class="card-description">Version 1.7.1 is live on the Azure Artifacts registry.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card card-warning" role="alert">
+            <div class="card-alert-icon">
+              <i data-lucide="alert-triangle" aria-hidden="true"></i>
+              <div>
+                <div class="card-title" data-wcag-check>Deprecation notice</div>
+                <p class="card-description">Migrate to <code>getCssVars('light')</code> before 2.0.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card card-info" role="note">
+            <div class="card-alert-icon">
+              <i data-lucide="info" aria-hidden="true"></i>
+              <div>
+                <div class="card-title" data-wcag-check>New API available</div>
+                <p class="card-description">Use <code>injectCssVars('dark')</code> to switch themes at runtime.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Forms ───────────────────────────────────────────────────────── -->
+      <section class="section" id="forms" aria-labelledby="heading-forms">
+        <h2 class="section-title" id="heading-forms">Form Elements</h2>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;">
+          <div class="form-group">
+            <label class="form-label" for="input-default" data-wcag-check>
+              Full name <span class="required" aria-hidden="true">*</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true"><i data-lucide="user"></i></span>
+              <input id="input-default" class="input" type="text" placeholder="Jane Smith"
+                     autocomplete="name" required data-wcag-check />
+            </div>
+            <span class="form-hint" data-wcag-check>As it appears on your ID document.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-error" data-wcag-check>
+              Email address <span class="required" aria-hidden="true">*</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true"><i data-lucide="mail"></i></span>
+              <input id="input-error" class="input input-error" type="email" value="not-an-email"
+                     autocomplete="email" aria-describedby="input-error-msg" aria-invalid="true" data-wcag-check />
+            </div>
+            <span class="form-error" id="input-error-msg" role="alert" data-wcag-check>
+              <i data-lucide="alert-circle" aria-hidden="true"></i> Enter a valid email address.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-success" data-wcag-check>Username</label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true"><i data-lucide="at-sign"></i></span>
+              <input id="input-success" class="input input-success" type="text" value="janedoe"
+                     autocomplete="username" aria-describedby="input-success-msg" data-wcag-check />
+            </div>
+            <span class="form-hint" id="input-success-msg" style="color:var(--kz-success-text);" data-wcag-check>
+              Username is available.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-disabled">Organization</label>
+            <input id="input-disabled" class="input" type="text" value="Kodez"
+                   disabled aria-disabled="true" />
+            <span class="form-hint">Managed by your administrator.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="select-role" data-wcag-check>Role</label>
+            <select id="select-role" class="input" data-wcag-check>
+              <option value="">Select a role…</option>
+              <option value="admin">Administrator</option>
+              <option value="editor" selected>Editor</option>
+              <option value="viewer">Viewer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="textarea" data-wcag-check>Description</label>
+            <textarea id="textarea" class="input" rows="3"
+                      placeholder="Describe the project…" style="resize:vertical;" data-wcag-check></textarea>
+            <span class="form-hint">Max 500 characters.</span>
+          </div>
+
+          <div class="form-group">
+            <fieldset style="border:none;padding:0;">
+              <legend class="form-label">Notifications</legend>
+              <div class="checkbox-group" style="margin-top:8px;">
+                <label class="check-item">
+                  <input type="checkbox" checked />
+                  <span class="check-label" data-wcag-check>Email notifications</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" />
+                  <span class="check-label">Push notifications</span>
+                </label>
+                <label class="check-item">
+                  <input type="checkbox" checked />
+                  <span class="check-label">Weekly digest</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <fieldset style="border:none;padding:0;">
+              <legend class="form-label">Theme preference</legend>
+              <div class="radio-group" style="margin-top:8px;">
+                <label class="check-item">
+                  <input type="radio" name="theme-pref" value="light" checked />
+                  <span class="check-label" data-wcag-check>Light</span>
+                </label>
+                <label class="check-item">
+                  <input type="radio" name="theme-pref" value="dark" />
+                  <span class="check-label">Dark</span>
+                </label>
+                <label class="check-item">
+                  <input type="radio" name="theme-pref" value="system" />
+                  <span class="check-label">System default</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Surfaces ────────────────────────────────────────────────────── -->
+      <section class="section" aria-labelledby="heading-surfaces">
+        <h2 class="section-title" id="heading-surfaces">Surface Scale</h2>
+        <div class="surfaces">
+          <div class="wcag-item">
+            <div class="surface-chip" style="background:var(--kz-surface-0);color:var(--kz-text-primary);" data-wcag-check>surface-0</div>
+          </div>
+          <div class="wcag-item">
+            <div class="surface-chip" style="background:var(--kz-surface-1);color:var(--kz-text-primary);" data-wcag-check>surface-1</div>
+          </div>
+          <div class="wcag-item">
+            <div class="surface-chip" style="background:var(--kz-surface-2);color:var(--kz-text-primary);" data-wcag-check>surface-2</div>
+          </div>
+          <div class="wcag-item">
+            <div class="surface-chip" style="background:var(--kz-surface-3);color:var(--kz-text-primary);" data-wcag-check>surface-3</div>
+          </div>
+          <div class="wcag-item">
+            <div class="surface-chip" style="background:var(--kz-surface-4);color:var(--kz-text-primary);" data-wcag-check>surface-4</div>
+          </div>
+          <div class="wcag-item">
+            <div class="surface-chip" style="background:var(--kz-surface-5);color:var(--kz-text-primary);" data-wcag-check>surface-5</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>Built with <code>@kodez/design-tokens</code> v1.7.1 — all token pairs verified WCAG 2.1 AA+</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script>
+    // ── Icons ─────────────────────────────────────────────────────────────────
+    lucide.createIcons();
+
+    // ── Theme toggle ──────────────────────────────────────────────────────────
+    const toggle = document.getElementById('theme-toggle');
+    const html   = document.documentElement;
+    let isDark = html.classList.contains('dark') ||
+      (!html.classList.contains('light') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    function applyTheme(dark) {
+      isDark = dark;
+      html.classList.toggle('dark', dark);
+      html.classList.toggle('light', !dark);
+      toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      toggle.setAttribute('aria-pressed', String(dark));
+      toggle.innerHTML = '';
+      const icon = document.createElement('i');
+      icon.setAttribute('data-lucide', dark ? 'moon' : 'sun');
+      icon.setAttribute('aria-hidden', 'true');
+      icon.style.cssText = 'width:16px;height:16px;';
+      toggle.appendChild(icon);
+      lucide.createIcons();
+      // Delay until after the 0.2s body transition finishes; synchronous call returns
+      // mid-transition computed colors, producing spurious 1:1 ratios.
+      setTimeout(runWcagAudit, 250);
+    }
+
+    applyTheme(isDark);
+
+    toggle.addEventListener('click', () => applyTheme(!isDark));
+
+    // ── WCAG contrast badge engine ────────────────────────────────────────────
+    function runWcagAudit() {
+      // Remove any existing badges first (for theme-switch re-runs)
+      document.querySelectorAll('.wcag-badge').forEach(b => b.remove());
+
+      function parseRgba(str) {
+        if (!str || str === 'transparent') return null;
+        const m = str.match(/rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)/);
+        if (!m) return null;
+        return { r: +m[1], g: +m[2], b: +m[3], a: m[4] !== undefined ? +m[4] : 1 };
+      }
+
+      function blendOver(fg, bg) {
+        const a = fg.a;
+        return { r: fg.r*a + bg.r*(1-a), g: fg.g*a + bg.g*(1-a), b: fg.b*a + bg.b*(1-a), a: 1 };
+      }
+
+      function getEffectiveBg(el) {
+        // Walk from el up to <html>, collecting bg layers; composite root→el over a white canvas.
+        const layers = [];
+        let node = el;
+        while (node && node !== document.documentElement.parentElement) {
+          const c = parseRgba(window.getComputedStyle(node).backgroundColor);
+          if (c && c.a > 0) layers.unshift(c);
+          node = node.parentElement;
+        }
+        let base = { r: 255, g: 255, b: 255, a: 1 };
+        for (const c of layers) base = blendOver(c, base);
+        return base;
+      }
+
+      function lin(c) {
+        const s = c / 255;
+        return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+      }
+      function lum(c) { return 0.2126*lin(c.r) + 0.7152*lin(c.g) + 0.0722*lin(c.b); }
+      function cr(a, b) {
+        const la = lum(a), lb = lum(b);
+        return (Math.max(la,lb) + 0.05) / (Math.min(la,lb) + 0.05);
+      }
+
+      function grade(ratio) {
+        if (ratio >= 7)   return { label: 'AAA', cls: 'wcag-aaa' };
+        if (ratio >= 4.5) return { label: 'AA',  cls: 'wcag-aa'  };
+        if (ratio >= 3)   return { label: '≥3:1', cls: 'wcag-low' };
+        return { label: 'FAIL', cls: 'wcag-fail' };
+      }
+
+      document.querySelectorAll('[data-wcag-check]').forEach(el => {
+        const fgRaw = parseRgba(window.getComputedStyle(el).color);
+        const bg    = getEffectiveBg(el);
+        if (!fgRaw || !bg) return;
+
+        // If fg itself is semi-transparent, blend it over the bg
+        const fg = fgRaw.a < 1 ? blendOver(fgRaw, bg) : fgRaw;
+
+        const ratio = cr(fg, bg);
+        const { label, cls } = grade(ratio);
+
+        const badge = document.createElement('span');
+        badge.className = 'wcag-badge ' + cls;
+        badge.setAttribute('aria-label', 'WCAG ' + label + ' ' + ratio.toFixed(1) + ':1');
+        badge.innerHTML = '<span>' + label + '</span><span style="margin-left:2px">' + ratio.toFixed(1) + ':1</span>';
+
+        // If element is inside a .wcag-item, append badge there; otherwise insert after element
+        const wrapper = el.closest('.wcag-item');
+        if (wrapper) {
+          wrapper.appendChild(badge);
+        } else {
+          el.insertAdjacentElement('afterend', badge);
+        }
+      });
+    }
+
+    // Run after fonts/icons are ready
+    document.fonts.ready.then(runWcagAudit);
+  </script>
+</body>
+</html>

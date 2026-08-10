@@ -1,0 +1,202 @@
+name: Sync Documentation Artifacts
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Keeps all documentation artifacts in sync with the token source of truth.
+#
+# Deterministic (script-driven):
+#   • component-contract.yaml  — contrast ratios + meta.updated recomputed from tokens.ts
+#   • README.md token tables   — shields.io badge tables regenerated from tokens.ts
+#
+# AI-assisted (claude-code-action):
+#   • Mermaid diagrams         — updated when package exports/architecture change
+#   • examples/showcase.html  — new component demos added when contract changes
+#   • skills/SKILL.md          — patterns updated when contract or tokens change
+#
+# Requires: ANTHROPIC_API_KEY secret for AI-assisted steps.
+# ──────────────────────────────────────────────────────────────────────────────
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "component-contract.yaml"
+      - "package.json"
+      - "tsconfig.json"
+      - "tsup.config.ts"
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: "Which artifacts to regenerate"
+        type: choice
+        required: false
+        default: all
+        options:
+          - all
+          - contract
+          - readme
+          - diagrams
+          - showcase
+          - skill
+
+concurrency:
+  group: sync-docs
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Sync documentation artifacts
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── Checkout + Node setup ────────────────────────────────────────────────
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build package
+        run: npm run build
+        # scripts that import from dist/ require a current build
+
+      # ── Detect which source files changed (push events only) ─────────────────
+      - uses: dorny/paths-filter@v3
+        id: changed
+        if: github.event_name == 'push'
+        with:
+          filters: |
+            tokens:
+              - 'src/tokens.ts'
+            contract:
+              - 'component-contract.yaml'
+            src_arch:
+              - 'src/index.ts'
+              - 'src/tailwind-preset.ts'
+              - 'package.json'
+              - 'tsconfig.json'
+
+      # ── 1. Sync component-contract.yaml ──────────────────────────────────────
+      #    Recomputes contrast ratios and updates meta.updated from tokens.ts.
+      #    Runs when: tokens.ts changed | manual scope=all|contract
+      - name: "Sync: component-contract.yaml"
+        if: |
+          steps.changed.outputs.tokens == 'true' ||
+          github.event.inputs.scope == 'all' ||
+          github.event.inputs.scope == 'contract'
+        run: node scripts/sync-contract.mjs
+
+      # ── 2. Sync README token tables ──────────────────────────────────────────
+      #    Regenerates shields.io badge tables between <!-- kz:autogen --> markers.
+      #    Runs when: tokens.ts changed | manual scope=all|readme
+      - name: "Sync: README.md token tables"
+        if: |
+          steps.changed.outputs.tokens == 'true' ||
+          github.event.inputs.scope == 'all' ||
+          github.event.inputs.scope == 'readme'
+        run: node scripts/sync-readme.mjs
+
+      # ── 3. Sync Mermaid diagrams (AI) ────────────────────────────────────────
+      #    Asks Claude to update the flowchart in README.md if exports changed.
+      #    Runs when: src/index.ts|tailwind-preset.ts|package.json changed | manual scope=all|diagrams
+      - name: "Sync: Mermaid diagrams"
+        if: |
+          steps.changed.outputs.src_arch == 'true' ||
+          github.event.inputs.scope == 'all' ||
+          github.event.inputs.scope == 'diagrams'
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: "Read,Edit,Bash"
+          prompt: |
+            You are updating the architecture diagram in README.md for the @kodez/design-tokens package.
+
+            1. Read README.md and locate the ```mermaid code block (around line 52).
+            2. Read src/index.ts to see the current exported symbols.
+            3. Read src/tailwind-preset.ts to confirm what Tailwind utilities are exposed.
+            4. Compare the diagram against the current exports. The diagram should show:
+               - tokens.ts → getCssVars / getCssString / injectCssVars / tailwindPreset
+               - CSS custom property injection flow
+               - Tailwind v3 preset flow
+               - Tailwind v4 CSS file reference
+            5. Update the mermaid block ONLY if the architecture or exports have materially changed.
+               Do NOT update it for cosmetic reasons or minor rewordings.
+            6. Do not touch anything outside the mermaid code block.
+
+      # ── 4. Sync showcase.html (AI) ───────────────────────────────────────────
+      #    Ensures showcase demos exist for every component in component-contract.yaml.
+      #    Runs when: component-contract.yaml changed | manual scope=all|showcase
+      - name: "Sync: examples/showcase.html"
+        if: |
+          steps.changed.outputs.contract == 'true' ||
+          github.event.inputs.scope == 'all' ||
+          github.event.inputs.scope == 'showcase'
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: "Read,Edit"
+          prompt: |
+            You are keeping examples/showcase.html in sync with component-contract.yaml.
+
+            1. Read component-contract.yaml — this is the authoritative WCAG-verified token spec.
+            2. Read examples/showcase.html — this is the live GitHub Pages demo.
+            3. For each component entry in component-contract.yaml, confirm a working demo exists
+               in the showcase. If a component is missing a demo, add one following the existing
+               HTML/CSS patterns in the file.
+            4. WCAG rules that must hold in every demo:
+               - Text on --kz-brand-primary (#FF7F56) MUST use color:#231F20 (NOT #FFFFFF).
+               - Light mode --kz-stroke-hover cards: use var(--kz-text-primary) for text.
+               - Dark mode overrides must use both .dark selector and prefers-color-scheme media query.
+            5. Do not remove any existing demos. Do not change the page structure or header/footer.
+            6. Do not change CSS that is already correct.
+
+      # ── 5. Sync SKILL.md (AI) ────────────────────────────────────────────────
+      #    Updates Claude Code skill file to reflect current contract and tokens.
+      #    Runs when: contract OR tokens changed | manual scope=all|skill
+      - name: "Sync: skills/SKILL.md"
+        if: |
+          steps.changed.outputs.contract == 'true' ||
+          steps.changed.outputs.tokens == 'true' ||
+          github.event.inputs.scope == 'all' ||
+          github.event.inputs.scope == 'skill'
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: "Read,Edit"
+          prompt: |
+            You are updating skills/SKILL.md for the @kodez/design-tokens Claude Code skill.
+
+            1. Read component-contract.yaml — the authoritative WCAG-verified token spec.
+            2. Read skills/SKILL.md — the current skill file.
+            3. Update SKILL.md so that:
+               a. Any token hex values mentioned match the current values in component-contract.yaml.
+               b. Any contrast ratios mentioned match those in component-contract.yaml.
+               c. Any new component variants in component-contract.yaml that are absent from SKILL.md
+                  are added with a concise example.
+               d. Implementation notes (MUI contrastText values, CSS class patterns, dark mode
+                  override patterns) match the implementation sections in component-contract.yaml.
+            4. Preserve all existing section structure. Only update specific values or add entries.
+            5. Do not change the YAML frontmatter (---) block at the top of SKILL.md.
+            6. Keep additions concise — match the density of the existing content.
+
+      # ── Commit all generated changes ─────────────────────────────────────────
+      - name: Commit and push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add component-contract.yaml README.md examples/showcase.html skills/SKILL.md
+          if git diff --cached --quiet; then
+            echo "All artifacts already up to date — nothing to commit."
+          else
+            git commit -m "docs: sync documentation artifacts [skip ci]"
+            git push
+          fi
