@@ -15,18 +15,18 @@ const _light = {
   'brand-gradient-2':      '#F0673D',
 
   // ── Surfaces ─────────────────────────────────────────────────────────────────
-  'surface-0':             '#FEFEFE',
-  'surface-1':             '#F7F7FB',
-  'surface-2':             '#F0F0F6',
-  'surface-3':             '#E8E8F0',
-  'surface-4':             '#E0E0EC',
-  'surface-5':             '#D8D8E6',
+  'surface-0':             '#FFFFFF',
+  'surface-1':             '#F9F8F7',
+  'surface-2':             '#F5F4F2',
+  'surface-3':             '#EDEBE8',
+  'surface-4':             '#E4E1DE',
+  'surface-5':             '#DAD7D3',
 
   // ── Stroke ───────────────────────────────────────────────────────────────────
-  'stroke-subtle':         '#E8E8F0',
-  'stroke-default':        '#D0D0DE',
-  'stroke-strong':         '#B8B8CA',
-  'stroke-hover':          '#9E9EB5',
+  'stroke-subtle':         '#EDEBE8',
+  'stroke-default':        '#D5D2CE',
+  'stroke-strong':         '#B9B5B2',
+  'stroke-hover':          '#9E9A97',
   'stroke-interactive':    '#FF7F56',
 
   // ── Semantic: success ─────────────────────────────────────────────────────────
@@ -58,12 +58,12 @@ const _light = {
   'info-text':             '#1E3A8A',
 
   // ── Text ─────────────────────────────────────────────────────────────────────
-  'text-primary':          '#0F0F18',
-  'text-secondary':        '#4A4A5E',
-  'text-tertiary':         '#6E6E88',
+  'text-primary':          '#231F20',
+  'text-secondary':        '#4A4546',
+  'text-tertiary':         '#6F6B6C',
   'text-accent':           '#5153F6',
-  'text-disabled':         '#A0A0B8',
-  'text-inverse':          '#F8FAFC',
+  'text-disabled':         '#A6A2A3',
+  'text-inverse':          '#FFFFFF',
 } satisfies Record<string, string>;
 
 const _dark = {
@@ -81,19 +81,19 @@ const _dark = {
   'brand-gradient-2':      '#F0673D',
 
   // ── Surfaces ─────────────────────────────────────────────────────────────────
-  'surface-0':             '#09090E',
-  'surface-1':             '#0F0F16',
-  'surface-2':             '#15151E',
-  'surface-kpi':           'rgba(21,21,30,0.72)',
-  'surface-3':             '#1C1C27',
-  'surface-4':             '#222230',
-  'surface-5':             '#2B2B3F',
+  'surface-0':             '#0C0A0B',
+  'surface-1':             '#131112',
+  'surface-2':             '#1C191A',
+  'surface-kpi':           'rgba(28,25,26,0.72)',
+  'surface-3':             '#231F20',
+  'surface-4':             '#2B2728',
+  'surface-5':             '#342F31',
 
   // ── Stroke ───────────────────────────────────────────────────────────────────
-  'stroke-subtle':         '#21212B',
-  'stroke-default':        '#35374A',
-  'stroke-strong':         '#4A4D63',
-  'stroke-hover':          '#60637F',
+  'stroke-subtle':         '#2B2728',
+  'stroke-default':        '#3D3839',
+  'stroke-strong':         '#524D4F',
+  'stroke-hover':          '#6E6869',
   'stroke-interactive':    '#FF7F56',
 
   // ── Semantic: success ─────────────────────────────────────────────────────────
@@ -125,12 +125,12 @@ const _dark = {
   'info-text':             '#6AAAFA',
 
   // ── Text ─────────────────────────────────────────────────────────────────────
-  'text-primary':          '#F8FAFC',
-  'text-secondary':        '#BCBCC7',
-  'text-tertiary':         '#818197',
+  'text-primary':          '#F5F4F2',
+  'text-secondary':        '#BDB7B8',
+  'text-tertiary':         '#837D7E',
   'text-accent':           '#7475FF',
-  'text-disabled':         '#595976',
-  'text-inverse':          '#0C0C0D',
+  'text-disabled':         '#5A5556',
+  'text-inverse':          '#231F20',
 } satisfies Record<string, string>;
 
 export const lightTokens: Record<string, string> = _light;

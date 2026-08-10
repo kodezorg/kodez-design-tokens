@@ -97,29 +97,29 @@ Surface colours communicate visual depth rather than shadows.
 
   // ──  level 0  ─────────────────────────────────────────────────────────────────
 Level 0 – Base Application Background
-Colour: #FEFEFE
-// purpose:   
+Colour: #FFFFFF
+// purpose:
 The foundation layer of the application.
-// usecases:   
+// usecases:
 * Page backgrounds
 * Main application canvas
 
   // ──  level 1  ─────────────────────────────────────────────────────────────────
 Level 1 – Navigation Surface
-Colour: #F7F7FB
-// purpose:   
+Colour: #F9F8F7
+// purpose:
 Used for persistent navigation containers.
-// usecases:   
+// usecases:
 * Sidebar navigation
 * Footer navigation
-* Top navigation 
+* Top navigation
 
   // ──  level 2  ─────────────────────────────────────────────────────────────────
 Level 2 – Content Surface
-Colour: #F0F0F6
-// purpose:   
+Colour: #F5F4F2
+// purpose:
 Primary content containers.
-// usecases:   
+// usecases:
 * Cards
 * Tables
 * Panels
@@ -127,31 +127,31 @@ Primary content containers.
 
   // ──  level 3  ─────────────────────────────────────────────────────────────────
 Level 3 – Hover Surface
-Colour: # E8E8F0
-// purpose:   
+Colour: #EDEBE8
+// purpose:
 Indicates hover interaction.
-// usecases:   
+// usecases:
 * Hovered cards
 * Hovered rows
 * Hovered menu items
 
   // ──  level 4  ─────────────────────────────────────────────────────────────────
 Level 4 – Elevated Surface
-Colour: #E0E0EC
-// purpose:   
+Colour: #E4E1DE
+// purpose:
 Higher elevation layers.
-// usecases:   
-* Active rows 
+// usecases:
+* Active rows
 
   // ──  level 5  ─────────────────────────────────────────────────────────────────
 Level 5 – Modal Surface
-Colour: #D8D8E6
-// purpose:   
+Colour: #DAD7D3
+// purpose:
 Highest emphasis layer.
-// usecases:   
+// usecases:
 * Dialogs
 * Modals
-* Tooltips bg 
+* Tooltips bg
 * Critical overlays
 
 
@@ -162,31 +162,31 @@ Borders help define structure and separation.
 
   // ──  stroke subtle  ─────────────────────────────────────────────────────────────────
 Stroke Subtle
-Colour: #E8E8F0
-// purpose:   
+Colour: #EDEBE8
+// purpose:
 Low visibility separation.
-// usecases:   
+// usecases:
 * Internal dividers
 
   // ──  stroke default  ─────────────────────────────────────────────────────────────────
 Stroke Default
-Colour: #D0D0DE
-// purpose:   
+Colour: #D5D2CE
+// purpose:
 Standard component borders.
-// usecases:   
+// usecases:
 * Inputs
 * Cards
 * Tables
 
   // ──  stroke strong  ─────────────────────────────────────────────────────────────────
 Stroke Strong
-Colour: #B8B8CA
-// purpose:   
+Colour: #B9B5B2
+// purpose:
 Higher visual separation.
 
   // ──  stroke hover  ─────────────────────────────────────────────────────────────────
 Stroke Hover
-Colour: #9E9EB5
+Colour: #9E9A97
 // purpose:   
 Interactive border state.
 // usecases:   
@@ -280,29 +280,29 @@ Text colours create readable hierarchy.
 
   // ──   text primary  ─────────────────────────────────────────────────────────────────
 Text Primary
-Colour: #0F0F18
-// purpose:   
+Colour: #231F20
+// purpose:
 Highest emphasis text.
-// usecases:   
+// usecases:
 * Page titles
 * Headings
 * Primary content
 
   // ──   text secondary  ─────────────────────────────────────────────────────────────────
 Text Secondary
-Colour: #4A4A5E
-// purpose:   
+Colour: #4A4546
+// purpose:
 Supporting content.
-// usecases:   
+// usecases:
 * Labels
 * Secondary information
 
   // ──   text tertiary  ─────────────────────────────────────────────────────────────────
 Text Tertiary
-Colour: #6E6E88
-// purpose:   
+Colour: #6F6B6C
+// purpose:
 Low-emphasis content.
-// usecases:   
+// usecases:
 * Metadata
 * Timestamps
 * Helper text
@@ -310,24 +310,24 @@ Low-emphasis content.
   // ──   text accent  ─────────────────────────────────────────────────────────────────
 Text Accent
 Colour: #5153F6
-// purpose:   
+// purpose:
 Only use for links in the UI
 
   // ──   text disabled  ─────────────────────────────────────────────────────────────────
 Text Disabled
-Colour: #A0A0B8
-// purpose:   
+Colour: #A6A2A3
+// purpose:
 Unavailable content.
-// usecases:   
+// usecases:
 * Disabled buttons
 * Disabled menu items
 * Disabled form fields
 
   // ──   text inverse  ─────────────────────────────────────────────────────────────────
 Text Inverse
-Colour: #F8FAFC
+Colour: #FFFFFF
 // purpose:
-Text displayed on light or branded backgrounds.
-// usecases:   
+Text displayed on dark or branded backgrounds.
+// usecases:
 * Text inside dark status badges
 * Text on black surfaces
