@@ -34,6 +34,10 @@ jobs:
       - name: Validate contrast ratios
         run: node scripts/validate-contrast.mjs
 
+      - name: Validate component contract
+        run: node scripts/sync-contract.mjs
+        # Exits non-zero if any documented fg/bg pair falls below its declared minimum ratio.
+
       - name: Validate build output
         run: node scripts/validate-build.mjs
 

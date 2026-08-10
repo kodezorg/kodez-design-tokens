@@ -430,7 +430,10 @@
     }
     .page-btn svg{width:14px;height:14px;}
     .page-btn:hover:not(:disabled){background:var(--kz-surface-2);color:var(--kz-text-primary);}
-    .page-btn.active{background:var(--kz-brand-primary);border-color:var(--kz-brand-primary);color:var(--kz-surface-0);font-weight:600;}
+    /* active page btn — light: dark text=6.54:1 AA. dark: near-black=7.92:1 AA */
+    .page-btn.active{background:var(--kz-brand-primary);border-color:var(--kz-brand-primary);color:var(--kz-text-primary);font-weight:600;}
+    .dark .page-btn.active{color:var(--kz-surface-0);}
+    @media(prefers-color-scheme:dark){:root:not(.light) .page-btn.active{color:var(--kz-surface-0);}}
     .page-btn:disabled{opacity:.4;cursor:not-allowed;}
     .page-ellipsis{min-width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--kz-text-tertiary);}
 
@@ -450,6 +453,292 @@
       padding:1px 5px;border-radius:4px;border:1px solid var(--kz-stroke-subtle);
     }
 
+    /* ── Brand application cards ─────────────────────────────────────────────── */
+    .brand-cards{display:flex;flex-wrap:wrap;gap:14px;}
+    .brand-card{
+      border-radius:16px;padding:20px;position:relative;
+      min-height:220px;width:180px;display:flex;flex-direction:column;overflow:hidden;
+    }
+    .brand-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:auto;}
+    .brand-card-badge{
+      display:inline-flex;align-items:center;
+      padding:4px 10px;border-radius:999px;
+      font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    }
+    .brand-card-counter{font-size:11px;font-weight:600;opacity:.65;letter-spacing:.03em;}
+    .brand-card-body{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-top:16px;}
+    .brand-card-title{font-size:18px;font-weight:800;line-height:1.15;letter-spacing:-.03em;margin-bottom:6px;}
+    .brand-card-desc{font-size:11px;line-height:1.55;opacity:.80;margin-bottom:14px;}
+    .brand-card-footer{
+      display:flex;align-items:center;justify-content:space-between;
+      padding-top:12px;border-top:1px solid rgba(128,128,128,.2);margin-top:auto;
+    }
+    .brand-card-footer-label{font-size:11px;font-weight:600;opacity:.75;}
+    .brand-card-dots{display:flex;gap:4px;align-items:center;}
+    .brand-card-dot{width:5px;height:5px;border-radius:50%;opacity:.35;}
+    .brand-card-dot.active{width:16px;border-radius:999px;opacity:1;}
+
+    /* gradient card — near-black text: 6.54:1 AA on #F0673D, 7.36:1 AAA on #F89474 */
+    .bc-gradient{
+      background:linear-gradient(150deg,var(--kz-brand-gradient-1) 0%,var(--kz-brand-gradient-2) 100%);
+      color:#231F20;
+    }
+    .bc-gradient .brand-card-badge{background:rgba(0,0,0,.22);color:#231F20;}
+    .bc-gradient .brand-card-dot{background:#fff;}
+
+    /* white card */
+    .bc-white{
+      background:var(--kz-surface-0);color:var(--kz-text-primary);
+      border:1px solid var(--kz-stroke-subtle);
+    }
+    .bc-white .brand-card-badge{background:var(--kz-surface-3);color:var(--kz-text-secondary);}
+    .bc-white .brand-card-dot{background:var(--kz-stroke-strong);}
+
+    /* off-white card */
+    .bc-offwhite{background:var(--kz-surface-2);color:var(--kz-text-primary);}
+    .bc-offwhite .brand-card-badge{background:var(--kz-surface-4);color:var(--kz-text-secondary);}
+    .bc-offwhite .brand-card-dot{background:var(--kz-stroke-strong);}
+
+    /* grey card — light #9E9A97: dark text=5.84:1 AA. dark #6E6869: white=4.79:1 AA */
+    .bc-grey{background:var(--kz-stroke-hover);color:var(--kz-text-primary);}
+    .dark .bc-grey,.dark .bc-grey .brand-card-badge{color:#fff;}
+    @media(prefers-color-scheme:dark){:root:not(.light) .bc-grey,:root:not(.light) .bc-grey .brand-card-badge{color:#fff;}}
+    .bc-grey .brand-card-badge{background:rgba(0,0,0,.25);color:var(--kz-text-primary);}
+    .bc-grey .brand-card-dot{background:var(--kz-text-primary);}
+    .dark .bc-grey .brand-card-dot{background:#fff;}
+    @media(prefers-color-scheme:dark){:root:not(.light) .bc-grey .brand-card-dot{background:#fff;}}
+
+    /* light-black card */
+    .bc-lightblack{background:var(--kz-text-primary);color:#fff;}
+    .dark .bc-lightblack{background:var(--kz-surface-3);}
+    .bc-lightblack .brand-card-badge{background:rgba(255,255,255,.12);color:#fff;}
+    .bc-lightblack .brand-card-dot{background:#fff;}
+
+    /* black card */
+    .bc-black{background:#000;color:#fff;}
+    .bc-black .brand-card-badge{background:rgba(255,255,255,.12);color:#fff;}
+    .bc-black .brand-card-dot{background:#fff;}
+
+    /* ── Tooltip ─────────────────────────────────────────────────────────────── */
+    .tooltip-wrap{position:relative;display:inline-flex;}
+    .tooltip-tip{
+      position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);
+      background:var(--kz-surface-5);color:var(--kz-text-primary);
+      border:1px solid var(--kz-stroke-subtle);
+      padding:5px 10px;border-radius:6px;font-size:12px;white-space:nowrap;
+      box-shadow:0 4px 12px rgba(0,0,0,.10);pointer-events:none;z-index:10;
+    }
+    .tooltip-tip::after{
+      content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+      border:5px solid transparent;border-top-color:var(--kz-stroke-default);
+    }
+    .tooltip-tip-dark{
+      background:var(--kz-text-primary);color:var(--kz-text-inverse);border-color:transparent;
+    }
+    .tooltip-tip-dark::after{border-top-color:var(--kz-text-primary);}
+
+    /* ── Toast ───────────────────────────────────────────────────────────────── */
+    .toast{
+      display:flex;align-items:center;gap:10px;
+      padding:11px 14px;border-radius:10px;
+      background:var(--kz-surface-5);border:1px solid var(--kz-stroke-default);
+      box-shadow:0 6px 24px rgba(0,0,0,.08);
+      font-size:13px;color:var(--kz-text-primary);
+      max-width:320px;margin-bottom:8px;
+    }
+    .toast:last-child{margin-bottom:0;}
+    .toast svg{width:15px;height:15px;flex-shrink:0;}
+    .toast-close{margin-left:auto;background:none;border:none;cursor:pointer;
+      color:var(--kz-text-tertiary);padding:0;display:flex;align-items:center;}
+    .toast-close svg{width:13px;height:13px;}
+    .toast-success{border-left:3px solid var(--kz-success-bg-solid);color:var(--kz-success-text);}
+    .toast-success .toast-body{color:var(--kz-text-primary);}
+    .toast-error  {border-left:3px solid var(--kz-error-bg-solid);  color:var(--kz-error-text);}
+    .toast-error   .toast-body{color:var(--kz-text-primary);}
+    .toast-warning{border-left:3px solid var(--kz-warning-bg-solid);color:var(--kz-warning-text);}
+    .toast-warning .toast-body{color:var(--kz-text-primary);}
+    .toast-info   {border-left:3px solid var(--kz-info-bg-solid);   color:var(--kz-info-text);}
+    .toast-info    .toast-body{color:var(--kz-text-primary);}
+    .toast-body{font-size:12px;color:var(--kz-text-secondary);margin-top:1px;}
+    .toast-content{flex:1;}
+    .toast-title{font-size:13px;font-weight:600;}
+
+    /* ── Skeleton ─────────────────────────────────────────────────────────────── */
+    @keyframes shimmer{0%{background-position:-600px 0;}100%{background-position:600px 0;}}
+    .skeleton{
+      background:linear-gradient(90deg,var(--kz-surface-3) 25%,var(--kz-surface-4) 50%,var(--kz-surface-3) 75%);
+      background-size:1200px 100%;animation:shimmer 1.5s infinite linear;border-radius:6px;
+    }
+    .skel-avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;}
+    .skel-thumb{width:100%;height:110px;border-radius:8px;}
+    .skel-line{height:11px;margin-bottom:7px;}
+    .skel-line:last-child{margin-bottom:0;width:65%;}
+    .skel-card{
+      background:var(--kz-surface-1);border:1px solid var(--kz-stroke-subtle);
+      border-radius:10px;padding:14px;max-width:260px;
+    }
+    .skel-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+    .skel-info{flex:1;}
+    .skel-name{height:11px;margin-bottom:5px;}
+    .skel-sub{height:9px;width:60%;}
+
+    /* ── Tags / Chips ────────────────────────────────────────────────────────── */
+    .chip{
+      display:inline-flex;align-items:center;gap:5px;
+      padding:4px 10px;border-radius:6px;font-size:12px;font-weight:500;
+      border:1px solid var(--kz-stroke-default);
+      background:var(--kz-surface-2);color:var(--kz-text-primary);cursor:default;
+    }
+    .chip svg{width:12px;height:12px;flex-shrink:0;}
+    .chip-x{color:var(--kz-text-tertiary);cursor:pointer;line-height:1;background:none;border:none;padding:0;font-size:14px;}
+    .chip-x:hover{color:var(--kz-text-primary);}
+    .chip-brand  {background:var(--kz-brand-bg-subtle);   color:var(--kz-brand-text);   border-color:var(--kz-brand-border-subtle);}
+    .chip-success{background:var(--kz-success-bg-subtle); color:var(--kz-success-text);  border-color:var(--kz-success-border-subtle);}
+    .chip-error  {background:var(--kz-error-bg-subtle);   color:var(--kz-error-text);    border-color:var(--kz-error-border-subtle);}
+    .chip-info   {background:var(--kz-info-bg-subtle);    color:var(--kz-info-text);     border-color:var(--kz-info-border-subtle);}
+    .chip-warning{background:var(--kz-warning-bg-subtle); color:var(--kz-warning-text);  border-color:var(--kz-warning-border-subtle);}
+
+    /* ── Empty state ─────────────────────────────────────────────────────────── */
+    .empty-state{
+      text-align:center;padding:28px 20px;
+      border:1px dashed var(--kz-stroke-default);border-radius:12px;max-width:260px;
+    }
+    .empty-icon{
+      width:44px;height:44px;border-radius:12px;margin:0 auto 12px;
+      background:var(--kz-surface-3);color:var(--kz-text-tertiary);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .empty-icon svg{width:20px;height:20px;}
+    .empty-title{font-size:14px;font-weight:600;color:var(--kz-text-primary);margin-bottom:4px;}
+    .empty-desc{font-size:12px;color:var(--kz-text-secondary);line-height:1.5;margin-bottom:14px;}
+
+    /* ── Code block ──────────────────────────────────────────────────────────── */
+    .code-block{
+      background:var(--kz-surface-1);border:1px solid var(--kz-stroke-subtle);
+      border-radius:10px;overflow:hidden;max-width:420px;
+    }
+    .code-header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:8px 14px;border-bottom:1px solid var(--kz-stroke-subtle);
+      background:var(--kz-surface-2);
+    }
+    .code-lang{font-size:10px;font-weight:700;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;letter-spacing:.07em;text-transform:uppercase;}
+    .code-copy-btn{background:none;border:none;cursor:pointer;color:var(--kz-text-tertiary);font-size:11px;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:4px;padding:0;}
+    .code-copy-btn svg{width:13px;height:13px;}
+    .code-body{padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--kz-text-secondary);overflow-x:auto;white-space:pre;}
+    .ck{color:var(--kz-brand-text);}
+    .cs{color:var(--kz-success-text);}
+    .cc{color:var(--kz-text-tertiary);}
+    .cp{color:var(--kz-info-text);}
+
+    /* ── Stats row ───────────────────────────────────────────────────────────── */
+    .stat-row{display:flex;flex-wrap:wrap;gap:10px;}
+    .stat-item{
+      flex:1;min-width:90px;
+      background:var(--kz-surface-1);border:1px solid var(--kz-stroke-subtle);
+      border-radius:10px;padding:12px 14px;
+    }
+    .stat-label{font-size:10px;color:var(--kz-text-tertiary);margin-bottom:3px;text-transform:uppercase;letter-spacing:.07em;font-weight:600;}
+    .stat-value{font-size:22px;font-weight:700;letter-spacing:-.03em;color:var(--kz-text-primary);}
+    .stat-change{font-size:11px;margin-top:3px;}
+
+    /* ── Timeline ─────────────────────────────────────────────────────────────── */
+    .timeline{list-style:none;position:relative;padding-left:22px;}
+    .timeline::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--kz-stroke-subtle);}
+    .tl-item{position:relative;margin-bottom:16px;}
+    .tl-item:last-child{margin-bottom:0;}
+    .tl-dot{
+      position:absolute;left:-22px;top:3px;width:12px;height:12px;border-radius:50%;
+      border:2px solid var(--kz-stroke-default);background:var(--kz-surface-0);
+    }
+    .tl-dot.brand{border-color:var(--kz-brand-primary);background:var(--kz-brand-primary);}
+    .tl-dot.success{border-color:var(--kz-success-bg-solid);background:var(--kz-success-bg-solid);}
+    .tl-dot.muted{border-color:var(--kz-stroke-default);background:var(--kz-surface-2);}
+    .tl-title{font-size:13px;font-weight:500;color:var(--kz-text-primary);}
+    .tl-meta{font-size:11px;color:var(--kz-text-tertiary);margin-top:1px;}
+    .tl-body{font-size:12px;color:var(--kz-text-secondary);margin-top:4px;line-height:1.5;}
+
+    /* ── Callout ─────────────────────────────────────────────────────────────── */
+    .callout{border-left:3px solid;padding:11px 14px;border-radius:0 8px 8px 0;margin-bottom:7px;}
+    .callout:last-child{margin-bottom:0;}
+    .callout-title{font-size:13px;font-weight:600;margin-bottom:2px;}
+    .callout-desc{font-size:12px;opacity:.85;line-height:1.5;}
+    .callout-brand  {border-color:var(--kz-brand-primary);  background:var(--kz-brand-bg-subtle);  color:var(--kz-brand-text);}
+    .callout-success{border-color:var(--kz-success-bg-solid);background:var(--kz-success-bg-subtle);color:var(--kz-success-text);}
+    .callout-warning{border-color:var(--kz-warning-bg-solid);background:var(--kz-warning-bg-subtle);color:var(--kz-warning-text);}
+    .callout-error  {border-color:var(--kz-error-bg-solid);  background:var(--kz-error-bg-subtle);  color:var(--kz-error-text);}
+
+    /* ── Stat bar (horizontal) ──────────────────────────────────────────────── */
+    .stat-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+    .stat-bar-row:last-child{margin-bottom:0;}
+    .stat-bar-label{font-size:12px;color:var(--kz-text-secondary);min-width:70px;}
+    .stat-bar-track{flex:1;height:6px;background:var(--kz-surface-3);border-radius:999px;overflow:hidden;}
+    .stat-bar-fill{height:100%;border-radius:999px;}
+    .stat-bar-val{font-size:11px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;min-width:32px;text-align:right;}
+
+    /* ── Command palette ─────────────────────────────────────────────────────── */
+    .cmd-palette{
+      background:var(--kz-surface-1);border:1px solid var(--kz-stroke-subtle);
+      border-radius:12px;overflow:hidden;max-width:380px;
+      box-shadow:0 16px 48px rgba(0,0,0,.12);
+    }
+    .cmd-input-row{
+      display:flex;align-items:center;gap:9px;padding:11px 14px;
+      border-bottom:1px solid var(--kz-stroke-subtle);
+    }
+    .cmd-input-row svg{width:16px;height:16px;color:var(--kz-text-tertiary);flex-shrink:0;}
+    .cmd-input{
+      flex:1;background:none;border:none;outline:none;font-size:14px;
+      color:var(--kz-text-primary);font-family:inherit;
+    }
+    .cmd-input::placeholder{color:var(--kz-text-disabled);}
+    .cmd-section-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--kz-text-tertiary);padding:8px 14px 4px;}
+    .cmd-item{
+      display:flex;align-items:center;gap:9px;padding:8px 14px;font-size:13px;
+      color:var(--kz-text-primary);cursor:pointer;transition:background .1s;
+    }
+    .cmd-item svg{width:15px;height:15px;color:var(--kz-text-tertiary);flex-shrink:0;}
+    .cmd-item:hover,.cmd-item.active{background:var(--kz-brand-bg-subtle);color:var(--kz-brand-text);}
+    .cmd-item.active svg{color:var(--kz-brand-text);}
+    .cmd-item-shortcut{margin-left:auto;font-size:11px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;}
+    .cmd-item.active .cmd-item-shortcut{color:var(--kz-brand-text);opacity:.7;}
+    .cmd-footer{
+      display:flex;align-items:center;gap:12px;padding:8px 14px;
+      border-top:1px solid var(--kz-stroke-subtle);background:var(--kz-surface-2);
+    }
+    .cmd-hint{font-size:10px;color:var(--kz-text-tertiary);display:flex;align-items:center;gap:4px;}
+    .cmd-key{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:1px 5px;border-radius:4px;font-size:10px;font-family:'JetBrains Mono',monospace;
+      background:var(--kz-surface-3);border:1px solid var(--kz-stroke-default);color:var(--kz-text-secondary);
+    }
+
+    /* ── Notification bell ──────────────────────────────────────────────────── */
+    .notif-panel{
+      background:var(--kz-surface-1);border:1px solid var(--kz-stroke-subtle);
+      border-radius:12px;overflow:hidden;max-width:320px;
+      box-shadow:0 8px 24px rgba(0,0,0,.08);
+    }
+    .notif-header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 14px;border-bottom:1px solid var(--kz-stroke-subtle);
+    }
+    .notif-header-title{font-size:14px;font-weight:600;color:var(--kz-text-primary);}
+    .notif-item{
+      display:flex;align-items:flex-start;gap:10px;padding:12px 14px;
+      border-bottom:1px solid var(--kz-stroke-subtle);transition:background .1s;
+    }
+    .notif-item:last-child{border-bottom:none;}
+    .notif-item:hover{background:var(--kz-surface-2);}
+    .notif-item.unread{background:var(--kz-brand-bg-subtle);}
+    .notif-dot{width:8px;height:8px;border-radius:50%;background:var(--kz-brand-primary);flex-shrink:0;margin-top:4px;}
+    .notif-dot.read{background:transparent;}
+    .notif-body{flex:1;}
+    .notif-text{font-size:13px;color:var(--kz-text-primary);line-height:1.4;}
+    .notif-text strong{font-weight:600;}
+    .notif-time{font-size:11px;color:var(--kz-text-tertiary);margin-top:2px;}
+
     /* ── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer{
       border-top:1px solid var(--kz-stroke-subtle);padding:20px 24px;
@@ -460,8 +749,9 @@
 </head>
 
 <body>
+  <!-- skip-link: orange bg same in both modes; #231F20 gives 6.54:1 AA in light + dark -->
   <a href="#main" style="position:absolute;top:-100%;left:1rem;z-index:9999;padding:.5rem 1rem;
-     border-radius:6px;background:var(--kz-brand-primary);color:var(--kz-text-inverse);
+     border-radius:6px;background:var(--kz-brand-primary);color:#231F20;
      font-weight:600;font-size:13px;text-decoration:none;">Skip to main content</a>
 
   <!-- ── Header ──────────────────────────────────────────────────────────────── -->
@@ -504,29 +794,29 @@
           <td class="comp-preview">
             <div class="swatches">
               <div class="swatch">
-                <div class="swatch-color" style="background:#FF7F56;"></div>
+                <div class="swatch-color" style="background:var(--kz-brand-primary);"></div>
                 <div class="swatch-name">Orange</div>
-                <div class="swatch-hex">#FF7F56</div>
+                <div class="swatch-hex">--kz-brand-primary</div>
               </div>
               <div class="swatch">
-                <div class="swatch-color" style="background:#FFFFFF;border-color:#D5D2CE;"></div>
+                <div class="swatch-color" style="background:var(--kz-surface-0);border-color:var(--kz-stroke-default);"></div>
                 <div class="swatch-name">White</div>
-                <div class="swatch-hex">#FFFFFF</div>
+                <div class="swatch-hex">--kz-surface-0</div>
               </div>
               <div class="swatch">
-                <div class="swatch-color" style="background:#F5F4F2;"></div>
+                <div class="swatch-color" style="background:var(--kz-surface-2);"></div>
                 <div class="swatch-name">Off-White</div>
-                <div class="swatch-hex">#F5F4F2</div>
+                <div class="swatch-hex">--kz-surface-2</div>
               </div>
               <div class="swatch">
-                <div class="swatch-color" style="background:#999999;"></div>
+                <div class="swatch-color" style="background:var(--kz-stroke-hover);"></div>
                 <div class="swatch-name">Grey</div>
-                <div class="swatch-hex">#999999</div>
+                <div class="swatch-hex">--kz-stroke-hover</div>
               </div>
               <div class="swatch">
-                <div class="swatch-color" style="background:#231F20;"></div>
+                <div class="swatch-color" style="background:var(--kz-text-primary);"></div>
                 <div class="swatch-name">Light Black</div>
-                <div class="swatch-hex">#231F20</div>
+                <div class="swatch-hex">--kz-text-primary</div>
               </div>
               <div class="swatch">
                 <div class="swatch-color" style="background:#000000;"></div>
@@ -538,14 +828,14 @@
         </tr>
 
         <tr>
-          <td class="comp-name">brand-primary<small>brand-hover · brand-active</small></td>
+          <td class="comp-name">--kz-brand-primary<small>--kz-brand-hover · --kz-brand-active</small></td>
           <td class="comp-desc">Primary action colour for CTAs, focus rings, and interactive accents. Hover/active darken in light mode, lighten in dark mode.</td>
           <td class="comp-preview">
             <div class="flex-row">
-              <div class="swatch"><div class="swatch-color" style="background:var(--kz-brand-primary);"></div><div class="swatch-hex">primary</div></div>
-              <div class="swatch"><div class="swatch-color" style="background:var(--kz-brand-hover);"></div><div class="swatch-hex">hover</div></div>
-              <div class="swatch"><div class="swatch-color" style="background:var(--kz-brand-active);"></div><div class="swatch-hex">active</div></div>
-              <div class="swatch"><div class="swatch-color" style="background:linear-gradient(135deg,var(--kz-brand-gradient-1),var(--kz-brand-gradient-2));"></div><div class="swatch-hex">gradient</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:var(--kz-brand-primary);"></div><div class="swatch-hex">--kz-brand-primary</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:var(--kz-brand-hover);"></div><div class="swatch-hex">--kz-brand-hover</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:var(--kz-brand-active);"></div><div class="swatch-hex">--kz-brand-active</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:linear-gradient(135deg,var(--kz-brand-gradient-1),var(--kz-brand-gradient-2));"></div><div class="swatch-hex">--kz-brand-gradient-1/2</div></div>
             </div>
           </td>
         </tr>
@@ -554,42 +844,42 @@
         <tr class="sec-row"><td colspan="3">Surface Scale</td></tr>
 
         <tr>
-          <td class="comp-name">surface-0<small>Page background</small></td>
+          <td class="comp-name">--kz-surface-0<small>Page background</small></td>
           <td class="comp-desc">Foundation layer. Use as the main page/app canvas background. Light: <code>#FFFFFF</code> · Dark: <code>#0C0A0B</code></td>
           <td class="comp-preview">
             <div class="surf-chip" style="background:var(--kz-surface-0);color:var(--kz-text-primary);" data-wcag-check>surface-0</div>
           </td>
         </tr>
         <tr>
-          <td class="comp-name">surface-1<small>Nav surfaces</small></td>
+          <td class="comp-name">--kz-surface-1<small>Nav surfaces</small></td>
           <td class="comp-desc">Sidebars, top nav, persistent navigation containers. Sits one step above the page background.</td>
           <td class="comp-preview">
             <div class="surf-chip" style="background:var(--kz-surface-1);color:var(--kz-text-primary);" data-wcag-check>surface-1</div>
           </td>
         </tr>
         <tr>
-          <td class="comp-name">surface-2<small>Content surface</small></td>
+          <td class="comp-name">--kz-surface-2<small>Content surface</small></td>
           <td class="comp-desc">Cards, tables, panels, widgets. Primary content containers. Matches brand Off-White in light mode.</td>
           <td class="comp-preview">
             <div class="surf-chip" style="background:var(--kz-surface-2);color:var(--kz-text-primary);" data-wcag-check>surface-2</div>
           </td>
         </tr>
         <tr>
-          <td class="comp-name">surface-3<small>Hover surface</small></td>
+          <td class="comp-name">--kz-surface-3<small>Hover surface</small></td>
           <td class="comp-desc">Hovered cards, rows, and menu items. Also used as the default avatar background.</td>
           <td class="comp-preview">
             <div class="surf-chip" style="background:var(--kz-surface-3);color:var(--kz-text-primary);" data-wcag-check>surface-3</div>
           </td>
         </tr>
         <tr>
-          <td class="comp-name">surface-4<small>Elevated surface</small></td>
+          <td class="comp-name">--kz-surface-4<small>Elevated surface</small></td>
           <td class="comp-desc">Active rows, highlighted state, higher elevation layers.</td>
           <td class="comp-preview">
             <div class="surf-chip" style="background:var(--kz-surface-4);color:var(--kz-text-primary);" data-wcag-check>surface-4</div>
           </td>
         </tr>
         <tr>
-          <td class="comp-name">surface-5<small>Modal / dialog</small></td>
+          <td class="comp-name">--kz-surface-5<small>Modal / dialog</small></td>
           <td class="comp-desc">Highest emphasis layer — dialogs, modals, tooltip backgrounds, critical overlays.</td>
           <td class="comp-preview">
             <div class="surf-chip" style="background:var(--kz-surface-5);color:var(--kz-text-primary);" data-wcag-check>surface-5</div>
@@ -600,7 +890,7 @@
         <tr class="sec-row"><td colspan="3">Typography & Text</td></tr>
 
         <tr>
-          <td class="comp-name">text-primary<small>Headings · body</small></td>
+          <td class="comp-name">--kz-text-primary<small>Headings · body</small></td>
           <td class="comp-desc">Highest emphasis. Page titles, headings, primary content. Light: <code>#231F20</code> (brand Light Black).</td>
           <td class="comp-preview">
             <div class="flex-col">
@@ -610,14 +900,14 @@
           </td>
         </tr>
         <tr>
-          <td class="comp-name">text-secondary<small>Labels · support</small></td>
+          <td class="comp-name">--kz-text-secondary<small>Labels · support</small></td>
           <td class="comp-desc">Supporting content: labels, secondary information, card descriptions. 9.4:1 on surface-0.</td>
           <td class="comp-preview">
             <span style="font-size:14px;color:var(--kz-text-secondary);" data-wcag-check>Secondary paragraph — slightly muted for supporting copy and supplementary information.</span>
           </td>
         </tr>
         <tr>
-          <td class="comp-name">text-tertiary<small>Metadata · hints</small></td>
+          <td class="comp-name">--kz-text-tertiary<small>Metadata · hints</small></td>
           <td class="comp-desc">Low-emphasis content: metadata, timestamps, helper text, placeholder-adjacent labels. Min AA at 4.5:1.</td>
           <td class="comp-preview">
             <div class="flex-col">
@@ -627,14 +917,14 @@
           </td>
         </tr>
         <tr>
-          <td class="comp-name">text-accent<small>Links only</small></td>
+          <td class="comp-name">--kz-text-accent<small>Links only</small></td>
           <td class="comp-desc">Use exclusively for inline hyperlinks. Do not use for decorative colour or general emphasis.</td>
           <td class="comp-preview">
             <a href="#" style="color:var(--kz-text-accent);text-decoration:underline;text-underline-offset:3px;font-size:14px;" data-wcag-check>View the full documentation →</a>
           </td>
         </tr>
         <tr>
-          <td class="comp-name">text-disabled<small>Unavailable</small></td>
+          <td class="comp-name">--kz-text-disabled<small>Unavailable</small></td>
           <td class="comp-desc">Disabled buttons, menu items, and locked form fields. Not required to meet AA — communicates state, not content.</td>
           <td class="comp-preview">
             <div class="flex-row">
@@ -646,7 +936,7 @@
           </td>
         </tr>
         <tr>
-          <td class="comp-name">text-inverse<small>On dark / brand bg</small></td>
+          <td class="comp-name">--kz-text-inverse<small>On dark / brand bg</small></td>
           <td class="comp-desc">Text on coloured or dark backgrounds. Light mode: <code>#FFFFFF</code> — used inside danger buttons and dark badges.</td>
           <td class="comp-preview">
             <div class="flex-row">
@@ -1203,6 +1493,580 @@
               <div style="display:flex;align-items:center;gap:10px;">
                 <hr class="stroke-line" style="flex:1;border-top-color:var(--kz-stroke-interactive);border-top-width:2px;" />
                 <span style="font-size:11px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;white-space:nowrap;">stroke-interactive</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ BRAND APPLICATION CARDS ════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Brand Application — Palette Cards</td></tr>
+
+        <tr>
+          <td class="comp-name">--kz-brand-gradient-1/2<small>Gradient card</small></td>
+          <td class="comp-desc">LinkedIn-carousel-style card using the brand gradient. White text on orange gradient. <code>var(--kz-brand-gradient-1)</code> → <code>var(--kz-brand-gradient-2)</code>.</td>
+          <td class="comp-preview">
+            <div class="brand-card bc-gradient" style="max-width:220px;" data-wcag-check>
+              <div class="brand-card-top">
+                <span class="brand-card-badge">Next Step</span>
+                <span class="brand-card-counter" style="color:#fff;">07 / 07</span>
+              </div>
+              <div class="brand-card-body">
+                <div class="brand-card-title">Want the one-pager we use with delivery leads?</div>
+                <div class="brand-card-desc">Comment <strong>PLAYBOOK</strong> or DM — happy to share the PoV shape.</div>
+              </div>
+              <div class="brand-card-footer" style="border-top-color:rgba(255,255,255,.25);">
+                <span class="brand-card-footer-label" style="color:#fff;">End · save for later</span>
+                <div class="brand-card-dots">
+                  <span class="brand-card-dot" style="background:#fff;"></span>
+                  <span class="brand-card-dot" style="background:#fff;"></span>
+                  <span class="brand-card-dot" style="background:#fff;"></span>
+                  <span class="brand-card-dot" style="background:#fff;"></span>
+                  <span class="brand-card-dot" style="background:#fff;"></span>
+                  <span class="brand-card-dot" style="background:#fff;"></span>
+                  <span class="brand-card-dot active" style="background:#fff;"></span>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="comp-name">All palette cards<small>6 brand colours</small></td>
+          <td class="comp-desc">Same slide layout applied across every Kodez brand palette colour. Each card background uses its corresponding <code>--kz-</code> token.</td>
+          <td class="comp-preview">
+            <div class="brand-cards">
+
+              <!-- Orange / gradient -->
+              <div class="brand-card bc-gradient">
+                <div class="brand-card-top">
+                  <span class="brand-card-badge">Brand</span>
+                  <span class="brand-card-counter" style="color:#fff;">01 / 06</span>
+                </div>
+                <div class="brand-card-body">
+                  <div class="brand-card-title" style="color:#fff;">Orange</div>
+                  <div class="brand-card-desc" style="color:rgba(255,255,255,.85);">--kz-brand-gradient-1 → --kz-brand-gradient-2</div>
+                </div>
+                <div class="brand-card-footer" style="border-top-color:rgba(255,255,255,.25);">
+                  <span class="brand-card-footer-label" style="color:#fff;">--kz-brand-primary</span>
+                  <div class="brand-card-dots">
+                    <span class="brand-card-dot active" style="background:#fff;"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.4);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.4);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.4);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.4);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.4);"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- White -->
+              <div class="brand-card bc-white">
+                <div class="brand-card-top">
+                  <span class="brand-card-badge">Brand</span>
+                  <span class="brand-card-counter" style="color:var(--kz-text-tertiary);">02 / 06</span>
+                </div>
+                <div class="brand-card-body">
+                  <div class="brand-card-title" style="color:var(--kz-text-primary);">White</div>
+                  <div class="brand-card-desc" style="color:var(--kz-text-secondary);">Clean canvas, maximum contrast for headings and body.</div>
+                </div>
+                <div class="brand-card-footer" style="border-top-color:var(--kz-stroke-subtle);">
+                  <span class="brand-card-footer-label" style="color:var(--kz-text-tertiary);">--kz-surface-0</span>
+                  <div class="brand-card-dots">
+                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                    <span class="brand-card-dot active" style="background:var(--kz-stroke-strong);"></span>
+                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Off-White -->
+              <div class="brand-card bc-offwhite">
+                <div class="brand-card-top">
+                  <span class="brand-card-badge">Brand</span>
+                  <span class="brand-card-counter" style="color:var(--kz-text-tertiary);">03 / 06</span>
+                </div>
+                <div class="brand-card-body">
+                  <div class="brand-card-title" style="color:var(--kz-text-primary);">Off-White</div>
+                  <div class="brand-card-desc" style="color:var(--kz-text-secondary);">Warm neutral surface, softer than pure white.</div>
+                </div>
+                <div class="brand-card-footer" style="border-top-color:var(--kz-stroke-subtle);">
+                  <span class="brand-card-footer-label" style="color:var(--kz-text-tertiary);">--kz-surface-2</span>
+                  <div class="brand-card-dots">
+                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                    <span class="brand-card-dot active" style="background:var(--kz-stroke-strong);"></span>
+                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Grey -->
+              <div class="brand-card bc-grey">
+                <div class="brand-card-top">
+                  <span class="brand-card-badge">Brand</span>
+                  <span class="brand-card-counter" style="color:rgba(255,255,255,.6);">04 / 06</span>
+                </div>
+                <div class="brand-card-body">
+                  <div class="brand-card-title" style="color:#fff;">Grey</div>
+                  <div class="brand-card-desc" style="color:rgba(255,255,255,.8);">Neutral mid-tone, great for muted surfaces.</div>
+                </div>
+                <div class="brand-card-footer" style="border-top-color:rgba(255,255,255,.2);">
+                  <span class="brand-card-footer-label" style="color:rgba(255,255,255,.7);">--kz-stroke-hover</span>
+                  <div class="brand-card-dots">
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.35);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.35);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.35);"></span>
+                    <span class="brand-card-dot active" style="background:#fff;"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.35);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.35);"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Light Black -->
+              <div class="brand-card bc-lightblack">
+                <div class="brand-card-top">
+                  <span class="brand-card-badge">Brand</span>
+                  <span class="brand-card-counter" style="color:rgba(255,255,255,.5);">05 / 06</span>
+                </div>
+                <div class="brand-card-body">
+                  <div class="brand-card-title" style="color:#fff;">Light Black</div>
+                  <div class="brand-card-desc" style="color:rgba(255,255,255,.75);">Primary text colour, base of all dark UI.</div>
+                </div>
+                <div class="brand-card-footer" style="border-top-color:rgba(255,255,255,.15);">
+                  <span class="brand-card-footer-label" style="color:rgba(255,255,255,.55);">--kz-text-primary</span>
+                  <div class="brand-card-dots">
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.3);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.3);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.3);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.3);"></span>
+                    <span class="brand-card-dot active" style="background:#fff;"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.3);"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Black -->
+              <div class="brand-card bc-black">
+                <div class="brand-card-top">
+                  <span class="brand-card-badge">Brand</span>
+                  <span class="brand-card-counter" style="color:rgba(255,255,255,.4);">06 / 06</span>
+                </div>
+                <div class="brand-card-body">
+                  <div class="brand-card-title" style="color:#fff;">Black</div>
+                  <div class="brand-card-desc" style="color:rgba(255,255,255,.7);">Pure black — maximum contrast, premium feel.</div>
+                </div>
+                <div class="brand-card-footer" style="border-top-color:rgba(255,255,255,.1);">
+                  <span class="brand-card-footer-label" style="color:rgba(255,255,255,.45);">#000000</span>
+                  <div class="brand-card-dots">
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.25);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.25);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.25);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.25);"></span>
+                    <span class="brand-card-dot" style="background:rgba(255,255,255,.25);"></span>
+                    <span class="brand-card-dot active" style="background:#fff;"></span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ CALLOUTS ═══════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Callouts</td></tr>
+
+        <tr>
+          <td class="comp-name">Callout blocks<small>left-border accent</small></td>
+          <td class="comp-desc">Inline contextual notes with a coloured left border. Brand, success, warning, and error variants — all using semantic bg-subtle + text pairings.</td>
+          <td class="comp-preview">
+            <div style="max-width:340px;">
+              <div class="callout callout-brand" data-wcag-check>
+                <div class="callout-title">Design token tip</div>
+                <div class="callout-desc">Always use <code>--kz-brand-primary</code> for interactive elements, never a raw hex.</div>
+              </div>
+              <div class="callout callout-success">
+                <div class="callout-title">All checks passed</div>
+                <div class="callout-desc">Token contrast ratios meet WCAG 2.1 AA in both light and dark themes.</div>
+              </div>
+              <div class="callout callout-warning">
+                <div class="callout-title">Deprecation notice</div>
+                <div class="callout-desc">Migrate to <code>getCssVars('light')</code> before v2.0 — legacy API will be removed.</div>
+              </div>
+              <div class="callout callout-error">
+                <div class="callout-title">Breaking change</div>
+                <div class="callout-desc">The <code>brand-gradient</code> shorthand was removed. Use <code>brand-gradient-1</code> and <code>brand-gradient-2</code> separately.</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ TOASTS ════════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Toast Notifications</td></tr>
+
+        <tr>
+          <td class="comp-name">Toast stack<small>transient feedback</small></td>
+          <td class="comp-desc">Short-lived feedback anchored to a corner. Left border signals semantic type. Use <code>role="status"</code> (success/info) or <code>role="alert"</code> (error/warning).</td>
+          <td class="comp-preview">
+            <div>
+              <div class="toast toast-success" role="status">
+                <i data-lucide="check-circle" aria-hidden="true"></i>
+                <div class="toast-content">
+                  <div class="toast-title" data-wcag-check>Changes saved</div>
+                  <div class="toast-body">Your settings have been updated.</div>
+                </div>
+                <button class="toast-close" aria-label="Dismiss"><i data-lucide="x"></i></button>
+              </div>
+              <div class="toast toast-error" role="alert">
+                <i data-lucide="x-circle" aria-hidden="true"></i>
+                <div class="toast-content">
+                  <div class="toast-title">Upload failed</div>
+                  <div class="toast-body">File exceeds the 10 MB limit.</div>
+                </div>
+                <button class="toast-close" aria-label="Dismiss"><i data-lucide="x"></i></button>
+              </div>
+              <div class="toast toast-warning" role="alert">
+                <i data-lucide="alert-triangle" aria-hidden="true"></i>
+                <div class="toast-content">
+                  <div class="toast-title">Session expiring</div>
+                  <div class="toast-body">You'll be signed out in 5 minutes.</div>
+                </div>
+                <button class="toast-close" aria-label="Dismiss"><i data-lucide="x"></i></button>
+              </div>
+              <div class="toast toast-info" role="status">
+                <i data-lucide="info" aria-hidden="true"></i>
+                <div class="toast-content">
+                  <div class="toast-title">v1.7.2 is available</div>
+                  <div class="toast-body">Run <code>npm update @kodez/design-tokens</code>.</div>
+                </div>
+                <button class="toast-close" aria-label="Dismiss"><i data-lucide="x"></i></button>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ TOOLTIPS ══════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Tooltips</td></tr>
+
+        <tr>
+          <td class="comp-name">Tooltip variants<small>light · dark</small></td>
+          <td class="comp-desc">Surface-5 light tooltip and text-primary dark tooltip. Always triggered by <code>aria-describedby</code>. Arrow via pure CSS border trick.</td>
+          <td class="comp-preview">
+            <div class="flex-row" style="padding-top:36px;align-items:flex-start;flex-wrap:wrap;gap:40px;">
+              <div class="tooltip-wrap">
+                <div class="tooltip-tip" role="tooltip" id="tt1">Publish now</div>
+                <button class="btn btn-secondary" aria-describedby="tt1">
+                  <i data-lucide="send" aria-hidden="true"></i> Publish
+                </button>
+              </div>
+              <div class="tooltip-wrap">
+                <div class="tooltip-tip tooltip-tip-dark" role="tooltip" id="tt2">--kz-text-primary bg</div>
+                <button class="btn btn-ghost" aria-describedby="tt2">
+                  <i data-lucide="info" aria-hidden="true"></i> Dark tooltip
+                </button>
+              </div>
+              <div class="tooltip-wrap">
+                <div class="tooltip-tip" role="tooltip" id="tt3">Delete permanently</div>
+                <button class="btn btn-danger btn-icon" aria-label="Delete" aria-describedby="tt3">
+                  <i data-lucide="trash-2" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ TAGS / CHIPS ══════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Tags &amp; Chips</td></tr>
+
+        <tr>
+          <td class="comp-name">Chips<small>filter · removable</small></td>
+          <td class="comp-desc">Compact labels used for filtering or tagging. Semantic colour variants match the badge palette. Removable chips include a dismiss button.</td>
+          <td class="comp-preview">
+            <div class="flex-col">
+              <div class="flex-row">
+                <span class="chip" data-wcag-check><i data-lucide="tag" aria-hidden="true"></i> Default</span>
+                <span class="chip chip-brand"><i data-lucide="zap" aria-hidden="true"></i> Brand</span>
+                <span class="chip chip-success"><i data-lucide="check" aria-hidden="true"></i> Active</span>
+                <span class="chip chip-error"><i data-lucide="x" aria-hidden="true"></i> Error</span>
+                <span class="chip chip-warning">Warning</span>
+                <span class="chip chip-info">Info</span>
+              </div>
+              <div class="flex-row">
+                <span class="chip">Design <button class="chip-x" aria-label="Remove Design">×</button></span>
+                <span class="chip chip-brand">Tokens <button class="chip-x" aria-label="Remove Tokens">×</button></span>
+                <span class="chip chip-success">v1.7.2 <button class="chip-x" aria-label="Remove version">×</button></span>
+                <span class="chip" style="opacity:.45;cursor:not-allowed;">Locked</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ CODE BLOCK ════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Code Block</td></tr>
+
+        <tr>
+          <td class="comp-name">Code block<small>syntax highlighted</small></td>
+          <td class="comp-desc">Surface-1 background, monospace type, language badge, copy button. Keyword/string/comment colours use semantic token colours so they adapt to dark mode.</td>
+          <td class="comp-preview">
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">CSS</span>
+                <button class="code-copy-btn" aria-label="Copy code">
+                  <i data-lucide="copy" aria-hidden="true"></i> Copy
+                </button>
+              </div>
+              <div class="code-body" aria-label="Code example"><span class="cc">/* Button using --kz- tokens */</span>
+<span class="ck">.btn-primary</span> {
+  <span class="cp">background</span>: <span class="cs">var(--kz-brand-primary)</span>;
+  <span class="cp">color</span>:      <span class="cs">var(--kz-text-primary)</span>;
+  <span class="cp">border</span>:     <span class="cs">1px solid var(--kz-brand-primary)</span>;
+}
+<span class="ck">.btn-primary</span>:<span class="ck">hover</span> {
+  <span class="cp">background</span>: <span class="cs">var(--kz-brand-hover)</span>;
+}</div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ SKELETON LOADERS ══════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Skeleton Loaders</td></tr>
+
+        <tr>
+          <td class="comp-name">Skeleton card<small>content placeholder</small></td>
+          <td class="comp-desc">Animated shimmer using surface-3 → surface-4. Mirrors the layout of the content it replaces — avatar + name, thumbnail, text lines.</td>
+          <td class="comp-preview">
+            <div class="flex-row" style="align-items:flex-start;flex-wrap:wrap;gap:14px;">
+              <div class="skel-card">
+                <div class="skel-row">
+                  <div class="skeleton skel-avatar"></div>
+                  <div class="skel-info">
+                    <div class="skeleton skel-line skel-name" style="width:80%;"></div>
+                    <div class="skeleton skel-line skel-sub"></div>
+                  </div>
+                </div>
+                <div class="skeleton skel-thumb" style="margin-bottom:10px;"></div>
+                <div class="skeleton skel-line" style="width:100%;"></div>
+                <div class="skeleton skel-line" style="width:85%;"></div>
+                <div class="skeleton skel-line" style="width:60%;"></div>
+              </div>
+              <div class="skel-card" style="max-width:160px;">
+                <div class="skeleton skel-line" style="width:100%;height:14px;margin-bottom:10px;"></div>
+                <div class="skeleton" style="width:100%;height:60px;border-radius:8px;margin-bottom:10px;"></div>
+                <div class="skeleton skel-line" style="width:90%;"></div>
+                <div class="skeleton skel-line" style="width:70%;"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ STAT ROW ══════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Stats &amp; Metrics</td></tr>
+
+        <tr>
+          <td class="comp-name">KPI stat row<small>dashboard overview</small></td>
+          <td class="comp-desc">Compact metric tiles with trend colour. Uses surface-1 background, text-primary value, and success/error tinted change labels.</td>
+          <td class="comp-preview">
+            <div class="stat-row" style="max-width:420px;">
+              <div class="stat-item">
+                <div class="stat-label">Revenue</div>
+                <div class="stat-value" data-wcag-check>$84k</div>
+                <div class="stat-change" style="color:var(--kz-success-text);">↑ 12%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Users</div>
+                <div class="stat-value">4,821</div>
+                <div class="stat-change" style="color:var(--kz-success-text);">↑ 7%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Churn</div>
+                <div class="stat-value">2.4%</div>
+                <div class="stat-change" style="color:var(--kz-error-text);">↑ 0.3%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">NPS</div>
+                <div class="stat-value">68</div>
+                <div class="stat-change" style="color:var(--kz-text-tertiary);">— stable</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="comp-name">Stat bar chart<small>horizontal bars</small></td>
+          <td class="comp-desc">Horizontal bar rows with label, fill, and percentage. Surface-3 track with semantic fill colours derived from brand and semantic tokens.</td>
+          <td class="comp-preview">
+            <div style="min-width:240px;max-width:320px;">
+              <div class="stat-bar-row">
+                <span class="stat-bar-label" data-wcag-check>Design</span>
+                <div class="stat-bar-track"><div class="stat-bar-fill" style="width:82%;background:var(--kz-brand-primary);"></div></div>
+                <span class="stat-bar-val">82%</span>
+              </div>
+              <div class="stat-bar-row">
+                <span class="stat-bar-label">Frontend</span>
+                <div class="stat-bar-track"><div class="stat-bar-fill" style="width:67%;background:var(--kz-info-bg-solid);"></div></div>
+                <span class="stat-bar-val">67%</span>
+              </div>
+              <div class="stat-bar-row">
+                <span class="stat-bar-label">Backend</span>
+                <div class="stat-bar-track"><div class="stat-bar-fill" style="width:54%;background:var(--kz-success-bg-solid);"></div></div>
+                <span class="stat-bar-val">54%</span>
+              </div>
+              <div class="stat-bar-row">
+                <span class="stat-bar-label">DevOps</span>
+                <div class="stat-bar-track"><div class="stat-bar-fill" style="width:38%;background:var(--kz-warning-bg-solid);"></div></div>
+                <span class="stat-bar-val">38%</span>
+              </div>
+              <div class="stat-bar-row">
+                <span class="stat-bar-label">Security</span>
+                <div class="stat-bar-track"><div class="stat-bar-fill" style="width:21%;background:var(--kz-error-bg-solid);"></div></div>
+                <span class="stat-bar-val">21%</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ TIMELINE ══════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Timeline</td></tr>
+
+        <tr>
+          <td class="comp-name">Activity timeline<small>vertical feed</small></td>
+          <td class="comp-desc">Chronological event log with semantic dot colours. Active (in-progress) uses brand-primary, completed uses success-bg-solid, pending uses stroke-default.</td>
+          <td class="comp-preview">
+            <ul class="timeline" aria-label="Project timeline" style="max-width:280px;">
+              <li class="tl-item">
+                <span class="tl-dot success" aria-label="Completed"></span>
+                <div class="tl-title" data-wcag-check>v1.7.0 shipped</div>
+                <div class="tl-meta">3 days ago · Samitha H.</div>
+                <div class="tl-body">Warm-neutral surface palette + dark-mode refresh.</div>
+              </li>
+              <li class="tl-item">
+                <span class="tl-dot brand" aria-label="In progress"></span>
+                <div class="tl-title">v1.7.2 in review</div>
+                <div class="tl-meta">Today · CI passing</div>
+                <div class="tl-body">Showcase updated with brand application cards.</div>
+              </li>
+              <li class="tl-item">
+                <span class="tl-dot muted" aria-label="Planned"></span>
+                <div class="tl-title">v2.0 planned</div>
+                <div class="tl-meta">Q3 2026 · Roadmap</div>
+                <div class="tl-body">Multi-brand theming via CSS layer cascade.</div>
+              </li>
+            </ul>
+          </td>
+        </tr>
+
+        <!-- ══ EMPTY STATES ═══════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Empty States</td></tr>
+
+        <tr>
+          <td class="comp-name">Empty state<small>zero-data pattern</small></td>
+          <td class="comp-desc">Shown when a list, table, or feed has no content. Dashed border uses stroke-default, icon uses surface-3 background. CTA uses the primary button.</td>
+          <td class="comp-preview">
+            <div class="flex-row" style="align-items:flex-start;flex-wrap:wrap;gap:14px;">
+              <div class="empty-state">
+                <div class="empty-icon" aria-hidden="true"><i data-lucide="inbox"></i></div>
+                <div class="empty-title" data-wcag-check>No notifications</div>
+                <div class="empty-desc">You're all caught up. New notifications will appear here.</div>
+              </div>
+              <div class="empty-state">
+                <div class="empty-icon" aria-hidden="true"><i data-lucide="file-x"></i></div>
+                <div class="empty-title">No results found</div>
+                <div class="empty-desc">Try adjusting your filters or search term.</div>
+                <button class="btn btn-primary btn-sm">Clear filters</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ COMMAND PALETTE ════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Command Palette</td></tr>
+
+        <tr>
+          <td class="comp-name">Command palette<small>⌘K pattern</small></td>
+          <td class="comp-desc">Keyboard-first search/action surface. Active item uses brand-bg-subtle + brand-text. Keyboard shortcut hints use surface-3 key chips. Footer uses surface-2.</td>
+          <td class="comp-preview">
+            <div class="cmd-palette" role="dialog" aria-label="Command palette" aria-modal="true">
+              <div class="cmd-input-row">
+                <i data-lucide="search" aria-hidden="true"></i>
+                <input class="cmd-input" type="text" placeholder="Search commands…" value="tok" aria-label="Search" />
+                <span class="cmd-key">Esc</span>
+              </div>
+              <div>
+                <div class="cmd-section-label">Tokens</div>
+                <div class="cmd-item active" role="option" aria-selected="true" data-wcag-check>
+                  <i data-lucide="palette" aria-hidden="true"></i>
+                  View design tokens
+                  <span class="cmd-item-shortcut">↵</span>
+                </div>
+                <div class="cmd-item" role="option">
+                  <i data-lucide="copy" aria-hidden="true"></i>
+                  Copy token as CSS var
+                  <span class="cmd-item-shortcut">⌘C</span>
+                </div>
+                <div class="cmd-section-label">Navigation</div>
+                <div class="cmd-item" role="option">
+                  <i data-lucide="layout-dashboard" aria-hidden="true"></i>
+                  Go to Dashboard
+                </div>
+                <div class="cmd-item" role="option">
+                  <i data-lucide="settings" aria-hidden="true"></i>
+                  Open Settings
+                  <span class="cmd-item-shortcut">⌘,</span>
+                </div>
+              </div>
+              <div class="cmd-footer">
+                <span class="cmd-hint"><span class="cmd-key">↑↓</span> navigate</span>
+                <span class="cmd-hint"><span class="cmd-key">↵</span> select</span>
+                <span class="cmd-hint"><span class="cmd-key">Esc</span> close</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ NOTIFICATION PANEL ════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Notification Panel</td></tr>
+
+        <tr>
+          <td class="comp-name">Notification feed<small>unread state</small></td>
+          <td class="comp-desc">Unread items use brand-bg-subtle background with brand-primary dot indicator. Read items use default surface. Hover lifts to surface-2.</td>
+          <td class="comp-preview">
+            <div class="notif-panel" role="region" aria-label="Notifications">
+              <div class="notif-header">
+                <span class="notif-header-title" data-wcag-check>Notifications</span>
+                <button class="btn btn-ghost btn-sm" style="font-size:11px;">Mark all read</button>
+              </div>
+              <div class="notif-item unread">
+                <span class="notif-dot" aria-label="Unread"></span>
+                <div class="notif-body">
+                  <div class="notif-text"><strong>Samitha</strong> merged PR #42 — Warm-neutral surface refresh</div>
+                  <div class="notif-time">2 min ago</div>
+                </div>
+              </div>
+              <div class="notif-item unread">
+                <span class="notif-dot" aria-label="Unread"></span>
+                <div class="notif-body">
+                  <div class="notif-text">CI passed on <strong>main</strong> — v1.7.2 ready to deploy</div>
+                  <div class="notif-time">18 min ago</div>
+                </div>
+              </div>
+              <div class="notif-item">
+                <span class="notif-dot read" aria-label="Read"></span>
+                <div class="notif-body">
+                  <div class="notif-text"><strong>Alex</strong> left a comment on the showcase PR</div>
+                  <div class="notif-time">1 hour ago</div>
+                </div>
+              </div>
+              <div class="notif-item">
+                <span class="notif-dot read" aria-label="Read"></span>
+                <div class="notif-body">
+                  <div class="notif-text">Token validation script completed with 0 errors</div>
+                  <div class="notif-time">3 hours ago</div>
+                </div>
               </div>
             </div>
           </td>

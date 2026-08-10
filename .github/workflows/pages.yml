@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'examples/showcase.html'
+      - 'src/tokens.ts'          # token value changes reflected in showcase CSS vars
+      - 'component-contract.yaml' # contract changes may trigger showcase AI sync first
   workflow_dispatch:
 
 permissions:

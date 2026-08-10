@@ -351,6 +351,7 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 
 ### Surfaces
 
+<!-- kz:autogen:start:surfaces -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
 | `--surface-0` | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF?style=flat-square) | `#FFFFFF` | ![#0C0A0B](https://img.shields.io/badge/-%230C0A0B-0C0A0B?style=flat-square) | `#0C0A0B` |
@@ -360,9 +361,11 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--surface-4` | ![#E4E1DE](https://img.shields.io/badge/-%23E4E1DE-E4E1DE?style=flat-square) | `#E4E1DE` | ![#2B2728](https://img.shields.io/badge/-%232B2728-2B2728?style=flat-square) | `#2B2728` |
 | `--surface-5` | ![#DAD7D3](https://img.shields.io/badge/-%23DAD7D3-DAD7D3?style=flat-square) | `#DAD7D3` | ![#342F31](https://img.shields.io/badge/-%23342F31-342F31?style=flat-square) | `#342F31` |
 | `--surface-kpi` | — | — | — | `rgba(28,25,26,0.72)` |
+<!-- kz:autogen:end:surfaces -->
 
 ### Text
 
+<!-- kz:autogen:start:text -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
 | `--text-primary` | ![#231F20](https://img.shields.io/badge/-%23231F20-231F20?style=flat-square) | `#231F20` | ![#F5F4F2](https://img.shields.io/badge/-%23F5F4F2-F5F4F2?style=flat-square) | `#F5F4F2` |
@@ -371,9 +374,11 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--text-accent` | ![#5153F6](https://img.shields.io/badge/-%235153F6-5153F6?style=flat-square) | `#5153F6` | ![#7475FF](https://img.shields.io/badge/-%237475FF-7475FF?style=flat-square) | `#7475FF` |
 | `--text-disabled` | ![#A6A2A3](https://img.shields.io/badge/-%23A6A2A3-A6A2A3?style=flat-square) | `#A6A2A3` | ![#5A5556](https://img.shields.io/badge/-%235A5556-5A5556?style=flat-square) | `#5A5556` |
 | `--text-inverse` | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF?style=flat-square) | `#FFFFFF` | ![#231F20](https://img.shields.io/badge/-%23231F20-231F20?style=flat-square) | `#231F20` |
+<!-- kz:autogen:end:text -->
 
 ### Strokes
 
+<!-- kz:autogen:start:strokes -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
 | `--stroke-subtle` | ![#EDEBE8](https://img.shields.io/badge/-%23EDEBE8-EDEBE8?style=flat-square) | `#EDEBE8` | ![#2B2728](https://img.shields.io/badge/-%232B2728-2B2728?style=flat-square) | `#2B2728` |
@@ -381,9 +386,11 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--stroke-strong` | ![#B9B5B2](https://img.shields.io/badge/-%23B9B5B2-B9B5B2?style=flat-square) | `#B9B5B2` | ![#524D4F](https://img.shields.io/badge/-%23524D4F-524D4F?style=flat-square) | `#524D4F` |
 | `--stroke-hover` | ![#9E9A97](https://img.shields.io/badge/-%239E9A97-9E9A97?style=flat-square) | `#9E9A97` | ![#6E6869](https://img.shields.io/badge/-%236E6869-6E6869?style=flat-square) | `#6E6869` |
 | `--stroke-interactive` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
+<!-- kz:autogen:end:strokes -->
 
 ### Brand
 
+<!-- kz:autogen:start:brand -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
 | `--brand-primary` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
@@ -395,9 +402,11 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--brand-text` | ![#A04C31](https://img.shields.io/badge/-%23A04C31-A04C31?style=flat-square) | `#A04C31` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
 | `--brand-gradient-1` | ![#F89474](https://img.shields.io/badge/-%23F89474-F89474?style=flat-square) | `#F89474` | ![#F89474](https://img.shields.io/badge/-%23F89474-F89474?style=flat-square) | `#F89474` |
 | `--brand-gradient-2` | ![#F0673D](https://img.shields.io/badge/-%23F0673D-F0673D?style=flat-square) | `#F0673D` | ![#F0673D](https://img.shields.io/badge/-%23F0673D-F0673D?style=flat-square) | `#F0673D` |
+<!-- kz:autogen:end:brand -->
 
 ### Semantic — Error
 
+<!-- kz:autogen:start:semantic-error -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
 | `--error-bg-solid` | ![#DC2626](https://img.shields.io/badge/-%23DC2626-DC2626?style=flat-square) | `#DC2626` | ![#F46969](https://img.shields.io/badge/-%23F46969-F46969?style=flat-square) | `#F46969` |
@@ -405,9 +414,11 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--error-border` | ![#B91C1C](https://img.shields.io/badge/-%23B91C1C-B91C1C?style=flat-square) | `#B91C1C` | ![#F59E0B](https://img.shields.io/badge/-%23F59E0B-F59E0B?style=flat-square) | `#F59E0B` |
 | `--error-border-subtle` | — | `rgba(220,38,38,0.40)` | — | `rgba(244,105,105,0.40)` |
 | `--error-text` | ![#7F1D1D](https://img.shields.io/badge/-%237F1D1D-7F1D1D?style=flat-square) | `#7F1D1D` | ![#F98585](https://img.shields.io/badge/-%23F98585-F98585?style=flat-square) | `#F98585` |
+<!-- kz:autogen:end:semantic-error -->
 
 ### Semantic — Success
 
+<!-- kz:autogen:start:semantic-success -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
 | `--success-bg-solid` | ![#16A34A](https://img.shields.io/badge/-%2316A34A-16A34A?style=flat-square) | `#16A34A` | ![#22C55E](https://img.shields.io/badge/-%2322C55E-22C55E?style=flat-square) | `#22C55E` |
@@ -415,9 +426,11 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--success-border` | ![#15803D](https://img.shields.io/badge/-%2315803D-15803D?style=flat-square) | `#15803D` | ![#005C39](https://img.shields.io/badge/-%23005C39-005C39?style=flat-square) | `#005C39` |
 | `--success-border-subtle` | — | `rgba(22,163,74,0.40)` | — | `rgba(34,197,94,0.40)` |
 | `--success-text` | ![#14532D](https://img.shields.io/badge/-%2314532D-14532D?style=flat-square) | `#14532D` | ![#4ADE80](https://img.shields.io/badge/-%234ADE80-4ADE80?style=flat-square) | `#4ADE80` |
+<!-- kz:autogen:end:semantic-success -->
 
 ### Semantic — Warning
 
+<!-- kz:autogen:start:semantic-warning -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
 | `--warning-bg-solid` | ![#D97706](https://img.shields.io/badge/-%23D97706-D97706?style=flat-square) | `#D97706` | ![#F59E0B](https://img.shields.io/badge/-%23F59E0B-F59E0B?style=flat-square) | `#F59E0B` |
@@ -425,9 +438,11 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--warning-border` | ![#B45309](https://img.shields.io/badge/-%23B45309-B45309?style=flat-square) | `#B45309` | ![#71491E](https://img.shields.io/badge/-%2371491E-71491E?style=flat-square) | `#71491E` |
 | `--warning-border-subtle` | — | `rgba(217,119,6,0.40)` | — | `rgba(245,158,11,0.40)` |
 | `--warning-text` | ![#78350F](https://img.shields.io/badge/-%2378350F-78350F?style=flat-square) | `#78350F` | ![#FBBF24](https://img.shields.io/badge/-%23FBBF24-FBBF24?style=flat-square) | `#FBBF24` |
+<!-- kz:autogen:end:semantic-warning -->
 
 ### Semantic — Info
 
+<!-- kz:autogen:start:semantic-info -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
 | `--info-bg-solid` | ![#2563EB](https://img.shields.io/badge/-%232563EB-2563EB?style=flat-square) | `#2563EB` | ![#3B82F6](https://img.shields.io/badge/-%233B82F6-3B82F6?style=flat-square) | `#3B82F6` |
@@ -435,6 +450,7 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--info-border` | ![#1D4ED8](https://img.shields.io/badge/-%231D4ED8-1D4ED8?style=flat-square) | `#1D4ED8` | ![#15407B](https://img.shields.io/badge/-%2315407B-15407B?style=flat-square) | `#15407B` |
 | `--info-border-subtle` | — | `rgba(37,99,235,0.40)` | — | `rgba(59,130,246,0.40)` |
 | `--info-text` | ![#1E3A8A](https://img.shields.io/badge/-%231E3A8A-1E3A8A?style=flat-square) | `#1E3A8A` | ![#6AAAFA](https://img.shields.io/badge/-%236AAAFA-6AAAFA?style=flat-square) | `#6AAAFA` |
+<!-- kz:autogen:end:semantic-info -->
 
 ---
 
