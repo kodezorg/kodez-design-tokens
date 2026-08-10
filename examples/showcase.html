@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kodez Design Tokens v1.7.2 — Component Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Tokens: light ───────────────────────────────────────────────────────── */
+    :root {
+      --kz-brand-primary:#FF7F56;--kz-brand-hover:#CB6241;--kz-brand-active:#743622;
+      --kz-brand-bg-subtle:rgba(255,127,86,0.12);--kz-brand-border:#743622;
+      --kz-brand-border-subtle:rgba(255,127,86,0.40);--kz-brand-text:#A04C31;
+      --kz-brand-gradient-1:#F89474;--kz-brand-gradient-2:#F0673D;
+      --kz-surface-0:#FFFFFF;--kz-surface-1:#F9F8F7;--kz-surface-2:#F5F4F2;
+      --kz-surface-3:#EDEBE8;--kz-surface-4:#E4E1DE;--kz-surface-5:#DAD7D3;
+      --kz-stroke-subtle:#EDEBE8;--kz-stroke-default:#D5D2CE;
+      --kz-stroke-strong:#B9B5B2;--kz-stroke-hover:#9E9A97;--kz-stroke-interactive:#FF7F56;
+      --kz-success-bg-solid:#16A34A;--kz-success-bg-subtle:rgba(22,163,74,0.08);
+      --kz-success-border:#15803D;--kz-success-border-subtle:rgba(22,163,74,0.40);--kz-success-text:#14532D;
+      --kz-warning-bg-solid:#D97706;--kz-warning-bg-subtle:rgba(217,119,6,0.08);
+      --kz-warning-border:#B45309;--kz-warning-border-subtle:rgba(217,119,6,0.40);--kz-warning-text:#78350F;
+      --kz-error-bg-solid:#DC2626;--kz-error-bg-subtle:rgba(220,38,38,0.08);
+      --kz-error-border:#B91C1C;--kz-error-border-subtle:rgba(220,38,38,0.40);--kz-error-text:#7F1D1D;
+      --kz-info-bg-solid:#2563EB;--kz-info-bg-subtle:rgba(37,99,235,0.08);
+      --kz-info-border:#1D4ED8;--kz-info-border-subtle:rgba(37,99,235,0.40);--kz-info-text:#1E3A8A;
+      --kz-text-primary:#231F20;--kz-text-secondary:#4A4546;--kz-text-tertiary:#6F6B6C;
+      --kz-text-accent:#5153F6;--kz-text-disabled:#A6A2A3;--kz-text-inverse:#FFFFFF;
+    }
+    /* ── Tokens: dark ────────────────────────────────────────────────────────── */
+    .dark {
+      --kz-brand-primary:#FF7F56;--kz-brand-hover:#F89474;--kz-brand-active:#FAAF97;
+      --kz-brand-bg-subtle:rgba(255,127,86,0.16);--kz-brand-border:#FF7F56;
+      --kz-brand-border-subtle:rgba(255,127,86,0.40);--kz-brand-text:#FF7F56;
+      --kz-brand-gradient-1:#F89474;--kz-brand-gradient-2:#F0673D;
+      --kz-surface-0:#0C0A0B;--kz-surface-1:#131112;--kz-surface-2:#1C191A;
+      --kz-surface-3:#231F20;--kz-surface-4:#2B2728;--kz-surface-5:#342F31;
+      --kz-stroke-subtle:#2B2728;--kz-stroke-default:#3D3839;
+      --kz-stroke-strong:#524D4F;--kz-stroke-hover:#6E6869;--kz-stroke-interactive:#FF7F56;
+      --kz-success-bg-solid:#22C55E;--kz-success-bg-subtle:rgba(34,197,94,0.16);
+      --kz-success-border:#005C39;--kz-success-border-subtle:rgba(34,197,94,0.40);--kz-success-text:#4ADE80;
+      --kz-warning-bg-solid:#F59E0B;--kz-warning-bg-subtle:rgba(245,158,11,0.16);
+      --kz-warning-border:#71491E;--kz-warning-border-subtle:rgba(245,158,11,0.40);--kz-warning-text:#FBBF24;
+      --kz-error-bg-solid:#F46969;--kz-error-bg-subtle:rgba(244,105,105,0.16);
+      --kz-error-border:#F59E0B;--kz-error-border-subtle:rgba(244,105,105,0.40);--kz-error-text:#F98585;
+      --kz-info-bg-solid:#3B82F6;--kz-info-bg-subtle:rgba(59,130,246,0.16);
+      --kz-info-border:#15407B;--kz-info-border-subtle:rgba(59,130,246,0.40);--kz-info-text:#6AAAFA;
+      --kz-text-primary:#F5F4F2;--kz-text-secondary:#BDB7B8;--kz-text-tertiary:#837D7E;
+      --kz-text-accent:#7475FF;--kz-text-disabled:#5A5556;--kz-text-inverse:#231F20;
+    }
+    @media(prefers-color-scheme:dark){:root:not(.light){
+      --kz-brand-primary:#FF7F56;--kz-brand-hover:#F89474;--kz-brand-active:#FAAF97;
+      --kz-brand-bg-subtle:rgba(255,127,86,0.16);--kz-brand-border:#FF7F56;
+      --kz-brand-border-subtle:rgba(255,127,86,0.40);--kz-brand-text:#FF7F56;
+      --kz-surface-0:#0C0A0B;--kz-surface-1:#131112;--kz-surface-2:#1C191A;
+      --kz-surface-3:#231F20;--kz-surface-4:#2B2728;--kz-surface-5:#342F31;
+      --kz-stroke-subtle:#2B2728;--kz-stroke-default:#3D3839;
+      --kz-stroke-strong:#524D4F;--kz-stroke-hover:#6E6869;--kz-stroke-interactive:#FF7F56;
+      --kz-success-bg-solid:#22C55E;--kz-success-bg-subtle:rgba(34,197,94,0.16);
+      --kz-success-border:#005C39;--kz-success-border-subtle:rgba(34,197,94,0.40);--kz-success-text:#4ADE80;
+      --kz-warning-bg-solid:#F59E0B;--kz-warning-bg-subtle:rgba(245,158,11,0.16);
+      --kz-warning-border:#71491E;--kz-warning-border-subtle:rgba(245,158,11,0.40);--kz-warning-text:#FBBF24;
+      --kz-error-bg-solid:#F46969;--kz-error-bg-subtle:rgba(244,105,105,0.16);
+      --kz-error-border:#F59E0B;--kz-error-border-subtle:rgba(244,105,105,0.40);--kz-error-text:#F98585;
+      --kz-info-bg-solid:#3B82F6;--kz-info-bg-subtle:rgba(59,130,246,0.16);
+      --kz-info-border:#15407B;--kz-info-border-subtle:rgba(59,130,246,0.40);--kz-info-text:#6AAAFA;
+      --kz-text-primary:#F5F4F2;--kz-text-secondary:#BDB7B8;--kz-text-tertiary:#837D7E;
+      --kz-text-accent:#7475FF;--kz-text-disabled:#5A5556;--kz-text-inverse:#231F20;
+    }}
+
+    /* ── Reset & base ────────────────────────────────────────────────────────── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.6;
+      background:var(--kz-surface-0);color:var(--kz-text-primary);
+      -webkit-font-smoothing:antialiased;transition:background .2s,color .2s;}
+    :focus-visible{outline:2px solid var(--kz-stroke-interactive);outline-offset:3px;border-radius:4px;}
+
+    /* ── Header ──────────────────────────────────────────────────────────────── */
+    .site-header{
+      position:sticky;top:0;z-index:100;
+      background:var(--kz-surface-1);border-bottom:1px solid var(--kz-stroke-subtle);
+      backdrop-filter:blur(8px);
+    }
+    .header-inner{
+      max-width:1200px;margin:0 auto;padding:0 24px;
+      display:flex;align-items:center;justify-content:space-between;height:54px;
+    }
+    .site-logo{
+      font-size:15px;font-weight:700;letter-spacing:-.02em;
+      color:var(--kz-text-primary);text-decoration:none;
+      display:flex;align-items:center;gap:8px;
+    }
+    .logo-dot{width:9px;height:9px;border-radius:50%;background:var(--kz-brand-primary);display:inline-block;}
+    .header-meta{font-size:12px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;}
+    .theme-toggle{
+      width:36px;height:36px;border-radius:8px;border:1px solid var(--kz-stroke-default);
+      background:var(--kz-surface-2);color:var(--kz-text-secondary);
+      cursor:pointer;display:flex;align-items:center;justify-content:center;
+      transition:background .15s,border-color .15s;
+    }
+    .theme-toggle:hover{background:var(--kz-surface-3);border-color:var(--kz-stroke-hover);}
+
+    /* ── Page wrapper ────────────────────────────────────────────────────────── */
+    main{max-width:1200px;margin:0 auto;padding:32px 24px 80px;}
+
+    /* ── Reference table ─────────────────────────────────────────────────────── */
+    .ref-table{
+      width:100%;border-collapse:collapse;
+      border:1px solid var(--kz-stroke-subtle);border-radius:12px;overflow:hidden;
+    }
+    /* column widths */
+    .ref-table col.col-name{width:180px;}
+    .ref-table col.col-desc{width:280px;}
+    .ref-table col.col-preview{width:auto;}
+
+    .ref-table thead th{
+      padding:10px 16px;text-align:left;
+      font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--kz-text-tertiary);background:var(--kz-surface-1);
+      border-bottom:1px solid var(--kz-stroke-subtle);
+    }
+    /* section header row */
+    .ref-table .sec-row td{
+      padding:10px 16px;
+      font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--kz-text-tertiary);
+      background:var(--kz-surface-2);
+      border-top:1px solid var(--kz-stroke-subtle);
+      border-bottom:1px solid var(--kz-stroke-subtle);
+    }
+    /* component rows */
+    .ref-table tbody tr:not(.sec-row){background:var(--kz-surface-0);transition:background .1s;}
+    .ref-table tbody tr:not(.sec-row):hover{background:var(--kz-surface-1);}
+    .ref-table td{border-bottom:1px solid var(--kz-stroke-subtle);vertical-align:top;}
+    .ref-table tbody tr:last-child td{border-bottom:none;}
+
+    .comp-name{
+      padding:16px;
+      font-size:13px;font-weight:600;
+      color:var(--kz-text-primary);font-family:'JetBrains Mono',monospace;
+      white-space:nowrap;
+    }
+    .comp-name small{
+      display:block;margin-top:3px;
+      font-size:10px;font-weight:400;color:var(--kz-text-tertiary);
+      font-family:'Inter',sans-serif;
+    }
+    .comp-desc{
+      padding:16px 16px 16px 0;
+      font-size:13px;color:var(--kz-text-secondary);line-height:1.55;
+    }
+    .comp-preview{
+      padding:16px;
+      position:relative; /* AA badge anchors here */
+    }
+
+    /* ── AA badge (absolute top-right of preview cell) ───────────────────────── */
+    .aa-badge{
+      position:absolute;top:10px;right:10px;
+      display:inline-flex;align-items:center;gap:3px;
+      padding:3px 8px;border-radius:5px;
+      font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;
+      white-space:nowrap;pointer-events:none;z-index:1;border:1px solid;
+    }
+    .aa-aaa{background:var(--kz-success-bg-subtle);color:var(--kz-success-text);border-color:var(--kz-success-border-subtle);}
+    .aa-aa {background:var(--kz-info-bg-subtle);   color:var(--kz-info-text);   border-color:var(--kz-info-border-subtle);}
+    .aa-low{background:var(--kz-warning-bg-subtle);color:var(--kz-warning-text);border-color:var(--kz-warning-border-subtle);}
+    .aa-fail{background:var(--kz-error-bg-subtle); color:var(--kz-error-text);  border-color:var(--kz-error-border-subtle);}
+
+    /* ── Swatches ────────────────────────────────────────────────────────────── */
+    .swatches{display:flex;flex-wrap:wrap;gap:10px;}
+    .swatch{display:flex;flex-direction:column;gap:5px;}
+    .swatch-color{width:64px;height:48px;border-radius:8px;border:1px solid rgba(0,0,0,0.07);}
+    .swatch-name{font-size:11px;color:var(--kz-text-secondary);font-weight:500;}
+    .swatch-hex{font-size:10px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;}
+
+    /* ── Surface chips ───────────────────────────────────────────────────────── */
+    .surf-chip{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 16px;border-radius:8px;font-size:12px;font-family:'JetBrains Mono',monospace;
+      border:1px solid var(--kz-stroke-subtle);min-width:120px;
+    }
+
+    /* ── Buttons ─────────────────────────────────────────────────────────────── */
+    .btn{
+      display:inline-flex;align-items:center;gap:7px;
+      padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;
+      border:1px solid transparent;cursor:pointer;white-space:nowrap;
+      transition:background .15s,color .15s,border-color .15s;
+      font-family:inherit;line-height:1;text-decoration:none;
+    }
+    .btn svg{width:15px;height:15px;flex-shrink:0;}
+    .btn-primary{background:var(--kz-brand-primary);color:var(--kz-text-primary);border-color:var(--kz-brand-primary);}
+    .btn-primary:hover{background:var(--kz-brand-hover);border-color:var(--kz-brand-hover);}
+    .dark .btn-primary{color:var(--kz-surface-0);}
+    @media(prefers-color-scheme:dark){:root:not(.light) .btn-primary{color:var(--kz-surface-0);}}
+    .btn-secondary{background:var(--kz-surface-2);color:var(--kz-text-primary);border-color:var(--kz-stroke-default);}
+    .btn-secondary:hover{background:var(--kz-surface-3);border-color:var(--kz-stroke-hover);}
+    .btn-outline{background:transparent;color:var(--kz-brand-active);border-color:var(--kz-brand-border);}
+    .btn-outline:hover{background:var(--kz-brand-bg-subtle);}
+    .btn-ghost{background:transparent;color:var(--kz-text-secondary);border-color:transparent;}
+    .btn-ghost:hover{background:var(--kz-surface-2);color:var(--kz-text-primary);}
+    .btn-danger{background:var(--kz-error-bg-solid);color:var(--kz-text-inverse);border-color:var(--kz-error-bg-solid);}
+    .btn-danger:hover{background:var(--kz-error-border);}
+    .btn:disabled{opacity:.4;cursor:not-allowed;pointer-events:none;}
+    .btn-sm{padding:5px 11px;font-size:12px;border-radius:6px;}
+    .btn-lg{padding:11px 22px;font-size:14px;border-radius:10px;}
+    .btn-icon{padding:8px;}
+    .btn-group{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+
+    /* ── Badges ──────────────────────────────────────────────────────────────── */
+    .badge{
+      display:inline-flex;align-items:center;gap:4px;
+      padding:3px 10px;border-radius:999px;font-size:12px;font-weight:500;border:1px solid;
+    }
+    .badge svg{width:11px;height:11px;}
+    .badge-error  {background:var(--kz-error-bg-subtle);  color:var(--kz-error-text);  border-color:var(--kz-error-border-subtle);}
+    .badge-success{background:var(--kz-success-bg-subtle);color:var(--kz-success-text);border-color:var(--kz-success-border-subtle);}
+    .badge-warning{background:var(--kz-warning-bg-subtle);color:var(--kz-warning-text);border-color:var(--kz-warning-border-subtle);}
+    .badge-info   {background:var(--kz-info-bg-subtle);   color:var(--kz-info-text);   border-color:var(--kz-info-border-subtle);}
+    .badge-neutral{background:var(--kz-surface-3);        color:var(--kz-text-secondary);border-color:var(--kz-stroke-default);}
+    .badge-brand  {background:var(--kz-brand-bg-subtle);  color:var(--kz-brand-active); border-color:var(--kz-brand-border-subtle);}
+    .badge-solid-error  {background:var(--kz-error-text);  color:var(--kz-surface-0);border-color:transparent;}
+    .badge-solid-success{background:var(--kz-success-text);color:var(--kz-surface-0);border-color:transparent;}
+    .badge-solid-warning{background:var(--kz-warning-text);color:var(--kz-surface-0);border-color:transparent;}
+    .badge-solid-info   {background:var(--kz-info-text);   color:var(--kz-surface-0);border-color:transparent;}
+    .badge-solid-brand  {background:var(--kz-brand-active);color:var(--kz-surface-0);border-color:transparent;}
+
+    /* ── Form elements ───────────────────────────────────────────────────────── */
+    .input{
+      display:block;width:100%;max-width:280px;
+      padding:8px 11px;border-radius:8px;font-size:13px;
+      border:1px solid var(--kz-stroke-default);
+      background:var(--kz-surface-0);color:var(--kz-text-primary);
+      font-family:inherit;outline:none;
+      transition:border-color .15s,box-shadow .15s;
+    }
+    .input::placeholder{color:var(--kz-text-disabled);}
+    .input:hover{border-color:var(--kz-stroke-hover);}
+    .input:focus{border-color:var(--kz-stroke-interactive);box-shadow:0 0 0 3px rgba(255,127,86,.15);}
+    .input.error{border-color:var(--kz-error-border);}
+    .input.success{border-color:var(--kz-success-border);}
+    .input:disabled{background:var(--kz-surface-2);color:var(--kz-text-disabled);cursor:not-allowed;}
+    .form-hint{font-size:11px;color:var(--kz-text-secondary);margin-top:4px;}
+    .form-error-msg{font-size:11px;color:var(--kz-error-text);margin-top:4px;display:flex;align-items:center;gap:3px;}
+    .form-success-msg{font-size:11px;color:var(--kz-success-text);margin-top:4px;}
+    .check-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+    .check-row input{accent-color:var(--kz-brand-primary);width:15px;height:15px;cursor:pointer;}
+    .check-label{font-size:13px;color:var(--kz-text-primary);}
+    /* switch */
+    .switch{
+      width:38px;height:21px;border-radius:999px;background:var(--kz-stroke-strong);
+      position:relative;cursor:pointer;border:none;appearance:none;outline:none;
+      transition:background .2s;flex-shrink:0;
+    }
+    .switch:checked{background:var(--kz-brand-primary);}
+    .switch::after{
+      content:'';position:absolute;top:2.5px;left:2.5px;
+      width:16px;height:16px;border-radius:50%;background:#fff;
+      transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.25);
+    }
+    .switch:checked::after{transform:translateX(17px);}
+    .switch:focus-visible{outline:2px solid var(--kz-stroke-interactive);outline-offset:3px;}
+
+    /* ── Alerts ──────────────────────────────────────────────────────────────── */
+    .alert{
+      display:flex;align-items:flex-start;gap:10px;
+      padding:12px 14px;border-radius:10px;border:1px solid;margin-bottom:8px;
+    }
+    .alert:last-child{margin-bottom:0;}
+    .alert svg{width:16px;height:16px;flex-shrink:0;margin-top:1px;}
+    .alert-body{flex:1;}
+    .alert-title{font-size:13px;font-weight:600;margin-bottom:2px;}
+    .alert-desc{font-size:12px;opacity:.85;line-height:1.5;}
+    .alert-error  {background:var(--kz-error-bg-subtle);  color:var(--kz-error-text);  border-color:var(--kz-error-border-subtle);}
+    .alert-success{background:var(--kz-success-bg-subtle);color:var(--kz-success-text);border-color:var(--kz-success-border-subtle);}
+    .alert-warning{background:var(--kz-warning-bg-subtle);color:var(--kz-warning-text);border-color:var(--kz-warning-border-subtle);}
+    .alert-info   {background:var(--kz-info-bg-subtle);   color:var(--kz-info-text);   border-color:var(--kz-info-border-subtle);}
+
+    /* ── Cards ───────────────────────────────────────────────────────────────── */
+    .card{
+      background:var(--kz-surface-1);border:1px solid var(--kz-stroke-subtle);
+      border-radius:12px;padding:16px;
+    }
+    .card-title{font-size:14px;font-weight:600;color:var(--kz-text-primary);margin-bottom:4px;}
+    .card-desc{font-size:12px;color:var(--kz-text-secondary);line-height:1.5;}
+    .card-icon{
+      width:36px;height:36px;border-radius:9px;margin-bottom:10px;
+      background:var(--kz-brand-bg-subtle);color:var(--kz-brand-primary);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .card-icon svg{width:18px;height:18px;}
+    .kpi-value{font-size:26px;font-weight:700;letter-spacing:-.03em;color:var(--kz-text-primary);}
+    .kpi-label{font-size:12px;color:var(--kz-text-secondary);margin-bottom:4px;}
+    .kpi-change{
+      display:inline-flex;align-items:center;gap:3px;
+      font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;margin-top:6px;
+    }
+    .kpi-up{background:var(--kz-success-bg-subtle);color:var(--kz-success-text);}
+    .kpi-down{background:var(--kz-error-bg-subtle);color:var(--kz-error-text);}
+    .kpi-change svg{width:12px;height:12px;}
+    .card-error  {border-color:var(--kz-error-border-subtle);  background:var(--kz-error-bg-subtle);}
+    .card-success{border-color:var(--kz-success-border-subtle);background:var(--kz-success-bg-subtle);}
+    .card-warning{border-color:var(--kz-warning-border-subtle);background:var(--kz-warning-bg-subtle);}
+    .card-info   {border-color:var(--kz-info-border-subtle);   background:var(--kz-info-bg-subtle);}
+    .card-semantic-icon{display:flex;align-items:flex-start;gap:10px;}
+    .card-semantic-icon svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;}
+    .card-error   .card-title{color:var(--kz-error-text);}
+    .card-success .card-title{color:var(--kz-success-text);}
+    .card-warning .card-title{color:var(--kz-warning-text);}
+    .card-info    .card-title{color:var(--kz-info-text);}
+    .card-error   .card-desc{color:var(--kz-error-text);opacity:.85;}
+    .card-success .card-desc{color:var(--kz-success-text);opacity:.85;}
+    .card-warning .card-desc{color:var(--kz-warning-text);opacity:.85;}
+    .card-info    .card-desc{color:var(--kz-info-text);opacity:.85;}
+    .card-error   svg{color:var(--kz-error-text);}
+    .card-success svg{color:var(--kz-success-text);}
+    .card-warning svg{color:var(--kz-warning-text);}
+    .card-info    svg{color:var(--kz-info-text);}
+
+    /* ── Menu ────────────────────────────────────────────────────────────────── */
+    .menu{
+      background:var(--kz-surface-1);border:1px solid var(--kz-stroke-subtle);
+      border-radius:10px;padding:5px;min-width:200px;list-style:none;
+      box-shadow:0 4px 16px rgba(0,0,0,.07);
+    }
+    .menu-item{
+      display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:6px;
+      color:var(--kz-text-primary);font-size:13px;text-decoration:none;
+      border:none;background:none;width:100%;text-align:left;font-family:inherit;cursor:pointer;
+      transition:background .12s;
+    }
+    .menu-item svg{width:15px;height:15px;color:var(--kz-text-tertiary);flex-shrink:0;}
+    .menu-item:hover{background:var(--kz-surface-3);}
+    .menu-item.active{background:var(--kz-brand-bg-subtle);color:var(--kz-brand-active);font-weight:500;}
+    .menu-item.active svg{color:var(--kz-brand-active);}
+    .menu-item.danger{color:var(--kz-error-text);}
+    .menu-item.danger svg{color:var(--kz-error-text);}
+    .menu-divider{height:1px;background:var(--kz-stroke-subtle);margin:4px 0;border:none;}
+    .menu-section{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+      color:var(--kz-text-tertiary);padding:5px 10px 3px;}
+    .menu-shortcut{margin-left:auto;font-size:11px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;}
+
+    /* ── Breadcrumb ──────────────────────────────────────────────────────────── */
+    .breadcrumb{display:flex;align-items:center;gap:5px;flex-wrap:wrap;list-style:none;}
+    .bc-link{font-size:13px;color:var(--kz-text-secondary);text-decoration:none;}
+    .bc-link:hover{color:var(--kz-text-primary);}
+    .bc-current{font-size:13px;color:var(--kz-text-primary);font-weight:500;}
+    .bc-sep{color:var(--kz-stroke-strong);display:flex;align-items:center;}
+    .bc-sep svg{width:13px;height:13px;}
+
+    /* ── Tabs ────────────────────────────────────────────────────────────────── */
+    .tabs{display:flex;border-bottom:1px solid var(--kz-stroke-subtle);}
+    .tab{
+      padding:8px 14px;font-size:13px;font-weight:500;color:var(--kz-text-secondary);
+      border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;
+      margin-bottom:-1px;font-family:inherit;transition:color .15s,border-color .15s;
+    }
+    .tab:hover{color:var(--kz-text-primary);}
+    .tab[aria-selected="true"]{color:var(--kz-brand-text);border-bottom-color:var(--kz-brand-primary);}
+
+    /* ── Avatar ──────────────────────────────────────────────────────────────── */
+    .avatar{
+      border-radius:50%;background:var(--kz-surface-3);color:var(--kz-text-secondary);
+      font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;
+      justify-content:center;flex-shrink:0;border:2px solid var(--kz-surface-0);user-select:none;
+    }
+    .av-xs{width:22px;height:22px;font-size:9px;}
+    .av-sm{width:30px;height:30px;font-size:11px;}
+    .av-md{width:40px;height:40px;font-size:14px;}
+    .av-lg{width:50px;height:50px;font-size:17px;}
+    .av-xl{width:64px;height:64px;font-size:22px;}
+    .av-brand{background:var(--kz-brand-bg-subtle);color:var(--kz-brand-text);}
+    .av-muted{background:var(--kz-surface-4);color:var(--kz-text-tertiary);}
+    .av-group{display:flex;}
+    .av-group .avatar{margin-left:-8px;}
+    .av-group .avatar:first-child{margin-left:0;}
+    .av-status{position:relative;display:inline-flex;}
+    .status-dot{
+      position:absolute;bottom:1px;right:1px;width:10px;height:10px;border-radius:50%;
+      border:2px solid var(--kz-surface-0);
+    }
+    .dot-online{background:var(--kz-success-bg-solid);}
+    .dot-away{background:var(--kz-warning-bg-solid);}
+    .dot-offline{background:var(--kz-stroke-strong);}
+
+    /* ── Progress ────────────────────────────────────────────────────────────── */
+    .progress-item{margin-bottom:12px;}
+    .progress-item:last-child{margin-bottom:0;}
+    .progress-header{display:flex;justify-content:space-between;margin-bottom:5px;}
+    .progress-label{font-size:12px;color:var(--kz-text-secondary);}
+    .progress-val{font-size:12px;color:var(--kz-text-primary);font-weight:500;}
+    .track{height:7px;background:var(--kz-surface-3);border-radius:999px;overflow:hidden;max-width:280px;}
+    .fill{height:100%;border-radius:999px;}
+    .fill-brand{background:var(--kz-brand-primary);}
+    .fill-warning{background:var(--kz-warning-bg-solid);}
+    .fill-error{background:var(--kz-error-bg-solid);}
+    .spinner{width:22px;height:22px;border-radius:50%;
+      border:2.5px solid var(--kz-stroke-default);border-top-color:var(--kz-brand-primary);
+      animation:spin .7s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* ── Data table ──────────────────────────────────────────────────────────── */
+    .data-table-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--kz-stroke-subtle);}
+    .data-table{width:100%;border-collapse:collapse;font-size:12px;}
+    .data-table th{
+      padding:8px 12px;text-align:left;font-size:10px;font-weight:600;
+      text-transform:uppercase;letter-spacing:.07em;color:var(--kz-text-tertiary);
+      background:var(--kz-surface-1);border-bottom:1px solid var(--kz-stroke-subtle);
+    }
+    .data-table td{
+      padding:10px 12px;border-bottom:1px solid var(--kz-stroke-subtle);
+      color:var(--kz-text-primary);vertical-align:middle;
+    }
+    .data-table tbody tr:last-child td{border-bottom:none;}
+    .data-table tbody tr:hover{background:var(--kz-surface-1);}
+    .td-secondary{color:var(--kz-text-secondary);font-size:11px;}
+    .td-mono{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--kz-text-secondary);}
+
+    /* ── Pagination ──────────────────────────────────────────────────────────── */
+    .pagination{display:flex;align-items:center;gap:4px;}
+    .page-btn{
+      min-width:32px;height:32px;border-radius:7px;border:1px solid var(--kz-stroke-subtle);
+      background:var(--kz-surface-0);color:var(--kz-text-secondary);
+      font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;
+      display:flex;align-items:center;justify-content:center;padding:0 8px;
+      transition:background .15s,border-color .15s,color .15s;
+    }
+    .page-btn svg{width:14px;height:14px;}
+    .page-btn:hover:not(:disabled){background:var(--kz-surface-2);color:var(--kz-text-primary);}
+    .page-btn.active{background:var(--kz-brand-primary);border-color:var(--kz-brand-primary);color:var(--kz-surface-0);font-weight:600;}
+    .page-btn:disabled{opacity:.4;cursor:not-allowed;}
+    .page-ellipsis{min-width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--kz-text-tertiary);}
+
+    /* ── Stroke scale ────────────────────────────────────────────────────────── */
+    .stroke-demo{display:flex;flex-direction:column;gap:8px;}
+    .stroke-line{height:0;border:none;border-top-width:1px;border-top-style:solid;}
+
+    /* ── Typography samples ──────────────────────────────────────────────────── */
+    .type-sample{font-family:'Inter',sans-serif;}
+
+    /* ── Misc helpers ────────────────────────────────────────────────────────── */
+    .flex-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+    .flex-col{display:flex;flex-direction:column;gap:8px;}
+    code{
+      font-family:'JetBrains Mono',monospace;font-size:.85em;
+      background:var(--kz-surface-3);color:var(--kz-brand-text);
+      padding:1px 5px;border-radius:4px;border:1px solid var(--kz-stroke-subtle);
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────────── */
+    .site-footer{
+      border-top:1px solid var(--kz-stroke-subtle);padding:20px 24px;
+      text-align:center;font-size:12px;color:var(--kz-text-tertiary);
+      max-width:1200px;margin:0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main" style="position:absolute;top:-100%;left:1rem;z-index:9999;padding:.5rem 1rem;
+     border-radius:6px;background:var(--kz-brand-primary);color:var(--kz-text-inverse);
+     font-weight:600;font-size:13px;text-decoration:none;">Skip to main content</a>
+
+  <!-- ── Header ──────────────────────────────────────────────────────────────── -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="#" class="site-logo" aria-label="Kodez Design Tokens home">
+        <span class="logo-dot" aria-hidden="true"></span>
+        Kodez Tokens
+      </a>
+      <span class="header-meta">v1.7.2 · WCAG 2.1 AA+</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <i data-lucide="sun" aria-hidden="true" style="width:15px;height:15px;"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Main ────────────────────────────────────────────────────────────────── -->
+  <main id="main" tabindex="-1">
+    <table class="ref-table" role="table" aria-label="Design token component reference">
+      <colgroup>
+        <col class="col-name" />
+        <col class="col-desc" />
+        <col class="col-preview" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Preview</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ══ BRAND PALETTE ══════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Brand Palette</td></tr>
+
+        <tr>
+          <td class="comp-name">Brand colours<small>Kodez Brand Guide 2020</small></td>
+          <td class="comp-desc">Six foundational brand colours. All downstream semantic tokens derive from this palette.</td>
+          <td class="comp-preview">
+            <div class="swatches">
+              <div class="swatch">
+                <div class="swatch-color" style="background:#FF7F56;"></div>
+                <div class="swatch-name">Orange</div>
+                <div class="swatch-hex">#FF7F56</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#FFFFFF;border-color:#D5D2CE;"></div>
+                <div class="swatch-name">White</div>
+                <div class="swatch-hex">#FFFFFF</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#F5F4F2;"></div>
+                <div class="swatch-name">Off-White</div>
+                <div class="swatch-hex">#F5F4F2</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#999999;"></div>
+                <div class="swatch-name">Grey</div>
+                <div class="swatch-hex">#999999</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#231F20;"></div>
+                <div class="swatch-name">Light Black</div>
+                <div class="swatch-hex">#231F20</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#000000;"></div>
+                <div class="swatch-name">Black</div>
+                <div class="swatch-hex">#000000</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="comp-name">brand-primary<small>brand-hover · brand-active</small></td>
+          <td class="comp-desc">Primary action colour for CTAs, focus rings, and interactive accents. Hover/active darken in light mode, lighten in dark mode.</td>
+          <td class="comp-preview">
+            <div class="flex-row">
+              <div class="swatch"><div class="swatch-color" style="background:var(--kz-brand-primary);"></div><div class="swatch-hex">primary</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:var(--kz-brand-hover);"></div><div class="swatch-hex">hover</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:var(--kz-brand-active);"></div><div class="swatch-hex">active</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:linear-gradient(135deg,var(--kz-brand-gradient-1),var(--kz-brand-gradient-2));"></div><div class="swatch-hex">gradient</div></div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ SURFACE SCALE ══════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Surface Scale</td></tr>
+
+        <tr>
+          <td class="comp-name">surface-0<small>Page background</small></td>
+          <td class="comp-desc">Foundation layer. Use as the main page/app canvas background. Light: <code>#FFFFFF</code> · Dark: <code>#0C0A0B</code></td>
+          <td class="comp-preview">
+            <div class="surf-chip" style="background:var(--kz-surface-0);color:var(--kz-text-primary);" data-wcag-check>surface-0</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">surface-1<small>Nav surfaces</small></td>
+          <td class="comp-desc">Sidebars, top nav, persistent navigation containers. Sits one step above the page background.</td>
+          <td class="comp-preview">
+            <div class="surf-chip" style="background:var(--kz-surface-1);color:var(--kz-text-primary);" data-wcag-check>surface-1</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">surface-2<small>Content surface</small></td>
+          <td class="comp-desc">Cards, tables, panels, widgets. Primary content containers. Matches brand Off-White in light mode.</td>
+          <td class="comp-preview">
+            <div class="surf-chip" style="background:var(--kz-surface-2);color:var(--kz-text-primary);" data-wcag-check>surface-2</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">surface-3<small>Hover surface</small></td>
+          <td class="comp-desc">Hovered cards, rows, and menu items. Also used as the default avatar background.</td>
+          <td class="comp-preview">
+            <div class="surf-chip" style="background:var(--kz-surface-3);color:var(--kz-text-primary);" data-wcag-check>surface-3</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">surface-4<small>Elevated surface</small></td>
+          <td class="comp-desc">Active rows, highlighted state, higher elevation layers.</td>
+          <td class="comp-preview">
+            <div class="surf-chip" style="background:var(--kz-surface-4);color:var(--kz-text-primary);" data-wcag-check>surface-4</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">surface-5<small>Modal / dialog</small></td>
+          <td class="comp-desc">Highest emphasis layer — dialogs, modals, tooltip backgrounds, critical overlays.</td>
+          <td class="comp-preview">
+            <div class="surf-chip" style="background:var(--kz-surface-5);color:var(--kz-text-primary);" data-wcag-check>surface-5</div>
+          </td>
+        </tr>
+
+        <!-- ══ TYPOGRAPHY ════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Typography & Text</td></tr>
+
+        <tr>
+          <td class="comp-name">text-primary<small>Headings · body</small></td>
+          <td class="comp-desc">Highest emphasis. Page titles, headings, primary content. Light: <code>#231F20</code> (brand Light Black).</td>
+          <td class="comp-preview">
+            <div class="flex-col">
+              <span style="font-size:22px;font-weight:700;letter-spacing:-.03em;color:var(--kz-text-primary);" data-wcag-check>The quick brown fox</span>
+              <span style="font-size:14px;color:var(--kz-text-primary);">Body copy — readable line height at 1.6.</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">text-secondary<small>Labels · support</small></td>
+          <td class="comp-desc">Supporting content: labels, secondary information, card descriptions. 9.4:1 on surface-0.</td>
+          <td class="comp-preview">
+            <span style="font-size:14px;color:var(--kz-text-secondary);" data-wcag-check>Secondary paragraph — slightly muted for supporting copy and supplementary information.</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">text-tertiary<small>Metadata · hints</small></td>
+          <td class="comp-desc">Low-emphasis content: metadata, timestamps, helper text, placeholder-adjacent labels. Min AA at 4.5:1.</td>
+          <td class="comp-preview">
+            <div class="flex-col">
+              <span style="font-size:13px;color:var(--kz-text-tertiary);" data-wcag-check>Updated 3 days ago · 12 min read</span>
+              <input class="input" placeholder="Placeholder text…" style="max-width:200px;" aria-label="Example input" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">text-accent<small>Links only</small></td>
+          <td class="comp-desc">Use exclusively for inline hyperlinks. Do not use for decorative colour or general emphasis.</td>
+          <td class="comp-preview">
+            <a href="#" style="color:var(--kz-text-accent);text-decoration:underline;text-underline-offset:3px;font-size:14px;" data-wcag-check>View the full documentation →</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">text-disabled<small>Unavailable</small></td>
+          <td class="comp-desc">Disabled buttons, menu items, and locked form fields. Not required to meet AA — communicates state, not content.</td>
+          <td class="comp-preview">
+            <div class="flex-row">
+              <button class="btn btn-primary" disabled aria-disabled="true">
+                <i data-lucide="zap" aria-hidden="true"></i> Disabled
+              </button>
+              <span style="font-size:13px;color:var(--kz-text-disabled);">Unavailable option</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">text-inverse<small>On dark / brand bg</small></td>
+          <td class="comp-desc">Text on coloured or dark backgrounds. Light mode: <code>#FFFFFF</code> — used inside danger buttons and dark badges.</td>
+          <td class="comp-preview">
+            <div class="flex-row">
+              <button class="btn btn-danger" data-wcag-check>
+                <i data-lucide="trash-2" aria-hidden="true"></i> Delete
+              </button>
+              <span class="badge badge-solid-success" data-wcag-check>Published</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ BUTTONS ════════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Buttons</td></tr>
+
+        <tr>
+          <td class="comp-name">Primary<small>btn-primary</small></td>
+          <td class="comp-desc">Main call-to-action. Use at most once per view. Brand orange background, near-black text in light mode, near-white in dark.</td>
+          <td class="comp-preview">
+            <button class="btn btn-primary" data-wcag-check>
+              <i data-lucide="zap" aria-hidden="true"></i> Get started
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Secondary<small>btn-secondary</small></td>
+          <td class="comp-desc">Secondary actions alongside a primary. Surface-tinted background with default stroke border.</td>
+          <td class="comp-preview">
+            <button class="btn btn-secondary" data-wcag-check>
+              <i data-lucide="settings" aria-hidden="true"></i> Settings
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Outline<small>btn-outline</small></td>
+          <td class="comp-desc">Brand-tinted tertiary action. Transparent background, brand-active text, brand-border stroke.</td>
+          <td class="comp-preview">
+            <button class="btn btn-outline" data-wcag-check>
+              <i data-lucide="star" aria-hidden="true"></i> Save for later
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Ghost<small>btn-ghost</small></td>
+          <td class="comp-desc">Low-emphasis action. No background or border at rest. Often used for tertiary navigation links.</td>
+          <td class="comp-preview">
+            <button class="btn btn-ghost" data-wcag-check>
+              <i data-lucide="more-horizontal" aria-hidden="true"></i> More options
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Danger<small>btn-danger</small></td>
+          <td class="comp-desc">Irreversible or destructive action (delete, remove, revoke). Error red background with inverse text.</td>
+          <td class="comp-preview">
+            <div class="flex-row">
+              <button class="btn btn-danger" data-wcag-check>
+                <i data-lucide="trash-2" aria-hidden="true"></i> Delete
+              </button>
+              <button class="btn" style="background:transparent;color:var(--kz-error-text);border-color:var(--kz-error-border-subtle);" data-wcag-check>
+                <i data-lucide="alert-triangle" aria-hidden="true"></i> Remove
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Sizes<small>sm · default · lg</small></td>
+          <td class="comp-desc">Three sizes for contextual use: sm in tight spaces, default for most UI, lg for prominent CTAs or hero sections.</td>
+          <td class="comp-preview">
+            <div class="flex-row" style="align-items:flex-end;">
+              <button class="btn btn-primary btn-sm" data-wcag-check><i data-lucide="plus" aria-hidden="true"></i> Small</button>
+              <button class="btn btn-primary" data-wcag-check><i data-lucide="plus" aria-hidden="true"></i> Default</button>
+              <button class="btn btn-primary btn-lg" data-wcag-check><i data-lucide="plus" aria-hidden="true"></i> Large</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Icon buttons<small>square aspect</small></td>
+          <td class="comp-desc">Icon-only variants. Always provide an <code>aria-label</code>. Same padding on all sides, square aspect.</td>
+          <td class="comp-preview">
+            <div class="flex-row">
+              <button class="btn btn-primary btn-icon" aria-label="Add item" data-wcag-check><i data-lucide="plus" aria-hidden="true"></i></button>
+              <button class="btn btn-secondary btn-icon" aria-label="Settings" data-wcag-check><i data-lucide="settings" aria-hidden="true"></i></button>
+              <button class="btn btn-ghost btn-icon" aria-label="More options" data-wcag-check><i data-lucide="more-vertical" aria-hidden="true"></i></button>
+              <button class="btn btn-danger btn-icon" aria-label="Delete" data-wcag-check><i data-lucide="trash-2" aria-hidden="true"></i></button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ STATUS BADGES ════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Status Badges</td></tr>
+
+        <tr>
+          <td class="comp-name">Subtle badges<small>soft semantic</small></td>
+          <td class="comp-desc">Low-contrast tinted pill. Use for status labels that don't need to compete for attention. Semantic bg-subtle + text pairing.</td>
+          <td class="comp-preview">
+            <div class="flex-row">
+              <span class="badge badge-success" data-wcag-check><i data-lucide="check-circle" aria-hidden="true"></i> Active</span>
+              <span class="badge badge-error" data-wcag-check><i data-lucide="x-circle" aria-hidden="true"></i> Error</span>
+              <span class="badge badge-warning" data-wcag-check><i data-lucide="clock" aria-hidden="true"></i> Pending</span>
+              <span class="badge badge-info" data-wcag-check><i data-lucide="info" aria-hidden="true"></i> Review</span>
+              <span class="badge badge-neutral" data-wcag-check>Inactive</span>
+              <span class="badge badge-brand" data-wcag-check>New</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Solid badges<small>high-contrast</small></td>
+          <td class="comp-desc">Semantic text token as background, surface-0 as text — guarantees 8:1+ contrast automatically in both themes.</td>
+          <td class="comp-preview">
+            <div class="flex-row">
+              <span class="badge badge-solid-success" data-wcag-check>Published</span>
+              <span class="badge badge-solid-error" data-wcag-check>Rejected</span>
+              <span class="badge badge-solid-warning" data-wcag-check>Expiring</span>
+              <span class="badge badge-solid-info" data-wcag-check>In Review</span>
+              <span class="badge badge-solid-brand" data-wcag-check>Featured</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ FORM ELEMENTS ════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Form Elements</td></tr>
+
+        <tr>
+          <td class="comp-name">Text input<small>default state</small></td>
+          <td class="comp-desc">Standard text field. Hover thickens border to stroke-hover. Focus adds brand orange border + 3px ring.</td>
+          <td class="comp-preview">
+            <div>
+              <input class="input" type="text" placeholder="Full name" autocomplete="name" data-wcag-check aria-label="Full name" />
+              <p class="form-hint">As it appears on your ID document.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Input states<small>error · success · disabled</small></td>
+          <td class="comp-desc">Validation states use semantic border colours. Disabled locks background to surface-2 and text to text-disabled.</td>
+          <td class="comp-preview">
+            <div class="flex-col">
+              <div>
+                <input class="input error" type="email" value="not-an-email" aria-invalid="true" aria-label="Email" data-wcag-check />
+                <p class="form-error-msg"><i data-lucide="alert-circle" style="width:11px;height:11px;" aria-hidden="true"></i> Enter a valid email address.</p>
+              </div>
+              <div>
+                <input class="input success" type="text" value="janedoe" aria-label="Username" data-wcag-check />
+                <p class="form-success-msg">Username is available.</p>
+              </div>
+              <input class="input" type="text" value="Kodez" disabled aria-disabled="true" aria-label="Organisation" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Select<small>dropdown</small></td>
+          <td class="comp-desc">Single-choice dropdown using the standard input shell. Custom chevron arrow injected via background-image.</td>
+          <td class="comp-preview">
+            <select class="input" aria-label="Role" data-wcag-check>
+              <option value="">Select a role…</option>
+              <option value="admin">Administrator</option>
+              <option value="editor" selected>Editor</option>
+              <option value="viewer">Viewer</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Textarea<small>multi-line</small></td>
+          <td class="comp-desc">Multi-line text entry. Same border/focus behaviour as the single-line input.</td>
+          <td class="comp-preview">
+            <textarea class="input" rows="3" placeholder="Describe the project…" style="resize:vertical;" aria-label="Description" data-wcag-check></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Checkboxes<small>multi-select</small></td>
+          <td class="comp-desc">Multi-selection options. Native checkbox accented with brand-primary via <code>accent-color</code>.</td>
+          <td class="comp-preview">
+            <div>
+              <label class="check-row"><input type="checkbox" checked /><span class="check-label" data-wcag-check>Email notifications</span></label>
+              <label class="check-row"><input type="checkbox" /><span class="check-label">Push notifications</span></label>
+              <label class="check-row"><input type="checkbox" checked /><span class="check-label">Weekly digest</span></label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Radio buttons<small>single choice</small></td>
+          <td class="comp-desc">Mutually exclusive selection. Use a <code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code> for accessible grouping.</td>
+          <td class="comp-preview">
+            <div>
+              <label class="check-row"><input type="radio" name="demo-radio" value="light" checked /><span class="check-label" data-wcag-check>Light</span></label>
+              <label class="check-row"><input type="radio" name="demo-radio" value="dark" /><span class="check-label">Dark</span></label>
+              <label class="check-row"><input type="radio" name="demo-radio" value="system" /><span class="check-label">System default</span></label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Toggle switch<small>binary on/off</small></td>
+          <td class="comp-desc">Binary setting control. Uses <code>role="switch"</code> + <code>aria-checked</code>. Checked state: brand-primary track.</td>
+          <td class="comp-preview">
+            <div>
+              <label style="display:flex;align-items:center;gap:9px;cursor:pointer;margin-bottom:8px;">
+                <input type="checkbox" class="switch" role="switch" aria-checked="true" checked />
+                <span style="font-size:13px;color:var(--kz-text-primary);" data-wcag-check>Email notifications</span>
+              </label>
+              <label style="display:flex;align-items:center;gap:9px;cursor:pointer;">
+                <input type="checkbox" class="switch" role="switch" aria-checked="false" />
+                <span style="font-size:13px;color:var(--kz-text-primary);">Push notifications</span>
+              </label>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ ALERTS & BANNERS ══════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Alerts &amp; Banners</td></tr>
+
+        <tr>
+          <td class="comp-name">Error alert<small>alert-error</small></td>
+          <td class="comp-desc">Critical failure or blocking problem. Use <code>role="alert"</code> for live-region announcement.</td>
+          <td class="comp-preview">
+            <div class="alert alert-error" role="alert">
+              <i data-lucide="x-circle" aria-hidden="true"></i>
+              <div class="alert-body">
+                <div class="alert-title" data-wcag-check>Deployment failed</div>
+                <div class="alert-desc">Build exited with code 1. Check your environment variables.</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Success alert<small>alert-success</small></td>
+          <td class="comp-desc">Confirmation of a completed action. Use <code>role="status"</code> for polite announcement.</td>
+          <td class="comp-preview">
+            <div class="alert alert-success" role="status">
+              <i data-lucide="check-circle" aria-hidden="true"></i>
+              <div class="alert-body">
+                <div class="alert-title" data-wcag-check>Changes saved</div>
+                <div class="alert-desc">Settings updated and will take effect immediately.</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Warning alert<small>alert-warning</small></td>
+          <td class="comp-desc">Caution notice that does not block the user but requires attention. Use <code>role="alert"</code>.</td>
+          <td class="comp-preview">
+            <div class="alert alert-warning" role="alert">
+              <i data-lucide="alert-triangle" aria-hidden="true"></i>
+              <div class="alert-body">
+                <div class="alert-title" data-wcag-check>Deprecation notice</div>
+                <div class="alert-desc">Migrate to <code>getCssVars('light')</code> before v2.0.</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Info alert<small>alert-info</small></td>
+          <td class="comp-desc">Neutral informational message. Use <code>role="note"</code> for non-critical updates.</td>
+          <td class="comp-preview">
+            <div class="alert alert-info" role="note">
+              <i data-lucide="info" aria-hidden="true"></i>
+              <div class="alert-body">
+                <div class="alert-title" data-wcag-check>v1.7.2 released</div>
+                <div class="alert-desc">Warm-neutral palette refresh across all surface and text tokens.</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ CARDS ══════════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Cards</td></tr>
+
+        <tr>
+          <td class="comp-name">KPI card<small>dashboard metric</small></td>
+          <td class="comp-desc">Displays a single metric with label and trend indicator. Uses surface-2 background and success/error tinted kpi-change pill.</td>
+          <td class="comp-preview">
+            <div class="card" style="background:var(--kz-surface-2);max-width:220px;">
+              <div class="kpi-label" data-wcag-check>Total Revenue</div>
+              <div class="kpi-value">$84,230</div>
+              <div class="kpi-change kpi-up" aria-label="12% increase from last month">
+                <i data-lucide="trending-up" aria-hidden="true"></i> +12% vs last month
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Feature card<small>content card</small></td>
+          <td class="comp-desc">General-purpose content container with icon, title, description, and optional footer. Hover lifts border to stroke-hover.</td>
+          <td class="comp-preview">
+            <div class="card" style="max-width:280px;">
+              <div class="card-icon" aria-hidden="true"><i data-lucide="layers"></i></div>
+              <div class="card-title" data-wcag-check>Component Library</div>
+              <p class="card-desc">Accessible, token-driven components ready for production.</p>
+              <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--kz-stroke-subtle);display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:11px;color:var(--kz-text-secondary);">v1.7.2</span>
+                <button class="btn btn-ghost btn-sm">View <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Semantic cards<small>alert variants</small></td>
+          <td class="comp-desc">Error/success/warning/info card styles for inline contextual messages. Background, border, title, and text all use semantic tokens.</td>
+          <td class="comp-preview">
+            <div class="flex-col" style="max-width:300px;">
+              <div class="card card-error">
+                <div class="card-semantic-icon">
+                  <i data-lucide="x-circle" aria-hidden="true"></i>
+                  <div><div class="card-title" data-wcag-check>Build failed</div><p class="card-desc">Exit code 1.</p></div>
+                </div>
+              </div>
+              <div class="card card-success">
+                <div class="card-semantic-icon">
+                  <i data-lucide="check-circle" aria-hidden="true"></i>
+                  <div><div class="card-title" data-wcag-check>Deployed</div><p class="card-desc">v1.7.2 is live.</p></div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ NAVIGATION ════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Navigation</td></tr>
+
+        <tr>
+          <td class="comp-name">Sidebar menu<small>vertical nav</small></td>
+          <td class="comp-desc">Persistent vertical navigation. Active item uses brand-bg-subtle + brand-active. Danger item uses error tokens.</td>
+          <td class="comp-preview">
+            <nav aria-label="Sidebar demo">
+              <ul class="menu" style="list-style:none;">
+                <li><span class="menu-section">Workspace</span></li>
+                <li><a href="#" class="menu-item active" aria-current="page" data-wcag-check><i data-lucide="layout-dashboard" aria-hidden="true"></i> Dashboard</a></li>
+                <li><a href="#" class="menu-item"><i data-lucide="bar-chart-2" aria-hidden="true"></i> Analytics <span class="menu-shortcut">⌘A</span></a></li>
+                <li><a href="#" class="menu-item"><i data-lucide="users" aria-hidden="true"></i> Team</a></li>
+                <li><hr class="menu-divider" /></li>
+                <li><button class="menu-item danger" type="button"><i data-lucide="log-out" aria-hidden="true"></i> Sign out</button></li>
+              </ul>
+            </nav>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Breadcrumb<small>location trail</small></td>
+          <td class="comp-desc">Hierarchical path indicator using <code>&lt;nav aria-label="Breadcrumb"&gt;</code>. Current page gets text-primary + font-weight 500.</td>
+          <td class="comp-preview">
+            <nav aria-label="Breadcrumb">
+              <ol class="breadcrumb" style="list-style:none;">
+                <li><a href="#" class="bc-link" data-wcag-check>Dashboard</a></li>
+                <li class="bc-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+                <li><a href="#" class="bc-link">Projects</a></li>
+                <li class="bc-sep" aria-hidden="true"><i data-lucide="chevron-right"></i></li>
+                <li><span class="bc-current" aria-current="page">Design Tokens</span></li>
+              </ol>
+            </nav>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Tabs<small>in-page switcher</small></td>
+          <td class="comp-desc">Section-level content switcher. Active tab uses brand-primary bottom border and brand-text colour. Requires <code>role="tablist"</code>.</td>
+          <td class="comp-preview">
+            <div role="tablist" class="tabs" aria-label="Demo tabs">
+              <button role="tab" class="tab" aria-selected="true" data-wcag-check>Overview</button>
+              <button role="tab" class="tab" aria-selected="false">Activity</button>
+              <button role="tab" class="tab" aria-selected="false">Settings</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Pagination<small>multi-page nav</small></td>
+          <td class="comp-desc">Page navigation control. Active page uses brand-primary background. Disabled prev/next at boundaries.</td>
+          <td class="comp-preview">
+            <nav aria-label="Page navigation">
+              <div class="pagination">
+                <button class="page-btn" aria-label="Previous page" disabled><i data-lucide="chevron-left" aria-hidden="true"></i></button>
+                <button class="page-btn active" aria-current="page" data-wcag-check>1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <span class="page-ellipsis" aria-hidden="true">…</span>
+                <button class="page-btn">9</button>
+                <button class="page-btn" aria-label="Next page"><i data-lucide="chevron-right" aria-hidden="true"></i></button>
+              </div>
+            </nav>
+          </td>
+        </tr>
+
+        <!-- ══ AVATARS ════════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Avatars</td></tr>
+
+        <tr>
+          <td class="comp-name">Sizes<small>xs · sm · md · lg · xl</small></td>
+          <td class="comp-desc">Five size steps: xs (24px) for inline use, xl (64px) for profile pages. Background uses surface-3, text uses text-secondary.</td>
+          <td class="comp-preview">
+            <div class="flex-row" style="align-items:center;">
+              <div class="avatar av-xs" aria-label="XS">JD</div>
+              <div class="avatar av-sm" aria-label="SM">JD</div>
+              <div class="avatar av-md" aria-label="MD" data-wcag-check>JD</div>
+              <div class="avatar av-lg" aria-label="LG">JD</div>
+              <div class="avatar av-xl" aria-label="XL">JD</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Variants &amp; groups<small>brand · muted · status</small></td>
+          <td class="comp-desc">Brand variant uses brand-bg-subtle. Group stacks with negative margin. Status dots use semantic solid background colours.</td>
+          <td class="comp-preview">
+            <div class="flex-col">
+              <div class="flex-row" style="align-items:center;">
+                <div class="avatar av-md" aria-label="Default">AB</div>
+                <div class="avatar av-md av-brand" aria-label="Brand">KZ</div>
+                <div class="avatar av-md av-muted" aria-label="Muted">+4</div>
+              </div>
+              <div class="flex-row" style="align-items:center;">
+                <div class="av-group" role="group" aria-label="Team">
+                  <div class="avatar av-sm" title="Jane D">JD</div>
+                  <div class="avatar av-sm av-brand" title="Alex B">AB</div>
+                  <div class="avatar av-sm" title="Sam K">SK</div>
+                  <div class="avatar av-sm av-muted" title="4 more">+4</div>
+                </div>
+                <div class="av-status">
+                  <div class="avatar av-md" aria-label="Jane, online">JD</div>
+                  <span class="status-dot dot-online" aria-label="Online"></span>
+                </div>
+                <div class="av-status">
+                  <div class="avatar av-md av-brand" aria-label="Alex, away">AB</div>
+                  <span class="status-dot dot-away" aria-label="Away"></span>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ PROGRESS & LOADING ════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Progress &amp; Loading</td></tr>
+
+        <tr>
+          <td class="comp-name">Progress bars<small>determinate</small></td>
+          <td class="comp-desc">Determinate progress using <code>role="progressbar"</code> with <code>aria-valuenow/min/max</code>. Three fill colours: brand, warning, error.</td>
+          <td class="comp-preview">
+            <div style="min-width:220px;">
+              <div class="progress-item">
+                <div class="progress-header"><span class="progress-label" data-wcag-check>Upload</span><span class="progress-val">72%</span></div>
+                <div class="track" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"><div class="fill fill-brand" style="width:72%;"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-header"><span class="progress-label">Storage</span><span class="progress-val" style="color:var(--kz-error-text);">91%</span></div>
+                <div class="track" role="progressbar" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"><div class="fill fill-error" style="width:91%;"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-header"><span class="progress-label">Budget left</span><span class="progress-val" style="color:var(--kz-warning-text);">18%</span></div>
+                <div class="track" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100"><div class="fill fill-warning" style="width:18%;"></div></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="comp-name">Spinners<small>indeterminate</small></td>
+          <td class="comp-desc">Indeterminate loading indicator using CSS animation. Three sizes. Always paired with a visually-hidden <code>role="status"</code> label.</td>
+          <td class="comp-preview">
+            <div class="flex-row" style="align-items:center;">
+              <div class="spinner" style="width:16px;height:16px;border-width:2px;" role="status" aria-label="Loading, small"></div>
+              <div class="spinner" role="status" aria-label="Loading"></div>
+              <div class="spinner" style="width:36px;height:36px;border-width:3px;" role="status" aria-label="Loading, large"></div>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ DATA TABLE ════════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Data Table</td></tr>
+
+        <tr>
+          <td class="comp-name">Data table<small>sortable grid</small></td>
+          <td class="comp-desc">Full-width content grid with surface-1 header, stroke-subtle borders, hover using surface-1. Badge and action columns supported.</td>
+          <td class="comp-preview">
+            <div class="data-table-wrap">
+              <table class="data-table" aria-label="Team members">
+                <thead>
+                  <tr>
+                    <th scope="col">Member</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Joined</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="avatar av-sm av-brand">JD</div>
+                        <div>
+                          <div style="font-weight:500;" data-wcag-check>Jane Doe</div>
+                          <div class="td-secondary">jane@kodez.io</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Administrator</td>
+                    <td><span class="badge badge-success"><i data-lucide="check-circle" aria-hidden="true"></i> Active</span></td>
+                    <td class="td-secondary">Jan 2024</td>
+                    <td><button class="btn btn-ghost btn-sm btn-icon" aria-label="Options for Jane"><i data-lucide="more-horizontal" aria-hidden="true"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="avatar av-sm">AB</div>
+                        <div>
+                          <div style="font-weight:500;">Alex Bell</div>
+                          <div class="td-secondary">alex@kodez.io</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Editor</td>
+                    <td><span class="badge badge-warning"><i data-lucide="clock" aria-hidden="true"></i> Pending</span></td>
+                    <td class="td-secondary">Mar 2024</td>
+                    <td><button class="btn btn-ghost btn-sm btn-icon" aria-label="Options for Alex"><i data-lucide="more-horizontal" aria-hidden="true"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div style="display:flex;align-items:center;gap:8px;">
+                        <div class="avatar av-sm">SK</div>
+                        <div>
+                          <div style="font-weight:500;">Sam Kim</div>
+                          <div class="td-secondary">sam@kodez.io</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Viewer</td>
+                    <td><span class="badge badge-error"><i data-lucide="x-circle" aria-hidden="true"></i> Suspended</span></td>
+                    <td class="td-secondary">Jun 2024</td>
+                    <td><button class="btn btn-ghost btn-sm btn-icon" aria-label="Options for Sam"><i data-lucide="more-horizontal" aria-hidden="true"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </td>
+        </tr>
+
+        <!-- ══ STROKE SCALE ══════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Stroke Scale</td></tr>
+
+        <tr>
+          <td class="comp-name">Strokes<small>subtle → interactive</small></td>
+          <td class="comp-desc">Five border/separator weights. Subtle for dividers, default for inputs/cards, strong for emphasis, hover for interactive, interactive (brand orange) for focus rings.</td>
+          <td class="comp-preview">
+            <div class="stroke-demo" style="max-width:280px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <hr class="stroke-line" style="flex:1;border-top-color:var(--kz-stroke-subtle);" />
+                <span style="font-size:11px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;white-space:nowrap;">stroke-subtle</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <hr class="stroke-line" style="flex:1;border-top-color:var(--kz-stroke-default);" />
+                <span style="font-size:11px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;white-space:nowrap;">stroke-default</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <hr class="stroke-line" style="flex:1;border-top-color:var(--kz-stroke-strong);" />
+                <span style="font-size:11px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;white-space:nowrap;">stroke-strong</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <hr class="stroke-line" style="flex:1;border-top-color:var(--kz-stroke-hover);" />
+                <span style="font-size:11px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;white-space:nowrap;">stroke-hover</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <hr class="stroke-line" style="flex:1;border-top-color:var(--kz-stroke-interactive);border-top-width:2px;" />
+                <span style="font-size:11px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;white-space:nowrap;">stroke-interactive</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>Built with <code>@kodez/design-tokens</code> v1.7.2 — all token pairs verified WCAG 2.1 AA+</p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script>
+    lucide.createIcons();
+
+    /* ── Theme toggle ──────────────────────────────────────────────────────── */
+    const toggle = document.getElementById('theme-toggle');
+    const html   = document.documentElement;
+    let isDark = html.classList.contains('dark') ||
+      (!html.classList.contains('light') && window.matchMedia('(prefers-color-scheme:dark)').matches);
+
+    function applyTheme(dark) {
+      isDark = dark;
+      html.classList.toggle('dark', dark);
+      html.classList.toggle('light', !dark);
+      toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      toggle.setAttribute('aria-pressed', String(dark));
+      toggle.innerHTML = '';
+      const ic = document.createElement('i');
+      ic.setAttribute('data-lucide', dark ? 'moon' : 'sun');
+      ic.setAttribute('aria-hidden', 'true');
+      ic.style.cssText = 'width:15px;height:15px;';
+      toggle.appendChild(ic);
+      lucide.createIcons();
+      setTimeout(runWcagAudit, 250);
+    }
+
+    applyTheme(isDark);
+    toggle.addEventListener('click', () => applyTheme(!isDark));
+
+    /* ── WCAG contrast badge engine ────────────────────────────────────────── */
+    function runWcagAudit() {
+      document.querySelectorAll('.aa-badge').forEach(b => b.remove());
+
+      function parseRgba(str) {
+        if (!str || str === 'transparent') return null;
+        const m = str.match(/rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)/);
+        if (!m) return null;
+        return { r: +m[1], g: +m[2], b: +m[3], a: m[4] !== undefined ? +m[4] : 1 };
+      }
+
+      function blendOver(fg, bg) {
+        const a = fg.a;
+        return { r: fg.r*a + bg.r*(1-a), g: fg.g*a + bg.g*(1-a), b: fg.b*a + bg.b*(1-a), a: 1 };
+      }
+
+      function getEffectiveBg(el) {
+        const layers = [];
+        let node = el;
+        while (node && node !== document.documentElement.parentElement) {
+          const c = parseRgba(window.getComputedStyle(node).backgroundColor);
+          if (c && c.a > 0) layers.unshift(c);
+          node = node.parentElement;
+        }
+        let base = { r: 255, g: 255, b: 255, a: 1 };
+        for (const c of layers) base = blendOver(c, base);
+        return base;
+      }
+
+      function lin(c) {
+        const s = c / 255;
+        return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+      }
+      function lum(c) { return 0.2126*lin(c.r) + 0.7152*lin(c.g) + 0.0722*lin(c.b); }
+      function contrastRatio(a, b) {
+        const la = lum(a), lb = lum(b);
+        return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+      }
+
+      function grade(ratio) {
+        if (ratio >= 7)   return { label: 'AAA', cls: 'aa-aaa' };
+        if (ratio >= 4.5) return { label: 'AA',  cls: 'aa-aa'  };
+        if (ratio >= 3)   return { label: '≥3:1', cls: 'aa-low' };
+        return { label: 'FAIL', cls: 'aa-fail' };
+      }
+
+      /* For each preview cell, find the first [data-wcag-check] element,
+         compute its contrast, inject badge absolutely top-right of the cell. */
+      document.querySelectorAll('.comp-preview').forEach(cell => {
+        const checkEl = cell.querySelector('[data-wcag-check]');
+        if (!checkEl) return;
+
+        const fgRaw = parseRgba(window.getComputedStyle(checkEl).color);
+        const bg    = getEffectiveBg(checkEl);
+        if (!fgRaw || !bg) return;
+
+        const fg    = fgRaw.a < 1 ? blendOver(fgRaw, bg) : fgRaw;
+        const ratio = contrastRatio(fg, bg);
+        const { label, cls } = grade(ratio);
+
+        const badge = document.createElement('span');
+        badge.className = 'aa-badge ' + cls;
+        badge.setAttribute('aria-label', `WCAG ${label} ${ratio.toFixed(1)}:1`);
+        badge.textContent = `${label} ${ratio.toFixed(1)}:1`;
+        cell.appendChild(badge);
+      });
+    }
+
+    document.fonts.ready.then(runWcagAudit);
+  </script>
+</body>
+</html>
