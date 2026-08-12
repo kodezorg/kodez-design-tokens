@@ -3,15 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kodez Design Tokens v1.7.2 — Component Reference</title>
+  <title>Kodez Design Tokens v1.7.3 — Component Reference</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
+    /* ── Brand palette constants (theme-invariant — never change with mode) ─── */
+    :root {
+      --kz-brand-orange:#FF7F56;
+      --kz-brand-white:#FFFFFF;
+      --kz-brand-offwhite:#F5F4F2;
+      --kz-brand-grey:#999999;
+      --kz-brand-lightblack:#231F20;
+      --kz-brand-black:#000000;
+    }
+
     /* ── Tokens: light ───────────────────────────────────────────────────────── */
     :root {
       --kz-brand-primary:#FF7F56;--kz-brand-hover:#CB6241;--kz-brand-active:#743622;
-      --kz-brand-bg-subtle:rgba(255,127,86,0.12);--kz-brand-border:#743622;
+      --kz-brand-border:#743622;
       --kz-brand-border-subtle:rgba(255,127,86,0.40);--kz-brand-text:#A04C31;
       --kz-brand-gradient-1:#F89474;--kz-brand-gradient-2:#F0673D;
       --kz-surface-0:#FFFFFF;--kz-surface-1:#F9F8F7;--kz-surface-2:#F5F4F2;
@@ -26,49 +36,92 @@
       --kz-error-border:#B91C1C;--kz-error-border-subtle:rgba(220,38,38,0.40);--kz-error-text:#7F1D1D;
       --kz-info-bg-solid:#2563EB;--kz-info-bg-subtle:rgba(37,99,235,0.08);
       --kz-info-border:#1D4ED8;--kz-info-border-subtle:rgba(37,99,235,0.40);--kz-info-text:#1E3A8A;
+      --kz-glow-accent:rgba(81,83,246,0.08);
       --kz-text-primary:#231F20;--kz-text-secondary:#4A4546;--kz-text-tertiary:#6F6B6C;
       --kz-text-accent:#5153F6;--kz-text-disabled:#A6A2A3;--kz-text-inverse:#FFFFFF;
     }
     /* ── Tokens: dark ────────────────────────────────────────────────────────── */
     .dark {
       --kz-brand-primary:#FF7F56;--kz-brand-hover:#F89474;--kz-brand-active:#FAAF97;
-      --kz-brand-bg-subtle:rgba(255,127,86,0.16);--kz-brand-border:#FF7F56;
+      --kz-brand-border:#FF7F56;
       --kz-brand-border-subtle:rgba(255,127,86,0.40);--kz-brand-text:#FF7F56;
       --kz-brand-gradient-1:#F89474;--kz-brand-gradient-2:#F0673D;
-      --kz-surface-0:#0C0A0B;--kz-surface-1:#131112;--kz-surface-2:#1C191A;
-      --kz-surface-3:#231F20;--kz-surface-4:#2B2728;--kz-surface-5:#342F31;
-      --kz-stroke-subtle:#2B2728;--kz-stroke-default:#3D3839;
-      --kz-stroke-strong:#524D4F;--kz-stroke-hover:#6E6869;--kz-stroke-interactive:#FF7F56;
+      --kz-surface-0:#08080E;--kz-surface-1:#0D0D1A;--kz-surface-2:#121224;
+      --kz-surface-3:#17172E;--kz-surface-4:#1C1C38;--kz-surface-5:#212142;
+      --kz-stroke-subtle:#1A1A34;--kz-stroke-default:#262648;
+      --kz-stroke-strong:#323260;--kz-stroke-hover:#44447E;--kz-stroke-interactive:#FF7F56;
       --kz-success-bg-solid:#22C55E;--kz-success-bg-subtle:rgba(34,197,94,0.16);
-      --kz-success-border:#005C39;--kz-success-border-subtle:rgba(34,197,94,0.40);--kz-success-text:#4ADE80;
+      --kz-success-border:#005C39;--kz-success-border-subtle:rgba(34,197,94,0.40);--kz-success-text:#22C55E;
       --kz-warning-bg-solid:#F59E0B;--kz-warning-bg-subtle:rgba(245,158,11,0.16);
-      --kz-warning-border:#71491E;--kz-warning-border-subtle:rgba(245,158,11,0.40);--kz-warning-text:#FBBF24;
+      --kz-warning-border:#71491E;--kz-warning-border-subtle:rgba(245,158,11,0.40);--kz-warning-text:#F59E0B;
       --kz-error-bg-solid:#F46969;--kz-error-bg-subtle:rgba(244,105,105,0.16);
-      --kz-error-border:#F59E0B;--kz-error-border-subtle:rgba(244,105,105,0.40);--kz-error-text:#F98585;
+      --kz-error-border:rgba(244,105,105,0.50);--kz-error-border-subtle:rgba(244,105,105,0.40);--kz-error-text:#F98585;
       --kz-info-bg-solid:#3B82F6;--kz-info-bg-subtle:rgba(59,130,246,0.16);
       --kz-info-border:#15407B;--kz-info-border-subtle:rgba(59,130,246,0.40);--kz-info-text:#6AAAFA;
-      --kz-text-primary:#F5F4F2;--kz-text-secondary:#BDB7B8;--kz-text-tertiary:#837D7E;
+      --kz-glow-accent:rgba(116,117,255,0.15);
+      --kz-text-primary:#F5F4F2;--kz-text-secondary:#999999;--kz-text-tertiary:#8C90A0;
       --kz-text-accent:#7475FF;--kz-text-disabled:#5A5556;--kz-text-inverse:#231F20;
     }
     @media(prefers-color-scheme:dark){:root:not(.light){
       --kz-brand-primary:#FF7F56;--kz-brand-hover:#F89474;--kz-brand-active:#FAAF97;
-      --kz-brand-bg-subtle:rgba(255,127,86,0.16);--kz-brand-border:#FF7F56;
+      --kz-brand-border:#FF7F56;
       --kz-brand-border-subtle:rgba(255,127,86,0.40);--kz-brand-text:#FF7F56;
-      --kz-surface-0:#0C0A0B;--kz-surface-1:#131112;--kz-surface-2:#1C191A;
-      --kz-surface-3:#231F20;--kz-surface-4:#2B2728;--kz-surface-5:#342F31;
-      --kz-stroke-subtle:#2B2728;--kz-stroke-default:#3D3839;
-      --kz-stroke-strong:#524D4F;--kz-stroke-hover:#6E6869;--kz-stroke-interactive:#FF7F56;
+      --kz-surface-0:#08080E;--kz-surface-1:#0D0D1A;--kz-surface-2:#121224;
+      --kz-surface-3:#17172E;--kz-surface-4:#1C1C38;--kz-surface-5:#212142;
+      --kz-stroke-subtle:#1A1A34;--kz-stroke-default:#262648;
+      --kz-stroke-strong:#323260;--kz-stroke-hover:#44447E;--kz-stroke-interactive:#FF7F56;
       --kz-success-bg-solid:#22C55E;--kz-success-bg-subtle:rgba(34,197,94,0.16);
-      --kz-success-border:#005C39;--kz-success-border-subtle:rgba(34,197,94,0.40);--kz-success-text:#4ADE80;
+      --kz-success-border:#005C39;--kz-success-border-subtle:rgba(34,197,94,0.40);--kz-success-text:#22C55E;
       --kz-warning-bg-solid:#F59E0B;--kz-warning-bg-subtle:rgba(245,158,11,0.16);
-      --kz-warning-border:#71491E;--kz-warning-border-subtle:rgba(245,158,11,0.40);--kz-warning-text:#FBBF24;
+      --kz-warning-border:#71491E;--kz-warning-border-subtle:rgba(245,158,11,0.40);--kz-warning-text:#F59E0B;
       --kz-error-bg-solid:#F46969;--kz-error-bg-subtle:rgba(244,105,105,0.16);
-      --kz-error-border:#F59E0B;--kz-error-border-subtle:rgba(244,105,105,0.40);--kz-error-text:#F98585;
+      --kz-error-border:rgba(244,105,105,0.50);--kz-error-border-subtle:rgba(244,105,105,0.40);--kz-error-text:#F98585;
       --kz-info-bg-solid:#3B82F6;--kz-info-bg-subtle:rgba(59,130,246,0.16);
       --kz-info-border:#15407B;--kz-info-border-subtle:rgba(59,130,246,0.40);--kz-info-text:#6AAAFA;
-      --kz-text-primary:#F5F4F2;--kz-text-secondary:#BDB7B8;--kz-text-tertiary:#837D7E;
+      --kz-glow-accent:rgba(116,117,255,0.15);
+      --kz-text-primary:#F5F4F2;--kz-text-secondary:#999999;--kz-text-tertiary:#8C90A0;
       --kz-text-accent:#7475FF;--kz-text-disabled:#5A5556;--kz-text-inverse:#231F20;
     }}
+
+    /* ── Glow effects ────────────────────────────────────────────────────────── */
+    .glow-demos{display:flex;flex-wrap:wrap;gap:16px;}
+    .glow-card{
+      position:relative;overflow:hidden;
+      border-radius:14px;padding:24px;min-width:180px;flex:1;
+      background:var(--kz-surface-1);border:1px solid var(--kz-stroke-subtle);
+    }
+    .glow-card::before{
+      content:'';position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(ellipse at 20% 50%, var(--kz-glow-accent) 0%, transparent 65%);
+    }
+    .glow-card-center::before{
+      background:radial-gradient(ellipse at 50% 30%, var(--kz-glow-accent) 0%, transparent 65%);
+    }
+    .glow-card-br::before{
+      background:radial-gradient(ellipse at 80% 80%, var(--kz-glow-accent) 0%, transparent 60%);
+    }
+    .glow-card-title{
+      position:relative;font-size:15px;font-weight:700;letter-spacing:-.02em;
+      color:var(--kz-text-primary);margin-bottom:6px;
+    }
+    .glow-card-sub{
+      position:relative;font-size:12px;color:var(--kz-text-secondary);line-height:1.55;
+    }
+    .glow-card-icon{
+      position:relative;width:32px;height:32px;border-radius:8px;margin-bottom:12px;
+      background:var(--kz-glow-accent);border:1px solid rgba(116,117,255,0.25);
+      display:flex;align-items:center;justify-content:center;color:var(--kz-text-accent);
+    }
+    .glow-card-icon svg{width:16px;height:16px;}
+    .glow-swatch-row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;}
+    .glow-swatch{display:flex;flex-direction:column;gap:6px;align-items:center;}
+    .glow-swatch-box{
+      width:88px;height:64px;border-radius:10px;
+      border:1px solid var(--kz-stroke-subtle);
+      display:flex;align-items:center;justify-content:center;
+      font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--kz-text-tertiary);
+    }
+    .glow-swatch-label{font-size:10px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;text-align:center;}
 
     /* ── Reset & base ────────────────────────────────────────────────────────── */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -199,11 +252,12 @@
     .btn-secondary{background:var(--kz-surface-2);color:var(--kz-text-primary);border-color:var(--kz-stroke-default);}
     .btn-secondary:hover{background:var(--kz-surface-3);border-color:var(--kz-stroke-hover);}
     .btn-outline{background:transparent;color:var(--kz-brand-active);border-color:var(--kz-brand-border);}
-    .btn-outline:hover{background:var(--kz-brand-bg-subtle);}
+    .btn-outline:hover{background:var(--kz-surface-2);}
     .btn-ghost{background:transparent;color:var(--kz-text-secondary);border-color:transparent;}
     .btn-ghost:hover{background:var(--kz-surface-2);color:var(--kz-text-primary);}
-    .btn-danger{background:var(--kz-error-bg-solid);color:var(--kz-text-inverse);border-color:var(--kz-error-bg-solid);}
-    .btn-danger:hover{background:var(--kz-error-border);}
+    /* Danger button — outline only (WCAG: solid red bg fails) */
+    .btn-danger{background:transparent;color:var(--kz-error-text);border-color:rgba(244,105,105,0.35);}
+    .btn-danger:hover{background:rgba(244,105,105,0.07);border-color:rgba(244,105,105,0.6);}
     .btn:disabled{opacity:.4;cursor:not-allowed;pointer-events:none;}
     .btn-sm{padding:5px 11px;font-size:12px;border-radius:6px;}
     .btn-lg{padding:11px 22px;font-size:14px;border-radius:10px;}
@@ -216,17 +270,13 @@
       padding:3px 10px;border-radius:999px;font-size:12px;font-weight:500;border:1px solid;
     }
     .badge svg{width:11px;height:11px;}
-    .badge-error  {background:var(--kz-error-bg-subtle);  color:var(--kz-error-text);  border-color:var(--kz-error-border-subtle);}
-    .badge-success{background:var(--kz-success-bg-subtle);color:var(--kz-success-text);border-color:var(--kz-success-border-subtle);}
-    .badge-warning{background:var(--kz-warning-bg-subtle);color:var(--kz-warning-text);border-color:var(--kz-warning-border-subtle);}
-    .badge-info   {background:var(--kz-info-bg-subtle);   color:var(--kz-info-text);   border-color:var(--kz-info-border-subtle);}
-    .badge-neutral{background:var(--kz-surface-3);        color:var(--kz-text-secondary);border-color:var(--kz-stroke-default);}
-    .badge-brand  {background:var(--kz-brand-bg-subtle);  color:var(--kz-brand-active); border-color:var(--kz-brand-border-subtle);}
-    .badge-solid-error  {background:var(--kz-error-text);  color:var(--kz-surface-0);border-color:transparent;}
-    .badge-solid-success{background:var(--kz-success-text);color:var(--kz-surface-0);border-color:transparent;}
-    .badge-solid-warning{background:var(--kz-warning-text);color:var(--kz-surface-0);border-color:transparent;}
-    .badge-solid-info   {background:var(--kz-info-text);   color:var(--kz-surface-0);border-color:transparent;}
-    .badge-solid-brand  {background:var(--kz-brand-active);color:var(--kz-surface-0);border-color:transparent;}
+    /* Badges — outline only, no solid fills */
+    .badge-error  {background:transparent;color:var(--kz-error-text);  border-color:rgba(244,105,105,0.35);}
+    .badge-success{background:transparent;color:var(--kz-success-bg-solid);border-color:rgba(34,197,94,0.35);}
+    .badge-warning{background:transparent;color:var(--kz-warning-bg-solid);border-color:rgba(245,158,11,0.35);}
+    .badge-info   {background:transparent;color:var(--kz-info-bg-solid); border-color:rgba(59,130,246,0.35);}
+    .badge-neutral{background:transparent;color:var(--kz-text-secondary); border-color:rgba(255,255,255,0.12);}
+    .badge-brand  {background:transparent;color:var(--kz-brand-primary);  border-color:var(--kz-brand-border-subtle);}
 
     /* ── Form elements ───────────────────────────────────────────────────────── */
     .input{
@@ -274,10 +324,13 @@
     .alert-body{flex:1;}
     .alert-title{font-size:13px;font-weight:600;margin-bottom:2px;}
     .alert-desc{font-size:12px;opacity:.85;line-height:1.5;}
-    .alert-error  {background:var(--kz-error-bg-subtle);  color:var(--kz-error-text);  border-color:var(--kz-error-border-subtle);}
-    .alert-success{background:var(--kz-success-bg-subtle);color:var(--kz-success-text);border-color:var(--kz-success-border-subtle);}
-    .alert-warning{background:var(--kz-warning-bg-subtle);color:var(--kz-warning-text);border-color:var(--kz-warning-border-subtle);}
-    .alert-info   {background:var(--kz-info-bg-subtle);   color:var(--kz-info-text);   border-color:var(--kz-info-border-subtle);}
+    /* Alerts — outline + subtle tint, off-white text, brand icon */
+    .alert-error  {background:rgba(244,105,105,0.07);border-color:rgba(244,105,105,0.35);color:var(--kz-text-primary);}
+    .alert-success{background:rgba(34,197,94,0.04);  border-color:rgba(34,197,94,0.25); color:var(--kz-text-primary);}
+    .alert-warning{background:rgba(245,158,11,0.04); border-color:rgba(245,158,11,0.25);color:var(--kz-text-primary);}
+    .alert-info   {background:rgba(59,130,246,0.04); border-color:rgba(59,130,246,0.25);color:var(--kz-text-primary);}
+    .alert svg    {color:var(--kz-brand-primary);}
+    .alert-desc   {opacity:1;color:var(--kz-text-secondary);}
 
     /* ── Cards ───────────────────────────────────────────────────────────────── */
     .card{
@@ -288,7 +341,7 @@
     .card-desc{font-size:12px;color:var(--kz-text-secondary);line-height:1.5;}
     .card-icon{
       width:36px;height:36px;border-radius:9px;margin-bottom:10px;
-      background:var(--kz-brand-bg-subtle);color:var(--kz-brand-primary);
+      background:var(--kz-surface-3);color:var(--kz-brand-primary);
       display:flex;align-items:center;justify-content:center;
     }
     .card-icon svg{width:18px;height:18px;}
@@ -298,27 +351,21 @@
       display:inline-flex;align-items:center;gap:3px;
       font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;margin-top:6px;
     }
-    .kpi-up{background:var(--kz-success-bg-subtle);color:var(--kz-success-text);}
-    .kpi-down{background:var(--kz-error-bg-subtle);color:var(--kz-error-text);}
+    .kpi-up  {background:transparent;color:var(--kz-success-bg-solid);border:1px solid rgba(34,197,94,0.35);}
+    .kpi-down{background:transparent;color:var(--kz-error-text);      border:1px solid rgba(244,105,105,0.35);}
     .kpi-change svg{width:12px;height:12px;}
-    .card-error  {border-color:var(--kz-error-border-subtle);  background:var(--kz-error-bg-subtle);}
-    .card-success{border-color:var(--kz-success-border-subtle);background:var(--kz-success-bg-subtle);}
-    .card-warning{border-color:var(--kz-warning-border-subtle);background:var(--kz-warning-bg-subtle);}
-    .card-info   {border-color:var(--kz-info-border-subtle);   background:var(--kz-info-bg-subtle);}
+    /* Semantic cards — outline + subtle tint, brand icon, off-white text */
+    .card-error  {border-color:rgba(244,105,105,0.35);background:rgba(244,105,105,0.07);}
+    .card-success{border-color:rgba(34,197,94,0.25);  background:rgba(34,197,94,0.04);}
+    .card-warning{border-color:rgba(245,158,11,0.25); background:rgba(245,158,11,0.04);}
+    .card-info   {border-color:rgba(59,130,246,0.25); background:rgba(59,130,246,0.04);}
     .card-semantic-icon{display:flex;align-items:flex-start;gap:10px;}
     .card-semantic-icon svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;}
-    .card-error   .card-title{color:var(--kz-error-text);}
-    .card-success .card-title{color:var(--kz-success-text);}
-    .card-warning .card-title{color:var(--kz-warning-text);}
-    .card-info    .card-title{color:var(--kz-info-text);}
-    .card-error   .card-desc{color:var(--kz-error-text);opacity:.85;}
-    .card-success .card-desc{color:var(--kz-success-text);opacity:.85;}
-    .card-warning .card-desc{color:var(--kz-warning-text);opacity:.85;}
-    .card-info    .card-desc{color:var(--kz-info-text);opacity:.85;}
-    .card-error   svg{color:var(--kz-error-text);}
-    .card-success svg{color:var(--kz-success-text);}
-    .card-warning svg{color:var(--kz-warning-text);}
-    .card-info    svg{color:var(--kz-info-text);}
+    .card-error .card-title,.card-success .card-title,
+    .card-warning .card-title,.card-info .card-title{color:var(--kz-text-primary);}
+    .card-error .card-desc,.card-success .card-desc,
+    .card-warning .card-desc,.card-info .card-desc{color:var(--kz-text-secondary);opacity:1;}
+    .card-error svg,.card-success svg,.card-warning svg,.card-info svg{color:var(--kz-brand-primary);}
 
     /* ── Menu ────────────────────────────────────────────────────────────────── */
     .menu{
@@ -334,8 +381,8 @@
     }
     .menu-item svg{width:15px;height:15px;color:var(--kz-text-tertiary);flex-shrink:0;}
     .menu-item:hover{background:var(--kz-surface-3);}
-    .menu-item.active{background:var(--kz-brand-bg-subtle);color:var(--kz-brand-active);font-weight:500;}
-    .menu-item.active svg{color:var(--kz-brand-active);}
+    .menu-item.active{background:var(--kz-surface-2);color:var(--kz-brand-primary);font-weight:500;}
+    .menu-item.active svg{color:var(--kz-brand-primary);}
     .menu-item.danger{color:var(--kz-error-text);}
     .menu-item.danger svg{color:var(--kz-error-text);}
     .menu-divider{height:1px;background:var(--kz-stroke-subtle);margin:4px 0;border:none;}
@@ -372,7 +419,7 @@
     .av-md{width:40px;height:40px;font-size:14px;}
     .av-lg{width:50px;height:50px;font-size:17px;}
     .av-xl{width:64px;height:64px;font-size:22px;}
-    .av-brand{background:var(--kz-brand-bg-subtle);color:var(--kz-brand-text);}
+    .av-brand{background:var(--kz-brand-primary);color:#231F20;}
     .av-muted{background:var(--kz-surface-4);color:var(--kz-text-tertiary);}
     .av-group{display:flex;}
     .av-group .avatar{margin-left:-8px;}
@@ -395,8 +442,8 @@
     .track{height:7px;background:var(--kz-surface-3);border-radius:999px;overflow:hidden;max-width:280px;}
     .fill{height:100%;border-radius:999px;}
     .fill-brand{background:var(--kz-brand-primary);}
-    .fill-warning{background:var(--kz-warning-bg-solid);}
-    .fill-error{background:var(--kz-error-bg-solid);}
+    .fill-warning{background:rgba(245,158,11,0.55);}
+    .fill-error{background:rgba(244,105,105,0.65);}
     .spinner{width:22px;height:22px;border-radius:50%;
       border:2.5px solid var(--kz-stroke-default);border-top-color:var(--kz-brand-primary);
       animation:spin .7s linear infinite;}
@@ -478,46 +525,79 @@
     .brand-card-dot{width:5px;height:5px;border-radius:50%;opacity:.35;}
     .brand-card-dot.active{width:16px;border-radius:999px;opacity:1;}
 
-    /* gradient card — near-black text: 6.54:1 AA on #F0673D, 7.36:1 AAA on #F89474 */
+    /* gradient card */
     .bc-gradient{
       background:linear-gradient(150deg,var(--kz-brand-gradient-1) 0%,var(--kz-brand-gradient-2) 100%);
-      color:#231F20;
+      color:var(--kz-brand-lightblack);
     }
-    .bc-gradient .brand-card-badge{background:rgba(0,0,0,.22);color:#231F20;}
-    .bc-gradient .brand-card-dot{background:#fff;}
+    .bc-gradient .brand-card-badge{background:var(--kz-brand-offwhite);color:var(--kz-brand-lightblack);}
 
-    /* white card */
-    .bc-white{
-      background:var(--kz-surface-0);color:var(--kz-text-primary);
-      border:1px solid var(--kz-stroke-subtle);
-    }
-    .bc-white .brand-card-badge{background:var(--kz-surface-3);color:var(--kz-text-secondary);}
-    .bc-white .brand-card-dot{background:var(--kz-stroke-strong);}
+    /* white card — static brand-white, never theme-switches */
+    .bc-white{background:var(--kz-brand-white);color:var(--kz-brand-lightblack);border:1px solid var(--kz-brand-offwhite);}
+    .bc-white .brand-card-badge{background:var(--kz-brand-offwhite);color:var(--kz-brand-lightblack);}
 
-    /* off-white card */
-    .bc-offwhite{background:var(--kz-surface-2);color:var(--kz-text-primary);}
-    .bc-offwhite .brand-card-badge{background:var(--kz-surface-4);color:var(--kz-text-secondary);}
-    .bc-offwhite .brand-card-dot{background:var(--kz-stroke-strong);}
+    /* off-white card — static brand-offwhite, never theme-switches */
+    .bc-offwhite{background:var(--kz-brand-offwhite);color:var(--kz-brand-lightblack);}
+    .bc-offwhite .brand-card-badge{background:var(--kz-brand-white);color:var(--kz-brand-lightblack);}
 
-    /* grey card — light #9E9A97: dark text=5.84:1 AA. dark #6E6869: white=4.79:1 AA */
-    .bc-grey{background:var(--kz-stroke-hover);color:var(--kz-text-primary);}
-    .dark .bc-grey,.dark .bc-grey .brand-card-badge{color:#fff;}
-    @media(prefers-color-scheme:dark){:root:not(.light) .bc-grey,:root:not(.light) .bc-grey .brand-card-badge{color:#fff;}}
-    .bc-grey .brand-card-badge{background:rgba(0,0,0,.25);color:var(--kz-text-primary);}
-    .bc-grey .brand-card-dot{background:var(--kz-text-primary);}
-    .dark .bc-grey .brand-card-dot{background:#fff;}
-    @media(prefers-color-scheme:dark){:root:not(.light) .bc-grey .brand-card-dot{background:#fff;}}
+    /* grey card — static brand-grey, never theme-switches */
+    .bc-grey{background:var(--kz-brand-grey);color:var(--kz-brand-white);}
+    .bc-grey .brand-card-badge{background:var(--kz-brand-lightblack);color:var(--kz-brand-white);}
 
-    /* light-black card */
-    .bc-lightblack{background:var(--kz-text-primary);color:#fff;}
-    .dark .bc-lightblack{background:var(--kz-surface-3);}
-    .bc-lightblack .brand-card-badge{background:rgba(255,255,255,.12);color:#fff;}
-    .bc-lightblack .brand-card-dot{background:#fff;}
+    /* light-black card — static brand-lightblack, never theme-switches */
+    .bc-lightblack{background:var(--kz-brand-lightblack);color:var(--kz-brand-white);}
+    .bc-lightblack .brand-card-badge{background:var(--kz-brand-grey);color:var(--kz-brand-white);}
 
     /* black card */
-    .bc-black{background:#000;color:#fff;}
-    .bc-black .brand-card-badge{background:rgba(255,255,255,.12);color:#fff;}
-    .bc-black .brand-card-dot{background:#fff;}
+    .bc-black{background:var(--kz-brand-black);color:var(--kz-brand-white);}
+    .bc-black .brand-card-badge{background:var(--kz-brand-grey);color:var(--kz-brand-white);}
+
+    /* ── Brand card per-variant typography & dots (token-only) ──────────────── */
+    /* Light cards */
+    .bc-white .brand-card-title,
+    .bc-offwhite .brand-card-title      {color:var(--kz-brand-lightblack);}
+    .bc-white .brand-card-desc,
+    .bc-offwhite .brand-card-desc       {color:var(--kz-brand-grey);}
+    .bc-white .brand-card-counter,
+    .bc-offwhite .brand-card-counter    {color:var(--kz-brand-grey);}
+    .bc-white .brand-card-footer-label,
+    .bc-offwhite .brand-card-footer-label{color:var(--kz-brand-grey);}
+    .bc-white .brand-card-footer        {border-top-color:var(--kz-brand-offwhite);}
+    .bc-offwhite .brand-card-footer     {border-top-color:var(--kz-brand-grey);}
+    .bc-white .brand-card-dot,
+    .bc-offwhite .brand-card-dot        {background:var(--kz-brand-grey);opacity:.4;}
+    .bc-white .brand-card-dot.active,
+    .bc-offwhite .brand-card-dot.active {background:var(--kz-brand-lightblack);opacity:1;}
+    /* Dark cards */
+    .bc-grey .brand-card-title          {color:var(--kz-brand-white);}
+    .bc-grey .brand-card-desc           {color:var(--kz-brand-offwhite);}
+    .bc-grey .brand-card-counter,
+    .bc-grey .brand-card-footer-label   {color:var(--kz-brand-offwhite);}
+    .bc-grey .brand-card-footer         {border-top-color:var(--kz-brand-lightblack);}
+    .bc-grey .brand-card-dot            {background:var(--kz-brand-white);opacity:.35;}
+    .bc-grey .brand-card-dot.active     {background:var(--kz-brand-white);opacity:1;}
+    .bc-lightblack .brand-card-title,
+    .bc-black .brand-card-title         {color:var(--kz-brand-white);}
+    .bc-lightblack .brand-card-desc     {color:var(--kz-brand-offwhite);}
+    .bc-black .brand-card-desc          {color:var(--kz-brand-grey);}
+    .bc-lightblack .brand-card-counter,
+    .bc-black .brand-card-counter       {color:var(--kz-brand-grey);}
+    .bc-lightblack .brand-card-footer-label,
+    .bc-black .brand-card-footer-label  {color:var(--kz-brand-grey);}
+    .bc-lightblack .brand-card-footer,
+    .bc-black .brand-card-footer        {border-top-color:var(--kz-brand-grey);}
+    .bc-lightblack .brand-card-dot,
+    .bc-black .brand-card-dot           {background:var(--kz-brand-white);opacity:.3;}
+    .bc-lightblack .brand-card-dot.active,
+    .bc-black .brand-card-dot.active    {background:var(--kz-brand-white);opacity:1;}
+    /* Gradient card */
+    .bc-gradient .brand-card-title,
+    .bc-gradient .brand-card-counter,
+    .bc-gradient .brand-card-footer-label{color:var(--kz-brand-lightblack);}
+    .bc-gradient .brand-card-desc       {color:var(--kz-brand-lightblack);}
+    .bc-gradient .brand-card-footer     {border-top-color:var(--kz-brand-lightblack);}
+    .bc-gradient .brand-card-dot        {background:var(--kz-brand-lightblack);opacity:.25;}
+    .bc-gradient .brand-card-dot.active {background:var(--kz-brand-lightblack);opacity:1;}
 
     /* ── Tooltip ─────────────────────────────────────────────────────────────── */
     .tooltip-wrap{position:relative;display:inline-flex;}
@@ -551,14 +631,15 @@
     .toast-close{margin-left:auto;background:none;border:none;cursor:pointer;
       color:var(--kz-text-tertiary);padding:0;display:flex;align-items:center;}
     .toast-close svg{width:13px;height:13px;}
-    .toast-success{border-left:3px solid var(--kz-success-bg-solid);color:var(--kz-success-text);}
-    .toast-success .toast-body{color:var(--kz-text-primary);}
-    .toast-error  {border-left:3px solid var(--kz-error-bg-solid);  color:var(--kz-error-text);}
-    .toast-error   .toast-body{color:var(--kz-text-primary);}
-    .toast-warning{border-left:3px solid var(--kz-warning-bg-solid);color:var(--kz-warning-text);}
-    .toast-warning .toast-body{color:var(--kz-text-primary);}
-    .toast-info   {border-left:3px solid var(--kz-info-bg-solid);   color:var(--kz-info-text);}
-    .toast-info    .toast-body{color:var(--kz-text-primary);}
+    /* Toast — structural left border accent; icon = brand, text = off-white */
+    .toast-success{border-left:3px solid var(--kz-success-bg-solid);}
+    .toast-success svg{color:var(--kz-brand-primary);}
+    .toast-error  {border-left:3px solid var(--kz-error-bg-solid);}
+    .toast-error   svg{color:var(--kz-brand-primary);}
+    .toast-warning{border-left:3px solid var(--kz-warning-bg-solid);}
+    .toast-warning svg{color:var(--kz-brand-primary);}
+    .toast-info   {border-left:3px solid var(--kz-info-bg-solid);}
+    .toast-info    svg{color:var(--kz-brand-primary);}
     .toast-body{font-size:12px;color:var(--kz-text-secondary);margin-top:1px;}
     .toast-content{flex:1;}
     .toast-title{font-size:13px;font-weight:600;}
@@ -592,11 +673,12 @@
     .chip svg{width:12px;height:12px;flex-shrink:0;}
     .chip-x{color:var(--kz-text-tertiary);cursor:pointer;line-height:1;background:none;border:none;padding:0;font-size:14px;}
     .chip-x:hover{color:var(--kz-text-primary);}
-    .chip-brand  {background:var(--kz-brand-bg-subtle);   color:var(--kz-brand-text);   border-color:var(--kz-brand-border-subtle);}
-    .chip-success{background:var(--kz-success-bg-subtle); color:var(--kz-success-text);  border-color:var(--kz-success-border-subtle);}
-    .chip-error  {background:var(--kz-error-bg-subtle);   color:var(--kz-error-text);    border-color:var(--kz-error-border-subtle);}
-    .chip-info   {background:var(--kz-info-bg-subtle);    color:var(--kz-info-text);     border-color:var(--kz-info-border-subtle);}
-    .chip-warning{background:var(--kz-warning-bg-subtle); color:var(--kz-warning-text);  border-color:var(--kz-warning-border-subtle);}
+    /* Chips — outline only, no solid fills */
+    .chip-brand  {background:transparent;color:var(--kz-brand-primary);      border-color:var(--kz-brand-border-subtle);}
+    .chip-success{background:transparent;color:var(--kz-success-bg-solid);   border-color:rgba(34,197,94,0.35);}
+    .chip-error  {background:transparent;color:var(--kz-error-text);         border-color:rgba(244,105,105,0.35);}
+    .chip-info   {background:transparent;color:var(--kz-info-bg-solid);      border-color:rgba(59,130,246,0.35);}
+    .chip-warning{background:transparent;color:var(--kz-warning-bg-solid);   border-color:rgba(245,158,11,0.35);}
 
     /* ── Empty state ─────────────────────────────────────────────────────────── */
     .empty-state{
@@ -641,6 +723,8 @@
     .stat-label{font-size:10px;color:var(--kz-text-tertiary);margin-bottom:3px;text-transform:uppercase;letter-spacing:.07em;font-weight:600;}
     .stat-value{font-size:22px;font-weight:700;letter-spacing:-.03em;color:var(--kz-text-primary);}
     .stat-change{font-size:11px;margin-top:3px;}
+    .stat-change.up  {color:var(--kz-success-bg-solid);}
+    .stat-change.down{color:var(--kz-error-text);}
 
     /* ── Timeline ─────────────────────────────────────────────────────────────── */
     .timeline{list-style:none;position:relative;padding-left:22px;}
@@ -652,7 +736,8 @@
       border:2px solid var(--kz-stroke-default);background:var(--kz-surface-0);
     }
     .tl-dot.brand{border-color:var(--kz-brand-primary);background:var(--kz-brand-primary);}
-    .tl-dot.success{border-color:var(--kz-success-bg-solid);background:var(--kz-success-bg-solid);}
+    /* Timeline success dot — outline ring, transparent fill */
+    .tl-dot.success{border-color:var(--kz-success-bg-solid);background:transparent;}
     .tl-dot.muted{border-color:var(--kz-stroke-default);background:var(--kz-surface-2);}
     .tl-title{font-size:13px;font-weight:500;color:var(--kz-text-primary);}
     .tl-meta{font-size:11px;color:var(--kz-text-tertiary);margin-top:1px;}
@@ -663,10 +748,11 @@
     .callout:last-child{margin-bottom:0;}
     .callout-title{font-size:13px;font-weight:600;margin-bottom:2px;}
     .callout-desc{font-size:12px;opacity:.85;line-height:1.5;}
-    .callout-brand  {border-color:var(--kz-brand-primary);  background:var(--kz-brand-bg-subtle);  color:var(--kz-brand-text);}
-    .callout-success{border-color:var(--kz-success-bg-solid);background:var(--kz-success-bg-subtle);color:var(--kz-success-text);}
-    .callout-warning{border-color:var(--kz-warning-bg-solid);background:var(--kz-warning-bg-subtle);color:var(--kz-warning-text);}
-    .callout-error  {border-color:var(--kz-error-bg-solid);  background:var(--kz-error-bg-subtle);  color:var(--kz-error-text);}
+    /* Callout — subtle tint + semantic left border + off-white text */
+    .callout-brand  {border-color:var(--kz-brand-primary);   background:var(--kz-surface-2);         color:var(--kz-text-primary);}
+    .callout-success{border-color:rgba(34,197,94,0.4);        background:rgba(34,197,94,0.04);         color:var(--kz-text-primary);}
+    .callout-warning{border-color:rgba(245,158,11,0.4);       background:rgba(245,158,11,0.04);        color:var(--kz-text-primary);}
+    .callout-error  {border-color:rgba(244,105,105,0.5);      background:rgba(244,105,105,0.07);       color:var(--kz-text-primary);}
 
     /* ── Stat bar (horizontal) ──────────────────────────────────────────────── */
     .stat-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
@@ -699,10 +785,10 @@
       color:var(--kz-text-primary);cursor:pointer;transition:background .1s;
     }
     .cmd-item svg{width:15px;height:15px;color:var(--kz-text-tertiary);flex-shrink:0;}
-    .cmd-item:hover,.cmd-item.active{background:var(--kz-brand-bg-subtle);color:var(--kz-brand-text);}
-    .cmd-item.active svg{color:var(--kz-brand-text);}
+    .cmd-item:hover,.cmd-item.active{background:var(--kz-surface-2);color:var(--kz-brand-primary);}
+    .cmd-item.active svg{color:var(--kz-brand-primary);}
     .cmd-item-shortcut{margin-left:auto;font-size:11px;color:var(--kz-text-tertiary);font-family:'JetBrains Mono',monospace;}
-    .cmd-item.active .cmd-item-shortcut{color:var(--kz-brand-text);opacity:.7;}
+    .cmd-item.active .cmd-item-shortcut{color:var(--kz-brand-primary);opacity:.7;}
     .cmd-footer{
       display:flex;align-items:center;gap:12px;padding:8px 14px;
       border-top:1px solid var(--kz-stroke-subtle);background:var(--kz-surface-2);
@@ -730,14 +816,48 @@
       border-bottom:1px solid var(--kz-stroke-subtle);transition:background .1s;
     }
     .notif-item:last-child{border-bottom:none;}
-    .notif-item:hover{background:var(--kz-surface-2);}
-    .notif-item.unread{background:var(--kz-brand-bg-subtle);}
-    .notif-dot{width:8px;height:8px;border-radius:50%;background:var(--kz-brand-primary);flex-shrink:0;margin-top:4px;}
+    .notif-item:hover{background:var(--kz-surface-3);}
+    .notif-item.unread{background:var(--kz-surface-2);}
+    .notif-dot{width:8px;height:8px;border-radius:50%;background:var(--kz-stroke-strong);flex-shrink:0;margin-top:4px;}
     .notif-dot.read{background:transparent;}
     .notif-body{flex:1;}
     .notif-text{font-size:13px;color:var(--kz-text-primary);line-height:1.4;}
     .notif-text strong{font-weight:600;}
     .notif-time{font-size:11px;color:var(--kz-text-tertiary);margin-top:2px;}
+
+    /* ── WCAG contrast matrix ────────────────────────────────────────────────── */
+    .wcag-matrix-wrap{padding:4px 0 8px;overflow-x:auto;}
+    .wcag-matrix{border-collapse:collapse;font-size:11px;width:100%;}
+    .wcag-matrix th{
+      padding:6px 10px;text-align:center;font-size:10px;font-weight:700;
+      text-transform:uppercase;letter-spacing:.07em;color:var(--kz-text-tertiary);
+      background:var(--kz-surface-1);border:1px solid var(--kz-stroke-subtle);
+    }
+    .wcag-matrix th.row-header{text-align:left;min-width:140px;}
+    .wcag-matrix td{
+      padding:7px 10px;border:1px solid var(--kz-stroke-subtle);
+      text-align:center;vertical-align:middle;font-family:'JetBrains Mono',monospace;
+    }
+    .wcag-matrix td.color-label{
+      text-align:left;font-family:'Inter',sans-serif;font-size:11px;
+      font-weight:500;color:var(--kz-text-primary);background:var(--kz-surface-1);
+      white-space:nowrap;
+    }
+    .wcag-matrix td.color-label span{
+      display:inline-block;width:10px;height:10px;border-radius:50%;
+      margin-right:6px;vertical-align:middle;flex-shrink:0;
+    }
+    .wm-ratio{font-size:11px;font-weight:600;display:block;}
+    .wm-grade{font-size:9px;font-weight:700;letter-spacing:.06em;display:block;margin-top:1px;}
+    .wm-aaa{background:rgba(34,197,94,0.10);color:var(--kz-success-text);}
+    .wm-aaa .wm-grade{color:var(--kz-success-bg-solid);}
+    .wm-aa {background:rgba(255,127,86,0.08);color:var(--kz-text-primary);}
+    .wm-aa  .wm-grade{color:var(--kz-brand-primary);}
+    .wm-low{background:rgba(245,158,11,0.10);color:var(--kz-text-primary);}
+    .wm-low .wm-grade{color:var(--kz-warning-bg-solid);}
+    .wm-fail{background:rgba(244,105,105,0.12);color:var(--kz-error-text);}
+    .wm-fail .wm-grade{color:var(--kz-error-text);}
+    .wm-note{font-size:10px;color:var(--kz-text-tertiary);margin-top:6px;font-style:italic;}
 
     /* ── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer{
@@ -761,7 +881,7 @@
         <span class="logo-dot" aria-hidden="true"></span>
         Kodez Tokens
       </a>
-      <span class="header-meta">v1.7.2 · WCAG 2.1 AA+</span>
+      <span class="header-meta">v1.7.3 · WCAG 2.1 AA+</span>
       <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
         <i data-lucide="sun" aria-hidden="true" style="width:15px;height:15px;"></i>
       </button>
@@ -794,34 +914,34 @@
           <td class="comp-preview">
             <div class="swatches">
               <div class="swatch">
-                <div class="swatch-color" style="background:var(--kz-brand-primary);"></div>
+                <div class="swatch-color" style="background:var(--kz-brand-orange);"></div>
                 <div class="swatch-name">Orange</div>
-                <div class="swatch-hex">--kz-brand-primary</div>
+                <div class="swatch-hex">--kz-brand-orange</div>
               </div>
               <div class="swatch">
-                <div class="swatch-color" style="background:var(--kz-surface-0);border-color:var(--kz-stroke-default);"></div>
+                <div class="swatch-color" style="background:var(--kz-brand-white);border-color:var(--kz-stroke-default);"></div>
                 <div class="swatch-name">White</div>
-                <div class="swatch-hex">--kz-surface-0</div>
+                <div class="swatch-hex">--kz-brand-white</div>
               </div>
               <div class="swatch">
-                <div class="swatch-color" style="background:var(--kz-surface-2);"></div>
+                <div class="swatch-color" style="background:var(--kz-brand-offwhite);"></div>
                 <div class="swatch-name">Off-White</div>
-                <div class="swatch-hex">--kz-surface-2</div>
+                <div class="swatch-hex">--kz-brand-offwhite</div>
               </div>
               <div class="swatch">
-                <div class="swatch-color" style="background:var(--kz-stroke-hover);"></div>
+                <div class="swatch-color" style="background:var(--kz-brand-grey);"></div>
                 <div class="swatch-name">Grey</div>
-                <div class="swatch-hex">--kz-stroke-hover</div>
+                <div class="swatch-hex">--kz-brand-grey</div>
               </div>
               <div class="swatch">
-                <div class="swatch-color" style="background:var(--kz-text-primary);"></div>
+                <div class="swatch-color" style="background:var(--kz-brand-lightblack);"></div>
                 <div class="swatch-name">Light Black</div>
-                <div class="swatch-hex">--kz-text-primary</div>
+                <div class="swatch-hex">--kz-brand-lightblack</div>
               </div>
               <div class="swatch">
-                <div class="swatch-color" style="background:#000000;"></div>
+                <div class="swatch-color" style="background:var(--kz-brand-black);"></div>
                 <div class="swatch-name">Black</div>
-                <div class="swatch-hex">#000000</div>
+                <div class="swatch-hex">--kz-brand-black</div>
               </div>
             </div>
           </td>
@@ -845,7 +965,7 @@
 
         <tr>
           <td class="comp-name">--kz-surface-0<small>Page background</small></td>
-          <td class="comp-desc">Foundation layer. Use as the main page/app canvas background. Light: <code>#FFFFFF</code> · Dark: <code>#0C0A0B</code></td>
+          <td class="comp-desc">Foundation layer. Use as the main page/app canvas background. Light: <code>#FFFFFF</code> · Dark: <code>#08080E</code></td>
           <td class="comp-preview">
             <div class="surf-chip" style="background:var(--kz-surface-0);color:var(--kz-text-primary);" data-wcag-check>surface-0</div>
           </td>
@@ -886,6 +1006,103 @@
           </td>
         </tr>
 
+        <!-- ══ WCAG CONTRAST MATRIX ═════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">WCAG 2.1 Contrast Matrix — Dark Mode</td></tr>
+        <tr>
+          <td colspan="3" style="padding:12px 20px;">
+            <div class="wcag-matrix-wrap">
+              <table class="wcag-matrix">
+                <thead>
+                  <tr>
+                    <th class="row-header">Color token</th>
+                    <th>S0<br><code style="font-size:9px;">#08080E</code></th>
+                    <th>S1<br><code style="font-size:9px;">#0D0D1A</code></th>
+                    <th>S2<br><code style="font-size:9px;">#121224</code></th>
+                    <th>S3<br><code style="font-size:9px;">#17172E</code></th>
+                    <th>S4<br><code style="font-size:9px;">#1C1C38</code></th>
+                    <th>S5<br><code style="font-size:9px;">#212142</code></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="color-label"><span style="background:var(--kz-text-primary);"></span>text-primary #F5F4F2</td>
+                    <td class="wm-aaa"><span class="wm-ratio">18.3:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">17.6:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">16.9:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">16.0:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">15.1:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">14.1:1</span><span class="wm-grade">AAA</span></td>
+                  </tr>
+                  <tr>
+                    <td class="color-label"><span style="background:var(--kz-text-secondary);"></span>text-secondary #999999</td>
+                    <td class="wm-aa"><span class="wm-ratio">7.0:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.8:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.5:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.1:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">5.8:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">5.4:1</span><span class="wm-grade">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td class="color-label"><span style="background:var(--kz-text-tertiary);"></span>text-tertiary #8C90A0</td>
+                    <td class="wm-aa"><span class="wm-ratio">6.3:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.1:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">5.8:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">5.5:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">5.2:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">4.9:1</span><span class="wm-grade">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td class="color-label"><span style="background:var(--kz-brand-primary);"></span>brand-primary #FF7F56</td>
+                    <td class="wm-aaa"><span class="wm-ratio">8.0:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">7.7:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">7.4:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">7.0:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.6:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.2:1</span><span class="wm-grade">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td class="color-label"><span style="background:var(--kz-success-bg-solid);"></span>success #22C55E</td>
+                    <td class="wm-aaa"><span class="wm-ratio">8.8:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">8.5:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">8.1:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">7.7:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">7.2:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.8:1</span><span class="wm-grade">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td class="color-label"><span style="background:var(--kz-warning-bg-solid);"></span>warning #F59E0B</td>
+                    <td class="wm-aaa"><span class="wm-ratio">9.3:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">9.0:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">8.6:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">8.2:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">7.7:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">7.2:1</span><span class="wm-grade">AAA</span></td>
+                  </tr>
+                  <tr>
+                    <td class="color-label"><span style="background:var(--kz-error-text);"></span>error-text #F98585</td>
+                    <td class="wm-aaa"><span class="wm-ratio">8.3:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">8.0:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">7.7:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aaa"><span class="wm-ratio">7.3:1</span><span class="wm-grade">AAA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.9:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.4:1</span><span class="wm-grade">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td class="color-label"><span style="background:var(--kz-error-bg-solid);"></span>error-solid #F46969</td>
+                    <td class="wm-aa"><span class="wm-ratio">6.8:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.5:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">6.2:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">5.9:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">5.6:1</span><span class="wm-grade">AA</span></td>
+                    <td class="wm-aa"><span class="wm-ratio">5.2:1</span><span class="wm-grade">AA</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="wm-note">Computed against Cool Intensified surfaces S0–S5 using WCAG 2.1 relative luminance. AAA ≥ 7:1 · AA ≥ 4.5:1 · All listed colors pass AA across every surface.</p>
+            </div>
+          </td>
+        </tr>
+
         <!-- ══ TYPOGRAPHY ════════════════════════════════════════════════════ -->
         <tr class="sec-row"><td colspan="3">Typography & Text</td></tr>
 
@@ -901,7 +1118,7 @@
         </tr>
         <tr>
           <td class="comp-name">--kz-text-secondary<small>Labels · support</small></td>
-          <td class="comp-desc">Supporting content: labels, secondary information, card descriptions. 9.4:1 on surface-0.</td>
+          <td class="comp-desc">Supporting content: labels, secondary information, card descriptions. Dark: 7.0:1 on S0 → 5.4:1 on S5, all AA. Light: 4.5:1+ AA.</td>
           <td class="comp-preview">
             <span style="font-size:14px;color:var(--kz-text-secondary);" data-wcag-check>Secondary paragraph — slightly muted for supporting copy and supplementary information.</span>
           </td>
@@ -1257,7 +1474,7 @@
 
         <tr>
           <td class="comp-name">Sidebar menu<small>vertical nav</small></td>
-          <td class="comp-desc">Persistent vertical navigation. Active item uses brand-bg-subtle + brand-active. Danger item uses error tokens.</td>
+          <td class="comp-desc">Persistent vertical navigation. Active item uses surface-2 background with brand-primary text. Danger item uses error tokens.</td>
           <td class="comp-preview">
             <nav aria-label="Sidebar demo">
               <ul class="menu" style="list-style:none;">
@@ -1333,7 +1550,7 @@
         </tr>
         <tr>
           <td class="comp-name">Variants &amp; groups<small>brand · muted · status</small></td>
-          <td class="comp-desc">Brand variant uses brand-bg-subtle. Group stacks with negative margin. Status dots use semantic solid background colours.</td>
+          <td class="comp-desc">Brand variant uses brand-primary solid background. Group stacks with negative margin. Status dots use semantic solid background colours.</td>
           <td class="comp-preview">
             <div class="flex-col">
               <div class="flex-row" style="align-items:center;">
@@ -1498,6 +1715,77 @@
           </td>
         </tr>
 
+        <!-- ══ GLOW EFFECTS ══════════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Glow Effects</td></tr>
+
+        <tr>
+          <td class="comp-name">--kz-glow-accent<small>Ambient glow colour</small></td>
+          <td class="comp-desc">
+            Blue-purple radial glow for ambient lighting effects behind sections, cards, and hero areas.
+            Light: <code>rgba(81,83,246,0.08)</code> · Dark: <code>rgba(116,117,255,0.15)</code>.
+            Apply as a <code>radial-gradient</code> on a <code>::before</code> pseudo-element so the surface background remains composable.
+          </td>
+          <td class="comp-preview">
+            <div class="glow-swatch-row" style="margin-bottom:16px;">
+              <div class="glow-swatch">
+                <div class="glow-swatch-box" style="background:radial-gradient(ellipse at 50% 50%, var(--kz-glow-accent) 0%, transparent 70%);">glow</div>
+                <div class="glow-swatch-label">--kz-glow-accent</div>
+              </div>
+              <div class="glow-swatch">
+                <div class="glow-swatch-box" style="background:var(--kz-glow-accent);"></div>
+                <div class="glow-swatch-label">flat swatch</div>
+              </div>
+            </div>
+            <div class="glow-demos">
+              <div class="glow-card">
+                <div class="glow-card-icon"><i data-lucide="cpu" aria-hidden="true"></i></div>
+                <div class="glow-card-title">AI-Native Engineering</div>
+                <div class="glow-card-sub">Glow at 20% 50% — the default section pattern.</div>
+              </div>
+              <div class="glow-card glow-card-center">
+                <div class="glow-card-icon"><i data-lucide="layers" aria-hidden="true"></i></div>
+                <div class="glow-card-title">Platform Layer</div>
+                <div class="glow-card-sub">Glow at 50% 30% — centred top for hero cards.</div>
+              </div>
+              <div class="glow-card glow-card-br">
+                <div class="glow-card-icon"><i data-lucide="zap" aria-hidden="true"></i></div>
+                <div class="glow-card-title">Delivery Speed</div>
+                <div class="glow-card-sub">Glow at 80% 80% — bottom-right accent corner.</div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="comp-name">Section background<small>radial-gradient usage</small></td>
+          <td class="comp-desc">
+            Full-bleed section demo showing <code>--kz-glow-accent</code> as an ambient radial overlay on top of <code>--kz-surface-0</code>.
+            Mirrors the About section pattern on the Kodez website.
+          </td>
+          <td class="comp-preview">
+            <div style="position:relative;overflow:hidden;border-radius:12px;padding:28px 24px;
+                        background:var(--kz-surface-0);border:1px solid var(--kz-stroke-subtle);">
+              <!-- ambient glow layer -->
+              <div style="position:absolute;inset:0;pointer-events:none;
+                          background:radial-gradient(ellipse at 20% 50%, var(--kz-glow-accent) 0%, transparent 60%);"></div>
+              <!-- content -->
+              <div style="position:relative;">
+                <div style="font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--kz-text-tertiary);
+                            letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;">[01 About]</div>
+                <div style="font-size:20px;font-weight:700;letter-spacing:-.03em;line-height:1.2;
+                            color:var(--kz-text-primary);margin-bottom:10px;">
+                  Most organisations have already run AI experiments.
+                  <span style="color:var(--kz-text-inverse);background:var(--kz-text-primary);padding:0 4px;border-radius:3px;">Far fewer</span>
+                  have turned them into outcomes.
+                </div>
+                <div style="font-size:12px;color:var(--kz-text-secondary);line-height:1.6;">
+                  The difference is rarely the model — it is the quality of ownership and the delivery system.
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+
         <!-- ══ BRAND APPLICATION CARDS ════════════════════════════════════════ -->
         <tr class="sec-row"><td colspan="3">Brand Application — Palette Cards</td></tr>
 
@@ -1508,22 +1796,22 @@
             <div class="brand-card bc-gradient" style="max-width:220px;" data-wcag-check>
               <div class="brand-card-top">
                 <span class="brand-card-badge">Next Step</span>
-                <span class="brand-card-counter" style="color:#fff;">07 / 07</span>
+                <span class="brand-card-counter">07 / 07</span>
               </div>
               <div class="brand-card-body">
                 <div class="brand-card-title">Want the one-pager we use with delivery leads?</div>
                 <div class="brand-card-desc">Comment <strong>PLAYBOOK</strong> or DM — happy to share the PoV shape.</div>
               </div>
-              <div class="brand-card-footer" style="border-top-color:rgba(255,255,255,.25);">
-                <span class="brand-card-footer-label" style="color:#fff;">End · save for later</span>
+              <div class="brand-card-footer">
+                <span class="brand-card-footer-label">End · save for later</span>
                 <div class="brand-card-dots">
-                  <span class="brand-card-dot" style="background:#fff;"></span>
-                  <span class="brand-card-dot" style="background:#fff;"></span>
-                  <span class="brand-card-dot" style="background:#fff;"></span>
-                  <span class="brand-card-dot" style="background:#fff;"></span>
-                  <span class="brand-card-dot" style="background:#fff;"></span>
-                  <span class="brand-card-dot" style="background:#fff;"></span>
-                  <span class="brand-card-dot active" style="background:#fff;"></span>
+                  <span class="brand-card-dot"></span>
+                  <span class="brand-card-dot"></span>
+                  <span class="brand-card-dot"></span>
+                  <span class="brand-card-dot"></span>
+                  <span class="brand-card-dot"></span>
+                  <span class="brand-card-dot"></span>
+                  <span class="brand-card-dot active"></span>
                 </div>
               </div>
             </div>
@@ -1540,21 +1828,21 @@
               <div class="brand-card bc-gradient">
                 <div class="brand-card-top">
                   <span class="brand-card-badge">Brand</span>
-                  <span class="brand-card-counter" style="color:#fff;">01 / 06</span>
+                  <span class="brand-card-counter">01 / 06</span>
                 </div>
                 <div class="brand-card-body">
-                  <div class="brand-card-title" style="color:#fff;">Orange</div>
-                  <div class="brand-card-desc" style="color:rgba(255,255,255,.85);">--kz-brand-gradient-1 → --kz-brand-gradient-2</div>
+                  <div class="brand-card-title">Orange</div>
+                  <div class="brand-card-desc">--kz-brand-gradient-1 → --kz-brand-gradient-2</div>
                 </div>
-                <div class="brand-card-footer" style="border-top-color:rgba(255,255,255,.25);">
-                  <span class="brand-card-footer-label" style="color:#fff;">--kz-brand-primary</span>
+                <div class="brand-card-footer">
+                  <span class="brand-card-footer-label">--kz-brand-primary</span>
                   <div class="brand-card-dots">
-                    <span class="brand-card-dot active" style="background:#fff;"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.4);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.4);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.4);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.4);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.4);"></span>
+                    <span class="brand-card-dot active"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
                   </div>
                 </div>
               </div>
@@ -1563,21 +1851,21 @@
               <div class="brand-card bc-white">
                 <div class="brand-card-top">
                   <span class="brand-card-badge">Brand</span>
-                  <span class="brand-card-counter" style="color:var(--kz-text-tertiary);">02 / 06</span>
+                  <span class="brand-card-counter">02 / 06</span>
                 </div>
                 <div class="brand-card-body">
-                  <div class="brand-card-title" style="color:var(--kz-text-primary);">White</div>
-                  <div class="brand-card-desc" style="color:var(--kz-text-secondary);">Clean canvas, maximum contrast for headings and body.</div>
+                  <div class="brand-card-title">White</div>
+                  <div class="brand-card-desc">Clean canvas, maximum contrast for headings and body.</div>
                 </div>
-                <div class="brand-card-footer" style="border-top-color:var(--kz-stroke-subtle);">
-                  <span class="brand-card-footer-label" style="color:var(--kz-text-tertiary);">--kz-surface-0</span>
+                <div class="brand-card-footer">
+                  <span class="brand-card-footer-label">--kz-brand-white</span>
                   <div class="brand-card-dots">
-                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
-                    <span class="brand-card-dot active" style="background:var(--kz-stroke-strong);"></span>
-                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
-                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
-                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
-                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot active"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
                   </div>
                 </div>
               </div>
@@ -1586,21 +1874,21 @@
               <div class="brand-card bc-offwhite">
                 <div class="brand-card-top">
                   <span class="brand-card-badge">Brand</span>
-                  <span class="brand-card-counter" style="color:var(--kz-text-tertiary);">03 / 06</span>
+                  <span class="brand-card-counter">03 / 06</span>
                 </div>
                 <div class="brand-card-body">
-                  <div class="brand-card-title" style="color:var(--kz-text-primary);">Off-White</div>
-                  <div class="brand-card-desc" style="color:var(--kz-text-secondary);">Warm neutral surface, softer than pure white.</div>
+                  <div class="brand-card-title">Off-White</div>
+                  <div class="brand-card-desc">Warm neutral surface, softer than pure white.</div>
                 </div>
-                <div class="brand-card-footer" style="border-top-color:var(--kz-stroke-subtle);">
-                  <span class="brand-card-footer-label" style="color:var(--kz-text-tertiary);">--kz-surface-2</span>
+                <div class="brand-card-footer">
+                  <span class="brand-card-footer-label">--kz-brand-offwhite</span>
                   <div class="brand-card-dots">
-                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
-                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
-                    <span class="brand-card-dot active" style="background:var(--kz-stroke-strong);"></span>
-                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
-                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
-                    <span class="brand-card-dot" style="background:var(--kz-stroke-default);"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot active"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
                   </div>
                 </div>
               </div>
@@ -1609,21 +1897,21 @@
               <div class="brand-card bc-grey">
                 <div class="brand-card-top">
                   <span class="brand-card-badge">Brand</span>
-                  <span class="brand-card-counter" style="color:rgba(255,255,255,.6);">04 / 06</span>
+                  <span class="brand-card-counter">04 / 06</span>
                 </div>
                 <div class="brand-card-body">
-                  <div class="brand-card-title" style="color:#fff;">Grey</div>
-                  <div class="brand-card-desc" style="color:rgba(255,255,255,.8);">Neutral mid-tone, great for muted surfaces.</div>
+                  <div class="brand-card-title">Grey</div>
+                  <div class="brand-card-desc">Neutral mid-tone, great for muted surfaces.</div>
                 </div>
-                <div class="brand-card-footer" style="border-top-color:rgba(255,255,255,.2);">
-                  <span class="brand-card-footer-label" style="color:rgba(255,255,255,.7);">--kz-stroke-hover</span>
+                <div class="brand-card-footer">
+                  <span class="brand-card-footer-label">--kz-brand-grey</span>
                   <div class="brand-card-dots">
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.35);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.35);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.35);"></span>
-                    <span class="brand-card-dot active" style="background:#fff;"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.35);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.35);"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot active"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
                   </div>
                 </div>
               </div>
@@ -1632,21 +1920,21 @@
               <div class="brand-card bc-lightblack">
                 <div class="brand-card-top">
                   <span class="brand-card-badge">Brand</span>
-                  <span class="brand-card-counter" style="color:rgba(255,255,255,.5);">05 / 06</span>
+                  <span class="brand-card-counter">05 / 06</span>
                 </div>
                 <div class="brand-card-body">
-                  <div class="brand-card-title" style="color:#fff;">Light Black</div>
-                  <div class="brand-card-desc" style="color:rgba(255,255,255,.75);">Primary text colour, base of all dark UI.</div>
+                  <div class="brand-card-title">Light Black</div>
+                  <div class="brand-card-desc">Primary text colour, base of all dark UI.</div>
                 </div>
-                <div class="brand-card-footer" style="border-top-color:rgba(255,255,255,.15);">
-                  <span class="brand-card-footer-label" style="color:rgba(255,255,255,.55);">--kz-text-primary</span>
+                <div class="brand-card-footer">
+                  <span class="brand-card-footer-label">--kz-brand-lightblack</span>
                   <div class="brand-card-dots">
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.3);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.3);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.3);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.3);"></span>
-                    <span class="brand-card-dot active" style="background:#fff;"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.3);"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot active"></span>
+                    <span class="brand-card-dot"></span>
                   </div>
                 </div>
               </div>
@@ -1655,21 +1943,21 @@
               <div class="brand-card bc-black">
                 <div class="brand-card-top">
                   <span class="brand-card-badge">Brand</span>
-                  <span class="brand-card-counter" style="color:rgba(255,255,255,.4);">06 / 06</span>
+                  <span class="brand-card-counter">06 / 06</span>
                 </div>
                 <div class="brand-card-body">
-                  <div class="brand-card-title" style="color:#fff;">Black</div>
-                  <div class="brand-card-desc" style="color:rgba(255,255,255,.7);">Pure black — maximum contrast, premium feel.</div>
+                  <div class="brand-card-title">Black</div>
+                  <div class="brand-card-desc">Pure black — maximum contrast, premium feel.</div>
                 </div>
-                <div class="brand-card-footer" style="border-top-color:rgba(255,255,255,.1);">
-                  <span class="brand-card-footer-label" style="color:rgba(255,255,255,.45);">#000000</span>
+                <div class="brand-card-footer">
+                  <span class="brand-card-footer-label">--kz-brand-black</span>
                   <div class="brand-card-dots">
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.25);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.25);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.25);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.25);"></span>
-                    <span class="brand-card-dot" style="background:rgba(255,255,255,.25);"></span>
-                    <span class="brand-card-dot active" style="background:#fff;"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot"></span>
+                    <span class="brand-card-dot active"></span>
                   </div>
                 </div>
               </div>
@@ -1988,7 +2276,7 @@
 
         <tr>
           <td class="comp-name">Command palette<small>⌘K pattern</small></td>
-          <td class="comp-desc">Keyboard-first search/action surface. Active item uses brand-bg-subtle + brand-text. Keyboard shortcut hints use surface-3 key chips. Footer uses surface-2.</td>
+          <td class="comp-desc">Keyboard-first search/action surface. Active item uses surface-2 background with brand-primary text. Keyboard shortcut hints use surface-3 key chips. Footer uses surface-2.</td>
           <td class="comp-preview">
             <div class="cmd-palette" role="dialog" aria-label="Command palette" aria-modal="true">
               <div class="cmd-input-row">
@@ -2033,7 +2321,7 @@
 
         <tr>
           <td class="comp-name">Notification feed<small>unread state</small></td>
-          <td class="comp-desc">Unread items use brand-bg-subtle background with brand-primary dot indicator. Read items use default surface. Hover lifts to surface-2.</td>
+          <td class="comp-desc">Unread items use surface-2 background with stroke-strong dot indicator. Read items use default surface. Hover lifts to surface-3.</td>
           <td class="comp-preview">
             <div class="notif-panel" role="region" aria-label="Notifications">
               <div class="notif-header">

@@ -51,7 +51,7 @@ npm install tailwindcss   # only needed for Tailwind preset / v4 CSS
 
 ```mermaid
 flowchart TD
-    A["tokens.ts\nlightTokens / darkTokens"] --> B["getCssVars()\nReturns { '--token': value }"]
+    A["tokens.ts\ngetCssVars('light'|'dark')"] --> B["getCssVars()\nReturns { '--token': value }"]
     A --> C["getCssString()\nReturns CSS rule string (SSR-safe)"]
     A --> D["injectCssVars()\nSets CSS vars on :root (browser only)"]
     A --> E["tailwindPreset\nMaps tokens → Tailwind color keys"]
@@ -72,8 +72,8 @@ flowchart TD
 **Option A — JavaScript injection (React, Vue, Vite)**
 
 ```ts
-import { injectCssVars, lightTokens } from '@kodez/design-tokens';
-injectCssVars(lightTokens);  // injects all tokens as :root CSS variables
+import { injectCssVars } from '@kodez/design-tokens';
+injectCssVars('light');  // injects all tokens as :root CSS variables
 ```
 
 **Option B — Static CSS (no JavaScript required)**
@@ -85,8 +85,8 @@ injectCssVars(lightTokens);  // injects all tokens as :root CSS variables
 **Option C — SSR / Next.js App Router**
 
 ```tsx
-import { getCssString, lightTokens, darkTokens } from '@kodez/design-tokens';
-const css = getCssString(lightTokens, ':root') + getCssString(darkTokens, '.dark');
+import { getCssString } from '@kodez/design-tokens';
+const css = getCssString('light', ':root') + getCssString('dark', '.dark');
 return <style dangerouslySetInnerHTML={{ __html: css }} />;
 ```
 
@@ -98,21 +98,21 @@ return <style dangerouslySetInnerHTML={{ __html: css }} />;
 
 ```tsx
 // main.tsx
-import { injectCssVars, lightTokens } from '@kodez/design-tokens';
-injectCssVars(lightTokens);
+import { injectCssVars } from '@kodez/design-tokens';
+injectCssVars('light');
 ```
 
 ### Theme switching
 
 ```tsx
 import { useEffect, useState } from 'react';
-import { injectCssVars, lightTokens, darkTokens } from '@kodez/design-tokens';
+import { injectCssVars } from '@kodez/design-tokens';
 
 function useTheme() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    injectCssVars(dark ? darkTokens : lightTokens);
+    injectCssVars(dark ? 'dark' : 'light');
     document.documentElement.classList.toggle('dark', dark);
   }, [dark]);
 
@@ -130,11 +130,11 @@ function useTheme() {
 
 ```tsx
 // app/layout.tsx
-import { getCssString, lightTokens, darkTokens } from '@kodez/design-tokens';
+import { getCssString } from '@kodez/design-tokens';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const lightCss = getCssString(lightTokens, ':root');
-  const darkCss  = getCssString(darkTokens,  '.dark');
+  const lightCss = getCssString('light', ':root');
+  const darkCss  = getCssString('dark',  '.dark');
 
   return (
     <html lang="en">
@@ -165,12 +165,12 @@ function DarkModeToggle() {
 ```tsx
 // pages/_app.tsx
 import { useEffect } from 'react';
-import { injectCssVars, lightTokens } from '@kodez/design-tokens';
+import { injectCssVars } from '@kodez/design-tokens';
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    injectCssVars(lightTokens);
+    injectCssVars('light');
   }, []);
 
   return <Component {...pageProps} />;
@@ -211,8 +211,8 @@ document.documentElement.classList.toggle('dark');
 
 ```html
 <script type="module">
-  import { injectCssVars, lightTokens } from './node_modules/@kodez/design-tokens/dist/index.js';
-  injectCssVars(lightTokens);
+  import { injectCssVars } from './node_modules/@kodez/design-tokens/dist/index.js';
+  injectCssVars('light');
 </script>
 ```
 
@@ -302,38 +302,34 @@ bg-warning-bg-solid  bg-warning-bg-subtle  bg-info-bg-solid  bg-info-bg-subtle
 
 ## API Reference
 
-### `injectCssVars(tokens, element?)`
+### `injectCssVars(mode: ThemeMode, element?)`
 
 Injects token values as CSS custom properties. Defaults to `document.documentElement` (`:root`).
 **SSR-safe** — silently no-ops when `document` is not defined.
 
 ```ts
-injectCssVars(lightTokens);
-injectCssVars(darkTokens, document.querySelector('#scoped-root')!);
+injectCssVars('light');
+injectCssVars('dark', document.querySelector('#scoped-root')!);
 ```
 
-### `getCssString(tokens, selector?)`
+### `getCssString(mode: ThemeMode, selector?)`
 
 Returns a CSS rule block string for `<style>` tag injection in SSR contexts.
 Default selector is `':root'`.
 
 ```ts
-const css = getCssString(lightTokens, ':root');
+const css = getCssString('light', ':root');
 // ':root {\n  --kz-surface-0: #FFFFFF;\n  ...\n}\n'
 ```
 
-### `getCssVars(tokens)`
+### `getCssVars(mode: ThemeMode)`
 
-Returns a `Record<string, string>` with `--` prefixed keys. Useful for spreading into CSS-in-JS or MUI `sx` props.
+Returns a `Record<KzCssVar, string>` with `--kz-*` prefixed keys. Useful for spreading into CSS-in-JS or MUI `sx` props.
 
 ```ts
-const vars = getCssVars(lightTokens);
+const vars = getCssVars('light');
 // { '--kz-surface-0': '#FFFFFF', '--kz-brand-primary': '#FF7F56', ... }
 ```
-
-### `lightTokens` / `darkTokens`
-
-Plain `Record<string, string>` objects with all token values for each theme.
 
 ### `tailwindPreset`
 
@@ -452,6 +448,14 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--info-text` | ![#1E3A8A](https://img.shields.io/badge/-%231E3A8A-1E3A8A?style=flat-square) | `#1E3A8A` | ![#6AAAFA](https://img.shields.io/badge/-%236AAAFA-6AAAFA?style=flat-square) | `#6AAAFA` |
 <!-- kz:autogen:end:semantic-info -->
 
+### Glow
+
+<!-- kz:autogen:start:glow -->
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--glow-accent` | — | `rgba(81,83,246,0.08)` | — | `rgba(116,117,255,0.15)` |
+<!-- kz:autogen:end:glow -->
+
 ---
 
 ## Token Reference
@@ -463,6 +467,7 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | Strokes | `stroke-subtle`, `stroke-default`, `stroke-strong`, `stroke-hover`, `stroke-interactive` |
 | Brand | `brand-primary`, `brand-hover`, `brand-active`, `brand-bg-subtle`, `brand-border`, `brand-border-subtle`, `brand-text`, `brand-gradient-1`, `brand-gradient-2` |
 | Semantic | `{error/success/warning/info}-bg-solid`, `{error/success/warning/info}-bg-subtle`, `{error/success/warning/info}-border`, `{error/success/warning/info}-border-subtle`, `{error/success/warning/info}-text` |
+| Glow | `glow-accent` |
 
 Example usage:
 
@@ -500,6 +505,19 @@ Example usage:
   background: var(--kz-error-bg-subtle);
   border-color: var(--kz-error-border);
   color: var(--kz-error-text);
+}
+
+/* Ambient section glow */
+.section-hero {
+  position: relative;
+  overflow: hidden;
+}
+.section-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 20% 50%, var(--kz-glow-accent) 0%, transparent 60%);
 }
 ```
 
@@ -594,6 +612,12 @@ Build outputs:
 | `--accent`, `--accent-hover`, `--accent-text-*`, `--accent-dim`, `--accent-border`, `--accent-glow`, `--focus-ring`, `--accent-soft-*` | Accent system removed. Use `--text-accent` for links, `--stroke-interactive` for focus rings. |
 | `--success-soft-12`, `--success-soft-14`, `--warning-soft-16`, `--info-soft-12`, `--info-soft-14` | Use `--*-bg-subtle` tokens instead. |
 | `--page-gradient`, `--page-gradient-muted`, `--portal-hero-bg` | Define app-specific gradients locally. |
+
+### New in v1.7.3
+
+| New token | Notes |
+|---|---|
+| `--glow-accent` | Blue-purple ambient radial glow. Use as a `radial-gradient` overlay on `::before`. Light: 8% opacity, Dark: 15% opacity. |
 
 ### New tokens in v2
 

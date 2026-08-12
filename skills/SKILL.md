@@ -3,7 +3,7 @@ name: kodez-design-tokens
 description: Reference guide for the @kodez/design-tokens package. Use when writing, reviewing, or auditing UI code in any Kodez project to ensure correct token usage, theme switching, and Tailwind integration.
 metadata:
   author: kodez
-  version: "2.0.0"
+  version: "2.1.0"
   argument-hint: <file-or-pattern>
 ---
 
@@ -25,7 +25,6 @@ Published to the internal Azure Artifacts registry. Requires `.npmrc` with the `
 
 ```ts
 // Core (framework-agnostic)
-import { lightTokens, darkTokens } from '@kodez/design-tokens';
 import type { ThemeMode } from '@kodez/design-tokens';
 import { getCssVars, getCssString, injectCssVars } from '@kodez/design-tokens';
 
@@ -37,7 +36,7 @@ import { tailwindPreset } from '@kodez/design-tokens';
 
 ## Token Categories
 
-All tokens exist in both `lightTokens` and `darkTokens` objects. At runtime they are injected as CSS custom properties (`--token-name`).
+All tokens are available via `getCssVars('light')` or `getCssVars('dark')`. At runtime they are injected as CSS custom properties (`--token-name`).
 
 ### Surfaces (elevation scale)
 
@@ -109,6 +108,12 @@ Categories: `error-*`, `success-*`, `warning-*`, `info-*`
 | `warning-bg-solid` | `#D97706`      | `#F59E0B`     |
 | `info-bg-solid`    | `#2563EB`      | `#3B82F6`     |
 
+### Glow
+
+| Token | Purpose |
+|-------|---------|
+| `glow-accent` | Blue-purple ambient radial glow. Apply as `radial-gradient` on `::before`. |
+
 ---
 
 ## Injecting Tokens (CSS Variables)
@@ -116,25 +121,24 @@ Categories: `error-*`, `success-*`, `warning-*`, `info-*`
 ### Client-side (React, Vue, vanilla JS)
 
 ```ts
-import { injectCssVars, lightTokens } from '@kodez/design-tokens';
+import { injectCssVars } from '@kodez/design-tokens';
 
 // Inject light theme by default
-injectCssVars(lightTokens);
+injectCssVars('light');
 
 // Switch to dark theme
-import { darkTokens } from '@kodez/design-tokens';
-injectCssVars(darkTokens);
+injectCssVars('dark');
 ```
 
 React theme switching with `useEffect`:
 
 ```tsx
 import { useEffect } from 'react';
-import { injectCssVars, lightTokens, darkTokens } from '@kodez/design-tokens';
+import { injectCssVars } from '@kodez/design-tokens';
 
 function ThemeProvider({ isDark, children }) {
   useEffect(() => {
-    injectCssVars(isDark ? darkTokens : lightTokens);
+    injectCssVars(isDark ? 'dark' : 'light');
   }, [isDark]);
   return children;
 }
@@ -146,11 +150,11 @@ function ThemeProvider({ isDark, children }) {
 
 ```tsx
 // app/layout.tsx — Server Component, no `document` access needed
-import { getCssString, lightTokens, darkTokens } from '@kodez/design-tokens';
+import { getCssString } from '@kodez/design-tokens';
 
 export default function RootLayout({ children }) {
-  const lightCss = getCssString(lightTokens, ':root');
-  const darkCss  = getCssString(darkTokens,  '.dark');
+  const lightCss = getCssString('light', ':root');
+  const darkCss  = getCssString('dark',  '.dark');
   return (
     <html>
       <head>
@@ -185,13 +189,13 @@ The file includes `:root` (light), `.dark` (class-based), and `@media (prefers-c
 `getCssVars` returns a `Record<string, string>` object with `--` prefixed keys:
 
 ```ts
-import { getCssVars, darkTokens } from '@kodez/design-tokens';
+import { getCssVars } from '@kodez/design-tokens';
 
-const vars = getCssVars(darkTokens);
+const vars = getCssVars('dark');
 // { '--kz-surface-0': '#0C0A0B', '--kz-brand-primary': '#FF7F56', ... }
 
 // Spread into MUI CssBaseline or CSS-in-JS:
-const sx = { ...getCssVars(lightTokens) };
+const sx = { ...getCssVars('light') };
 ```
 
 After injection, use tokens in any CSS or inline style via `var(--token-name)`:
@@ -275,10 +279,10 @@ No `tailwind.config.js` needed. The file handles token injection and `@theme inl
 Tokens are typed as `Record<string, string>` and `ThemeMode` is `'light' | 'dark'`:
 
 ```ts
-import { lightTokens, darkTokens, ThemeMode } from '@kodez/design-tokens';
+import { getCssVars, ThemeMode } from '@kodez/design-tokens';
 
 function getTokens(mode: ThemeMode) {
-  return mode === 'dark' ? darkTokens : lightTokens;
+  return getCssVars(mode);
 }
 ```
 

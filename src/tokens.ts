@@ -1,11 +1,21 @@
 export type ThemeMode = 'light' | 'dark';
 
+// Brand palette constants — theme-invariant, never change between light and dark.
+// These are the six foundational Kodez brand colours (Brand Guide 2020).
+export const brandPalette = {
+  'brand-orange':           '#FF7F56',
+  'brand-white':            '#FFFFFF',
+  'brand-offwhite':         '#F5F4F2',
+  'brand-grey':             '#999999',
+  'brand-lightblack':       '#231F20',
+  'brand-black':            '#000000',
+} as const;
+
 const _light = {
   // ── Brand ─────────────────────────────────────────────────────────────────────
   'brand-primary':         '#FF7F56',
   'brand-hover':           '#CB6241',
   'brand-active':          '#743622',
-  'brand-bg-subtle':       'rgba(255,127,86,0.12)',
   'brand-border':          '#743622',
   'brand-border-subtle':   'rgba(255,127,86,0.40)',
   'brand-text':            '#A04C31',
@@ -21,6 +31,13 @@ const _light = {
   'surface-3':             '#EDEBE8',
   'surface-4':             '#E4E1DE',
   'surface-5':             '#DAD7D3',
+
+  // ── Section backgrounds ───────────────────────────────────────────────────────
+  'section-bg-page':       '#FFFFFF',
+  'section-bg-base':       '#F9F8F7',
+  'section-bg-raised':     '#F5F4F2',
+  'section-bg-overlay':    '#EDEBE8',
+  'section-bg-glow':       'rgba(81,83,246,0.04)',
 
   // ── Stroke ───────────────────────────────────────────────────────────────────
   'stroke-subtle':         '#EDEBE8',
@@ -57,6 +74,9 @@ const _light = {
   'info-border-subtle':    'rgba(37,99,235,0.40)',
   'info-text':             '#1E3A8A',
 
+  // ── Glow ─────────────────────────────────────────────────────────────────────
+  'glow-accent':           'rgba(81,83,246,0.08)',
+
   // ── Text ─────────────────────────────────────────────────────────────────────
   'text-primary':          '#231F20',
   'text-secondary':        '#4A4546',
@@ -71,7 +91,6 @@ const _dark = {
   'brand-primary':         '#FF7F56',
   'brand-hover':           '#F89474',
   'brand-active':          '#FAAF97',
-  'brand-bg-subtle':       'rgba(255,127,86,0.16)',
   'brand-border':          '#FF7F56',
   'brand-border-subtle':   'rgba(255,127,86,0.40)',
   'brand-text':            '#FF7F56',
@@ -80,20 +99,26 @@ const _dark = {
   'brand-gradient-1':      '#F89474',
   'brand-gradient-2':      '#F0673D',
 
-  // ── Surfaces ─────────────────────────────────────────────────────────────────
-  'surface-0':             '#0C0A0B',
-  'surface-1':             '#131112',
-  'surface-2':             '#1C191A',
-  'surface-kpi':           'rgba(28,25,26,0.72)',
-  'surface-3':             '#231F20',
-  'surface-4':             '#2B2728',
-  'surface-5':             '#342F31',
+  // ── Surfaces (Cool Intensified) ──────────────────────────────────────────────
+  'surface-0':             '#08080E',
+  'surface-1':             '#0D0D1A',
+  'surface-2':             '#121224',
+  'surface-3':             '#17172E',
+  'surface-4':             '#1C1C38',
+  'surface-5':             '#212142',
 
-  // ── Stroke ───────────────────────────────────────────────────────────────────
-  'stroke-subtle':         '#2B2728',
-  'stroke-default':        '#3D3839',
-  'stroke-strong':         '#524D4F',
-  'stroke-hover':          '#6E6869',
+  // ── Section backgrounds ───────────────────────────────────────────────────────
+  'section-bg-page':       '#08080E',
+  'section-bg-base':       '#0D0D1A',
+  'section-bg-raised':     '#121224',
+  'section-bg-overlay':    '#17172E',
+  'section-bg-glow':       'rgba(81,83,246,0.12)',
+
+  // ── Stroke (Cool Intensified — B ≈ 2× R/G to match surfaces) ────────────────
+  'stroke-subtle':         '#1A1A34',
+  'stroke-default':        '#262648',
+  'stroke-strong':         '#323260',
+  'stroke-hover':          '#44447E',
   'stroke-interactive':    '#FF7F56',
 
   // ── Semantic: success ─────────────────────────────────────────────────────────
@@ -101,19 +126,19 @@ const _dark = {
   'success-bg-subtle':     'rgba(34,197,94,0.16)',
   'success-border':        '#005C39',
   'success-border-subtle': 'rgba(34,197,94,0.40)',
-  'success-text':          '#4ADE80',
+  'success-text':          '#22C55E',
 
   // ── Semantic: warning ─────────────────────────────────────────────────────────
   'warning-bg-solid':      '#F59E0B',
   'warning-bg-subtle':     'rgba(245,158,11,0.16)',
   'warning-border':        '#71491E',
   'warning-border-subtle': 'rgba(245,158,11,0.40)',
-  'warning-text':          '#FBBF24',
+  'warning-text':          '#F59E0B',
 
   // ── Semantic: error ───────────────────────────────────────────────────────────
   'error-bg-solid':        '#F46969',
   'error-bg-subtle':       'rgba(244,105,105,0.16)',
-  'error-border':          '#F59E0B',
+  'error-border':          'rgba(244,105,105,0.50)',
   'error-border-subtle':   'rgba(244,105,105,0.40)',
   'error-text':            '#F98585',
 
@@ -124,10 +149,13 @@ const _dark = {
   'info-border-subtle':    'rgba(59,130,246,0.40)',
   'info-text':             '#6AAAFA',
 
+  // ── Glow ─────────────────────────────────────────────────────────────────────
+  'glow-accent':           'rgba(116,117,255,0.15)',
+
   // ── Text ─────────────────────────────────────────────────────────────────────
   'text-primary':          '#F5F4F2',
-  'text-secondary':        '#BDB7B8',
-  'text-tertiary':         '#837D7E',
+  'text-secondary':        '#999999',
+  'text-tertiary':         '#8C90A0',
   'text-accent':           '#7475FF',
   'text-disabled':         '#5A5556',
   'text-inverse':          '#231F20',

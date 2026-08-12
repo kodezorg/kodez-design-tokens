@@ -17,7 +17,7 @@
 meta:
   version: "1.1.0"
   package: "@kodez/design-tokens"
-  updated: "2026-08-10"
+  updated: "2026-08-11"
 
 # ─── KEY GOTCHA ────────────────────────────────────────────────────────────────
 # --kz-brand-primary (#FF7F56) is the SAME orange in both light and dark modes.
@@ -508,3 +508,29 @@ disabled_global:
   light_contrast_on_surface0: 2.52
   dark_contrast_on_surface0:  2.70
   rationale: "WCAG 2.1 SC 1.4.3 exception: inactive UI component text has no contrast requirement."
+
+  # ─── GLOW ─────────────────────────────────────────────────────────────────────
+
+  glow_accent:
+    description: Blue-purple ambient radial glow for section backgrounds, hero areas, and card overlays
+    token: "--kz-glow-accent"
+    category: effect
+    wcag_exempt: true
+    notes: >
+      Decorative only — never used as text color or interactive indicator.
+      WCAG exempts purely decorative elements (SC 1.4.1 Note 1).
+      Apply as radial-gradient on a ::before pseudo-element so the surface
+      background remains accessible. Do not use as a standalone background.
+    usage:
+      css: |
+        .section::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: radial-gradient(ellipse at 20% 50%, var(--kz-glow-accent) 0%, transparent 65%);
+        }
+    light:
+      value: "rgba(81,83,246,0.08)"
+    dark:
+      value: "rgba(116,117,255,0.15)"
