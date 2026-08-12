@@ -67,21 +67,15 @@ const _light = {
   'error-border-subtle':   'rgba(220,38,38,0.40)',
   'error-text':            '#7F1D1D',
 
-  // ── Semantic: info ────────────────────────────────────────────────────────────
-  'info-bg-solid':         '#2563EB',
-  'info-bg-subtle':        'rgba(37,99,235,0.08)',
-  'info-border':           '#1D4ED8',
-  'info-border-subtle':    'rgba(37,99,235,0.40)',
-  'info-text':             '#1E3A8A',
-
   // ── Glow ─────────────────────────────────────────────────────────────────────
-  'glow-accent':           'rgba(81,83,246,0.08)',
+
+  // ── Overlay ──────────────────────────────────────────────────────────────────
+  'overlay-backdrop':      'rgba(35, 31, 32, 0.50)',
 
   // ── Text ─────────────────────────────────────────────────────────────────────
   'text-primary':          '#231F20',
   'text-secondary':        '#4A4546',
   'text-tertiary':         '#6F6B6C',
-  'text-accent':           '#5153F6',
   'text-disabled':         '#A6A2A3',
   'text-inverse':          '#FFFFFF',
 } satisfies Record<string, string>;
@@ -142,21 +136,16 @@ const _dark = {
   'error-border-subtle':   'rgba(244,105,105,0.40)',
   'error-text':            '#F98585',
 
-  // ── Semantic: info ────────────────────────────────────────────────────────────
-  'info-bg-solid':         '#3B82F6',
-  'info-bg-subtle':        'rgba(59,130,246,0.16)',
-  'info-border':           '#15407B',
-  'info-border-subtle':    'rgba(59,130,246,0.40)',
-  'info-text':             '#6AAAFA',
 
   // ── Glow ─────────────────────────────────────────────────────────────────────
-  'glow-accent':           'rgba(116,117,255,0.15)',
+
+  // ── Overlay ──────────────────────────────────────────────────────────────────
+  'overlay-backdrop':      'rgba(8, 8, 14, 0.75)',
 
   // ── Text ─────────────────────────────────────────────────────────────────────
   'text-primary':          '#F5F4F2',
   'text-secondary':        '#999999',
   'text-tertiary':         '#8C90A0',
-  'text-accent':           '#7475FF',
   'text-disabled':         '#5A5556',
   'text-inverse':          '#231F20',
 } satisfies Record<string, string>;

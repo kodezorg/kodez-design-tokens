@@ -56,11 +56,6 @@ const tailwindPreset = {
         'warning-border':        'var(--kz-warning-border)',
         'warning-border-subtle': 'var(--kz-warning-border-subtle)',
 
-        // ── Semantic: info ────────────────────────────────────────────────────────
-        'info-bg-solid':         'var(--kz-info-bg-solid)',
-        'info-bg-subtle':        'var(--kz-info-bg-subtle)',
-        'info-border':           'var(--kz-info-border)',
-        'info-border-subtle':    'var(--kz-info-border-subtle)',
       },
 
       // Text tokens → generates text-primary, not text-text-primary
@@ -68,14 +63,12 @@ const tailwindPreset = {
         primary:   'var(--kz-text-primary)',
         secondary: 'var(--kz-text-secondary)',
         tertiary:  'var(--kz-text-tertiary)',
-        accent:    'var(--kz-text-accent)',
         disabled:  'var(--kz-text-disabled)',
         inverse:   'var(--kz-text-inverse)',
         brand:     'var(--kz-brand-text)',
         error:     'var(--kz-error-text)',
         success:   'var(--kz-success-text)',
         warning:   'var(--kz-warning-text)',
-        info:      'var(--kz-info-text)',
       },
 
       // Stroke tokens → generates border-subtle, not border-border-subtle

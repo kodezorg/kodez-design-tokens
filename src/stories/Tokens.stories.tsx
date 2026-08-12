@@ -70,7 +70,7 @@ function Section({ title, names }: { title: string; names: string[] }) {
 function TokenViewer() {
   const groups: [string, string[]][] = [
     ['Surfaces', ['surface-0','surface-1','surface-2','surface-3','surface-4','surface-5','surface-kpi']],
-    ['Text', ['text-primary','text-secondary','text-tertiary','text-accent','text-disabled','text-inverse']],
+    ['Text', ['text-primary','text-secondary','text-tertiary','text-disabled','text-inverse']],
     ['Strokes', ['stroke-subtle','stroke-default','stroke-strong','stroke-hover','stroke-interactive']],
     ['Brand', ['brand-primary','brand-hover','brand-active','brand-bg-subtle','brand-border','brand-border-subtle','brand-text','brand-gradient-1','brand-gradient-2']],
     ['Error', ['error-bg-solid','error-bg-subtle','error-border','error-border-subtle','error-text']],

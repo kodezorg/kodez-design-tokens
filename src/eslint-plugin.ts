@@ -22,8 +22,7 @@ const TOKEN_NAMES = new Set([
   'success-bg-solid','success-bg-subtle','success-border','success-border-subtle','success-text',
   'warning-bg-solid','warning-bg-subtle','warning-border','warning-border-subtle','warning-text',
   'error-bg-solid','error-bg-subtle','error-border','error-border-subtle','error-text',
-  'info-bg-solid','info-bg-subtle','info-border','info-border-subtle','info-text',
-  'text-primary','text-secondary','text-tertiary','text-accent','text-disabled','text-inverse',
+  'text-primary','text-secondary','text-tertiary','text-disabled','text-inverse',
 ]);
 
 // Matches var(--some-name) that does NOT start with kz-

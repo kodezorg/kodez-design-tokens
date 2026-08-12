@@ -1,5 +1,11 @@
 # @kodez/design-tokens
 
+## 1.9.0
+
+### Minor Changes
+
+- Remove deprecated semantic tokens: all `info-*` tokens (`info-bg-solid`, `info-bg-subtle`, `info-border`, `info-border-subtle`, `info-text`), `text-accent`, and `glow-accent`. Add `overlay-backdrop` token to both light and dark modes.
+
 ## 1.8.0
 
 ### Minor Changes
