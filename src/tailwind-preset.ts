@@ -80,6 +80,10 @@ const tailwindPreset = {
         interactive: 'var(--kz-stroke-interactive)',
       },
 
+      boxShadow: {
+        'card': 'var(--kz-shadow-card)',
+      },
+
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
