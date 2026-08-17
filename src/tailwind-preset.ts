@@ -26,13 +26,18 @@ const tailwindPreset = {
         'surface-3':             'var(--kz-surface-3)',
         'surface-4':             'var(--kz-surface-4)',
         'surface-5':             'var(--kz-surface-5)',
-        'surface-kpi':           'var(--kz-surface-kpi)',
+
+        // ── Section backgrounds ───────────────────────────────────────────────────
+        'section-bg-page':       'var(--kz-section-bg-page)',
+        'section-bg-base':       'var(--kz-section-bg-base)',
+        'section-bg-raised':     'var(--kz-section-bg-raised)',
+        'section-bg-overlay':    'var(--kz-section-bg-overlay)',
+        'section-bg-glow':       'var(--kz-section-bg-glow)',
 
         // ── Brand ────────────────────────────────────────────────────────────────
         'brand-primary':         'var(--kz-brand-primary)',
         'brand-hover':           'var(--kz-brand-hover)',
         'brand-active':          'var(--kz-brand-active)',
-        'brand-bg-subtle':       'var(--kz-brand-bg-subtle)',
         'brand-border':          'var(--kz-brand-border)',
         'brand-border-subtle':   'var(--kz-brand-border-subtle)',
         'brand-gradient-1':      'var(--kz-brand-gradient-1)',
@@ -55,6 +60,9 @@ const tailwindPreset = {
         'warning-bg-subtle':     'var(--kz-warning-bg-subtle)',
         'warning-border':        'var(--kz-warning-border)',
         'warning-border-subtle': 'var(--kz-warning-border-subtle)',
+
+        // ── Overlay ──────────────────────────────────────────────────────────────
+        'overlay-backdrop':      'var(--kz-overlay-backdrop)',
 
       },
 

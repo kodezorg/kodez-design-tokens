@@ -42,15 +42,24 @@ All tokens are available via `getCssVars('light')` or `getCssVars('dark')`. At r
 
 | Token         | Light       | Dark        |
 |---------------|-------------|-------------|
-| `surface-0`   | `#FFFFFF`   | `#0C0A0B`   |
-| `surface-1`   | `#F9F8F7`   | `#131112`   |
-| `surface-2`   | `#F5F4F2`   | `#1C191A`   |
-| `surface-3`   | `#EDEBE8`   | `#231F20`   |
-| `surface-4`   | `#E4E1DE`   | `#2B2728`   |
-| `surface-5`   | `#DAD7D3`   | `#342F31`   |
-| `surface-kpi` | —           | `rgba(28,25,26,0.72)` |
+| `surface-0`   | `#FFFFFF`   | `#08080E`   |
+| `surface-1`   | `#F9F8F7`   | `#0D0D1A`   |
+| `surface-2`   | `#F5F4F2`   | `#121224`   |
+| `surface-3`   | `#EDEBE8`   | `#17172E`   |
+| `surface-4`   | `#E4E1DE`   | `#1C1C38`   |
+| `surface-5`   | `#DAD7D3`   | `#212142`   |
 
-Use `surface-0` as the page background. Higher numbers = higher elevation (cards, modals, popovers). `surface-kpi` is dark-mode only — reduced-opacity surface for KPI/metric cards.
+Use `surface-0` as the page background. Higher numbers = higher elevation (cards, modals, popovers).
+
+### Section backgrounds
+
+| Token                | Light       | Dark        | Purpose                        |
+|----------------------|-------------|-------------|--------------------------------|
+| `section-bg-page`    | `#FFFFFF`   | `#08080E`   | Full-bleed page sections       |
+| `section-bg-base`    | `#F9F8F7`   | `#0D0D1A`   | Default section background     |
+| `section-bg-raised`  | `#F5F4F2`   | `#121224`   | Slightly elevated section      |
+| `section-bg-overlay` | `#EDEBE8`   | `#17172E`   | Overlay / panel section        |
+| `section-bg-glow`    | `rgba(81,83,246,0.04)` | `rgba(81,83,246,0.12)` | Ambient purple-glow wash |
 
 ### Text hierarchy
 
@@ -59,7 +68,6 @@ Use `surface-0` as the page background. Higher numbers = higher elevation (cards
 | `text-primary`   | Body copy, headings                   |
 | `text-secondary` | Supporting labels, captions           |
 | `text-tertiary`  | Metadata, timestamps, helper text     |
-| `text-accent`    | Links only (mode-adaptive)            |
 | `text-disabled`  | Disabled buttons, inputs, menu items  |
 | `text-inverse`   | Text on brand/dark/inverted surfaces  |
 
@@ -80,7 +88,6 @@ Use `surface-0` as the page background. Higher numbers = higher elevation (cards
 | `brand-primary`       | Brand CTAs, primary buttons, highlights    |
 | `brand-hover`         | Hover state on brand elements              |
 | `brand-active`        | Pressed/active state on brand elements     |
-| `brand-bg-subtle`     | Low-emphasis brand background (banners, tags) |
 | `brand-border`        | High-emphasis brand border                 |
 | `brand-border-subtle` | Medium-emphasis brand border               |
 | `brand-text`          | Brand-colored text — mode-adaptive         |
@@ -99,20 +106,20 @@ Each semantic category provides five tokens:
 | `-border-subtle`| Secondary/low-emphasis border      |
 | `-text`         | Foreground text / copy             |
 
-Categories: `error-*`, `success-*`, `warning-*`, `info-*`
+Categories: `error-*`, `success-*`, `warning-*`
 
 | Base token         | Light bg-solid | Dark bg-solid |
 |--------------------|----------------|---------------|
 | `error-bg-solid`   | `#DC2626`      | `#F46969`     |
 | `success-bg-solid` | `#16A34A`      | `#22C55E`     |
 | `warning-bg-solid` | `#D97706`      | `#F59E0B`     |
-| `info-bg-solid`    | `#2563EB`      | `#3B82F6`     |
 
-### Glow
+### Overlay &amp; Shadow
 
 | Token | Purpose |
 |-------|---------|
-| `glow-accent` | Blue-purple ambient radial glow. Apply as `radial-gradient` on `::before`. |
+| `overlay-backdrop` | Scrim for modals and drawers. Light: `rgba(35,31,32,0.50)`, Dark: `rgba(8,8,14,0.75)`. |
+| `shadow-card` | Card drop shadow. Light: `0 18px 36px rgba(0,0,0,0.08)`, Dark: `0 18px 36px rgba(0,0,0,0.24)`. |
 
 ---
 
@@ -192,7 +199,7 @@ The file includes `:root` (light), `.dark` (class-based), and `@media (prefers-c
 import { getCssVars } from '@kodez/design-tokens';
 
 const vars = getCssVars('dark');
-// { '--kz-surface-0': '#0C0A0B', '--kz-brand-primary': '#FF7F56', ... }
+// { '--kz-surface-0': '#08080E', '--kz-brand-primary': '#FF7F56', ... }
 
 // Spread into MUI CssBaseline or CSS-in-JS:
 const sx = { ...getCssVars('light') };
@@ -232,25 +239,29 @@ Available Tailwind utility classes after adding the preset:
 ```
 // Surfaces
 bg-surface-0  bg-surface-1  bg-surface-2  bg-surface-3  bg-surface-4  bg-surface-5
-bg-surface-kpi  (dark only)
+
+// Section backgrounds
+bg-section-bg-page  bg-section-bg-base  bg-section-bg-raised  bg-section-bg-overlay  bg-section-bg-glow
 
 // Text  (via theme.extend.textColor — generates text-primary directly)
-text-primary  text-secondary  text-tertiary  text-accent  text-disabled  text-inverse
-text-brand  text-error  text-success  text-warning  text-info
+text-primary  text-secondary  text-tertiary  text-disabled  text-inverse
+text-brand  text-error  text-success  text-warning
 
 // Strokes  (via theme.extend.borderColor — generates border-subtle directly)
 border-subtle  border-default  border-strong  border-hover  border-interactive
 
 // Brand
 bg-brand-primary  bg-brand-hover  bg-brand-active
-bg-brand-bg-subtle  bg-brand-border  bg-brand-border-subtle
+bg-brand-border  bg-brand-border-subtle
 bg-brand-gradient-1  bg-brand-gradient-2
+
+// Overlay
+bg-overlay-backdrop
 
 // Semantic backgrounds and borders
 bg-error-bg-solid    bg-error-bg-subtle    bg-error-border    bg-error-border-subtle
 bg-success-bg-solid  bg-success-bg-subtle  bg-success-border  bg-success-border-subtle
 bg-warning-bg-solid  bg-warning-bg-subtle  bg-warning-border  bg-warning-border-subtle
-bg-info-bg-solid     bg-info-bg-subtle     bg-info-border     bg-info-border-subtle
 
 // Typography
 font-sans  font-mono   (Inter / JetBrains Mono)
@@ -320,11 +331,11 @@ When reviewing UI code in any Kodez project, enforce the following:
 
 - **No hardcoded hex colors** — any color matching a token value must use `var(--token-name)` or the corresponding Tailwind class instead.
 - **Surface hierarchy** — lighter surfaces must not sit beneath darker ones without intentional reason. Follow the `surface-0` (page) → `surface-1` (nav) → `surface-2` (card) → `surface-3+` (nested/hover) model.
-- **Semantic tokens for state** — use `error-*` / `success-*` / `warning-*` / `info-*` token families for feedback states; never use raw red/green/yellow/blue hex values.
+- **Semantic tokens for state** — use `error-*` / `success-*` / `warning-*` token families for feedback states; never use raw red/green/yellow hex values. (`info-*` tokens were removed in v1.9.0.)
 - **Focus rings** — keyboard focus must use `var(--kz-stroke-interactive)` or `getCssVar('stroke-interactive')` for typed access. Do not use browser default outlines without replacement.
 - **Brand for interactive elements** — primary buttons, active nav items, and interactive borders must use `brand-primary` / `var(--kz-stroke-interactive)`, not arbitrary colors.
 - **Brand text** — use `var(--brand-text)` (or `text-brand`) for brand-colored text; it is mode-adaptive. Never use `--brand-primary` directly as a text color.
-- **Links** — always use `var(--text-accent)` (or `text-accent`) for hyperlinks; never use raw hex for link color.
+- **Links** — use `var(--kz-brand-text)` (or `text-brand`) for hyperlinks; never use raw hex for link color. (`--text-accent` was removed in v1.9.0.)
 - **Typography** — font families must be `Inter` (sans) or `JetBrains Mono` (mono). Flag other font-family declarations.
 - **Dark mode** — every surface, text, and stroke token already has a dark variant; never add separate dark-mode color overrides using raw values.
 - **SSR safety** — `injectCssVars` must only be called in browser contexts (inside `useEffect`, event handlers, or after a `typeof document !== 'undefined'` guard). For server-rendered apps use `getCssString` + a `<style>` tag.

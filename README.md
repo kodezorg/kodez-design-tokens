@@ -238,26 +238,30 @@ Available utility classes:
 ```
 // Surfaces
 bg-surface-0  bg-surface-1  bg-surface-2  bg-surface-3  bg-surface-4  bg-surface-5
-bg-surface-kpi  (dark only — reduced-emphasis KPI surface)
+
+// Section backgrounds
+bg-section-bg-page  bg-section-bg-base  bg-section-bg-raised  bg-section-bg-overlay  bg-section-bg-glow
 
 // Text (generated via theme.extend.textColor — no double prefix)
-text-primary  text-secondary  text-tertiary  text-accent  text-disabled  text-inverse
+text-primary  text-secondary  text-tertiary  text-disabled  text-inverse
 text-brand    (brand-colored text — mode-adaptive)
-text-error    text-success    text-warning    text-info
+text-error    text-success    text-warning
 
 // Strokes (generated via theme.extend.borderColor — no double prefix)
 border-subtle  border-default  border-strong  border-hover  border-interactive
 
 // Brand
 bg-brand-primary  bg-brand-hover  bg-brand-active
-bg-brand-bg-subtle  bg-brand-border  bg-brand-border-subtle
+bg-brand-border  bg-brand-border-subtle
 bg-brand-gradient-1  bg-brand-gradient-2
+
+// Overlay
+bg-overlay-backdrop
 
 // Semantic — backgrounds and borders
 bg-error-bg-solid    bg-error-bg-subtle    bg-error-border    bg-error-border-subtle
 bg-success-bg-solid  bg-success-bg-subtle  bg-success-border  bg-success-border-subtle
 bg-warning-bg-solid  bg-warning-bg-subtle  bg-warning-border  bg-warning-border-subtle
-bg-info-bg-solid     bg-info-bg-subtle     bg-info-border     bg-info-border-subtle
 
 // Typography
 font-sans  font-mono   (Inter / JetBrains Mono)
@@ -282,10 +286,11 @@ No `tailwind.config.js` needed. The file handles:
 Available utilities:
 
 ```
-bg-surface-0  bg-surface-1  bg-surface-2  bg-surface-3  bg-surface-4  bg-surface-5  bg-surface-kpi
-bg-brand-primary  bg-brand-hover  bg-brand-active  bg-brand-bg-subtle
+bg-surface-0  bg-surface-1  bg-surface-2  bg-surface-3  bg-surface-4  bg-surface-5
+bg-section-bg-page  bg-section-bg-base  bg-section-bg-raised  bg-section-bg-overlay
+bg-brand-primary  bg-brand-hover  bg-brand-active
 bg-error-bg-solid  bg-error-bg-subtle  bg-success-bg-solid  bg-success-bg-subtle
-bg-warning-bg-solid  bg-warning-bg-subtle  bg-info-bg-solid  bg-info-bg-subtle
+bg-warning-bg-solid  bg-warning-bg-subtle
 ```
 
 **Text and border colors in v4:** Tailwind v4 generates utility names from `--color-*` variable names, so `--color-text-primary` produces `text-text-primary`. Use arbitrary values for cleaner markup:
@@ -350,14 +355,25 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 <!-- kz:autogen:start:surfaces -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--surface-0` | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF?style=flat-square) | `#FFFFFF` | ![#0C0A0B](https://img.shields.io/badge/-%230C0A0B-0C0A0B?style=flat-square) | `#0C0A0B` |
-| `--surface-1` | ![#F9F8F7](https://img.shields.io/badge/-%23F9F8F7-F9F8F7?style=flat-square) | `#F9F8F7` | ![#131112](https://img.shields.io/badge/-%23131112-131112?style=flat-square) | `#131112` |
-| `--surface-2` | ![#F5F4F2](https://img.shields.io/badge/-%23F5F4F2-F5F4F2?style=flat-square) | `#F5F4F2` | ![#1C191A](https://img.shields.io/badge/-%231C191A-1C191A?style=flat-square) | `#1C191A` |
-| `--surface-3` | ![#EDEBE8](https://img.shields.io/badge/-%23EDEBE8-EDEBE8?style=flat-square) | `#EDEBE8` | ![#231F20](https://img.shields.io/badge/-%23231F20-231F20?style=flat-square) | `#231F20` |
-| `--surface-4` | ![#E4E1DE](https://img.shields.io/badge/-%23E4E1DE-E4E1DE?style=flat-square) | `#E4E1DE` | ![#2B2728](https://img.shields.io/badge/-%232B2728-2B2728?style=flat-square) | `#2B2728` |
-| `--surface-5` | ![#DAD7D3](https://img.shields.io/badge/-%23DAD7D3-DAD7D3?style=flat-square) | `#DAD7D3` | ![#342F31](https://img.shields.io/badge/-%23342F31-342F31?style=flat-square) | `#342F31` |
-| `--surface-kpi` | — | — | — | `rgba(28,25,26,0.72)` |
+| `--surface-0` | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF?style=flat-square) | `#FFFFFF` | ![#08080E](https://img.shields.io/badge/-%2308080E-08080E?style=flat-square) | `#08080E` |
+| `--surface-1` | ![#F9F8F7](https://img.shields.io/badge/-%23F9F8F7-F9F8F7?style=flat-square) | `#F9F8F7` | ![#0D0D1A](https://img.shields.io/badge/-%230D0D1A-0D0D1A?style=flat-square) | `#0D0D1A` |
+| `--surface-2` | ![#F5F4F2](https://img.shields.io/badge/-%23F5F4F2-F5F4F2?style=flat-square) | `#F5F4F2` | ![#121224](https://img.shields.io/badge/-%23121224-121224?style=flat-square) | `#121224` |
+| `--surface-3` | ![#EDEBE8](https://img.shields.io/badge/-%23EDEBE8-EDEBE8?style=flat-square) | `#EDEBE8` | ![#17172E](https://img.shields.io/badge/-%2317172E-17172E?style=flat-square) | `#17172E` |
+| `--surface-4` | ![#E4E1DE](https://img.shields.io/badge/-%23E4E1DE-E4E1DE?style=flat-square) | `#E4E1DE` | ![#1C1C38](https://img.shields.io/badge/-%231C1C38-1C1C38?style=flat-square) | `#1C1C38` |
+| `--surface-5` | ![#DAD7D3](https://img.shields.io/badge/-%23DAD7D3-DAD7D3?style=flat-square) | `#DAD7D3` | ![#212142](https://img.shields.io/badge/-%23212142-212142?style=flat-square) | `#212142` |
 <!-- kz:autogen:end:surfaces -->
+
+### Section Backgrounds
+
+<!-- kz:autogen:start:section-bg -->
+| Token | Light | | Dark | |
+|---|---|---|---|---|
+| `--section-bg-page` | `#FFFFFF` | | `#08080E` | |
+| `--section-bg-base` | `#F9F8F7` | | `#0D0D1A` | |
+| `--section-bg-raised` | `#F5F4F2` | | `#121224` | |
+| `--section-bg-overlay` | `#EDEBE8` | | `#17172E` | |
+| `--section-bg-glow` | — | `rgba(81,83,246,0.04)` | — | `rgba(81,83,246,0.12)` |
+<!-- kz:autogen:end:section-bg -->
 
 ### Text
 
@@ -365,9 +381,8 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | Token | Light | | Dark | |
 |---|---|---|---|---|
 | `--text-primary` | ![#231F20](https://img.shields.io/badge/-%23231F20-231F20?style=flat-square) | `#231F20` | ![#F5F4F2](https://img.shields.io/badge/-%23F5F4F2-F5F4F2?style=flat-square) | `#F5F4F2` |
-| `--text-secondary` | ![#4A4546](https://img.shields.io/badge/-%234A4546-4A4546?style=flat-square) | `#4A4546` | ![#BDB7B8](https://img.shields.io/badge/-%23BDB7B8-BDB7B8?style=flat-square) | `#BDB7B8` |
-| `--text-tertiary` | ![#6F6B6C](https://img.shields.io/badge/-%236F6B6C-6F6B6C?style=flat-square) | `#6F6B6C` | ![#837D7E](https://img.shields.io/badge/-%23837D7E-837D7E?style=flat-square) | `#837D7E` |
-| `--text-accent` | ![#5153F6](https://img.shields.io/badge/-%235153F6-5153F6?style=flat-square) | `#5153F6` | ![#7475FF](https://img.shields.io/badge/-%237475FF-7475FF?style=flat-square) | `#7475FF` |
+| `--text-secondary` | ![#4A4546](https://img.shields.io/badge/-%234A4546-4A4546?style=flat-square) | `#4A4546` | ![#999999](https://img.shields.io/badge/-%23999999-999999?style=flat-square) | `#999999` |
+| `--text-tertiary` | ![#6F6B6C](https://img.shields.io/badge/-%236F6B6C-6F6B6C?style=flat-square) | `#6F6B6C` | ![#8C90A0](https://img.shields.io/badge/-%238C90A0-8C90A0?style=flat-square) | `#8C90A0` |
 | `--text-disabled` | ![#A6A2A3](https://img.shields.io/badge/-%23A6A2A3-A6A2A3?style=flat-square) | `#A6A2A3` | ![#5A5556](https://img.shields.io/badge/-%235A5556-5A5556?style=flat-square) | `#5A5556` |
 | `--text-inverse` | ![#FFFFFF](https://img.shields.io/badge/-%23FFFFFF-FFFFFF?style=flat-square) | `#FFFFFF` | ![#231F20](https://img.shields.io/badge/-%23231F20-231F20?style=flat-square) | `#231F20` |
 <!-- kz:autogen:end:text -->
@@ -377,10 +392,10 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 <!-- kz:autogen:start:strokes -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--stroke-subtle` | ![#EDEBE8](https://img.shields.io/badge/-%23EDEBE8-EDEBE8?style=flat-square) | `#EDEBE8` | ![#2B2728](https://img.shields.io/badge/-%232B2728-2B2728?style=flat-square) | `#2B2728` |
-| `--stroke-default` | ![#D5D2CE](https://img.shields.io/badge/-%23D5D2CE-D5D2CE?style=flat-square) | `#D5D2CE` | ![#3D3839](https://img.shields.io/badge/-%233D3839-3D3839?style=flat-square) | `#3D3839` |
-| `--stroke-strong` | ![#B9B5B2](https://img.shields.io/badge/-%23B9B5B2-B9B5B2?style=flat-square) | `#B9B5B2` | ![#524D4F](https://img.shields.io/badge/-%23524D4F-524D4F?style=flat-square) | `#524D4F` |
-| `--stroke-hover` | ![#9E9A97](https://img.shields.io/badge/-%239E9A97-9E9A97?style=flat-square) | `#9E9A97` | ![#6E6869](https://img.shields.io/badge/-%236E6869-6E6869?style=flat-square) | `#6E6869` |
+| `--stroke-subtle` | ![#EDEBE8](https://img.shields.io/badge/-%23EDEBE8-EDEBE8?style=flat-square) | `#EDEBE8` | ![#1A1A34](https://img.shields.io/badge/-%231A1A34-1A1A34?style=flat-square) | `#1A1A34` |
+| `--stroke-default` | ![#D5D2CE](https://img.shields.io/badge/-%23D5D2CE-D5D2CE?style=flat-square) | `#D5D2CE` | ![#262648](https://img.shields.io/badge/-%23262648-262648?style=flat-square) | `#262648` |
+| `--stroke-strong` | ![#B9B5B2](https://img.shields.io/badge/-%23B9B5B2-B9B5B2?style=flat-square) | `#B9B5B2` | ![#323260](https://img.shields.io/badge/-%23323260-323260?style=flat-square) | `#323260` |
+| `--stroke-hover` | ![#9E9A97](https://img.shields.io/badge/-%239E9A97-9E9A97?style=flat-square) | `#9E9A97` | ![#44447E](https://img.shields.io/badge/-%2344447E-44447E?style=flat-square) | `#44447E` |
 | `--stroke-interactive` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
 <!-- kz:autogen:end:strokes -->
 
@@ -392,7 +407,6 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--brand-primary` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
 | `--brand-hover` | ![#CB6241](https://img.shields.io/badge/-%23CB6241-CB6241?style=flat-square) | `#CB6241` | ![#F89474](https://img.shields.io/badge/-%23F89474-F89474?style=flat-square) | `#F89474` |
 | `--brand-active` | ![#743622](https://img.shields.io/badge/-%23743622-743622?style=flat-square) | `#743622` | ![#FAAF97](https://img.shields.io/badge/-%23FAAF97-FAAF97?style=flat-square) | `#FAAF97` |
-| `--brand-bg-subtle` | — | `rgba(255,127,86,0.12)` | — | `rgba(255,127,86,0.16)` |
 | `--brand-border` | ![#743622](https://img.shields.io/badge/-%23743622-743622?style=flat-square) | `#743622` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
 | `--brand-border-subtle` | — | `rgba(255,127,86,0.40)` | — | `rgba(255,127,86,0.40)` |
 | `--brand-text` | ![#A04C31](https://img.shields.io/badge/-%23A04C31-A04C31?style=flat-square) | `#A04C31` | ![#FF7F56](https://img.shields.io/badge/-%23FF7F56-FF7F56?style=flat-square) | `#FF7F56` |
@@ -407,7 +421,7 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 |---|---|---|---|---|
 | `--error-bg-solid` | ![#DC2626](https://img.shields.io/badge/-%23DC2626-DC2626?style=flat-square) | `#DC2626` | ![#F46969](https://img.shields.io/badge/-%23F46969-F46969?style=flat-square) | `#F46969` |
 | `--error-bg-subtle` | — | `rgba(220,38,38,0.08)` | — | `rgba(244,105,105,0.16)` |
-| `--error-border` | ![#B91C1C](https://img.shields.io/badge/-%23B91C1C-B91C1C?style=flat-square) | `#B91C1C` | ![#F59E0B](https://img.shields.io/badge/-%23F59E0B-F59E0B?style=flat-square) | `#F59E0B` |
+| `--error-border` | ![#B91C1C](https://img.shields.io/badge/-%23B91C1C-B91C1C?style=flat-square) | `#B91C1C` | — | `rgba(244,105,105,0.50)` |
 | `--error-border-subtle` | — | `rgba(220,38,38,0.40)` | — | `rgba(244,105,105,0.40)` |
 | `--error-text` | ![#7F1D1D](https://img.shields.io/badge/-%237F1D1D-7F1D1D?style=flat-square) | `#7F1D1D` | ![#F98585](https://img.shields.io/badge/-%23F98585-F98585?style=flat-square) | `#F98585` |
 <!-- kz:autogen:end:semantic-error -->
@@ -421,7 +435,7 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--success-bg-subtle` | — | `rgba(22,163,74,0.08)` | — | `rgba(34,197,94,0.16)` |
 | `--success-border` | ![#15803D](https://img.shields.io/badge/-%2315803D-15803D?style=flat-square) | `#15803D` | ![#005C39](https://img.shields.io/badge/-%23005C39-005C39?style=flat-square) | `#005C39` |
 | `--success-border-subtle` | — | `rgba(22,163,74,0.40)` | — | `rgba(34,197,94,0.40)` |
-| `--success-text` | ![#14532D](https://img.shields.io/badge/-%2314532D-14532D?style=flat-square) | `#14532D` | ![#4ADE80](https://img.shields.io/badge/-%234ADE80-4ADE80?style=flat-square) | `#4ADE80` |
+| `--success-text` | ![#14532D](https://img.shields.io/badge/-%2314532D-14532D?style=flat-square) | `#14532D` | ![#22C55E](https://img.shields.io/badge/-%2322C55E-22C55E?style=flat-square) | `#22C55E` |
 <!-- kz:autogen:end:semantic-success -->
 
 ### Semantic — Warning
@@ -433,28 +447,17 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 | `--warning-bg-subtle` | — | `rgba(217,119,6,0.08)` | — | `rgba(245,158,11,0.16)` |
 | `--warning-border` | ![#B45309](https://img.shields.io/badge/-%23B45309-B45309?style=flat-square) | `#B45309` | ![#71491E](https://img.shields.io/badge/-%2371491E-71491E?style=flat-square) | `#71491E` |
 | `--warning-border-subtle` | — | `rgba(217,119,6,0.40)` | — | `rgba(245,158,11,0.40)` |
-| `--warning-text` | ![#78350F](https://img.shields.io/badge/-%2378350F-78350F?style=flat-square) | `#78350F` | ![#FBBF24](https://img.shields.io/badge/-%23FBBF24-FBBF24?style=flat-square) | `#FBBF24` |
+| `--warning-text` | ![#78350F](https://img.shields.io/badge/-%2378350F-78350F?style=flat-square) | `#78350F` | ![#F59E0B](https://img.shields.io/badge/-%23F59E0B-F59E0B?style=flat-square) | `#F59E0B` |
 <!-- kz:autogen:end:semantic-warning -->
 
-### Semantic — Info
+### Overlay &amp; Shadow
 
-<!-- kz:autogen:start:semantic-info -->
+<!-- kz:autogen:start:overlay -->
 | Token | Light | | Dark | |
 |---|---|---|---|---|
-| `--info-bg-solid` | ![#2563EB](https://img.shields.io/badge/-%232563EB-2563EB?style=flat-square) | `#2563EB` | ![#3B82F6](https://img.shields.io/badge/-%233B82F6-3B82F6?style=flat-square) | `#3B82F6` |
-| `--info-bg-subtle` | — | `rgba(37,99,235,0.08)` | — | `rgba(59,130,246,0.16)` |
-| `--info-border` | ![#1D4ED8](https://img.shields.io/badge/-%231D4ED8-1D4ED8?style=flat-square) | `#1D4ED8` | ![#15407B](https://img.shields.io/badge/-%2315407B-15407B?style=flat-square) | `#15407B` |
-| `--info-border-subtle` | — | `rgba(37,99,235,0.40)` | — | `rgba(59,130,246,0.40)` |
-| `--info-text` | ![#1E3A8A](https://img.shields.io/badge/-%231E3A8A-1E3A8A?style=flat-square) | `#1E3A8A` | ![#6AAAFA](https://img.shields.io/badge/-%236AAAFA-6AAAFA?style=flat-square) | `#6AAAFA` |
-<!-- kz:autogen:end:semantic-info -->
-
-### Glow
-
-<!-- kz:autogen:start:glow -->
-| Token | Light | | Dark | |
-|---|---|---|---|---|
-| `--glow-accent` | — | `rgba(81,83,246,0.08)` | — | `rgba(116,117,255,0.15)` |
-<!-- kz:autogen:end:glow -->
+| `--overlay-backdrop` | — | `rgba(35,31,32,0.50)` | — | `rgba(8,8,14,0.75)` |
+| `--shadow-card` | — | `0 18px 36px rgba(0,0,0,0.08)` | — | `0 18px 36px rgba(0,0,0,0.24)` |
+<!-- kz:autogen:end:overlay -->
 
 ---
 
@@ -462,12 +465,13 @@ Color swatches shown for solid hex values; `rgba` tokens are listed as values on
 
 | Category | Tokens |
 |---|---|
-| Surfaces | `surface-0` … `surface-5` (page → elevated layers), `surface-kpi` (dark only) |
-| Text | `text-primary`, `text-secondary`, `text-tertiary`, `text-accent`, `text-disabled`, `text-inverse` |
+| Surfaces | `surface-0` … `surface-5` (page → elevated layers) |
+| Section backgrounds | `section-bg-page`, `section-bg-base`, `section-bg-raised`, `section-bg-overlay`, `section-bg-glow` |
+| Text | `text-primary`, `text-secondary`, `text-tertiary`, `text-disabled`, `text-inverse` |
 | Strokes | `stroke-subtle`, `stroke-default`, `stroke-strong`, `stroke-hover`, `stroke-interactive` |
-| Brand | `brand-primary`, `brand-hover`, `brand-active`, `brand-bg-subtle`, `brand-border`, `brand-border-subtle`, `brand-text`, `brand-gradient-1`, `brand-gradient-2` |
-| Semantic | `{error/success/warning/info}-bg-solid`, `{error/success/warning/info}-bg-subtle`, `{error/success/warning/info}-border`, `{error/success/warning/info}-border-subtle`, `{error/success/warning/info}-text` |
-| Glow | `glow-accent` |
+| Brand | `brand-primary`, `brand-hover`, `brand-active`, `brand-border`, `brand-border-subtle`, `brand-text`, `brand-gradient-1`, `brand-gradient-2` |
+| Semantic | `{error/success/warning}-bg-solid`, `{error/success/warning}-bg-subtle`, `{error/success/warning}-border`, `{error/success/warning}-border-subtle`, `{error/success/warning}-text` |
+| Overlay | `overlay-backdrop`, `shadow-card` |
 
 Example usage:
 
@@ -507,17 +511,14 @@ Example usage:
   color: var(--kz-error-text);
 }
 
-/* Ambient section glow */
-.section-hero {
-  position: relative;
-  overflow: hidden;
+/* Modal/drawer backdrop */
+.modal-overlay {
+  background: var(--kz-overlay-backdrop);
 }
-.section-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse at 20% 50%, var(--kz-glow-accent) 0%, transparent 60%);
+
+/* Card drop shadow */
+.card {
+  box-shadow: var(--kz-shadow-card);
 }
 ```
 
@@ -583,9 +584,7 @@ Build outputs:
 | `--color-success-border` | `--success-border` |
 | `--color-warning` | `--warning-bg-solid` / `--warning-text` |
 | `--color-warning-bg` | `--warning-bg-subtle` |
-| `--color-info` | `--info-bg-solid` / `--info-text` |
-| `--color-info-bg` | `--info-bg-subtle` |
-| `--brand-dim` / `--brand-glow` | `--brand-bg-subtle` |
+| `--brand-dim` / `--brand-glow` | removed in v1.8.0 — use `surface-2` or `surface-3` for tinted backgrounds |
 | `--brand-text-light` | `--brand-text` (now mode-adaptive) |
 
 ### Tailwind class renames
@@ -601,34 +600,43 @@ Build outputs:
 | `bg-success` | `bg-success-bg-solid` |
 | `bg-success-bg` | `bg-success-bg-subtle` |
 | `bg-warning` | `bg-warning-bg-solid` |
-| `bg-info` | `bg-info-bg-solid` |
 | `bg-brand` | `bg-brand-primary` |
-| `bg-brand-dim` / `bg-brand-glow` | `bg-brand-bg-subtle` |
+| `bg-brand-dim` / `bg-brand-glow` | removed in v1.8.0 |
 
 ### Tokens removed (no replacement in v2)
 
 | Removed token | Notes |
 |---|---|
-| `--accent`, `--accent-hover`, `--accent-text-*`, `--accent-dim`, `--accent-border`, `--accent-glow`, `--focus-ring`, `--accent-soft-*` | Accent system removed. Use `--text-accent` for links, `--stroke-interactive` for focus rings. |
+| `--accent`, `--accent-hover`, `--accent-text-*`, `--accent-dim`, `--accent-border`, `--accent-glow`, `--focus-ring`, `--accent-soft-*` | Accent system removed. Use `--brand-text` for links, `--stroke-interactive` for focus rings. |
 | `--success-soft-12`, `--success-soft-14`, `--warning-soft-16`, `--info-soft-12`, `--info-soft-14` | Use `--*-bg-subtle` tokens instead. |
 | `--page-gradient`, `--page-gradient-muted`, `--portal-hero-bg` | Define app-specific gradients locally. |
 
-### New in v1.7.3
+### Removed in v1.9.0
+
+The following tokens were deprecated and removed in v1.9.0. Remove any references to them from your codebase.
+
+| Removed token | Migration |
+|---|---|
+| `--info-bg-solid`, `--info-bg-subtle`, `--info-border`, `--info-border-subtle`, `--info-text` | No replacement — define app-specific info colors locally. |
+| `--text-accent` | No replacement — use `--text-primary` or `--brand-text` for links. |
+| `--glow-accent` | No replacement — define app-specific glows locally. |
+
+### New in v1.9.0 – v1.9.1
 
 | New token | Notes |
 |---|---|
-| `--glow-accent` | Blue-purple ambient radial glow. Use as a `radial-gradient` overlay on `::before`. Light: 8% opacity, Dark: 15% opacity. |
+| `--overlay-backdrop` | Scrim color for modals and drawers. Light: `rgba(35,31,32,0.50)`, Dark: `rgba(8,8,14,0.75)`. |
+| `--shadow-card` | Drop shadow for cards and floating panels. Light: `0 18px 36px rgba(0,0,0,0.08)`, Dark: `0 18px 36px rgba(0,0,0,0.24)`. |
 
 ### New tokens in v2
 
 | New token | Notes |
 |---|---|
-| `--text-accent` | Mode-adaptive link/accent text color |
 | `--text-disabled` | Disabled UI element text |
 | `--brand-active` | Pressed/active state for brand elements |
 | `--brand-border`, `--brand-border-subtle` | Brand-tinted borders |
 | `--brand-gradient-1`, `--brand-gradient-2` | Brand gradient stops |
-| `--surface-kpi` | Reduced-opacity surface for KPI/metric cards (dark only) |
+| `--section-bg-glow` | Ambient purple-glow wash for sections (replaces pattern previously done via `--glow-accent`) |
 | `--stroke-strong` | High-emphasis separator |
 | `--*-border-subtle` | Secondary-emphasis semantic borders |
 | `--*-text` | Semantic foreground text colors |

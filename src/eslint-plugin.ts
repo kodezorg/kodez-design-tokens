@@ -14,14 +14,17 @@
  */
 
 const TOKEN_NAMES = new Set([
-  'brand-primary','brand-hover','brand-active','brand-bg-subtle',
+  'brand-primary','brand-hover','brand-active',
   'brand-border','brand-border-subtle','brand-text',
   'brand-gradient-1','brand-gradient-2',
-  'surface-0','surface-1','surface-2','surface-3','surface-4','surface-5','surface-kpi',
+  'surface-0','surface-1','surface-2','surface-3','surface-4','surface-5',
+  'section-bg-page','section-bg-base','section-bg-raised','section-bg-overlay','section-bg-glow',
   'stroke-subtle','stroke-default','stroke-strong','stroke-hover','stroke-interactive',
   'success-bg-solid','success-bg-subtle','success-border','success-border-subtle','success-text',
   'warning-bg-solid','warning-bg-subtle','warning-border','warning-border-subtle','warning-text',
   'error-bg-solid','error-bg-subtle','error-border','error-border-subtle','error-text',
+  'overlay-backdrop',
+  'shadow-card',
   'text-primary','text-secondary','text-tertiary','text-disabled','text-inverse',
 ]);
 
@@ -77,7 +80,7 @@ const noRawTokenVar = {
 };
 
 const plugin = {
-  meta: { name: '@kodez/design-tokens', version: '1.6.0' },
+  meta: { name: '@kodez/design-tokens', version: '1.9.1' },
   rules: { 'no-raw-token-var': noRawTokenVar },
   configs: {} as Record<string, any>,
 };

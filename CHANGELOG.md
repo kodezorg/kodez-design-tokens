@@ -1,5 +1,11 @@
 # @kodez/design-tokens
 
+## 1.9.1
+
+### Patch Changes
+
+- Add `shadow-card` token: `0 18px 36px rgba(0,0,0,0.08)` (light) / `0 18px 36px rgba(0,0,0,0.24)` (dark).
+
 ## 1.9.0
 
 ### Minor Changes

@@ -34,11 +34,10 @@
       --kz-warning-border:#B45309;--kz-warning-border-subtle:rgba(217,119,6,0.40);--kz-warning-text:#78350F;
       --kz-error-bg-solid:#DC2626;--kz-error-bg-subtle:rgba(220,38,38,0.08);
       --kz-error-border:#B91C1C;--kz-error-border-subtle:rgba(220,38,38,0.40);--kz-error-text:#7F1D1D;
-      --kz-info-bg-solid:#2563EB;--kz-info-bg-subtle:rgba(37,99,235,0.08);
-      --kz-info-border:#1D4ED8;--kz-info-border-subtle:rgba(37,99,235,0.40);--kz-info-text:#1E3A8A;
-      --kz-glow-accent:rgba(81,83,246,0.08);
+      --kz-overlay-backdrop:rgba(35,31,32,0.50);
+      --kz-shadow-card:0 18px 36px rgba(0,0,0,0.08);
       --kz-text-primary:#231F20;--kz-text-secondary:#4A4546;--kz-text-tertiary:#6F6B6C;
-      --kz-text-accent:#5153F6;--kz-text-disabled:#A6A2A3;--kz-text-inverse:#FFFFFF;
+      --kz-text-disabled:#A6A2A3;--kz-text-inverse:#FFFFFF;
     }
     /* ── Tokens: dark ────────────────────────────────────────────────────────── */
     .dark {
@@ -56,11 +55,10 @@
       --kz-warning-border:#71491E;--kz-warning-border-subtle:rgba(245,158,11,0.40);--kz-warning-text:#F59E0B;
       --kz-error-bg-solid:#F46969;--kz-error-bg-subtle:rgba(244,105,105,0.16);
       --kz-error-border:rgba(244,105,105,0.50);--kz-error-border-subtle:rgba(244,105,105,0.40);--kz-error-text:#F98585;
-      --kz-info-bg-solid:#3B82F6;--kz-info-bg-subtle:rgba(59,130,246,0.16);
-      --kz-info-border:#15407B;--kz-info-border-subtle:rgba(59,130,246,0.40);--kz-info-text:#6AAAFA;
-      --kz-glow-accent:rgba(116,117,255,0.15);
+      --kz-overlay-backdrop:rgba(8,8,14,0.75);
+      --kz-shadow-card:0 18px 36px rgba(0,0,0,0.24);
       --kz-text-primary:#F5F4F2;--kz-text-secondary:#999999;--kz-text-tertiary:#8C90A0;
-      --kz-text-accent:#7475FF;--kz-text-disabled:#5A5556;--kz-text-inverse:#231F20;
+      --kz-text-disabled:#5A5556;--kz-text-inverse:#231F20;
     }
     @media(prefers-color-scheme:dark){:root:not(.light){
       --kz-brand-primary:#FF7F56;--kz-brand-hover:#F89474;--kz-brand-active:#FAAF97;
@@ -76,43 +74,26 @@
       --kz-warning-border:#71491E;--kz-warning-border-subtle:rgba(245,158,11,0.40);--kz-warning-text:#F59E0B;
       --kz-error-bg-solid:#F46969;--kz-error-bg-subtle:rgba(244,105,105,0.16);
       --kz-error-border:rgba(244,105,105,0.50);--kz-error-border-subtle:rgba(244,105,105,0.40);--kz-error-text:#F98585;
-      --kz-info-bg-solid:#3B82F6;--kz-info-bg-subtle:rgba(59,130,246,0.16);
-      --kz-info-border:#15407B;--kz-info-border-subtle:rgba(59,130,246,0.40);--kz-info-text:#6AAAFA;
-      --kz-glow-accent:rgba(116,117,255,0.15);
+      --kz-overlay-backdrop:rgba(8,8,14,0.75);
+      --kz-shadow-card:0 18px 36px rgba(0,0,0,0.24);
       --kz-text-primary:#F5F4F2;--kz-text-secondary:#999999;--kz-text-tertiary:#8C90A0;
-      --kz-text-accent:#7475FF;--kz-text-disabled:#5A5556;--kz-text-inverse:#231F20;
+      --kz-text-disabled:#5A5556;--kz-text-inverse:#231F20;
     }}
 
-    /* ── Glow effects ────────────────────────────────────────────────────────── */
-    .glow-demos{display:flex;flex-wrap:wrap;gap:16px;}
-    .glow-card{
-      position:relative;overflow:hidden;
-      border-radius:14px;padding:24px;min-width:180px;flex:1;
-      background:var(--kz-surface-1);border:1px solid var(--kz-stroke-subtle);
+    /* ── Overlay / Shadow demos ──────────────────────────────────────────────── */
+    .overlay-demo{position:relative;border-radius:12px;overflow:hidden;}
+    .overlay-backdrop-swatch{
+      width:100%;height:64px;border-radius:10px;
+      background:var(--kz-overlay-backdrop);
+      border:1px solid var(--kz-stroke-subtle);
+      display:flex;align-items:center;justify-content:center;
+      font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--kz-text-primary);
     }
-    .glow-card::before{
-      content:'';position:absolute;inset:0;pointer-events:none;
-      background:radial-gradient(ellipse at 20% 50%, var(--kz-glow-accent) 0%, transparent 65%);
+    .shadow-card-swatch{
+      padding:16px;border-radius:10px;background:var(--kz-surface-1);
+      box-shadow:var(--kz-shadow-card);
+      font-size:12px;color:var(--kz-text-secondary);
     }
-    .glow-card-center::before{
-      background:radial-gradient(ellipse at 50% 30%, var(--kz-glow-accent) 0%, transparent 65%);
-    }
-    .glow-card-br::before{
-      background:radial-gradient(ellipse at 80% 80%, var(--kz-glow-accent) 0%, transparent 60%);
-    }
-    .glow-card-title{
-      position:relative;font-size:15px;font-weight:700;letter-spacing:-.02em;
-      color:var(--kz-text-primary);margin-bottom:6px;
-    }
-    .glow-card-sub{
-      position:relative;font-size:12px;color:var(--kz-text-secondary);line-height:1.55;
-    }
-    .glow-card-icon{
-      position:relative;width:32px;height:32px;border-radius:8px;margin-bottom:12px;
-      background:var(--kz-glow-accent);border:1px solid rgba(116,117,255,0.25);
-      display:flex;align-items:center;justify-content:center;color:var(--kz-text-accent);
-    }
-    .glow-card-icon svg{width:16px;height:16px;}
     .glow-swatch-row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;}
     .glow-swatch{display:flex;flex-direction:column;gap:6px;align-items:center;}
     .glow-swatch-box{
@@ -218,7 +199,7 @@
       white-space:nowrap;pointer-events:none;z-index:1;border:1px solid;
     }
     .aa-aaa{background:var(--kz-success-bg-subtle);color:var(--kz-success-text);border-color:var(--kz-success-border-subtle);}
-    .aa-aa {background:var(--kz-info-bg-subtle);   color:var(--kz-info-text);   border-color:var(--kz-info-border-subtle);}
+    .aa-aa {background:var(--kz-surface-3);         color:var(--kz-text-secondary);border-color:var(--kz-stroke-subtle);}
     .aa-low{background:var(--kz-warning-bg-subtle);color:var(--kz-warning-text);border-color:var(--kz-warning-border-subtle);}
     .aa-fail{background:var(--kz-error-bg-subtle); color:var(--kz-error-text);  border-color:var(--kz-error-border-subtle);}
 
@@ -274,7 +255,6 @@
     .badge-error  {background:transparent;color:var(--kz-error-text);  border-color:rgba(244,105,105,0.35);}
     .badge-success{background:transparent;color:var(--kz-success-bg-solid);border-color:rgba(34,197,94,0.35);}
     .badge-warning{background:transparent;color:var(--kz-warning-bg-solid);border-color:rgba(245,158,11,0.35);}
-    .badge-info   {background:transparent;color:var(--kz-info-bg-solid); border-color:rgba(59,130,246,0.35);}
     .badge-neutral{background:transparent;color:var(--kz-text-secondary); border-color:rgba(255,255,255,0.12);}
     .badge-brand  {background:transparent;color:var(--kz-brand-primary);  border-color:var(--kz-brand-border-subtle);}
 
@@ -638,7 +618,7 @@
     .toast-error   svg{color:var(--kz-brand-primary);}
     .toast-warning{border-left:3px solid var(--kz-warning-bg-solid);}
     .toast-warning svg{color:var(--kz-brand-primary);}
-    .toast-info   {border-left:3px solid var(--kz-info-bg-solid);}
+    .toast-info   {border-left:3px solid var(--kz-brand-primary);}
     .toast-info    svg{color:var(--kz-brand-primary);}
     .toast-body{font-size:12px;color:var(--kz-text-secondary);margin-top:1px;}
     .toast-content{flex:1;}
@@ -677,7 +657,6 @@
     .chip-brand  {background:transparent;color:var(--kz-brand-primary);      border-color:var(--kz-brand-border-subtle);}
     .chip-success{background:transparent;color:var(--kz-success-bg-solid);   border-color:rgba(34,197,94,0.35);}
     .chip-error  {background:transparent;color:var(--kz-error-text);         border-color:rgba(244,105,105,0.35);}
-    .chip-info   {background:transparent;color:var(--kz-info-bg-solid);      border-color:rgba(59,130,246,0.35);}
     .chip-warning{background:transparent;color:var(--kz-warning-bg-solid);   border-color:rgba(245,158,11,0.35);}
 
     /* ── Empty state ─────────────────────────────────────────────────────────── */
@@ -711,7 +690,7 @@
     .ck{color:var(--kz-brand-text);}
     .cs{color:var(--kz-success-text);}
     .cc{color:var(--kz-text-tertiary);}
-    .cp{color:var(--kz-info-text);}
+    .cp{color:var(--kz-text-tertiary);}
 
     /* ── Stats row ───────────────────────────────────────────────────────────── */
     .stat-row{display:flex;flex-wrap:wrap;gap:10px;}
@@ -1134,10 +1113,10 @@
           </td>
         </tr>
         <tr>
-          <td class="comp-name">--kz-text-accent<small>Links only</small></td>
-          <td class="comp-desc">Use exclusively for inline hyperlinks. Do not use for decorative colour or general emphasis.</td>
+          <td class="comp-name">--kz-brand-text<small>Links / brand text</small></td>
+          <td class="comp-desc">Use for inline hyperlinks and brand-colored text. Mode-adaptive: dark orange in light mode, bright orange in dark mode. (<code>--kz-text-accent</code> was removed in v1.9.0.)</td>
           <td class="comp-preview">
-            <a href="#" style="color:var(--kz-text-accent);text-decoration:underline;text-underline-offset:3px;font-size:14px;" data-wcag-check>View the full documentation →</a>
+            <a href="#" style="color:var(--kz-brand-text);text-decoration:underline;text-underline-offset:3px;font-size:14px;" data-wcag-check>View the full documentation →</a>
           </td>
         </tr>
         <tr>
@@ -1715,73 +1694,36 @@
           </td>
         </tr>
 
-        <!-- ══ GLOW EFFECTS ══════════════════════════════════════════════════ -->
-        <tr class="sec-row"><td colspan="3">Glow Effects</td></tr>
+        <!-- ══ OVERLAY / SHADOW ══════════════════════════════════════════════ -->
+        <tr class="sec-row"><td colspan="3">Overlay &amp; Shadow</td></tr>
 
         <tr>
-          <td class="comp-name">--kz-glow-accent<small>Ambient glow colour</small></td>
+          <td class="comp-name">--kz-overlay-backdrop<small>Modal scrim</small></td>
           <td class="comp-desc">
-            Blue-purple radial glow for ambient lighting effects behind sections, cards, and hero areas.
-            Light: <code>rgba(81,83,246,0.08)</code> · Dark: <code>rgba(116,117,255,0.15)</code>.
-            Apply as a <code>radial-gradient</code> on a <code>::before</code> pseudo-element so the surface background remains composable.
+            Scrim color for modal and drawer backgrounds.
+            Light: <code>rgba(35,31,32,0.50)</code> · Dark: <code>rgba(8,8,14,0.75)</code>.
+            Apply as the background of a full-screen overlay element behind modals and drawers.
           </td>
           <td class="comp-preview">
-            <div class="glow-swatch-row" style="margin-bottom:16px;">
+            <div class="glow-swatch-row">
               <div class="glow-swatch">
-                <div class="glow-swatch-box" style="background:radial-gradient(ellipse at 50% 50%, var(--kz-glow-accent) 0%, transparent 70%);">glow</div>
-                <div class="glow-swatch-label">--kz-glow-accent</div>
-              </div>
-              <div class="glow-swatch">
-                <div class="glow-swatch-box" style="background:var(--kz-glow-accent);"></div>
-                <div class="glow-swatch-label">flat swatch</div>
-              </div>
-            </div>
-            <div class="glow-demos">
-              <div class="glow-card">
-                <div class="glow-card-icon"><i data-lucide="cpu" aria-hidden="true"></i></div>
-                <div class="glow-card-title">AI-Native Engineering</div>
-                <div class="glow-card-sub">Glow at 20% 50% — the default section pattern.</div>
-              </div>
-              <div class="glow-card glow-card-center">
-                <div class="glow-card-icon"><i data-lucide="layers" aria-hidden="true"></i></div>
-                <div class="glow-card-title">Platform Layer</div>
-                <div class="glow-card-sub">Glow at 50% 30% — centred top for hero cards.</div>
-              </div>
-              <div class="glow-card glow-card-br">
-                <div class="glow-card-icon"><i data-lucide="zap" aria-hidden="true"></i></div>
-                <div class="glow-card-title">Delivery Speed</div>
-                <div class="glow-card-sub">Glow at 80% 80% — bottom-right accent corner.</div>
+                <div class="glow-swatch-box" style="background:var(--kz-overlay-backdrop);"></div>
+                <div class="glow-swatch-label">--kz-overlay-backdrop</div>
               </div>
             </div>
           </td>
         </tr>
 
         <tr>
-          <td class="comp-name">Section background<small>radial-gradient usage</small></td>
+          <td class="comp-name">--kz-shadow-card<small>Card drop shadow</small></td>
           <td class="comp-desc">
-            Full-bleed section demo showing <code>--kz-glow-accent</code> as an ambient radial overlay on top of <code>--kz-surface-0</code>.
-            Mirrors the About section pattern on the Kodez website.
+            Drop shadow for cards and floating panels.
+            Light: <code>0 18px 36px rgba(0,0,0,0.08)</code> · Dark: <code>0 18px 36px rgba(0,0,0,0.24)</code>.
+            Apply via <code>box-shadow: var(--kz-shadow-card)</code>.
           </td>
           <td class="comp-preview">
-            <div style="position:relative;overflow:hidden;border-radius:12px;padding:28px 24px;
-                        background:var(--kz-surface-0);border:1px solid var(--kz-stroke-subtle);">
-              <!-- ambient glow layer -->
-              <div style="position:absolute;inset:0;pointer-events:none;
-                          background:radial-gradient(ellipse at 20% 50%, var(--kz-glow-accent) 0%, transparent 60%);"></div>
-              <!-- content -->
-              <div style="position:relative;">
-                <div style="font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--kz-text-tertiary);
-                            letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;">[01 About]</div>
-                <div style="font-size:20px;font-weight:700;letter-spacing:-.03em;line-height:1.2;
-                            color:var(--kz-text-primary);margin-bottom:10px;">
-                  Most organisations have already run AI experiments.
-                  <span style="color:var(--kz-text-inverse);background:var(--kz-text-primary);padding:0 4px;border-radius:3px;">Far fewer</span>
-                  have turned them into outcomes.
-                </div>
-                <div style="font-size:12px;color:var(--kz-text-secondary);line-height:1.6;">
-                  The difference is rarely the model — it is the quality of ownership and the delivery system.
-                </div>
-              </div>
+            <div class="shadow-card-swatch">
+              Card with <code>box-shadow: var(--kz-shadow-card)</code>
             </div>
           </td>
         </tr>
@@ -2196,7 +2138,7 @@
               </div>
               <div class="stat-bar-row">
                 <span class="stat-bar-label">Frontend</span>
-                <div class="stat-bar-track"><div class="stat-bar-fill" style="width:67%;background:var(--kz-info-bg-solid);"></div></div>
+                <div class="stat-bar-track"><div class="stat-bar-fill" style="width:67%;background:var(--kz-stroke-interactive);"></div></div>
                 <span class="stat-bar-val">67%</span>
               </div>
               <div class="stat-bar-row">

@@ -72,7 +72,7 @@ components:
     dark:
       bg:     { token: "transparent" }
       fg:     { token: "--kz-text-primary",   hex: "#F5F4F2", contrast: "14.83 on surface-0", level: AA }
-      border: { token: "--kz-stroke-default",  hex: "#3D3839" }
+      border: { token: "--kz-stroke-default",  hex: "#262648" }
 
   button_ghost:
     description: Text-only button, no border or fill
@@ -83,7 +83,7 @@ components:
       hover_bg: { token: "--kz-surface-2" }
     dark:
       bg:     { token: "transparent" }
-      fg:     { token: "--kz-text-secondary", hex: "#BDB7B8", contrast: "7.01 on surface-0", level: AA }
+      fg:     { token: "--kz-text-secondary", hex: "#999999", contrast: "7.01 on surface-0", level: AA }
       hover_bg: { token: "--kz-surface-2" }
 
   button_danger:
@@ -133,26 +133,6 @@ components:
       mui: |
         warning: { main: t['--kz-warning-bg-solid'], contrastText: _light['--kz-text-primary'] }
 
-  button_info:
-    description: Filled button on info-bg-solid background
-    css_class: .btn-info
-    mui_color: secondary
-    light:
-      bg: { token: "--kz-info-bg-solid", hex: "#2563EB" }
-      fg: { token: "--kz-text-inverse",  hex: "#FFFFFF", contrast: 5.17, level: AA }
-      # white passes in light — use it
-    dark:
-      bg: { token: "--kz-info-bg-solid", hex: "#3B82F6" }
-      fg: { token: "--kz-text-primary",  hex: "#231F20", contrast: 4.43, level: "near-AA" }
-      # white on medium blue: 3.68:1 FAIL. Near-black: 4.43:1 (just below 4.5 threshold).
-      # Use dark text — vastly better than white failure.
-    implementation:
-      mui: |
-        secondary: {
-          main: t['--kz-info-bg-solid'],
-          contrastText: isDark ? _light['--kz-text-primary'] : t['--kz-text-inverse']
-        }
-
   # ─── BADGES / CHIPS ───────────────────────────────────────────────────────────
 
   badge_brand_solid:
@@ -168,15 +148,17 @@ components:
       In MUI portalTokens, use _light['--kz-text-primary'] as brandBadgeText.
 
   badge_brand_subtle:
-    description: Low-emphasis brand chip/badge on brand-bg-subtle
+    description: Low-emphasis brand chip/badge (brand-border-subtle outline, no fill)
     light:
-      bg: { token: "--kz-brand-bg-subtle", hex: "rgba(255,127,86,0.12)" }
-      fg: { token: "--kz-brand-text",      hex: "#A04C31", contrast: "≥4.5 on surface-0", level: AA }
-      border: { token: "--kz-brand-border" }
+      bg: { token: "transparent" }
+      fg: { token: "--kz-brand-text",         hex: "#A04C31", contrast: "≥4.5 on surface-0", level: AA }
+      border: { token: "--kz-brand-border-subtle" }
     dark:
-      bg: { token: "--kz-brand-bg-subtle", hex: "rgba(255,127,86,0.16)" }
-      fg: { token: "--kz-brand-text",      hex: "#FF7F56", contrast: "≥4.5 on surface-1", level: AA }
-      border: { token: "--kz-brand-border" }
+      bg: { token: "transparent" }
+      fg: { token: "--kz-brand-text",         hex: "#FF7F56", contrast: "≥4.5 on surface-1", level: AA }
+      border: { token: "--kz-brand-border-subtle" }
+    notes: >
+      brand-bg-subtle was removed in v1.8.0. Use transparent background with brand-border-subtle outline.
 
   badge_success:
     light:
@@ -185,7 +167,7 @@ components:
       border: { token: "--kz-success-border" }
     dark:
       bg: { token: "--kz-success-bg-subtle" }
-      fg: { token: "--kz-success-text", hex: "#4ADE80" }
+      fg: { token: "--kz-success-text", hex: "#22C55E" }
       border: { token: "--kz-success-border" }
 
   badge_warning:
@@ -195,7 +177,7 @@ components:
       border: { token: "--kz-warning-border" }
     dark:
       bg: { token: "--kz-warning-bg-subtle" }
-      fg: { token: "--kz-warning-text", hex: "#FBBF24" }
+      fg: { token: "--kz-warning-text", hex: "#F59E0B" }
       border: { token: "--kz-warning-border" }
 
   badge_error:
@@ -208,16 +190,6 @@ components:
       fg: { token: "--kz-error-text", hex: "#F98585" }
       border: { token: "--kz-error-border" }
 
-  badge_info:
-    light:
-      bg: { token: "--kz-info-bg-subtle" }
-      fg: { token: "--kz-info-text", hex: "#1E3A8A" }
-      border: { token: "--kz-info-border" }
-    dark:
-      bg: { token: "--kz-info-bg-subtle" }
-      fg: { token: "--kz-info-text", hex: "#6AAAFA" }
-      border: { token: "--kz-info-border" }
-
   # ─── ALERTS / CALLOUTS ────────────────────────────────────────────────────────
 
   alert_success:
@@ -229,7 +201,7 @@ components:
       icon:    { token: "--kz-success-text" }
     dark:
       bg:      { token: "--kz-success-bg-subtle" }
-      fg:      { token: "--kz-success-text", hex: "#4ADE80" }
+      fg:      { token: "--kz-success-text", hex: "#22C55E" }
       fg_body: { token: "--kz-text-primary" }
       border:  { token: "--kz-success-border" }
 
@@ -241,7 +213,7 @@ components:
       border:  { token: "--kz-warning-border" }
     dark:
       bg:      { token: "--kz-warning-bg-subtle" }
-      fg:      { token: "--kz-warning-text", hex: "#FBBF24" }
+      fg:      { token: "--kz-warning-text", hex: "#F59E0B" }
       fg_body: { token: "--kz-text-primary" }
       border:  { token: "--kz-warning-border" }
 
@@ -257,18 +229,6 @@ components:
       fg_body: { token: "--kz-text-primary" }
       border:  { token: "--kz-error-border" }
 
-  alert_info:
-    light:
-      bg:      { token: "--kz-info-bg-subtle" }
-      fg:      { token: "--kz-info-text", hex: "#1E3A8A" }
-      fg_body: { token: "--kz-text-primary" }
-      border:  { token: "--kz-info-border" }
-    dark:
-      bg:      { token: "--kz-info-bg-subtle" }
-      fg:      { token: "--kz-info-text", hex: "#6AAAFA" }
-      fg_body: { token: "--kz-text-primary" }
-      border:  { token: "--kz-info-border" }
-
   # ─── TOOLTIP ──────────────────────────────────────────────────────────────────
 
   tooltip:
@@ -277,7 +237,7 @@ components:
       bg: { token: "--kz-text-secondary", hex: "#4A4546" }
       fg: { token: "--kz-surface-1",      hex: "#F9F8F7", contrast: 8.85, level: AAA }
     dark:
-      bg: { token: "--kz-surface-5",      hex: "#342F31" }
+      bg: { token: "--kz-surface-5",      hex: "#212142" }
       fg: { token: "--kz-text-primary",   hex: "#F5F4F2", contrast: 11.98, level: AAA }
     notes: >
       MUI default rgba(97,97,97,0.92) composites to ~#757575 on white — fails 4.5:1 with near-white text.
@@ -303,10 +263,10 @@ components:
       placeholder: { token: "--kz-text-tertiary",   hex: "#6F6B6C" }
       border:      { token: "--kz-stroke-default",  hex: "#D5D2CE" }
     dark:
-      bg:          { token: "--kz-surface-3",      hex: "#231F20" }
+      bg:          { token: "--kz-surface-3",      hex: "#17172E" }
       fg:          { token: "--kz-text-primary",    hex: "#F5F4F2" }
-      placeholder: { token: "--kz-text-tertiary",   hex: "#837D7E" }
-      border:      { token: "--kz-stroke-default",  hex: "#3D3839" }
+      placeholder: { token: "--kz-text-tertiary",   hex: "#8C90A0" }
+      border:      { token: "--kz-stroke-default",  hex: "#262648" }
 
   input_focus:
     light:
@@ -337,7 +297,7 @@ components:
       fg:     { token: "--kz-text-primary" }
       border: { token: "--kz-stroke-subtle" }
     dark:
-      bg:     { token: "--kz-surface-1", hex: "#131112" }
+      bg:     { token: "--kz-surface-1", hex: "#0D0D1A" }
       fg:     { token: "--kz-text-primary" }
       border: { token: "--kz-stroke-subtle" }
 
@@ -347,7 +307,7 @@ components:
       bg:     { token: "--kz-surface-2", hex: "#F5F4F2" }
       fg:     { token: "--kz-text-primary" }
     dark:
-      bg:     { token: "--kz-surface-2", hex: "#1C191A" }
+      bg:     { token: "--kz-surface-2", hex: "#121224" }
       fg:     { token: "--kz-text-primary" }
 
   card_brand_gradient:
@@ -368,7 +328,7 @@ components:
       bg: { token: "--kz-stroke-hover", hex: "#9E9A97" }
       fg: { token: "--kz-text-primary", hex: "#231F20", contrast: 5.84, level: AA }
     dark:
-      bg: { token: "--kz-stroke-hover", hex: "#6E6869" }
+      bg: { token: "--kz-stroke-hover", hex: "#44447E" }
       fg: { hex: "#FFFFFF",             contrast: 4.79, level: AA }
     implementation:
       css: |
@@ -389,21 +349,23 @@ components:
       hover_bg: { token: "--kz-surface-2" }
     dark:
       bg:      { token: "--kz-surface-1" }
-      fg:      { token: "--kz-text-secondary", hex: "#BDB7B8" }
+      fg:      { token: "--kz-text-secondary", hex: "#999999" }
       icon:    { token: "--kz-text-secondary" }
       hover_bg: { token: "--kz-surface-2" }
 
   nav_sidebar_active:
     light:
-      bg:     { token: "--kz-brand-bg-subtle" }
+      bg:     { token: "--kz-surface-2" }
       fg:     { token: "--kz-text-primary" }
       border: { token: "--kz-stroke-interactive" }
       icon:   { token: "--kz-brand-primary" }
     dark:
-      bg:     { token: "--kz-brand-bg-subtle" }
+      bg:     { token: "--kz-surface-2" }
       fg:     { token: "--kz-text-primary" }
       border: { token: "--kz-stroke-interactive" }
       icon:   { token: "--kz-brand-primary" }
+    notes: >
+      brand-bg-subtle was removed in v1.8.0. Use surface-2 as the active item background.
 
   nav_tab_active:
     light:
@@ -452,12 +414,12 @@ components:
       bg:      { token: "--kz-surface-3", hex: "#EDEBE8" }
       fg:      { token: "--kz-text-primary" }
       border:  { token: "--kz-stroke-default" }
-      keyword: { token: "--kz-text-accent", hex: "#5153F6" }
+      keyword: { token: "--kz-brand-text", hex: "#A04C31" }
     dark:
-      bg:      { token: "--kz-surface-3", hex: "#231F20" }
+      bg:      { token: "--kz-surface-3", hex: "#17172E" }
       fg:      { token: "--kz-text-primary" }
       border:  { token: "--kz-stroke-default" }
-      keyword: { token: "--kz-text-accent", hex: "#7475FF" }
+      keyword: { token: "--kz-brand-text", hex: "#FF7F56" }
 
   # ─── TOAST / NOTIFICATION ─────────────────────────────────────────────────────
 
@@ -471,11 +433,11 @@ components:
       close_icon: { token: "--kz-text-tertiary", hex: "#6F6B6C",
                     contrast: 3.66, wcag_category: ui_component, level: AA }
     dark:
-      bg:         { token: "--kz-surface-5", hex: "#342F31" }
+      bg:         { token: "--kz-surface-5", hex: "#212142" }
       fg:         { token: "--kz-text-primary" }
       fg_muted:   { token: "--kz-text-secondary" }
       border:     { token: "--kz-stroke-default" }
-      close_icon: { token: "--kz-text-tertiary", hex: "#837D7E",
+      close_icon: { token: "--kz-text-tertiary", hex: "#8C90A0",
                     contrast: 3.26, wcag_category: ui_component, level: AA }
     notes: >
       Close button icon uses --kz-text-tertiary which is below 4.5:1 for normal text.
@@ -509,28 +471,32 @@ disabled_global:
   dark_contrast_on_surface0:  2.70
   rationale: "WCAG 2.1 SC 1.4.3 exception: inactive UI component text has no contrast requirement."
 
-  # ─── GLOW ─────────────────────────────────────────────────────────────────────
+  # ─── OVERLAY / SHADOW ─────────────────────────────────────────────────────────
 
-  glow_accent:
-    description: Blue-purple ambient radial glow for section backgrounds, hero areas, and card overlays
-    token: "--kz-glow-accent"
+  overlay_backdrop:
+    description: Scrim color for modal and drawer backgrounds
+    token: "--kz-overlay-backdrop"
     category: effect
     wcag_exempt: true
     notes: >
-      Decorative only — never used as text color or interactive indicator.
-      WCAG exempts purely decorative elements (SC 1.4.1 Note 1).
-      Apply as radial-gradient on a ::before pseudo-element so the surface
-      background remains accessible. Do not use as a standalone background.
+      Use as the background of a full-screen overlay element behind modals and drawers.
+      Decorative/structural — no foreground text sits directly on it.
+    light:
+      value: "rgba(35,31,32,0.50)"
+    dark:
+      value: "rgba(8,8,14,0.75)"
+
+  shadow_card:
+    description: Drop shadow for cards and floating panels
+    token: "--kz-shadow-card"
+    category: effect
+    wcag_exempt: true
+    notes: >
+      Apply via box-shadow. Automatically adapts depth to mode (light shadows are lighter).
     usage:
       css: |
-        .section::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          background: radial-gradient(ellipse at 20% 50%, var(--kz-glow-accent) 0%, transparent 65%);
-        }
+        .card { box-shadow: var(--kz-shadow-card); }
     light:
-      value: "rgba(81,83,246,0.08)"
+      value: "0 18px 36px rgba(0,0,0,0.08)"
     dark:
-      value: "rgba(116,117,255,0.15)"
+      value: "0 18px 36px rgba(0,0,0,0.24)"
